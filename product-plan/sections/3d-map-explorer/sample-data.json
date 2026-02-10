@@ -1,0 +1,202 @@
+{
+  "_meta": {
+    "models": {
+      "city": "A metropolitan area with HOLC redlining data. Milwaukee is the initial city, serving as the top-level container for all geographic data.",
+      "holcZones": "Each HOLC zone represents a graded neighborhood polygon from the 1938 maps. Zones carry the original appraiser descriptions — including the racist language used to justify the grades — and are the primary unit of interaction in the 3D scene.",
+      "viewModes": "The toggleable data layers that control what is rendered in the 3D viewport. Each mode maps to a different dataset and visual encoding.",
+      "timeMarkers": "Key historical eras used by the time slider to animate transitions between periods."
+    },
+    "relationships": [
+      "A City contains many HOLCZones (Milwaukee has approximately 50 zones)",
+      "Each HOLCZone belongs to one City and carries a grade (A through D) that determines its height and color in the 3D scene",
+      "ViewModes control the rendering of HOLCZones and other data layers",
+      "TimeMarkers define the key eras the time slider snaps to"
+    ]
+  },
+  "city": {
+    "id": "milwaukee",
+    "name": "Milwaukee",
+    "state": "Wisconsin",
+    "year": 1938,
+    "centerLat": 43.0389,
+    "centerLng": -87.9065,
+    "zoomLevel": 12
+  },
+  "holcZones": [
+    {
+      "id": "A1",
+      "holcGrade": "A",
+      "holcId": "A-1",
+      "name": "Whitefish Bay / North Shore",
+      "description": "\"This is a highly restricted residential district of fine homes. Homogeneous. American business and professional men. No threat of infiltration. The area is highly regarded and there is a good demand for properties.\"",
+      "polygon": [
+        [-87.8890, 43.0950],
+        [-87.8750, 43.0950],
+        [-87.8750, 43.1100],
+        [-87.8890, 43.1100],
+        [-87.8890, 43.0950]
+      ],
+      "extrusionHeight": 40,
+      "color": "#4CAF50",
+      "medianIncome": 112500,
+      "medianHomeValue": 385000,
+      "populationDensity": 4200,
+      "percentOwnerOccupied": 78.3
+    },
+    {
+      "id": "A2",
+      "holcGrade": "A",
+      "holcId": "A-2",
+      "name": "Shorewood Heights",
+      "description": "\"This is a highly desirable residential area with modern homes. Restrictions are good. Population is composed of American business and professional men. There is a steady demand for properties in this area.\"",
+      "polygon": [
+        [-87.8850, 43.0830],
+        [-87.8700, 43.0830],
+        [-87.8700, 43.0950],
+        [-87.8850, 43.0950],
+        [-87.8850, 43.0830]
+      ],
+      "extrusionHeight": 40,
+      "color": "#4CAF50",
+      "medianIncome": 98700,
+      "medianHomeValue": 342000,
+      "populationDensity": 5100,
+      "percentOwnerOccupied": 71.6
+    },
+    {
+      "id": "B3",
+      "holcGrade": "B",
+      "holcId": "B-3",
+      "name": "Washington Heights",
+      "description": "\"This is a good residential area but past its peak. Still desirable but the homes are aging. Population is largely American-born white collar workers. Some encroachment from the south is noted.\"",
+      "polygon": [
+        [-87.9350, 43.0400],
+        [-87.9200, 43.0400],
+        [-87.9200, 43.0550],
+        [-87.9350, 43.0550],
+        [-87.9350, 43.0400]
+      ],
+      "extrusionHeight": 30,
+      "color": "#2196F3",
+      "medianIncome": 67200,
+      "medianHomeValue": 198000,
+      "populationDensity": 6800,
+      "percentOwnerOccupied": 62.4
+    },
+    {
+      "id": "B5",
+      "holcGrade": "B",
+      "holcId": "B-5",
+      "name": "Bay View",
+      "description": "\"A stable residential area of moderate homes. Still desirable. Population is composed of skilled workmen, many of Polish descent. Properties are well maintained and there is moderate demand.\"",
+      "polygon": [
+        [-87.8950, 43.0050],
+        [-87.8800, 43.0050],
+        [-87.8800, 43.0200],
+        [-87.8950, 43.0200],
+        [-87.8950, 43.0050]
+      ],
+      "extrusionHeight": 30,
+      "color": "#2196F3",
+      "medianIncome": 58400,
+      "medianHomeValue": 175000,
+      "populationDensity": 7200,
+      "percentOwnerOccupied": 55.8
+    },
+    {
+      "id": "C4",
+      "holcGrade": "C",
+      "holcId": "C-4",
+      "name": "Near West Side / Merrill Park",
+      "description": "\"This area is declining. Infiltration of lower grade population including some negroes on the eastern edge. Housing is old and not well maintained. Heavy industrial influence from the Menomonee Valley.\"",
+      "polygon": [
+        [-87.9350, 43.0200],
+        [-87.9150, 43.0200],
+        [-87.9150, 43.0380],
+        [-87.9350, 43.0380],
+        [-87.9350, 43.0200]
+      ],
+      "extrusionHeight": 20,
+      "color": "#FFEB3B",
+      "medianIncome": 38900,
+      "medianHomeValue": 112000,
+      "populationDensity": 8500,
+      "percentOwnerOccupied": 38.7
+    },
+    {
+      "id": "C6",
+      "holcGrade": "C",
+      "holcId": "C-6",
+      "name": "South Side / Lincoln Village",
+      "description": "\"An older area of mixed residential and commercial use. Population is largely of Polish and German extraction. The area has been declining for some years. Housing stock is aging and values are static.\"",
+      "polygon": [
+        [-87.9200, 43.0000],
+        [-87.9050, 43.0000],
+        [-87.9050, 43.0150],
+        [-87.9200, 43.0150],
+        [-87.9200, 43.0000]
+      ],
+      "extrusionHeight": 20,
+      "color": "#FFEB3B",
+      "medianIncome": 41200,
+      "medianHomeValue": 125000,
+      "populationDensity": 7900,
+      "percentOwnerOccupied": 42.1
+    },
+    {
+      "id": "D7",
+      "holcGrade": "D",
+      "holcId": "D-7",
+      "name": "Bronzeville / 6th & Walnut",
+      "description": "\"This is a negro and lower class mixed area adjacent to the negro section. The area is old and is very much run down. The trend of desirability is downward and it is a hazardous area from a mortgage standpoint. Negroes comprise approximately 80% of the population.\"",
+      "polygon": [
+        [-87.9200, 43.0400],
+        [-87.9050, 43.0400],
+        [-87.9050, 43.0530],
+        [-87.9200, 43.0530],
+        [-87.9200, 43.0400]
+      ],
+      "extrusionHeight": 10,
+      "color": "#F44336",
+      "medianIncome": 24800,
+      "medianHomeValue": 68000,
+      "populationDensity": 3200,
+      "percentOwnerOccupied": 18.4
+    },
+    {
+      "id": "D9",
+      "holcGrade": "D",
+      "holcId": "D-9",
+      "name": "Halyard Park / Hillside",
+      "description": "\"Negro area. Very poor condition of buildings. The area is old and much of it is in very run down condition. Several of the buildings are unfit for habitation. Hazardous. No demand for properties except by colored.\"",
+      "polygon": [
+        [-87.9150, 43.0530],
+        [-87.9000, 43.0530],
+        [-87.9000, 43.0650],
+        [-87.9150, 43.0650],
+        [-87.9150, 43.0530]
+      ],
+      "extrusionHeight": 10,
+      "color": "#F44336",
+      "medianIncome": 22100,
+      "medianHomeValue": 52000,
+      "populationDensity": 2800,
+      "percentOwnerOccupied": 14.2
+    }
+  ],
+  "viewModes": [
+    { "id": "holc-grades", "label": "HOLC Grades", "isActive": true },
+    { "id": "sanborn", "label": "Sanborn", "isActive": false },
+    { "id": "buildings", "label": "Buildings", "isActive": false },
+    { "id": "ghost", "label": "Ghost", "isActive": false },
+    { "id": "income", "label": "Income", "isActive": false },
+    { "id": "health", "label": "Health", "isActive": false },
+    { "id": "displacement", "label": "Displacement", "isActive": false }
+  ],
+  "timeMarkers": [
+    { "year": 1910, "label": "1910", "description": "Sanborn fire insurance maps document dense neighborhoods" },
+    { "year": 1938, "label": "1938", "description": "HOLC grades assigned — redlining begins" },
+    { "year": 1960, "label": "1960s", "description": "Interstate 43 demolishes Bronzeville" },
+    { "year": 2025, "label": "Now", "description": "Present-day outcomes visible in census and property data" }
+  ]
+}

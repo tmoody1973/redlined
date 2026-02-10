@@ -1,0 +1,191 @@
+{
+  "_meta": {
+    "models": {
+      "overlayLayers": "Each overlay layer represents a category of present-day outcome data (income, health, environment, or property value) that can be rendered as a choropleth color fill over the HOLC zones. Each layer defines its color scale, units, and value range.",
+      "zoneOverlayData": "Per-zone metric values for each overlay layer across all HOLC zones. These values drive the choropleth fill color and populate the info panel stats when a zone is clicked.",
+      "gradeAverages": "Citywide averages grouped by HOLC grade (A through D) for each metric. These provide the comparison baseline in the info panel — showing how a specific zone compares to other zones of the same grade and to the opposite end of the spectrum."
+    },
+    "relationships": [
+      "Each OverlayLayer defines the metric displayed across all zones",
+      "Each ZoneOverlayData record links a zone to its values for all overlay metrics",
+      "GradeAverages provide A-zone and D-zone citywide comparisons for the info panel"
+    ]
+  },
+  "overlayLayers": [
+    {
+      "id": "income",
+      "label": "Median Income",
+      "description": "American Community Survey median household income by census tract, 2023 estimates",
+      "unit": "currency",
+      "source": "U.S. Census ACS 5-Year Estimates",
+      "colorScale": ["#F44336", "#FF9800", "#FFEB3B", "#8BC34A", "#4CAF50"],
+      "min": 18000,
+      "max": 120000,
+      "minLabel": "$18K",
+      "maxLabel": "$120K"
+    },
+    {
+      "id": "health",
+      "label": "Health Outcomes",
+      "description": "CDC PLACES composite health burden index combining asthma prevalence, diabetes prevalence, and life expectancy differential",
+      "unit": "index",
+      "source": "CDC PLACES, 2023",
+      "colorScale": ["#4CAF50", "#8BC34A", "#FFEB3B", "#FF9800", "#F44336"],
+      "min": 0,
+      "max": 100,
+      "minLabel": "0 (Healthy)",
+      "maxLabel": "100 (Severe)"
+    },
+    {
+      "id": "environment",
+      "label": "Environmental Burden",
+      "description": "EPA EJScreen environmental justice index measuring proximity to contaminated sites, industrial facilities, and traffic pollution",
+      "unit": "percentile",
+      "source": "EPA EJScreen, 2023",
+      "colorScale": ["#4CAF50", "#8BC34A", "#FFEB3B", "#FF9800", "#F44336"],
+      "min": 0,
+      "max": 100,
+      "minLabel": "0th pctile",
+      "maxLabel": "100th pctile"
+    },
+    {
+      "id": "value",
+      "label": "Assessed Value",
+      "description": "Median assessed property value from Milwaukee MPROP data, reflecting the investment differential between zones",
+      "unit": "currency",
+      "source": "City of Milwaukee MPROP, 2025",
+      "colorScale": ["#F44336", "#FF9800", "#FFEB3B", "#8BC34A", "#4CAF50"],
+      "min": 40000,
+      "max": 450000,
+      "minLabel": "$40K",
+      "maxLabel": "$450K"
+    }
+  ],
+  "zoneOverlayData": [
+    {
+      "zoneId": "A1",
+      "holcId": "A-1",
+      "holcGrade": "A",
+      "name": "Whitefish Bay / North Shore",
+      "metrics": {
+        "income": { "value": 112500, "percentile": 95, "choroplethColor": "#4CAF50" },
+        "health": { "value": 12, "percentile": 8, "choroplethColor": "#4CAF50" },
+        "environment": { "value": 15, "percentile": 15, "choroplethColor": "#4CAF50" },
+        "value": { "value": 385000, "percentile": 92, "choroplethColor": "#4CAF50" }
+      }
+    },
+    {
+      "zoneId": "A2",
+      "holcId": "A-2",
+      "holcGrade": "A",
+      "name": "Shorewood Heights",
+      "metrics": {
+        "income": { "value": 98700, "percentile": 88, "choroplethColor": "#8BC34A" },
+        "health": { "value": 18, "percentile": 14, "choroplethColor": "#4CAF50" },
+        "environment": { "value": 22, "percentile": 22, "choroplethColor": "#8BC34A" },
+        "value": { "value": 342000, "percentile": 86, "choroplethColor": "#8BC34A" }
+      }
+    },
+    {
+      "zoneId": "B3",
+      "holcId": "B-3",
+      "holcGrade": "B",
+      "name": "Washington Heights",
+      "metrics": {
+        "income": { "value": 67200, "percentile": 62, "choroplethColor": "#FFEB3B" },
+        "health": { "value": 35, "percentile": 38, "choroplethColor": "#FFEB3B" },
+        "environment": { "value": 42, "percentile": 42, "choroplethColor": "#FFEB3B" },
+        "value": { "value": 198000, "percentile": 58, "choroplethColor": "#FFEB3B" }
+      }
+    },
+    {
+      "zoneId": "B5",
+      "holcId": "B-5",
+      "holcGrade": "B",
+      "name": "Bay View",
+      "metrics": {
+        "income": { "value": 58400, "percentile": 52, "choroplethColor": "#FFEB3B" },
+        "health": { "value": 38, "percentile": 42, "choroplethColor": "#FFEB3B" },
+        "environment": { "value": 48, "percentile": 48, "choroplethColor": "#FFEB3B" },
+        "value": { "value": 175000, "percentile": 48, "choroplethColor": "#FFEB3B" }
+      }
+    },
+    {
+      "zoneId": "C4",
+      "holcId": "C-4",
+      "holcGrade": "C",
+      "name": "Near West Side / Merrill Park",
+      "metrics": {
+        "income": { "value": 38900, "percentile": 28, "choroplethColor": "#FF9800" },
+        "health": { "value": 62, "percentile": 68, "choroplethColor": "#FF9800" },
+        "environment": { "value": 71, "percentile": 71, "choroplethColor": "#FF9800" },
+        "value": { "value": 112000, "percentile": 24, "choroplethColor": "#FF9800" }
+      }
+    },
+    {
+      "zoneId": "C6",
+      "holcId": "C-6",
+      "holcGrade": "C",
+      "name": "South Side / Lincoln Village",
+      "metrics": {
+        "income": { "value": 41200, "percentile": 32, "choroplethColor": "#FF9800" },
+        "health": { "value": 55, "percentile": 60, "choroplethColor": "#FF9800" },
+        "environment": { "value": 65, "percentile": 65, "choroplethColor": "#FFEB3B" },
+        "value": { "value": 125000, "percentile": 30, "choroplethColor": "#FF9800" }
+      }
+    },
+    {
+      "zoneId": "D7",
+      "holcId": "D-7",
+      "holcGrade": "D",
+      "name": "Bronzeville / 6th & Walnut",
+      "metrics": {
+        "income": { "value": 24800, "percentile": 8, "choroplethColor": "#F44336" },
+        "health": { "value": 82, "percentile": 91, "choroplethColor": "#F44336" },
+        "environment": { "value": 88, "percentile": 88, "choroplethColor": "#F44336" },
+        "value": { "value": 68000, "percentile": 6, "choroplethColor": "#F44336" }
+      }
+    },
+    {
+      "zoneId": "D9",
+      "holcId": "D-9",
+      "holcGrade": "D",
+      "name": "Halyard Park / Hillside",
+      "metrics": {
+        "income": { "value": 22100, "percentile": 5, "choroplethColor": "#F44336" },
+        "health": { "value": 87, "percentile": 95, "choroplethColor": "#F44336" },
+        "environment": { "value": 92, "percentile": 92, "choroplethColor": "#F44336" },
+        "value": { "value": 52000, "percentile": 3, "choroplethColor": "#F44336" }
+      }
+    }
+  ],
+  "gradeAverages": {
+    "A": {
+      "income": 105600,
+      "health": 15,
+      "environment": 18,
+      "value": 363500
+    },
+    "B": {
+      "income": 62800,
+      "health": 36,
+      "environment": 45,
+      "value": 186500
+    },
+    "C": {
+      "income": 40050,
+      "health": 58,
+      "environment": 68,
+      "value": 118500
+    },
+    "D": {
+      "income": 23450,
+      "health": 84,
+      "environment": 90,
+      "value": 60000
+    }
+  },
+  "activeLayer": "income",
+  "overlayOpacity": 0.7,
+  "selectedZoneId": null
+}

@@ -1,0 +1,116 @@
+{
+  "_meta": {
+    "models": {
+      "conversation": "An AI Guide chat session between the user and the Claude-powered narrative guide. Contains messages, the current neighborhood context, and voice narration state.",
+      "messages": "Individual chat messages in a conversation. Each message has a role (user or assistant), content text, a timestamp, and optional audio playback state for voice narration.",
+      "suggestedPrompts": "Pre-written questions displayed when the conversation is empty or when the user switches to a new zone. Helps users engage with the data without knowing what to ask.",
+      "zoneContext": "The currently selected HOLC zone that the AI guide is aware of. Updates when the user clicks a different zone on the map."
+    },
+    "relationships": [
+      "A Conversation contains many Messages in chronological order",
+      "A Conversation is contextual to one HOLCZone (the zoneContext)",
+      "SuggestedPrompts are displayed within the Conversation panel and generate new Messages when clicked",
+      "Messages may have audio state when narrated via ElevenLabs"
+    ]
+  },
+  "zoneContext": {
+    "holcGrade": "D",
+    "holcId": "D-7",
+    "name": "Bronzeville / 6th & Walnut",
+    "description": "\"This is a negro and lower class mixed area adjacent to the negro section. The area is old and is very much run down. The trend of desirability is downward and it is a hazardous area from a mortgage standpoint. Negroes comprise approximately 80% of the population.\"",
+    "medianIncome": 24800,
+    "medianHomeValue": 68000,
+    "populationDensity": 3200,
+    "percentOwnerOccupied": 18.4
+  },
+  "suggestedPrompts": [
+    {
+      "id": "sp-1",
+      "text": "What happened to Bronzeville?",
+      "category": "history"
+    },
+    {
+      "id": "sp-2",
+      "text": "Why was this area graded D?",
+      "category": "holc"
+    },
+    {
+      "id": "sp-3",
+      "text": "What's the income gap between A and D zones?",
+      "category": "data"
+    },
+    {
+      "id": "sp-4",
+      "text": "What was here before the highway?",
+      "category": "history"
+    },
+    {
+      "id": "sp-5",
+      "text": "What if this neighborhood had received a B grade?",
+      "category": "counterfactual"
+    }
+  ],
+  "conversation": {
+    "id": "conv-001",
+    "zoneId": "D7",
+    "narrationMuted": false,
+    "messages": [
+      {
+        "id": "msg-001",
+        "role": "system-narration",
+        "content": "\"This is a negro and lower class mixed area adjacent to the negro section. The area is old and is very much run down. The trend of desirability is downward and it is a hazardous area from a mortgage standpoint.\"",
+        "timestamp": "2026-02-10T10:00:00Z",
+        "audioState": "finished",
+        "isAutoNarrated": true
+      },
+      {
+        "id": "msg-002",
+        "role": "user",
+        "content": "What happened to Bronzeville?",
+        "timestamp": "2026-02-10T10:00:15Z",
+        "audioState": null,
+        "isAutoNarrated": false
+      },
+      {
+        "id": "msg-003",
+        "role": "assistant",
+        "content": "Bronzeville was Milwaukee's thriving Black neighborhood, centered around 6th and Walnut Streets. In the 1930s and 40s, it was home to jazz clubs, Black-owned businesses, churches, and a tight-knit community — despite the HOLC appraiser's dismissal of it as \"hazardous.\"\n\nThat D-grade wasn't just a label. It meant banks wouldn't issue mortgages here. It meant no investment flowed in while surrounding A-grade neighborhoods got cheap government-backed loans. The grade became a self-fulfilling prophecy.\n\nThen came the highway. In the 1960s, the city routed Interstate 43 directly through Bronzeville. Hundreds of homes and businesses were demolished. The neighborhood wasn't just redlined — it was physically erased. Where families once lived, there's now six lanes of freeway.\n\nToday, the median household income in this zone is $24,800 — compared to $112,500 in the A-1 zone just miles north. Owner-occupancy is 18% versus 78%. That's not coincidence. That's the compound interest of 87 years of disinvestment, starting with the red line drawn on this map in 1938.",
+        "timestamp": "2026-02-10T10:00:18Z",
+        "audioState": "idle",
+        "isAutoNarrated": false
+      },
+      {
+        "id": "msg-004",
+        "role": "user",
+        "content": "What was here before the highway?",
+        "timestamp": "2026-02-10T10:01:30Z",
+        "audioState": null,
+        "isAutoNarrated": false
+      },
+      {
+        "id": "msg-005",
+        "role": "assistant",
+        "content": "The 1910 Sanborn fire insurance maps tell the story in precise detail. Where I-43 now runs, the Sanborn surveyors documented block after block of two-story wood-frame homes — drawn in yellow, meaning wood construction. Churches. Corner stores. A barbershop at 6th and Walnut. Row houses packed tight along streets that no longer exist.\n\nThe Sanborn maps even recorded construction materials and building use. You can see the density of life that was here: residential homes touching commercial storefronts, the kind of mixed-use neighborhood that urban planners now pay consultants to recreate.\n\nAll of it gone. The city's urban renewal program acquired and demolished these properties through eminent domain. The residents — overwhelmingly Black, in a D-graded zone with no political power — were displaced to other segregated neighborhoods. The businesses never reopened.\n\nWhat replaced it is a 6-lane freeway that carries suburban commuters over the place where a community used to be. If you toggle the Ghost Buildings view, you can see each demolished structure rendered as a red wireframe — a haunting outline of what was taken.",
+        "timestamp": "2026-02-10T10:01:33Z",
+        "audioState": "idle",
+        "isAutoNarrated": false
+      },
+      {
+        "id": "msg-006",
+        "role": "user",
+        "content": "What's the income gap between A and D zones today?",
+        "timestamp": "2026-02-10T10:03:00Z",
+        "audioState": null,
+        "isAutoNarrated": false
+      },
+      {
+        "id": "msg-007",
+        "role": "assistant",
+        "content": "The numbers are stark.\n\nIn Milwaukee's A-graded zones — the neighborhoods the federal government declared \"Best\" in 1938 — the median household income today is $105,600. Home values average $363,500. Owner-occupancy runs around 75%.\n\nIn the D-graded zones — declared \"Hazardous\" because Black people lived there — the median household income is $23,450. Home values average $60,000. Owner-occupancy is 16%.\n\nThat's a 4.5x income gap and a 6x home value gap. Eighty-seven years after a federal appraiser wrote \"negro area\" on a map and colored it red.\n\nThe gap isn't just economic. CDC data shows D-grade zones have asthma rates 2.3x higher than A-grade zones. Life expectancy differs by up to 14 years between the best and worst graded neighborhoods in Milwaukee. The EPA's environmental burden scores show D-zones carry 3x the pollution exposure.\n\nRedlining didn't just deny mortgages. It created a cascade: no investment meant declining housing stock, which meant lower tax revenue, which meant worse schools and infrastructure, which meant worse health outcomes, which meant shorter lives. The red line on this map drew a line through generations.",
+        "timestamp": "2026-02-10T10:03:04Z",
+        "audioState": "playing",
+        "isAutoNarrated": false
+      }
+    ]
+  }
+}

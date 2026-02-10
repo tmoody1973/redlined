@@ -1,0 +1,281 @@
+{
+  "_meta": {
+    "models": {
+      "buildings": "Each building represents a current property from Milwaukee's MPROP data. Buildings are extruded in the 3D scene by number of stories and color-coded by construction era — copper for pre-1938, gray for 1938–1970, light blue for modern.",
+      "eraCategories": "The three construction-era bands that determine building color in the 3D scene. Pre-1938 buildings existed before redlining; 1938–1970 buildings went up during urban renewal; post-1970 buildings are modern construction.",
+      "parentZone": "The HOLC zone that contains the currently loaded buildings. Provides context for the breadcrumb navigation and bounding-box loading."
+    },
+    "relationships": [
+      "Each Building belongs to one HOLCZone (linked via zoneId)",
+      "Buildings are loaded per-zone — only buildings within the active zone's bounding box render at full detail",
+      "The parentZone provides breadcrumb context: Zone > Building"
+    ]
+  },
+  "parentZone": {
+    "id": "D7",
+    "holcId": "D-7",
+    "holcGrade": "D",
+    "name": "Bronzeville / 6th & Walnut",
+    "color": "#F44336"
+  },
+  "buildings": [
+    {
+      "id": "bldg-d7-001",
+      "zoneId": "D7",
+      "taxkey": "3220037000",
+      "address": "613 W Walnut St",
+      "yearBuilt": 1924,
+      "stories": 2,
+      "era": "pre-1938",
+      "eraColor": "#B87333",
+      "assessedValue": 42500,
+      "landUse": "Residential",
+      "landUseCode": "8810",
+      "ownerOccupied": false,
+      "parcelBoundary": [
+        [-87.9148, 43.0465],
+        [-87.9143, 43.0465],
+        [-87.9143, 43.0468],
+        [-87.9148, 43.0468],
+        [-87.9148, 43.0465]
+      ]
+    },
+    {
+      "id": "bldg-d7-002",
+      "zoneId": "D7",
+      "taxkey": "3220041000",
+      "address": "2447 N 6th St",
+      "yearBuilt": 1912,
+      "stories": 3,
+      "era": "pre-1938",
+      "eraColor": "#B87333",
+      "assessedValue": 38200,
+      "landUse": "Residential",
+      "landUseCode": "8810",
+      "ownerOccupied": false,
+      "parcelBoundary": [
+        [-87.9162, 43.0472],
+        [-87.9157, 43.0472],
+        [-87.9157, 43.0476],
+        [-87.9162, 43.0476],
+        [-87.9162, 43.0472]
+      ]
+    },
+    {
+      "id": "bldg-d7-003",
+      "zoneId": "D7",
+      "taxkey": "3220055100",
+      "address": "720 W North Ave",
+      "yearBuilt": 1948,
+      "stories": 1,
+      "era": "1938-1970",
+      "eraColor": "#808080",
+      "assessedValue": 67800,
+      "landUse": "Commercial",
+      "landUseCode": "8820",
+      "ownerOccupied": false,
+      "parcelBoundary": [
+        [-87.9135, 43.0492],
+        [-87.9126, 43.0492],
+        [-87.9126, 43.0496],
+        [-87.9135, 43.0496],
+        [-87.9135, 43.0492]
+      ]
+    },
+    {
+      "id": "bldg-d7-004",
+      "zoneId": "D7",
+      "taxkey": "3220063000",
+      "address": "2501 N 7th St",
+      "yearBuilt": 1918,
+      "stories": 2,
+      "era": "pre-1938",
+      "eraColor": "#B87333",
+      "assessedValue": 28900,
+      "landUse": "Residential",
+      "landUseCode": "8810",
+      "ownerOccupied": true,
+      "parcelBoundary": [
+        [-87.9170, 43.0480],
+        [-87.9165, 43.0480],
+        [-87.9165, 43.0483],
+        [-87.9170, 43.0483],
+        [-87.9170, 43.0480]
+      ]
+    },
+    {
+      "id": "bldg-d7-005",
+      "zoneId": "D7",
+      "taxkey": "3220078000",
+      "address": "614 W Center St",
+      "yearBuilt": 2003,
+      "stories": 2,
+      "era": "post-1970",
+      "eraColor": "#4FC3F7",
+      "assessedValue": 135000,
+      "landUse": "Residential",
+      "landUseCode": "8810",
+      "ownerOccupied": true,
+      "parcelBoundary": [
+        [-87.9145, 43.0505],
+        [-87.9140, 43.0505],
+        [-87.9140, 43.0509],
+        [-87.9145, 43.0509],
+        [-87.9145, 43.0505]
+      ]
+    },
+    {
+      "id": "bldg-d7-006",
+      "zoneId": "D7",
+      "taxkey": "3220090000",
+      "address": "2538 N 5th St",
+      "yearBuilt": 1908,
+      "stories": 2,
+      "era": "pre-1938",
+      "eraColor": "#B87333",
+      "assessedValue": 1000,
+      "landUse": "Vacant Land",
+      "landUseCode": "8830",
+      "ownerOccupied": false,
+      "parcelBoundary": [
+        [-87.9153, 43.0488],
+        [-87.9149, 43.0488],
+        [-87.9149, 43.0491],
+        [-87.9153, 43.0491],
+        [-87.9153, 43.0488]
+      ]
+    },
+    {
+      "id": "bldg-a1-001",
+      "zoneId": "A1",
+      "taxkey": "1360005000",
+      "address": "4918 N Lake Dr",
+      "yearBuilt": 1928,
+      "stories": 2,
+      "era": "pre-1938",
+      "eraColor": "#B87333",
+      "assessedValue": 425000,
+      "landUse": "Residential",
+      "landUseCode": "8810",
+      "ownerOccupied": true,
+      "parcelBoundary": [
+        [-87.8792, 43.0962],
+        [-87.8784, 43.0962],
+        [-87.8784, 43.0968],
+        [-87.8792, 43.0968],
+        [-87.8792, 43.0962]
+      ]
+    },
+    {
+      "id": "bldg-a1-002",
+      "zoneId": "A1",
+      "taxkey": "1360012000",
+      "address": "5025 N Berkeley Blvd",
+      "yearBuilt": 1936,
+      "stories": 2,
+      "era": "pre-1938",
+      "eraColor": "#B87333",
+      "assessedValue": 372000,
+      "landUse": "Residential",
+      "landUseCode": "8810",
+      "ownerOccupied": true,
+      "parcelBoundary": [
+        [-87.8830, 43.0975],
+        [-87.8822, 43.0975],
+        [-87.8822, 43.0981],
+        [-87.8830, 43.0981],
+        [-87.8830, 43.0975]
+      ]
+    },
+    {
+      "id": "bldg-a1-003",
+      "zoneId": "A1",
+      "taxkey": "1360021000",
+      "address": "5112 N Diversey Blvd",
+      "yearBuilt": 1955,
+      "stories": 1,
+      "era": "1938-1970",
+      "eraColor": "#808080",
+      "assessedValue": 295000,
+      "landUse": "Residential",
+      "landUseCode": "8810",
+      "ownerOccupied": true,
+      "parcelBoundary": [
+        [-87.8845, 43.0988],
+        [-87.8837, 43.0988],
+        [-87.8837, 43.0994],
+        [-87.8845, 43.0994],
+        [-87.8845, 43.0988]
+      ]
+    },
+    {
+      "id": "bldg-a1-004",
+      "zoneId": "A1",
+      "taxkey": "1360035000",
+      "address": "4801 N Marlborough Dr",
+      "yearBuilt": 1998,
+      "stories": 2,
+      "era": "post-1970",
+      "eraColor": "#4FC3F7",
+      "assessedValue": 510000,
+      "landUse": "Residential",
+      "landUseCode": "8810",
+      "ownerOccupied": true,
+      "parcelBoundary": [
+        [-87.8810, 43.0955],
+        [-87.8800, 43.0955],
+        [-87.8800, 43.0962],
+        [-87.8810, 43.0962],
+        [-87.8810, 43.0955]
+      ]
+    },
+    {
+      "id": "bldg-a1-005",
+      "zoneId": "A1",
+      "taxkey": "1360042000",
+      "address": "5200 N Santa Monica Blvd",
+      "yearBuilt": 2018,
+      "stories": 3,
+      "era": "post-1970",
+      "eraColor": "#4FC3F7",
+      "assessedValue": 625000,
+      "landUse": "Residential",
+      "landUseCode": "8810",
+      "ownerOccupied": true,
+      "parcelBoundary": [
+        [-87.8858, 43.1005],
+        [-87.8848, 43.1005],
+        [-87.8848, 43.1012],
+        [-87.8858, 43.1012],
+        [-87.8858, 43.1005]
+      ]
+    },
+    {
+      "id": "bldg-a1-006",
+      "zoneId": "A1",
+      "taxkey": "1360048000",
+      "address": "4900 N Woodburn St",
+      "yearBuilt": 1942,
+      "stories": 2,
+      "era": "1938-1970",
+      "eraColor": "#808080",
+      "assessedValue": 348000,
+      "landUse": "Residential",
+      "landUseCode": "8810",
+      "ownerOccupied": false,
+      "parcelBoundary": [
+        [-87.8802, 43.0960],
+        [-87.8794, 43.0960],
+        [-87.8794, 43.0966],
+        [-87.8802, 43.0966],
+        [-87.8802, 43.0960]
+      ]
+    }
+  ],
+  "eraCategories": [
+    { "id": "pre-1938", "label": "Pre-1938", "description": "Built before redlining", "color": "#B87333" },
+    { "id": "1938-1970", "label": "1938–1970", "description": "Urban renewal era", "color": "#808080" },
+    { "id": "post-1970", "label": "Post-1970", "description": "Modern construction", "color": "#4FC3F7" }
+  ],
+  "selectedBuilding": null
+}

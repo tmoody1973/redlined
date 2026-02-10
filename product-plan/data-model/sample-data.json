@@ -1,0 +1,38 @@
+{
+  "_note": "This file contains a representative sample from each section's data. See individual section sample-data.json files for complete test data.",
+  "city": {
+    "id": "milwaukee",
+    "name": "Milwaukee",
+    "state": "WI",
+    "year": 1938,
+    "centerLat": 43.0389,
+    "centerLng": -87.9065,
+    "zoomLevel": 12
+  },
+  "sampleZones": [
+    {
+      "id": "A1",
+      "holcGrade": "A",
+      "holcId": "A-1",
+      "name": "Whitefish Bay / North Shore",
+      "description": "This is an area of high-class residential property...",
+      "medianIncome": 112500,
+      "medianHomeValue": 385000
+    },
+    {
+      "id": "D7",
+      "holcGrade": "D",
+      "holcId": "D-7",
+      "name": "Bronzeville / Walnut St Area",
+      "description": "This is the Negro and slum area of Milwaukee...",
+      "medianIncome": 24800,
+      "medianHomeValue": 68000
+    }
+  ],
+  "gradeAverages": {
+    "A": { "income": 105600, "health": 15, "environment": 18, "value": 363500 },
+    "B": { "income": 62800, "health": 36, "environment": 45, "value": 186500 },
+    "C": { "income": 40050, "health": 58, "environment": 68, "value": 118500 },
+    "D": { "income": 23450, "health": 84, "environment": 90, "value": 60000 }
+  }
+}

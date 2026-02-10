@@ -1,0 +1,247 @@
+{
+  "_meta": {
+    "models": {
+      "ghostBuildings": "Each ghost building represents a demolished structure — a building that once stood in this neighborhood but was destroyed by highway construction, urban renewal, or decades of disinvestment. They are rendered as red wireframes to visually haunt the 3D scene.",
+      "eraMarkers": "The four key historical eras that the time slider snaps to. Each era represents a turning point: pre-redlining density, HOLC grading, mid-century demolition, and present-day aftermath.",
+      "parentZone": "The HOLC zone containing the ghost buildings. Provides context for the breadcrumb navigation and ghost count indicator."
+    },
+    "relationships": [
+      "Each GhostBuilding belongs to one HOLCZone (linked via zoneId)",
+      "GhostBuildings become visible at specific eras based on their demolition year",
+      "The parentZone provides breadcrumb context and ghost count for the current zone"
+    ]
+  },
+  "parentZone": {
+    "id": "D7",
+    "holcId": "D-7",
+    "holcGrade": "D",
+    "name": "Bronzeville / 6th & Walnut",
+    "color": "#F44336",
+    "ghostCount": 10
+  },
+  "ghostBuildings": [
+    {
+      "id": "ghost-d7-001",
+      "zoneId": "D7",
+      "address": "625 W Walnut St",
+      "originalYearBuilt": 1895,
+      "yearDemolished": 1963,
+      "stories": 3,
+      "demolitionCause": "highway",
+      "demolitionDetail": "Demolished for Interstate 43 / Park Freeway interchange construction. Part of a 16-block corridor cleared through the heart of Bronzeville.",
+      "currentSite": "Interstate 43 northbound lanes",
+      "originalUse": "Residential — 6-unit apartment building",
+      "parcelBoundary": [
+        [-87.9152, 43.0467],
+        [-87.9147, 43.0467],
+        [-87.9147, 43.0471],
+        [-87.9152, 43.0471],
+        [-87.9152, 43.0467]
+      ]
+    },
+    {
+      "id": "ghost-d7-002",
+      "zoneId": "D7",
+      "address": "2461 N 6th St",
+      "originalYearBuilt": 1901,
+      "yearDemolished": 1964,
+      "stories": 2,
+      "demolitionCause": "highway",
+      "demolitionDetail": "Cleared for I-43 right-of-way. This block housed 14 families, all of whom were displaced with minimal relocation assistance.",
+      "currentSite": "Highway embankment / sound wall",
+      "originalUse": "Residential — duplex",
+      "parcelBoundary": [
+        [-87.9160, 43.0474],
+        [-87.9155, 43.0474],
+        [-87.9155, 43.0477],
+        [-87.9160, 43.0477],
+        [-87.9160, 43.0474]
+      ]
+    },
+    {
+      "id": "ghost-d7-003",
+      "zoneId": "D7",
+      "address": "700 W North Ave",
+      "originalYearBuilt": 1889,
+      "yearDemolished": 1965,
+      "stories": 2,
+      "demolitionCause": "highway",
+      "demolitionDetail": "Corner commercial building at North Ave and 7th St, once a neighborhood grocery. Demolished for freeway on-ramp.",
+      "currentSite": "I-43 on-ramp",
+      "originalUse": "Commercial — grocery / corner store",
+      "parcelBoundary": [
+        [-87.9138, 43.0490],
+        [-87.9130, 43.0490],
+        [-87.9130, 43.0494],
+        [-87.9138, 43.0494],
+        [-87.9138, 43.0490]
+      ]
+    },
+    {
+      "id": "ghost-d7-004",
+      "zoneId": "D7",
+      "address": "2515 N 7th St",
+      "originalYearBuilt": 1910,
+      "yearDemolished": 1968,
+      "stories": 2,
+      "demolitionCause": "urban-renewal",
+      "demolitionDetail": "Condemned under Milwaukee's Inner Core urban renewal program. The city acquired and demolished the property citing 'blight,' a designation applied almost exclusively to Black neighborhoods.",
+      "currentSite": "Vacant lot — unmaintained city-owned land",
+      "originalUse": "Residential — single family home",
+      "parcelBoundary": [
+        [-87.9168, 43.0482],
+        [-87.9163, 43.0482],
+        [-87.9163, 43.0485],
+        [-87.9168, 43.0485],
+        [-87.9168, 43.0482]
+      ]
+    },
+    {
+      "id": "ghost-d7-005",
+      "zoneId": "D7",
+      "address": "2530 N 5th St",
+      "originalYearBuilt": 1898,
+      "yearDemolished": 1970,
+      "stories": 3,
+      "demolitionCause": "urban-renewal",
+      "demolitionDetail": "Three-story apartment building demolished as part of the Model Cities program. Forty-two residents displaced. Replacement housing was never built on this site.",
+      "currentSite": "Vacant lot — fenced, overgrown",
+      "originalUse": "Residential — 12-unit apartment building",
+      "parcelBoundary": [
+        [-87.9155, 43.0486],
+        [-87.9149, 43.0486],
+        [-87.9149, 43.0490],
+        [-87.9155, 43.0490],
+        [-87.9155, 43.0486]
+      ]
+    },
+    {
+      "id": "ghost-d7-006",
+      "zoneId": "D7",
+      "address": "611 W Center St",
+      "originalYearBuilt": 1905,
+      "yearDemolished": 1972,
+      "stories": 2,
+      "demolitionCause": "urban-renewal",
+      "demolitionDetail": "Demolished under urban renewal clearance. The original two-story Victorian housed a Black-owned barbershop on the ground floor and the owner's family above.",
+      "currentSite": "Paved parking lot",
+      "originalUse": "Mixed use — barbershop with residential above",
+      "parcelBoundary": [
+        [-87.9148, 43.0502],
+        [-87.9142, 43.0502],
+        [-87.9142, 43.0506],
+        [-87.9148, 43.0506],
+        [-87.9148, 43.0502]
+      ]
+    },
+    {
+      "id": "ghost-d7-007",
+      "zoneId": "D7",
+      "address": "2480 N 8th St",
+      "originalYearBuilt": 1892,
+      "yearDemolished": 1988,
+      "stories": 2,
+      "demolitionCause": "disinvestment",
+      "demolitionDetail": "Structure condemned after years of neglect by an absentee landlord. Without access to conventional mortgage lending (a direct legacy of redlining), the property deteriorated beyond repair.",
+      "currentSite": "Vacant lot — community garden since 2012",
+      "originalUse": "Residential — duplex",
+      "parcelBoundary": [
+        [-87.9175, 43.0476],
+        [-87.9170, 43.0476],
+        [-87.9170, 43.0479],
+        [-87.9175, 43.0479],
+        [-87.9175, 43.0476]
+      ]
+    },
+    {
+      "id": "ghost-d7-008",
+      "zoneId": "D7",
+      "address": "2555 N 6th St",
+      "originalYearBuilt": 1914,
+      "yearDemolished": 2005,
+      "stories": 2,
+      "demolitionCause": "disinvestment",
+      "demolitionDetail": "Tax-foreclosed property demolished by the city after sitting vacant for 8 years. No buyer could secure financing — banks continued to avoid lending in D-graded zones decades after redlining officially ended.",
+      "currentSite": "Vacant lot — city-owned",
+      "originalUse": "Residential — single family home",
+      "parcelBoundary": [
+        [-87.9158, 43.0492],
+        [-87.9153, 43.0492],
+        [-87.9153, 43.0495],
+        [-87.9158, 43.0495],
+        [-87.9158, 43.0492]
+      ]
+    },
+    {
+      "id": "ghost-d7-009",
+      "zoneId": "D7",
+      "address": "631 W Meinecke Ave",
+      "originalYearBuilt": 1897,
+      "yearDemolished": 2010,
+      "stories": 2,
+      "demolitionCause": "disinvestment",
+      "demolitionDetail": "Arson fire in a vacant building. Structure had been abandoned for 3 years after foreclosure. City demolished the ruin. This block has lost 7 of 12 original structures since 1960.",
+      "currentSite": "Vacant lot — rubble cleared, no redevelopment",
+      "originalUse": "Residential — 4-unit apartment building",
+      "parcelBoundary": [
+        [-87.9145, 43.0498],
+        [-87.9140, 43.0498],
+        [-87.9140, 43.0501],
+        [-87.9145, 43.0501],
+        [-87.9145, 43.0498]
+      ]
+    },
+    {
+      "id": "ghost-d7-010",
+      "zoneId": "D7",
+      "address": "2440 N 7th St",
+      "originalYearBuilt": 1903,
+      "yearDemolished": 1964,
+      "stories": 1,
+      "demolitionCause": "highway",
+      "demolitionDetail": "Small commercial building — formerly a shoe repair shop and neighborhood institution since 1925. Owner Joe Williams received $3,200 in compensation and was unable to relocate the business.",
+      "currentSite": "Interstate 43 median",
+      "originalUse": "Commercial — shoe repair shop",
+      "parcelBoundary": [
+        [-87.9166, 43.0470],
+        [-87.9162, 43.0470],
+        [-87.9162, 43.0473],
+        [-87.9166, 43.0473],
+        [-87.9166, 43.0470]
+      ]
+    }
+  ],
+  "eraMarkers": [
+    {
+      "year": 1910,
+      "label": "1910",
+      "description": "Sanborn fire insurance maps document dense neighborhoods — all buildings standing",
+      "ghostsVisible": false,
+      "buildingsVisible": true
+    },
+    {
+      "year": 1938,
+      "label": "1938",
+      "description": "HOLC grades assigned — redlining begins, but demolitions have not yet started",
+      "ghostsVisible": false,
+      "buildingsVisible": true
+    },
+    {
+      "year": 1960,
+      "label": "1960s",
+      "description": "Interstate 43 and urban renewal demolish hundreds of structures through Bronzeville",
+      "ghostsVisible": true,
+      "buildingsVisible": true
+    },
+    {
+      "year": 2025,
+      "label": "Now",
+      "description": "Present day — ghost wireframes mark what was lost, surviving buildings show decades of disinvestment",
+      "ghostsVisible": true,
+      "buildingsVisible": true
+    }
+  ],
+  "currentYear": 2025,
+  "isAutoPlaying": false,
+  "selectedGhostBuilding": null
+}
