@@ -1,11 +1,13 @@
 # Task Breakdown: Phase 1 MVP -- Milwaukee HOLC Explorer
 
 ## Overview
+
 Total Tasks: 10 Task Groups, 78 sub-tasks
 
 **Tech Stack:** Next.js (App Router), Convex, React Three Fiber, Tailwind CSS v4, Claude API (Sonnet 4), GSAP, TypeScript (strict), Vitest, Vercel
 
 **Key References:**
+
 - Spec: `/Users/tarikmoody/Documents/Projects/redlined/agent-os/specs/2026-02-10-phase-1-mvp-milwaukee-holc-explorer/spec.md`
 - Requirements: `/Users/tarikmoody/Documents/Projects/redlined/agent-os/specs/2026-02-10-phase-1-mvp-milwaukee-holc-explorer/planning/requirements.md`
 - Mockups: `/Users/tarikmoody/Documents/Projects/redlined/agent-os/specs/2026-02-10-phase-1-mvp-milwaukee-holc-explorer/planning/visuals/`
@@ -21,49 +23,51 @@ Total Tasks: 10 Task Groups, 78 sub-tasks
 ### Project Foundation
 
 #### Task Group 1: Project Scaffolding and Configuration
+
 **Dependencies:** None
 
-- [ ] 1.0 Complete project scaffolding and configuration
-  - [ ] 1.1 Initialize Next.js project with App Router and TypeScript strict mode
+- [x] 1.0 Complete project scaffolding and configuration
+  - [x] 1.1 Initialize Next.js project with App Router and TypeScript strict mode
     - Use `create-next-app` with TypeScript, ESLint, Tailwind CSS v4, App Router
     - Configure `tsconfig.json` with strict mode enabled
     - Set up project directory structure: `app/`, `components/`, `lib/`, `convex/`, `data/`, `types/`
-  - [ ] 1.2 Install and configure Convex
+  - [x] 1.2 Install and configure Convex
     - Run `npx convex dev --once` to initialize the `convex/` directory
     - Create `convex/schema.ts` placeholder
     - Configure Convex client provider in the Next.js app layout (`ConvexClientProvider` wrapper)
     - Verify Convex dashboard is accessible and project is linked
-  - [ ] 1.3 Install and configure React Three Fiber and Three.js dependencies
+  - [x] 1.3 Install and configure React Three Fiber and Three.js dependencies
     - Install `@react-three/fiber`, `@react-three/drei`, `three`, `@types/three`
     - Verify a minimal Canvas renders without errors in a test page
-  - [ ] 1.4 Install GSAP
+  - [x] 1.4 Install GSAP
     - Install `gsap` package
     - Confirm import works (GSAP is reserved for subtle UI transitions in Phase 1; heavy use is Phase 2)
-  - [ ] 1.5 Configure Tailwind CSS v4 with design system tokens
+  - [x] 1.5 Configure Tailwind CSS v4 with design system tokens
     - Integrate design tokens from `/Users/tarikmoody/Documents/Projects/redlined/product-plan/design-system/tokens.css` into global CSS
     - Configure Tailwind theme to use HOLC grade colors (A=#4CAF50, B=#2196F3, C=#FFEB3B, D=#F44336), primary (red), secondary (amber), neutral (slate)
     - Follow Tailwind color config from `/Users/tarikmoody/Documents/Projects/redlined/product-plan/design-system/tailwind-colors.md`
     - Set dark-first design: no light mode, backgrounds use slate-950 (#0c0a1a) and slate-900 (#0f172a)
-  - [ ] 1.6 Configure fonts via next/font
+  - [x] 1.6 Configure fonts via next/font
     - Load Space Grotesk (headings, zone names, large numbers), Inter (body text, chat), IBM Plex Mono (data values, coordinates, percentiles) using `next/font/google`
     - Follow font config from `/Users/tarikmoody/Documents/Projects/redlined/product-plan/design-system/fonts.md`
     - Apply font CSS variables globally so components reference variables, not hardcoded font names
-  - [ ] 1.7 Configure ESLint, Prettier, and Vitest
+  - [x] 1.7 Configure ESLint, Prettier, and Vitest
     - Set up ESLint with Next.js and TypeScript rules
     - Configure Prettier for consistent formatting
     - Install and configure Vitest as the test runner
     - Add npm scripts: `lint`, `format`, `test`
-  - [ ] 1.8 Set up environment variable structure
+  - [x] 1.8 Set up environment variable structure
     - Create `.env.local` (gitignored) with placeholders for `CONVEX_DEPLOYMENT`, `NEXT_PUBLIC_CONVEX_URL`
     - Document that `CLAUDE_API_KEY` and `CENSUS_API_KEY` are stored in Convex environment config (never in client code or `.env`)
     - Add `.env.example` with placeholder keys
-  - [ ] 1.9 Verify scaffolding with a smoke test
+  - [x] 1.9 Verify scaffolding with a smoke test
     - Run `npm run dev` and confirm Next.js app loads
     - Confirm Tailwind classes apply correctly with dark theme
     - Confirm fonts render correctly (Space Grotesk, Inter, IBM Plex Mono)
     - Confirm a basic React Three Fiber Canvas renders
 
 **Acceptance Criteria:**
+
 - Next.js app runs locally with no errors
 - Convex is initialized and connected
 - Tailwind v4 applies design tokens correctly (HOLC colors, dark backgrounds, font families)
@@ -77,6 +81,7 @@ Total Tasks: 10 Task Groups, 78 sub-tasks
 ### Data Layer
 
 #### Task Group 2: Convex Schema and Data Seed Pipeline
+
 **Dependencies:** Task Group 1
 
 - [ ] 2.0 Complete Convex schema and data pipeline
@@ -131,6 +136,7 @@ Total Tasks: 10 Task Groups, 78 sub-tasks
     - Do NOT run the entire test suite at this stage
 
 **Acceptance Criteria:**
+
 - The 4-6 tests written in 2.1 pass
 - Convex schema is defined with all 5 tables and proper indexes
 - Seed script inserts 114 zone records and 112 area description records
@@ -144,6 +150,7 @@ Total Tasks: 10 Task Groups, 78 sub-tasks
 ### Census Data Pipeline
 
 #### Task Group 3: Census Income Data Acquisition and Processing
+
 **Dependencies:** Task Group 2
 
 - [ ] 3.0 Complete Census income data pipeline
@@ -163,7 +170,7 @@ Total Tasks: 10 Task Groups, 78 sub-tasks
     - Handle API errors and missing data gracefully (some tracts may lack income data)
   - [ ] 3.4 Compute area-weighted median income per HOLC zone
     - Join crosswalk data (area_id + GEOID + pct_tract) with Census tract income data
-    - For each HOLC zone: compute weighted average income = SUM(tract_income * pct_tract) / SUM(pct_tract)
+    - For each HOLC zone: compute weighted average income = SUM(tract_income \* pct_tract) / SUM(pct_tract)
     - Insert results into Convex `censusData` table
     - Compute and store grade-level averages (A-zone avg, B-zone avg, C-zone avg, D-zone avg) for the comparison bars
   - [ ] 3.5 Compute zone-level percentile ranks
@@ -176,6 +183,7 @@ Total Tasks: 10 Task Groups, 78 sub-tasks
     - Spot-check a few zones against expected income ranges
 
 **Acceptance Criteria:**
+
 - The 3-4 tests written in 3.1 pass
 - Crosswalk data is downloaded and parsed
 - Census API returns income data for Milwaukee County tracts
@@ -188,6 +196,7 @@ Total Tasks: 10 Task Groups, 78 sub-tasks
 ### 3D Scene
 
 #### Task Group 4: React Three Fiber Scene and HOLC Zone Rendering
+
 **Dependencies:** Task Groups 1, 2
 
 - [ ] 4.0 Complete 3D scene and zone rendering
@@ -250,6 +259,7 @@ Total Tasks: 10 Task Groups, 78 sub-tasks
     - Do NOT run the entire test suite at this stage
 
 **Acceptance Criteria:**
+
 - The 4-6 tests written in 4.1 pass
 - Canvas renders with dark background, proper lighting, and orbit controls
 - All 114 zones render as extruded 3D blocks with correct HOLC grade colors
@@ -266,6 +276,7 @@ Total Tasks: 10 Task Groups, 78 sub-tasks
 ### Application Layout
 
 #### Task Group 5: Split-Panel Layout, Header, and Landing Experience
+
 **Dependencies:** Task Groups 1, 4
 
 - [ ] 5.0 Complete application layout and landing experience
@@ -325,6 +336,7 @@ Total Tasks: 10 Task Groups, 78 sub-tasks
     - Do NOT run the entire test suite at this stage
 
 **Acceptance Criteria:**
+
 - The 3-5 tests written in 5.1 pass
 - Header renders with correct branding, typography, pill badge, and coordinates
 - Desktop layout shows 70/30 split; tablet shows 60/40; mobile shows full canvas with bottom sheet
@@ -340,6 +352,7 @@ Total Tasks: 10 Task Groups, 78 sub-tasks
 ### Info Panel
 
 #### Task Group 6: Click-to-Inspect Zone Detail Panel
+
 **Dependencies:** Task Groups 4, 5
 
 - [ ] 6.0 Complete click-to-inspect zone detail panel
@@ -391,6 +404,7 @@ Total Tasks: 10 Task Groups, 78 sub-tasks
     - Do NOT run the entire test suite at this stage
 
 **Acceptance Criteria:**
+
 - The 4-6 tests written in 6.1 pass
 - Clicking a zone populates the info panel with zone name, grade badge, and appraiser fields
 - Content warning appears before racist language is shown; it is dismissible
@@ -406,6 +420,7 @@ Total Tasks: 10 Task Groups, 78 sub-tasks
 ### AI Narrative Guide
 
 #### Task Group 7: Claude AI Chat Integration
+
 **Dependencies:** Task Groups 2, 6
 
 - [ ] 7.0 Complete Claude AI Narrative Guide
@@ -475,6 +490,7 @@ Total Tasks: 10 Task Groups, 78 sub-tasks
     - Do NOT run the entire test suite at this stage
 
 **Acceptance Criteria:**
+
 - The 4-6 tests written in 7.1 pass
 - Claude API calls are proxied through Convex (API key never exposed to client)
 - System prompt dynamically includes the selected zone's full HOLC data and appraiser descriptions
@@ -490,6 +506,7 @@ Total Tasks: 10 Task Groups, 78 sub-tasks
 ### Data Overlay
 
 #### Task Group 8: Census Income Data Overlay Visualization
+
 **Dependencies:** Task Groups 3, 4, 6
 
 - [ ] 8.0 Complete Census income data overlay
@@ -557,6 +574,7 @@ Total Tasks: 10 Task Groups, 78 sub-tasks
     - Do NOT run the entire test suite at this stage
 
 **Acceptance Criteria:**
+
 - The 3-5 tests written in 8.1 pass
 - "Median Income" toggle activates the income overlay; other three buttons are disabled/coming-soon
 - Zones recolor with red-to-green income gradient when overlay is active
@@ -571,6 +589,7 @@ Total Tasks: 10 Task Groups, 78 sub-tasks
 ### Accessibility
 
 #### Task Group 9: Accessibility and Keyboard Navigation
+
 **Dependencies:** Task Groups 4, 5, 6, 7, 8
 
 - [ ] 9.0 Complete accessibility implementation
@@ -614,6 +633,7 @@ Total Tasks: 10 Task Groups, 78 sub-tasks
     - Do NOT run the entire test suite at this stage
 
 **Acceptance Criteria:**
+
 - The 4-6 tests written in 9.1 pass
 - Canvas has ARIA attributes and a screen reader text summary
 - Zones are keyboard-navigable with Tab/Enter
@@ -629,6 +649,7 @@ Total Tasks: 10 Task Groups, 78 sub-tasks
 ### Deployment and Integration Testing
 
 #### Task Group 10: Deployment and Test Review
+
 **Dependencies:** Task Groups 1-9
 
 - [ ] 10.0 Complete deployment and final testing
@@ -678,6 +699,7 @@ Total Tasks: 10 Task Groups, 78 sub-tasks
     - Ensure all comments are evergreen and informational (per commenting standards)
 
 **Acceptance Criteria:**
+
 - Application is deployed and publicly accessible on Vercel
 - Production Convex has all data seeded (114 zones, 112 descriptions, Census income data)
 - All three core user flows work end-to-end on production
