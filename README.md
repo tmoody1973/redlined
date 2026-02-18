@@ -110,6 +110,15 @@ npx tsx scripts/build-zone-timeline.ts      # Zone development timeline
 npx tsx scripts/build-ghost-zone-stats.ts   # Ghost building statistics
 npx tsx scripts/build-value-history.ts      # 1938 vs today property values
 npx tsx scripts/build-race-data.ts          # Racial demographics by zone
+npx tsx scripts/build-sanborn-context.ts    # Sanborn map context by zone
+```
+
+### Building Parcels
+
+The 148K building extrusions use a PMTiles vector tileset (`public/data/milwaukee-parcels.pmtiles`, 47 MB, included in the repo). The source GeoJSON (`data/milwaukee-parcels.geojson`, 109 MB) is excluded from git due to GitHub's file size limit. To regenerate it locally:
+
+```bash
+npx tsx scripts/fetch-parcels.ts            # Downloads MPROP parcels → data/milwaukee-parcels.geojson
 ```
 
 ## Project Structure
