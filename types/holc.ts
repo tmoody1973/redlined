@@ -112,10 +112,11 @@ export const HOLC_DESCRIPTORS: Record<HOLCGrade | "ungraded", string> = {
 };
 
 // HOLC grade extrusion heights (D = tallest)
+// Kept low to create a relief-map effect rather than tall walls
 export const HOLC_HEIGHTS: Record<HOLCGrade | "ungraded", number> = {
-  A: 1.0,
-  B: 2.0,
-  C: 3.0,
-  D: 4.0,
-  ungraded: 0.5,
+  A: 0.25,
+  B: 0.5,
+  C: 0.8,
+  D: 1.2,
+  ungraded: 0.15,
 };

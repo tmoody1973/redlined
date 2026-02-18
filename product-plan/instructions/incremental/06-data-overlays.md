@@ -8,6 +8,7 @@
 ## About These Instructions
 
 **What you're receiving:**
+
 - Finished UI designs (React components with full styling)
 - Data model definitions (TypeScript types and sample data)
 - UI/UX specifications (user flows, requirements, screenshots)
@@ -15,6 +16,7 @@
 - Test-writing instructions for each section (for TDD approach)
 
 **What you need to build:**
+
 - Three.js scene setup and rendering pipeline
 - Data ingestion pipeline (HOLC GeoJSON, MPROP CSV, Census API, CDC, EPA)
 - AI integration (Claude API for narrative guide, ElevenLabs for voice)
@@ -22,6 +24,7 @@
 - Integration of the provided UI components with real data
 
 **Important guidelines:**
+
 - **DO NOT** redesign or restyle the provided components — use them as-is
 - **DO** wire up the callback props to your state management and data layer
 - **DO** replace sample data with real data from your data pipeline
@@ -41,6 +44,7 @@ Implement Data Overlays — choropleth color fills for four metrics (income, hea
 Data Overlays make the lasting consequences of redlining quantifiable. Four overlay layers — Census median income, CDC health outcomes, EPA environmental burden, and assessed property value — render as choropleth color fills over zones. A side panel shows zone-specific stats alongside A-zone vs D-zone averages, revealing the stark differentials that persist 85 years after HOLC grades were assigned.
 
 **Key Functionality:**
+
 - Four choropleth overlay layers with diverging color scales (red to green)
 - Layer selector to switch between metrics
 - Opacity slider for overlay transparency
@@ -56,18 +60,23 @@ See `product-plan/sections/data-overlays/tests.md` for test-writing instructions
 ## What to Implement
 
 ### Components
+
 Copy from `product-plan/sections/data-overlays/components/`:
+
 - `DataOverlays.tsx` — Main viewport with choropleth zones and controls
 - `OverlayStatsPanel.tsx` — Stats panel with grade comparison and A-vs-D bars
 
 ### Three.js Implementation
+
 Replace CSS perspective preview with Three.js:
+
 - Apply choropleth colors to zone materials based on active metric
 - Smooth material color transitions when switching layers
 - Opacity control for overlay transparency
 - Preserve zone extrusion height while changing fill color
 
 ### Data Layer
+
 - Census ACS median household income by tract
 - CDC PLACES health burden composite index
 - EPA EJScreen environmental justice scores
@@ -76,6 +85,7 @@ Replace CSS perspective preview with Three.js:
 - Map metric values to diverging color scales
 
 ### Callbacks
+
 - `onLayerChange(layerId: OverlayLayerId | null)` — Switch overlay
 - `onOpacityChange(opacity: number)` — Adjust transparency
 - `onZoneSelect(zoneId: string)` — Click zone for stats
@@ -84,12 +94,14 @@ Replace CSS perspective preview with Three.js:
 ## Expected User Flows
 
 ### Flow 1: View Income Overlay
+
 1. User selects "Median Income" from layer selector
 2. Zones fill with choropleth colors (green=high income, red=low)
 3. Color scale legend shows "$18K - $120K"
 4. **Outcome:** User sees income disparity mapped to HOLC grades
 
 ### Flow 2: Inspect Zone Stats
+
 1. User clicks zone D-7 (Bronzeville)
 2. Stats panel shows: $24,800 median income (8th percentile)
 3. A-Zone vs D-Zone comparison: $105,600 vs $23,450
@@ -98,12 +110,14 @@ Replace CSS perspective preview with Three.js:
 6. **Outcome:** User quantifies the impact of redlining
 
 ### Flow 3: Compare Metrics
+
 1. User switches from Income to Health Outcomes
 2. Colors transition smoothly to health burden scale
 3. D-zones now show high health burden (red), A-zones show low (green)
 4. **Outcome:** User sees redlining's impact across multiple dimensions
 
 ## Files to Reference
+
 - `product-plan/sections/data-overlays/README.md`
 - `product-plan/sections/data-overlays/tests.md`
 - `product-plan/sections/data-overlays/components/`
@@ -112,6 +126,7 @@ Replace CSS perspective preview with Three.js:
 - `product-plan/sections/data-overlays/screenshot.png`
 
 ## Done When
+
 - [ ] Tests written for key user flows
 - [ ] Four overlay layers render as choropleth color fills
 - [ ] Layer selector switches between metrics

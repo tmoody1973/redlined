@@ -1,16 +1,20 @@
-import type { Message } from '../types'
-import { AudioWaveform } from './AudioWaveform'
+import type { Message } from "../types";
+import { AudioWaveform } from "./AudioWaveform";
 
 interface ChatMessageProps {
-  message: Message
-  onPlayAudio?: () => void
-  onPauseAudio?: () => void
+  message: Message;
+  onPlayAudio?: () => void;
+  onPauseAudio?: () => void;
 }
 
-export function ChatMessage({ message, onPlayAudio, onPauseAudio }: ChatMessageProps) {
-  const isUser = message.role === 'user'
-  const isNarration = message.role === 'system-narration'
-  const isPlaying = message.audioState === 'playing'
+export function ChatMessage({
+  message,
+  onPlayAudio,
+  onPauseAudio,
+}: ChatMessageProps) {
+  const isUser = message.role === "user";
+  const isNarration = message.role === "system-narration";
+  const isPlaying = message.audioState === "playing";
 
   // System narration — the HOLC appraiser's words read aloud
   if (isNarration) {
@@ -28,10 +32,8 @@ export function ChatMessage({ message, onPlayAudio, onPauseAudio }: ChatMessageP
               >
                 1938 HOLC Assessment
               </span>
-              {message.audioState === 'finished' && (
-                <span className="text-[9px] text-slate-600">
-                  — narrated
-                </span>
+              {message.audioState === "finished" && (
+                <span className="text-[9px] text-slate-600">— narrated</span>
               )}
               {isPlaying && <AudioWaveform isPlaying={true} />}
             </div>
@@ -45,7 +47,7 @@ export function ChatMessage({ message, onPlayAudio, onPauseAudio }: ChatMessageP
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   // User message — right-aligned
@@ -60,7 +62,7 @@ export function ChatMessage({ message, onPlayAudio, onPauseAudio }: ChatMessageP
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   // Assistant message — left-aligned, documentary voice
@@ -93,9 +95,23 @@ export function ChatMessage({ message, onPlayAudio, onPauseAudio }: ChatMessageP
                 onClick={onPlayAudio}
                 className="flex items-center gap-1.5 text-[10px] text-slate-600 hover:text-slate-400 transition-colors opacity-0 group-hover:opacity-100"
               >
-                <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-                  <path d="M11 5L6 9H2v6h4l5 4V5z" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M15.54 8.46a5 5 0 010 7.07" strokeLinecap="round" strokeLinejoin="round" />
+                <svg
+                  className="w-3 h-3"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    d="M11 5L6 9H2v6h4l5 4V5z"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M15.54 8.46a5 5 0 010 7.07"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
                 <span
                   className="tracking-wide uppercase font-medium"
@@ -109,5 +125,5 @@ export function ChatMessage({ message, onPlayAudio, onPauseAudio }: ChatMessageP
         </div>
       </div>
     </div>
-  )
+  );
 }

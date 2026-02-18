@@ -37,12 +37,12 @@ Redlined uses a split-panel layout optimized for 3D data visualization. The 3D m
 
 ## Callback Props
 
-| Callback | Description |
-|----------|-------------|
-| `onCityChange` | Called when user selects a different city |
-| `onYearChange` | Called when user drags the time slider |
-| `onViewModeToggle` | Called when user toggles a layer on/off |
-| `onContentWarningToggle` | Called when user toggles content warning |
+| Callback                 | Description                               |
+| ------------------------ | ----------------------------------------- |
+| `onCityChange`           | Called when user selects a different city |
+| `onYearChange`           | Called when user drags the time slider    |
+| `onViewModeToggle`       | Called when user toggles a layer on/off   |
+| `onContentWarningToggle` | Called when user toggles content warning  |
 
 ## Visual Reference
 

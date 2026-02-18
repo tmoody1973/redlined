@@ -1,30 +1,46 @@
 interface MainNavProps {
-  cityName?: string
-  cities?: string[]
-  onCityChange?: (city: string) => void
-  showContentWarning?: boolean
-  onContentWarningToggle?: () => void
+  cityName?: string;
+  cities?: string[];
+  onCityChange?: (city: string) => void;
+  showContentWarning?: boolean;
+  onContentWarningToggle?: () => void;
 }
 
 function ChevronDownIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-      <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round"/>
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+    >
+      <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
-  )
+  );
 }
 
 function AlertTriangleIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-      <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01" strokeLinecap="round" strokeLinejoin="round"/>
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+    >
+      <path
+        d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
-  )
+  );
 }
 
 export function MainNav({
-  cityName = 'Milwaukee',
-  cities = ['Milwaukee'],
+  cityName = "Milwaukee",
+  cities = ["Milwaukee"],
   onCityChange,
   showContentWarning,
   onContentWarningToggle,
@@ -52,9 +68,9 @@ export function MainNav({
         className="flex items-center gap-1.5 text-sm text-slate-300 hover:text-slate-100 transition-colors"
         onClick={() => {
           if (cities.length > 1 && onCityChange) {
-            const currentIndex = cities.indexOf(cityName)
-            const nextCity = cities[(currentIndex + 1) % cities.length]
-            onCityChange(nextCity)
+            const currentIndex = cities.indexOf(cityName);
+            const nextCity = cities[(currentIndex + 1) % cities.length];
+            onCityChange(nextCity);
           }
         }}
       >
@@ -74,8 +90,8 @@ export function MainNav({
           onClick={onContentWarningToggle}
           className={`flex items-center gap-1.5 text-xs px-2.5 py-1 rounded transition-colors ${
             showContentWarning
-              ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
-              : 'text-slate-500 hover:text-slate-400'
+              ? "bg-amber-500/10 text-amber-400 border border-amber-500/20"
+              : "text-slate-500 hover:text-slate-400"
           }`}
         >
           <AlertTriangleIcon className="w-3 h-3" />
@@ -83,5 +99,5 @@ export function MainNav({
         </button>
       )}
     </header>
-  )
+  );
 }

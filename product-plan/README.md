@@ -121,34 +121,34 @@ product-plan/
 
 ## Design System
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| Primary | `red` | HOLC D-grade, ghost buildings, actions |
-| Secondary | `amber` | Callouts, warnings, differentials |
-| Neutral | `slate` | Backgrounds, borders, text |
-| Heading font | Space Grotesk | Bold geometric display |
-| Body font | Inter | Clean legible body text |
-| Mono font | IBM Plex Mono | Data, coordinates, records |
+| Token        | Value         | Usage                                  |
+| ------------ | ------------- | -------------------------------------- |
+| Primary      | `red`         | HOLC D-grade, ghost buildings, actions |
+| Secondary    | `amber`       | Callouts, warnings, differentials      |
+| Neutral      | `slate`       | Backgrounds, borders, text             |
+| Heading font | Space Grotesk | Bold geometric display                 |
+| Body font    | Inter         | Clean legible body text                |
+| Mono font    | IBM Plex Mono | Data, coordinates, records             |
 
 ## HOLC Grade Colors
 
-| Grade | Color | Hex | Label |
-|-------|-------|-----|-------|
-| A | Green | `#4CAF50` | "Best" |
-| B | Blue | `#2196F3` | "Still Desirable" |
-| C | Yellow | `#FFEB3B` | "Declining" |
-| D | Red | `#F44336` | "Hazardous" |
+| Grade | Color  | Hex       | Label             |
+| ----- | ------ | --------- | ----------------- |
+| A     | Green  | `#4CAF50` | "Best"            |
+| B     | Blue   | `#2196F3` | "Still Desirable" |
+| C     | Yellow | `#FFEB3B` | "Declining"       |
+| D     | Red    | `#F44336` | "Hazardous"       |
 
 ## Key Data Sources
 
-| Source | URL | Format |
-|--------|-----|--------|
-| HOLC Maps | University of Richmond Mapping Inequality | GeoJSON |
-| Milwaukee Properties | City of Milwaukee Open Data Portal (MPROP) | CSV |
-| Census Income | U.S. Census ACS 5-Year Estimates | API |
-| Health Outcomes | CDC PLACES | CSV |
-| Environmental Burden | EPA EJScreen | API |
-| Historical Maps | UWM Libraries ArcGIS | Tile service |
+| Source               | URL                                        | Format       |
+| -------------------- | ------------------------------------------ | ------------ |
+| HOLC Maps            | University of Richmond Mapping Inequality  | GeoJSON      |
+| Milwaukee Properties | City of Milwaukee Open Data Portal (MPROP) | CSV          |
+| Census Income        | U.S. Census ACS 5-Year Estimates           | API          |
+| Health Outcomes      | CDC PLACES                                 | CSV          |
+| Environmental Burden | EPA EJScreen                               | API          |
+| Historical Maps      | UWM Libraries ArcGIS                       | Tile service |
 
 ## Tech Stack (Recommended)
 

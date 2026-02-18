@@ -1,26 +1,26 @@
-import type { Building } from '../types'
+import type { Building } from "../types";
 
 interface BuildingBlockProps {
-  building: Building
-  isSelected: boolean
-  isHovered: boolean
-  onHover?: () => void
-  onHoverEnd?: () => void
-  onSelect?: () => void
-  style?: React.CSSProperties
+  building: Building;
+  isSelected: boolean;
+  isHovered: boolean;
+  onHover?: () => void;
+  onHoverEnd?: () => void;
+  onSelect?: () => void;
+  style?: React.CSSProperties;
 }
 
 const ERA_GLOW: Record<string, string> = {
-  'pre-1938': '0 0 16px rgba(184, 115, 51, 0.5)',
-  '1938-1970': '0 0 16px rgba(128, 128, 128, 0.5)',
-  'post-1970': '0 0 16px rgba(79, 195, 247, 0.5)',
-}
+  "pre-1938": "0 0 16px rgba(184, 115, 51, 0.5)",
+  "1938-1970": "0 0 16px rgba(128, 128, 128, 0.5)",
+  "post-1970": "0 0 16px rgba(79, 195, 247, 0.5)",
+};
 
 const ERA_BORDER: Record<string, string> = {
-  'pre-1938': 'rgba(184, 115, 51, 0.7)',
-  '1938-1970': 'rgba(180, 180, 180, 0.7)',
-  'post-1970': 'rgba(79, 195, 247, 0.7)',
-}
+  "pre-1938": "rgba(184, 115, 51, 0.7)",
+  "1938-1970": "rgba(180, 180, 180, 0.7)",
+  "post-1970": "rgba(79, 195, 247, 0.7)",
+};
 
 export function BuildingBlock({
   building,
@@ -31,9 +31,9 @@ export function BuildingBlock({
   onSelect,
   style,
 }: BuildingBlockProps) {
-  const height = building.stories * 14
-  const isHighlighted = isSelected || isHovered
-  const isVacant = building.landUse === 'Vacant Land'
+  const height = building.stories * 14;
+  const isHighlighted = isSelected || isHovered;
+  const isVacant = building.landUse === "Vacant Land";
 
   return (
     <div
@@ -61,10 +61,12 @@ export function BuildingBlock({
             boxShadow: isHighlighted
               ? `${ERA_GLOW[building.era]}, inset 0 1px 0 rgba(255,255,255,0.2)`
               : `0 ${height / 5}px ${height / 3}px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.06)`,
-            borderColor: isHighlighted ? ERA_BORDER[building.era] : 'transparent',
-            borderWidth: '1px',
-            borderStyle: 'solid',
-            transform: isHighlighted ? 'translateY(-3px) scale(1.08)' : 'none',
+            borderColor: isHighlighted
+              ? ERA_BORDER[building.era]
+              : "transparent",
+            borderWidth: "1px",
+            borderStyle: "solid",
+            transform: isHighlighted ? "translateY(-3px) scale(1.08)" : "none",
           }}
         >
           {/* Depth — bottom edge */}
@@ -72,8 +74,9 @@ export function BuildingBlock({
             className="absolute bottom-0 left-0 right-0"
             style={{
               height: `${Math.max(height / 4, 3)}px`,
-              background: 'linear-gradient(to top, rgba(0,0,0,0.5), transparent)',
-              borderRadius: '0 0 1px 1px',
+              background:
+                "linear-gradient(to top, rgba(0,0,0,0.5), transparent)",
+              borderRadius: "0 0 1px 1px",
             }}
           />
 
@@ -82,8 +85,9 @@ export function BuildingBlock({
             className="absolute top-0 right-0 bottom-0"
             style={{
               width: `${Math.max(height / 5, 2)}px`,
-              background: 'linear-gradient(to left, rgba(0,0,0,0.35), transparent)',
-              borderRadius: '0 1px 1px 0',
+              background:
+                "linear-gradient(to left, rgba(0,0,0,0.35), transparent)",
+              borderRadius: "0 1px 1px 0",
             }}
           />
 
@@ -116,5 +120,5 @@ export function BuildingBlock({
         )}
       </div>
     </div>
-  )
+  );
 }

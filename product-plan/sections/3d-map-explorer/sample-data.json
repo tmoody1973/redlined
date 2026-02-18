@@ -30,11 +30,11 @@
       "name": "Whitefish Bay / North Shore",
       "description": "\"This is a highly restricted residential district of fine homes. Homogeneous. American business and professional men. No threat of infiltration. The area is highly regarded and there is a good demand for properties.\"",
       "polygon": [
-        [-87.8890, 43.0950],
-        [-87.8750, 43.0950],
-        [-87.8750, 43.1100],
-        [-87.8890, 43.1100],
-        [-87.8890, 43.0950]
+        [-87.889, 43.095],
+        [-87.875, 43.095],
+        [-87.875, 43.11],
+        [-87.889, 43.11],
+        [-87.889, 43.095]
       ],
       "extrusionHeight": 40,
       "color": "#4CAF50",
@@ -50,11 +50,11 @@
       "name": "Shorewood Heights",
       "description": "\"This is a highly desirable residential area with modern homes. Restrictions are good. Population is composed of American business and professional men. There is a steady demand for properties in this area.\"",
       "polygon": [
-        [-87.8850, 43.0830],
-        [-87.8700, 43.0830],
-        [-87.8700, 43.0950],
-        [-87.8850, 43.0950],
-        [-87.8850, 43.0830]
+        [-87.885, 43.083],
+        [-87.87, 43.083],
+        [-87.87, 43.095],
+        [-87.885, 43.095],
+        [-87.885, 43.083]
       ],
       "extrusionHeight": 40,
       "color": "#4CAF50",
@@ -70,11 +70,11 @@
       "name": "Washington Heights",
       "description": "\"This is a good residential area but past its peak. Still desirable but the homes are aging. Population is largely American-born white collar workers. Some encroachment from the south is noted.\"",
       "polygon": [
-        [-87.9350, 43.0400],
-        [-87.9200, 43.0400],
-        [-87.9200, 43.0550],
-        [-87.9350, 43.0550],
-        [-87.9350, 43.0400]
+        [-87.935, 43.04],
+        [-87.92, 43.04],
+        [-87.92, 43.055],
+        [-87.935, 43.055],
+        [-87.935, 43.04]
       ],
       "extrusionHeight": 30,
       "color": "#2196F3",
@@ -90,11 +90,11 @@
       "name": "Bay View",
       "description": "\"A stable residential area of moderate homes. Still desirable. Population is composed of skilled workmen, many of Polish descent. Properties are well maintained and there is moderate demand.\"",
       "polygon": [
-        [-87.8950, 43.0050],
-        [-87.8800, 43.0050],
-        [-87.8800, 43.0200],
-        [-87.8950, 43.0200],
-        [-87.8950, 43.0050]
+        [-87.895, 43.005],
+        [-87.88, 43.005],
+        [-87.88, 43.02],
+        [-87.895, 43.02],
+        [-87.895, 43.005]
       ],
       "extrusionHeight": 30,
       "color": "#2196F3",
@@ -110,11 +110,11 @@
       "name": "Near West Side / Merrill Park",
       "description": "\"This area is declining. Infiltration of lower grade population including some negroes on the eastern edge. Housing is old and not well maintained. Heavy industrial influence from the Menomonee Valley.\"",
       "polygon": [
-        [-87.9350, 43.0200],
-        [-87.9150, 43.0200],
-        [-87.9150, 43.0380],
-        [-87.9350, 43.0380],
-        [-87.9350, 43.0200]
+        [-87.935, 43.02],
+        [-87.915, 43.02],
+        [-87.915, 43.038],
+        [-87.935, 43.038],
+        [-87.935, 43.02]
       ],
       "extrusionHeight": 20,
       "color": "#FFEB3B",
@@ -130,11 +130,11 @@
       "name": "South Side / Lincoln Village",
       "description": "\"An older area of mixed residential and commercial use. Population is largely of Polish and German extraction. The area has been declining for some years. Housing stock is aging and values are static.\"",
       "polygon": [
-        [-87.9200, 43.0000],
-        [-87.9050, 43.0000],
-        [-87.9050, 43.0150],
-        [-87.9200, 43.0150],
-        [-87.9200, 43.0000]
+        [-87.92, 43.0],
+        [-87.905, 43.0],
+        [-87.905, 43.015],
+        [-87.92, 43.015],
+        [-87.92, 43.0]
       ],
       "extrusionHeight": 20,
       "color": "#FFEB3B",
@@ -150,11 +150,11 @@
       "name": "Bronzeville / 6th & Walnut",
       "description": "\"This is a negro and lower class mixed area adjacent to the negro section. The area is old and is very much run down. The trend of desirability is downward and it is a hazardous area from a mortgage standpoint. Negroes comprise approximately 80% of the population.\"",
       "polygon": [
-        [-87.9200, 43.0400],
-        [-87.9050, 43.0400],
-        [-87.9050, 43.0530],
-        [-87.9200, 43.0530],
-        [-87.9200, 43.0400]
+        [-87.92, 43.04],
+        [-87.905, 43.04],
+        [-87.905, 43.053],
+        [-87.92, 43.053],
+        [-87.92, 43.04]
       ],
       "extrusionHeight": 10,
       "color": "#F44336",
@@ -170,11 +170,11 @@
       "name": "Halyard Park / Hillside",
       "description": "\"Negro area. Very poor condition of buildings. The area is old and much of it is in very run down condition. Several of the buildings are unfit for habitation. Hazardous. No demand for properties except by colored.\"",
       "polygon": [
-        [-87.9150, 43.0530],
-        [-87.9000, 43.0530],
-        [-87.9000, 43.0650],
-        [-87.9150, 43.0650],
-        [-87.9150, 43.0530]
+        [-87.915, 43.053],
+        [-87.9, 43.053],
+        [-87.9, 43.065],
+        [-87.915, 43.065],
+        [-87.915, 43.053]
       ],
       "extrusionHeight": 10,
       "color": "#F44336",
@@ -194,9 +194,25 @@
     { "id": "displacement", "label": "Displacement", "isActive": false }
   ],
   "timeMarkers": [
-    { "year": 1910, "label": "1910", "description": "Sanborn fire insurance maps document dense neighborhoods" },
-    { "year": 1938, "label": "1938", "description": "HOLC grades assigned — redlining begins" },
-    { "year": 1960, "label": "1960s", "description": "Interstate 43 demolishes Bronzeville" },
-    { "year": 2025, "label": "Now", "description": "Present-day outcomes visible in census and property data" }
+    {
+      "year": 1910,
+      "label": "1910",
+      "description": "Sanborn fire insurance maps document dense neighborhoods"
+    },
+    {
+      "year": 1938,
+      "label": "1938",
+      "description": "HOLC grades assigned — redlining begins"
+    },
+    {
+      "year": 1960,
+      "label": "1960s",
+      "description": "Interstate 43 demolishes Bronzeville"
+    },
+    {
+      "year": 2025,
+      "label": "Now",
+      "description": "Present-day outcomes visible in census and property data"
+    }
   ]
 }

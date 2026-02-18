@@ -1,7 +1,7 @@
-import { useState, useMemo } from 'react'
-import type { BuildingDetailProps, Building } from '../types'
-import { BuildingBlock } from './BuildingBlock'
-import { BuildingInfoPanel } from './BuildingInfoPanel'
+import { useState, useMemo } from "react";
+import type { BuildingDetailProps, Building } from "../types";
+import { BuildingBlock } from "./BuildingBlock";
+import { BuildingInfoPanel } from "./BuildingInfoPanel";
 
 /**
  * BuildingDetail — CSS perspective representation of individual MPROP buildings
@@ -26,38 +26,44 @@ export function BuildingDetail({
   onBackToZone,
   onToggleLayer,
 }: BuildingDetailProps) {
-  const [hoveredId, setHoveredId] = useState<string | null>(null)
-  const [internalSelectedId, setInternalSelectedId] = useState<string | null>(null)
-  const [layerVisible, setLayerVisible] = useState(true)
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [internalSelectedId, setInternalSelectedId] = useState<string | null>(
+    null
+  );
+  const [layerVisible, setLayerVisible] = useState(true);
 
-  const selectedId = controlledSelectedBuilding?.id ?? internalSelectedId
+  const selectedId = controlledSelectedBuilding?.id ?? internalSelectedId;
   const selectedBuildingData = useMemo(
     () => buildings.find((b) => b.id === selectedId) || null,
     [buildings, selectedId]
-  )
+  );
 
   const hoveredBuilding = useMemo(
     () => buildings.find((b) => b.id === hoveredId) || null,
     [buildings, hoveredId]
-  )
+  );
 
   // Position buildings based on parcel boundaries
   const buildingPositions = useMemo(() => {
-    const allLats = buildings.flatMap((b) => b.parcelBoundary.map((p) => p[1]))
-    const allLngs = buildings.flatMap((b) => b.parcelBoundary.map((p) => p[0]))
-    const minLat = Math.min(...allLats)
-    const maxLat = Math.max(...allLats)
-    const minLng = Math.min(...allLngs)
-    const maxLng = Math.max(...allLngs)
-    const latRange = maxLat - minLat || 1
-    const lngRange = maxLng - minLng || 1
+    const allLats = buildings.flatMap((b) => b.parcelBoundary.map((p) => p[1]));
+    const allLngs = buildings.flatMap((b) => b.parcelBoundary.map((p) => p[0]));
+    const minLat = Math.min(...allLats);
+    const maxLat = Math.max(...allLats);
+    const minLng = Math.min(...allLngs);
+    const maxLng = Math.max(...allLngs);
+    const latRange = maxLat - minLat || 1;
+    const lngRange = maxLng - minLng || 1;
 
     return buildings.map((building) => {
-      const bounds = building.parcelBoundary
-      const centerLng = bounds.reduce((s, p) => s + p[0], 0) / bounds.length
-      const centerLat = bounds.reduce((s, p) => s + p[1], 0) / bounds.length
-      const lngSpan = Math.max(...bounds.map((p) => p[0])) - Math.min(...bounds.map((p) => p[0]))
-      const latSpan = Math.max(...bounds.map((p) => p[1])) - Math.min(...bounds.map((p) => p[1]))
+      const bounds = building.parcelBoundary;
+      const centerLng = bounds.reduce((s, p) => s + p[0], 0) / bounds.length;
+      const centerLat = bounds.reduce((s, p) => s + p[1], 0) / bounds.length;
+      const lngSpan =
+        Math.max(...bounds.map((p) => p[0])) -
+        Math.min(...bounds.map((p) => p[0]));
+      const latSpan =
+        Math.max(...bounds.map((p) => p[1])) -
+        Math.min(...bounds.map((p) => p[1]));
 
       return {
         building,
@@ -65,36 +71,43 @@ export function BuildingDetail({
         top: ((maxLat - centerLat) / latRange) * 60 + 15,
         width: Math.max((lngSpan / lngRange) * 70, 5),
         height: Math.max((latSpan / latRange) * 60, 5),
-      }
-    })
-  }, [buildings])
+      };
+    });
+  }, [buildings]);
 
   const handleHover = (id: string | null) => {
-    setHoveredId(id)
-    onHoverBuilding?.(id)
-  }
+    setHoveredId(id);
+    onHoverBuilding?.(id);
+  };
 
   const handleSelect = (id: string) => {
-    setInternalSelectedId(id)
-    onSelectBuilding?.(id)
-  }
+    setInternalSelectedId(id);
+    onSelectBuilding?.(id);
+  };
 
   const handleToggleLayer = () => {
-    const next = !layerVisible
-    setLayerVisible(next)
-    onToggleLayer?.(next)
-  }
+    const next = !layerVisible;
+    setLayerVisible(next);
+    onToggleLayer?.(next);
+  };
 
   const handleBackToZone = () => {
-    setInternalSelectedId(null)
-    onBackToZone?.()
-  }
+    setInternalSelectedId(null);
+    onBackToZone?.();
+  };
 
   const formatCurrency = (n: number) =>
-    new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n)
+    new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 0,
+    }).format(n);
 
   return (
-    <div className="flex h-full" style={{ fontFamily: '"Inter", system-ui, sans-serif' }}>
+    <div
+      className="flex h-full"
+      style={{ fontFamily: '"Inter", system-ui, sans-serif' }}
+    >
       {/* Viewport — zoomed-in zone with buildings */}
       <div className="flex-1 relative bg-[#13132B] overflow-hidden select-none">
         {/* Atmospheric grid */}
@@ -105,7 +118,7 @@ export function BuildingDetail({
               linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px),
               linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)
             `,
-            backgroundSize: '32px 32px',
+            backgroundSize: "32px 32px",
           }}
         />
 
@@ -113,7 +126,8 @@ export function BuildingDetail({
         <div
           className="absolute inset-0"
           style={{
-            background: 'radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.55) 100%)',
+            background:
+              "radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.55) 100%)",
           }}
         />
 
@@ -130,15 +144,15 @@ export function BuildingDetail({
         <div
           className="absolute inset-0"
           style={{
-            perspective: '900px',
-            perspectiveOrigin: '50% 30%',
+            perspective: "900px",
+            perspectiveOrigin: "50% 30%",
           }}
         >
           <div
             className="absolute inset-[8%]"
             style={{
-              transform: 'rotateX(40deg) rotateZ(-3deg)',
-              transformStyle: 'preserve-3d',
+              transform: "rotateX(40deg) rotateZ(-3deg)",
+              transformStyle: "preserve-3d",
             }}
           >
             {/* Ground plane */}
@@ -152,22 +166,23 @@ export function BuildingDetail({
             />
 
             {/* Building blocks */}
-            {layerVisible && buildingPositions.map(({ building, left, top, width }) => (
-              <BuildingBlock
-                key={building.id}
-                building={building}
-                isSelected={selectedId === building.id}
-                isHovered={hoveredId === building.id}
-                onHover={() => handleHover(building.id)}
-                onHoverEnd={() => handleHover(null)}
-                onSelect={() => handleSelect(building.id)}
-                style={{
-                  left: `${left - width / 2}%`,
-                  top: `${top}%`,
-                  width: `${Math.max(width, 4)}%`,
-                }}
-              />
-            ))}
+            {layerVisible &&
+              buildingPositions.map(({ building, left, top, width }) => (
+                <BuildingBlock
+                  key={building.id}
+                  building={building}
+                  isSelected={selectedId === building.id}
+                  isHovered={hoveredId === building.id}
+                  onHover={() => handleHover(building.id)}
+                  onHoverEnd={() => handleHover(null)}
+                  onSelect={() => handleSelect(building.id)}
+                  style={{
+                    left: `${left - width / 2}%`,
+                    top: `${top}%`,
+                    width: `${Math.max(width, 4)}%`,
+                  }}
+                />
+              ))}
           </div>
         </div>
 
@@ -178,7 +193,7 @@ export function BuildingDetail({
               className="w-6 h-6 rounded flex items-center justify-center text-xs font-bold"
               style={{
                 backgroundColor: parentZone.color,
-                color: parentZone.holcGrade === 'C' ? '#0f172a' : '#fff',
+                color: parentZone.holcGrade === "C" ? "#0f172a" : "#fff",
               }}
             >
               {parentZone.holcGrade}
@@ -205,14 +220,24 @@ export function BuildingDetail({
           onClick={handleToggleLayer}
           className={`absolute top-4 right-4 flex items-center gap-2 px-3 py-1.5 rounded-lg border transition-all duration-200 text-[11px] ${
             layerVisible
-              ? 'bg-slate-800/80 border-slate-700/50 text-slate-300 hover:bg-slate-800'
-              : 'bg-slate-900/80 border-slate-800/50 text-slate-600 hover:text-slate-400'
+              ? "bg-slate-800/80 border-slate-700/50 text-slate-300 hover:bg-slate-800"
+              : "bg-slate-900/80 border-slate-800/50 text-slate-600 hover:text-slate-400"
           }`}
         >
-          <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-            <path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 012-2h10a2 2 0 012 2v16" strokeLinecap="round" strokeLinejoin="round" />
+          <svg
+            className="w-3 h-3"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 012-2h10a2 2 0 012 2v16"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
-          Buildings {layerVisible ? 'ON' : 'OFF'}
+          Buildings {layerVisible ? "ON" : "OFF"}
         </button>
 
         {/* Era legend — bottom left */}
@@ -256,7 +281,9 @@ export function BuildingDetail({
                 <div>
                   <div
                     className="text-[12px] font-semibold text-slate-200"
-                    style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}
+                    style={{
+                      fontFamily: '"Space Grotesk", system-ui, sans-serif',
+                    }}
                   >
                     {hoveredBuilding.address}
                   </div>
@@ -264,7 +291,10 @@ export function BuildingDetail({
                     className="text-[10px] text-slate-500"
                     style={{ fontFamily: '"IBM Plex Mono", monospace' }}
                   >
-                    Built {hoveredBuilding.yearBuilt} · {hoveredBuilding.stories} {hoveredBuilding.stories === 1 ? 'story' : 'stories'} · {formatCurrency(hoveredBuilding.assessedValue)}
+                    Built {hoveredBuilding.yearBuilt} ·{" "}
+                    {hoveredBuilding.stories}{" "}
+                    {hoveredBuilding.stories === 1 ? "story" : "stories"} ·{" "}
+                    {formatCurrency(hoveredBuilding.assessedValue)}
                   </div>
                 </div>
               </div>
@@ -292,5 +322,5 @@ export function BuildingDetail({
         />
       </div>
     </div>
-  )
+  );
 }

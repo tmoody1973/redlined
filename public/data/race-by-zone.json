@@ -1,0 +1,2090 @@
+{
+  "zones": {
+    "6270": {
+      "areaId": "6270",
+      "label": "S-B3",
+      "grade": "B",
+      "totalPop": 1153,
+      "pctWhite": 21.7,
+      "pctBlack": 66,
+      "pctHispanic": 2.6,
+      "pctAsian": 5,
+      "pctOther": 4.7,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "6271": {
+      "areaId": "6271",
+      "label": "S-C3",
+      "grade": "C",
+      "totalPop": 12265,
+      "pctWhite": 14.6,
+      "pctBlack": 71.1,
+      "pctHispanic": 8.3,
+      "pctAsian": 10.2,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "6272": {
+      "areaId": "6272",
+      "label": "S-D1",
+      "grade": "D",
+      "totalPop": 8814,
+      "pctWhite": 9.9,
+      "pctBlack": 76.6,
+      "pctHispanic": 4.3,
+      "pctAsian": 2.9,
+      "pctOther": 6.3,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "6273": {
+      "areaId": "6273",
+      "label": "C5",
+      "grade": "C",
+      "totalPop": 785,
+      "pctWhite": 14.7,
+      "pctBlack": 72.9,
+      "pctHispanic": 5.5,
+      "pctAsian": 9.8,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "",
+        "foreignBornNationality": "Few, mixed"
+      }
+    },
+    "6274": {
+      "areaId": "6274",
+      "label": "C2",
+      "grade": "C",
+      "totalPop": 7250,
+      "pctWhite": 11.7,
+      "pctBlack": 80.5,
+      "pctHispanic": 10.9,
+      "pctAsian": 0.4,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "Same as above.",
+        "foreignBornPercent": "20",
+        "foreignBornNationality": "German"
+      }
+    },
+    "6275": {
+      "areaId": "6275",
+      "label": "D1",
+      "grade": "D",
+      "totalPop": 1065,
+      "pctWhite": 10.1,
+      "pctBlack": 76.3,
+      "pctHispanic": 5.9,
+      "pctAsian": 1.1,
+      "pctOther": 6.6,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "Russians",
+        "foreignBornPercent": "65",
+        "foreignBornNationality": "Russians, Germans"
+      }
+    },
+    "6276": {
+      "areaId": "6276",
+      "label": "C1",
+      "grade": "C",
+      "totalPop": 1968,
+      "pctWhite": 11.3,
+      "pctBlack": 83.6,
+      "pctHispanic": 0.9,
+      "pctAsian": 0.8,
+      "pctOther": 3.4,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "10",
+        "foreignBornNationality": "German"
+      }
+    },
+    "6277": {
+      "areaId": "6277",
+      "label": "S-C1",
+      "grade": "C",
+      "totalPop": 714,
+      "pctWhite": 26.9,
+      "pctBlack": 64.9,
+      "pctHispanic": 1.5,
+      "pctAsian": 2.6,
+      "pctOther": 4.1,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "6278": {
+      "areaId": "6278",
+      "label": "S-C2",
+      "grade": "C",
+      "totalPop": 468,
+      "pctWhite": 37.3,
+      "pctBlack": 49.9,
+      "pctHispanic": 6.2,
+      "pctAsian": 2.9,
+      "pctOther": 3.7,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "6279": {
+      "areaId": "6279",
+      "label": "C4",
+      "grade": "C",
+      "totalPop": 167,
+      "pctWhite": 42.3,
+      "pctBlack": 44.8,
+      "pctHispanic": 5.8,
+      "pctAsian": 4.7,
+      "pctOther": 2.4,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "5",
+        "foreignBornNationality": "German"
+      }
+    },
+    "6280": {
+      "areaId": "6280",
+      "label": "D2",
+      "grade": "D",
+      "totalPop": 119,
+      "pctWhite": 59.8,
+      "pctBlack": 24.6,
+      "pctHispanic": 2.1,
+      "pctAsian": 8.8,
+      "pctOther": 4.7,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "German",
+        "foreignBornPercent": "40",
+        "foreignBornNationality": "Polish & Bohemian"
+      }
+    },
+    "6281": {
+      "areaId": "6281",
+      "label": "S-B2",
+      "grade": "B",
+      "totalPop": 365,
+      "pctWhite": 77.7,
+      "pctBlack": 6.8,
+      "pctHispanic": 3.6,
+      "pctAsian": 7.7,
+      "pctOther": 4.2,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "6282": {
+      "areaId": "6282",
+      "label": "S-B1",
+      "grade": "B",
+      "totalPop": 1606,
+      "pctWhite": 82.5,
+      "pctBlack": 4.1,
+      "pctHispanic": 2.4,
+      "pctAsian": 6.5,
+      "pctOther": 4.5,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "6283": {
+      "areaId": "6283",
+      "label": "S-A1",
+      "grade": "A",
+      "totalPop": 195,
+      "pctWhite": 83.7,
+      "pctBlack": 3.3,
+      "pctHispanic": 2.5,
+      "pctAsian": 5.7,
+      "pctOther": 4.8,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "6284": {
+      "areaId": "6284",
+      "label": "A1",
+      "grade": "A",
+      "totalPop": 8290,
+      "pctWhite": 88.2,
+      "pctBlack": 1.8,
+      "pctHispanic": 4.1,
+      "pctAsian": 3.5,
+      "pctOther": 2.4,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "Business & professional",
+        "foreignBornPercent": "Negligible",
+        "foreignBornNationality": "-"
+      }
+    },
+    "6285": {
+      "areaId": "6285",
+      "label": "B1",
+      "grade": "B",
+      "totalPop": 2785,
+      "pctWhite": 87.6,
+      "pctBlack": 2.2,
+      "pctHispanic": 4.9,
+      "pctAsian": 3.3,
+      "pctOther": 2,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "white collared clerical",
+        "foreignBornPercent": "",
+        "foreignBornNationality": "Very few"
+      }
+    },
+    "6286": {
+      "areaId": "6286",
+      "label": "B2",
+      "grade": "B",
+      "totalPop": 5072,
+      "pctWhite": 81.3,
+      "pctBlack": 5.2,
+      "pctHispanic": 7.7,
+      "pctAsian": 5.3,
+      "pctOther": 0.5,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "white collared clerical",
+        "foreignBornPercent": "",
+        "foreignBornNationality": "Very few"
+      }
+    },
+    "6287": {
+      "areaId": "6287",
+      "label": "B3",
+      "grade": "B",
+      "totalPop": 5242,
+      "pctWhite": 82,
+      "pctBlack": 3.9,
+      "pctHispanic": 5.1,
+      "pctAsian": 5.2,
+      "pctOther": 3.8,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above groups",
+        "foreignBornPercent": "",
+        "foreignBornNationality": "Very few, if any"
+      }
+    },
+    "6288": {
+      "areaId": "6288",
+      "label": "B4",
+      "grade": "B",
+      "totalPop": 5778,
+      "pctWhite": 82,
+      "pctBlack": 2.3,
+      "pctHispanic": 3.7,
+      "pctAsian": 7.2,
+      "pctOther": 4.8,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above groups",
+        "foreignBornPercent": "",
+        "foreignBornNationality": "Few, Germans predominating"
+      }
+    },
+    "6289": {
+      "areaId": "6289",
+      "label": "B5",
+      "grade": "B",
+      "totalPop": 2706,
+      "pctWhite": 85.4,
+      "pctBlack": 3.5,
+      "pctHispanic": 1.6,
+      "pctAsian": 6.4,
+      "pctOther": 3.1,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above groups",
+        "foreignBornPercent": "",
+        "foreignBornNationality": "Few, if any"
+      }
+    },
+    "6290": {
+      "areaId": "6290",
+      "label": "A2",
+      "grade": "A",
+      "totalPop": 3717,
+      "pctWhite": 85.6,
+      "pctBlack": 3.4,
+      "pctHispanic": 3.9,
+      "pctAsian": 3.2,
+      "pctOther": 3.9,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "",
+        "foreignBornNationality": "Few"
+      }
+    },
+    "6291": {
+      "areaId": "6291",
+      "label": "C9",
+      "grade": "C",
+      "totalPop": 13495,
+      "pctWhite": 79.7,
+      "pctBlack": 5.7,
+      "pctHispanic": 5,
+      "pctAsian": 5.7,
+      "pctOther": 3.9,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "Same as above",
+        "foreignBornPercent": "5",
+        "foreignBornNationality": "German"
+      }
+    },
+    "6292": {
+      "areaId": "6292",
+      "label": "C6",
+      "grade": "C",
+      "totalPop": 278,
+      "pctWhite": 24.4,
+      "pctBlack": 65.4,
+      "pctHispanic": 9.2,
+      "pctAsian": 0.6,
+      "pctOther": 0.4,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "5",
+        "foreignBornNationality": "German, Polish"
+      }
+    },
+    "6293": {
+      "areaId": "6293",
+      "label": "C3",
+      "grade": "C",
+      "totalPop": 3654,
+      "pctWhite": 7.3,
+      "pctBlack": 86.2,
+      "pctHispanic": 4,
+      "pctAsian": 0.4,
+      "pctOther": 2.1,
+      "holc1938": {
+        "negroPresence": "-",
+        "negroPercent": null,
+        "infiltrationOf": "Same as above",
+        "foreignBornPercent": "10",
+        "foreignBornNationality": "German"
+      }
+    },
+    "6294": {
+      "areaId": "6294",
+      "label": "C7",
+      "grade": "C",
+      "totalPop": 10973,
+      "pctWhite": 4.2,
+      "pctBlack": 88,
+      "pctHispanic": 3.3,
+      "pctAsian": 0.1,
+      "pctOther": 4.4,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "15",
+        "foreignBornNationality": "German, Polish, Russian"
+      }
+    },
+    "6295": {
+      "areaId": "6295",
+      "label": "B7",
+      "grade": "B",
+      "totalPop": 1575,
+      "pctWhite": 3.8,
+      "pctBlack": 87.1,
+      "pctHispanic": 0.5,
+      "pctAsian": 1,
+      "pctOther": 7.6,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above groups",
+        "foreignBornPercent": "",
+        "foreignBornNationality": "Few, Germans predominating"
+      }
+    },
+    "6296": {
+      "areaId": "6296",
+      "label": "A3",
+      "grade": "A",
+      "totalPop": 5559,
+      "pctWhite": 16.1,
+      "pctBlack": 76.3,
+      "pctHispanic": 6.1,
+      "pctAsian": 1.3,
+      "pctOther": 0.2,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above groups",
+        "foreignBornPercent": "",
+        "foreignBornNationality": "Few"
+      }
+    },
+    "6297": {
+      "areaId": "6297",
+      "label": "B9",
+      "grade": "B",
+      "totalPop": 20697,
+      "pctWhite": 31.6,
+      "pctBlack": 55.7,
+      "pctHispanic": 6.6,
+      "pctAsian": 2.4,
+      "pctOther": 3.7,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "Jews",
+        "foreignBornPercent": "10",
+        "foreignBornNationality": "Mixed, German"
+      }
+    },
+    "6298": {
+      "areaId": "6298",
+      "label": "B8",
+      "grade": "B",
+      "totalPop": 6786,
+      "pctWhite": 8.7,
+      "pctBlack": 88.6,
+      "pctHispanic": 3.4,
+      "pctAsian": 0.2,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "Jewish in southern portion",
+        "foreignBornPercent": "5",
+        "foreignBornNationality": "Mixed, German -"
+      }
+    },
+    "6299": {
+      "areaId": "6299",
+      "label": "C10",
+      "grade": "C",
+      "totalPop": 5255,
+      "pctWhite": 5.6,
+      "pctBlack": 90.3,
+      "pctHispanic": 4.1,
+      "pctAsian": 0.9,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "10",
+        "foreignBornNationality": "German, Russian"
+      }
+    },
+    "6300": {
+      "areaId": "6300",
+      "label": "D6",
+      "grade": "D",
+      "totalPop": 13052,
+      "pctWhite": 5.8,
+      "pctBlack": 78.4,
+      "pctHispanic": 4.9,
+      "pctAsian": 9,
+      "pctOther": 1.9,
+      "holc1938": {
+        "negroPresence": "-",
+        "negroPercent": null,
+        "infiltrationOf": "None",
+        "foreignBornPercent": "5",
+        "foreignBornNationality": "Germans, Yugoslavians"
+      }
+    },
+    "6301": {
+      "areaId": "6301",
+      "label": "C8",
+      "grade": "C",
+      "totalPop": 18868,
+      "pctWhite": 5.7,
+      "pctBlack": 86.3,
+      "pctHispanic": 4.6,
+      "pctAsian": 1.1,
+      "pctOther": 2.3,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "20",
+        "foreignBornNationality": "German, Polish, Russian"
+      }
+    },
+    "6302": {
+      "areaId": "6302",
+      "label": "D3",
+      "grade": "D",
+      "totalPop": 11408,
+      "pctWhite": 53.1,
+      "pctBlack": 30.1,
+      "pctHispanic": 14.1,
+      "pctAsian": 1.3,
+      "pctOther": 1.4,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "Polish & German",
+        "foreignBornPercent": "80",
+        "foreignBornNationality": "Polish, Russian, German"
+      }
+    },
+    "6303": {
+      "areaId": "6303",
+      "label": "B6",
+      "grade": "B",
+      "totalPop": 1306,
+      "pctWhite": 65.4,
+      "pctBlack": 25.7,
+      "pctHispanic": 7.6,
+      "pctAsian": 0.1,
+      "pctOther": 1.2,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "Polish",
+        "foreignBornPercent": "50",
+        "foreignBornNationality": "Polish, German, Austrian"
+      }
+    },
+    "6304": {
+      "areaId": "6304",
+      "label": "D4",
+      "grade": "D",
+      "totalPop": 12739,
+      "pctWhite": 77,
+      "pctBlack": 9.2,
+      "pctHispanic": 6.3,
+      "pctAsian": 5,
+      "pctOther": 2.5,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "Italians",
+        "foreignBornPercent": "20",
+        "foreignBornNationality": "Italians, Polish and Germans"
+      }
+    },
+    "6305": {
+      "areaId": "6305",
+      "label": "D5",
+      "grade": "D",
+      "totalPop": 4379,
+      "pctWhite": 21.5,
+      "pctBlack": 68.2,
+      "pctHispanic": 9,
+      "pctAsian": 2.1,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "Yes",
+        "negroPercent": "65",
+        "infiltrationOf": "Russian Jews",
+        "foreignBornPercent": "25",
+        "foreignBornNationality": "Russian Jews"
+      }
+    },
+    "6306": {
+      "areaId": "6306",
+      "label": "C13",
+      "grade": "C",
+      "totalPop": 4567,
+      "pctWhite": 12.9,
+      "pctBlack": 78.4,
+      "pctHispanic": 2.5,
+      "pctAsian": 5.1,
+      "pctOther": 1.1,
+      "holc1938": {
+        "negroPresence": "-",
+        "negroPercent": null,
+        "infiltrationOf": "Above",
+        "foreignBornPercent": "100",
+        "foreignBornNationality": "German"
+      }
+    },
+    "6307": {
+      "areaId": "6307",
+      "label": "C14",
+      "grade": "C",
+      "totalPop": 2655,
+      "pctWhite": 4.7,
+      "pctBlack": 41.9,
+      "pctHispanic": 3.5,
+      "pctAsian": 44.5,
+      "pctOther": 5.4,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "25",
+        "foreignBornNationality": "German"
+      }
+    },
+    "6308": {
+      "areaId": "6308",
+      "label": "C16",
+      "grade": "C",
+      "totalPop": 2989,
+      "pctWhite": 70.1,
+      "pctBlack": 19.2,
+      "pctHispanic": 8.9,
+      "pctAsian": 0.9,
+      "pctOther": 0.9,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "10",
+        "foreignBornNationality": "German"
+      }
+    },
+    "6309": {
+      "areaId": "6309",
+      "label": "C11",
+      "grade": "C",
+      "totalPop": 4605,
+      "pctWhite": 25.6,
+      "pctBlack": 54.1,
+      "pctHispanic": 10.7,
+      "pctAsian": 7.2,
+      "pctOther": 2.4,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "Above",
+        "foreignBornPercent": "10",
+        "foreignBornNationality": "Germans, Slavs"
+      }
+    },
+    "6310": {
+      "areaId": "6310",
+      "label": "C15",
+      "grade": "C",
+      "totalPop": 4527,
+      "pctWhite": 22.2,
+      "pctBlack": 59.6,
+      "pctHispanic": 9.9,
+      "pctAsian": 5.5,
+      "pctOther": 2.8,
+      "holc1938": {
+        "negroPresence": "-",
+        "negroPercent": null,
+        "infiltrationOf": "-",
+        "foreignBornPercent": "5",
+        "foreignBornNationality": "Germans, Slavs"
+      }
+    },
+    "6311": {
+      "areaId": "6311",
+      "label": "D7",
+      "grade": "D",
+      "totalPop": 9166,
+      "pctWhite": 45.7,
+      "pctBlack": 33.2,
+      "pctHispanic": 14.6,
+      "pctAsian": 8,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "50",
+        "foreignBornNationality": "Mixture - Germans & Yugoslavians"
+      }
+    },
+    "6312": {
+      "areaId": "6312",
+      "label": "D7A",
+      "grade": "D",
+      "totalPop": 899,
+      "pctWhite": 48.9,
+      "pctBlack": 38,
+      "pctHispanic": 7.9,
+      "pctAsian": 3.2,
+      "pctOther": 2,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "50",
+        "foreignBornNationality": "Mixture - Germans & Yugoslavians"
+      }
+    },
+    "6313": {
+      "areaId": "6313",
+      "label": "B13",
+      "grade": "B",
+      "totalPop": 270,
+      "pctWhite": 77,
+      "pctBlack": 8,
+      "pctHispanic": 9.2,
+      "pctAsian": 4.6,
+      "pctOther": 1.2,
+      "holc1938": {
+        "negroPresence": "-",
+        "negroPercent": null,
+        "infiltrationOf": "-",
+        "foreignBornPercent": "-",
+        "foreignBornNationality": "Few, if any"
+      }
+    },
+    "6314": {
+      "areaId": "6314",
+      "label": "C19",
+      "grade": "C",
+      "totalPop": 732,
+      "pctWhite": 78.4,
+      "pctBlack": 6.9,
+      "pctHispanic": 8.2,
+      "pctAsian": 4.8,
+      "pctOther": 1.7,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "10",
+        "foreignBornNationality": "German"
+      }
+    },
+    "6315": {
+      "areaId": "6315",
+      "label": "B12",
+      "grade": "B",
+      "totalPop": 1642,
+      "pctWhite": 82.4,
+      "pctBlack": 3.8,
+      "pctHispanic": 5.4,
+      "pctAsian": 5.4,
+      "pctOther": 3,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "2",
+        "foreignBornNationality": "Mixed"
+      }
+    },
+    "6316": {
+      "areaId": "6316",
+      "label": "C20",
+      "grade": "C",
+      "totalPop": 2599,
+      "pctWhite": 80.6,
+      "pctBlack": 8.1,
+      "pctHispanic": 11.7,
+      "pctAsian": 0.8,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "20",
+        "foreignBornNationality": "Jugo, and S.E. Europeans, Germans, Austrians."
+      }
+    },
+    "6317": {
+      "areaId": "6317",
+      "label": "D8",
+      "grade": "D",
+      "totalPop": 4622,
+      "pctWhite": 71.4,
+      "pctBlack": 9.8,
+      "pctHispanic": 19.8,
+      "pctAsian": 1.9,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "Above",
+        "foreignBornPercent": "10",
+        "foreignBornNationality": "Germans"
+      }
+    },
+    "6318": {
+      "areaId": "6318",
+      "label": "A7",
+      "grade": "A",
+      "totalPop": 874,
+      "pctWhite": 89.7,
+      "pctBlack": 0.6,
+      "pctHispanic": 2.7,
+      "pctAsian": 4.1,
+      "pctOther": 2.9,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above class",
+        "foreignBornPercent": "0",
+        "foreignBornNationality": "-"
+      }
+    },
+    "6319": {
+      "areaId": "6319",
+      "label": "B11",
+      "grade": "B",
+      "totalPop": 1560,
+      "pctWhite": 82.4,
+      "pctBlack": 3.5,
+      "pctHispanic": 5.9,
+      "pctAsian": 4.5,
+      "pctOther": 3.7,
+      "holc1938": {
+        "negroPresence": "-",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "",
+        "foreignBornNationality": "Few, if any"
+      }
+    },
+    "6320": {
+      "areaId": "6320",
+      "label": "C18",
+      "grade": "C",
+      "totalPop": 2716,
+      "pctWhite": 80.7,
+      "pctBlack": 5.9,
+      "pctHispanic": 4.1,
+      "pctAsian": 6.3,
+      "pctOther": 3,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "10",
+        "foreignBornNationality": "German"
+      }
+    },
+    "6321": {
+      "areaId": "6321",
+      "label": "D15",
+      "grade": "D",
+      "totalPop": 181,
+      "pctWhite": 77.8,
+      "pctBlack": 9,
+      "pctHispanic": 2.9,
+      "pctAsian": 7.3,
+      "pctOther": 3,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "Few",
+        "foreignBornNationality": ""
+      }
+    },
+    "6322": {
+      "areaId": "6322",
+      "label": "C17",
+      "grade": "C",
+      "totalPop": 1597,
+      "pctWhite": 78.8,
+      "pctBlack": 8.5,
+      "pctHispanic": 2.7,
+      "pctAsian": 7,
+      "pctOther": 3,
+      "holc1938": {
+        "negroPresence": "-",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "-",
+        "foreignBornNationality": "few, mixed nationalities"
+      }
+    },
+    "6323": {
+      "areaId": "6323",
+      "label": "A6",
+      "grade": "A",
+      "totalPop": 1465,
+      "pctWhite": 89,
+      "pctBlack": 6.1,
+      "pctHispanic": 2.6,
+      "pctAsian": 1,
+      "pctOther": 1.3,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above groups",
+        "foreignBornPercent": "0",
+        "foreignBornNationality": "-"
+      }
+    },
+    "6324": {
+      "areaId": "6324",
+      "label": "B10",
+      "grade": "B",
+      "totalPop": 11141,
+      "pctWhite": 82.3,
+      "pctBlack": 8.6,
+      "pctHispanic": 3.9,
+      "pctAsian": 2.7,
+      "pctOther": 2.5,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "skilled laborers",
+        "foreignBornPercent": "3",
+        "foreignBornNationality": "Mixed nationalities"
+      }
+    },
+    "6325": {
+      "areaId": "6325",
+      "label": "A4",
+      "grade": "A",
+      "totalPop": 1640,
+      "pctWhite": 58.8,
+      "pctBlack": 34.8,
+      "pctHispanic": 7.7,
+      "pctAsian": 1.5,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above groups",
+        "foreignBornPercent": "0",
+        "foreignBornNationality": "Few"
+      }
+    },
+    "6326": {
+      "areaId": "6326",
+      "label": "S-B5",
+      "grade": "B",
+      "totalPop": 690,
+      "pctWhite": 63,
+      "pctBlack": 25.7,
+      "pctHispanic": 9.2,
+      "pctAsian": 0.1,
+      "pctOther": 2,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "6327": {
+      "areaId": "6327",
+      "label": "C12",
+      "grade": "C",
+      "totalPop": 1702,
+      "pctWhite": 83.8,
+      "pctBlack": 7.8,
+      "pctHispanic": 3.8,
+      "pctAsian": 2.8,
+      "pctOther": 1.8,
+      "holc1938": {
+        "negroPresence": "-",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "-",
+        "foreignBornNationality": "-"
+      }
+    },
+    "6328": {
+      "areaId": "6328",
+      "label": "A5",
+      "grade": "A",
+      "totalPop": 3507,
+      "pctWhite": 93.1,
+      "pctBlack": 2.8,
+      "pctHispanic": 1.6,
+      "pctAsian": 1,
+      "pctOther": 1.5,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above groups",
+        "foreignBornPercent": "",
+        "foreignBornNationality": "None"
+      }
+    },
+    "6329": {
+      "areaId": "6329",
+      "label": "S-C4",
+      "grade": "C",
+      "totalPop": 18665,
+      "pctWhite": 29.5,
+      "pctBlack": 60.4,
+      "pctHispanic": 4.3,
+      "pctAsian": 2.1,
+      "pctOther": 3.7,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "6330": {
+      "areaId": "6330",
+      "label": "S-B4",
+      "grade": "B",
+      "totalPop": 4029,
+      "pctWhite": 73.4,
+      "pctBlack": 16,
+      "pctHispanic": 6.8,
+      "pctAsian": 2.4,
+      "pctOther": 1.4,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "6331": {
+      "areaId": "6331",
+      "label": "S-C6",
+      "grade": "C",
+      "totalPop": 134,
+      "pctWhite": 74.6,
+      "pctBlack": 10.4,
+      "pctHispanic": 3.6,
+      "pctAsian": 8.7,
+      "pctOther": 2.7,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "6332": {
+      "areaId": "6332",
+      "label": "S-C5",
+      "grade": "C",
+      "totalPop": 1369,
+      "pctWhite": 69.5,
+      "pctBlack": 14.6,
+      "pctHispanic": 3.5,
+      "pctAsian": 8.3,
+      "pctOther": 4.1,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "6333": {
+      "areaId": "6333",
+      "label": "S-C7",
+      "grade": "C",
+      "totalPop": 2371,
+      "pctWhite": 79.9,
+      "pctBlack": 7.6,
+      "pctHispanic": 8.5,
+      "pctAsian": 4.5,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "6334": {
+      "areaId": "6334",
+      "label": "C26",
+      "grade": "C",
+      "totalPop": 3496,
+      "pctWhite": 61.7,
+      "pctBlack": 16.6,
+      "pctHispanic": 21,
+      "pctAsian": 3.6,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above groups",
+        "foreignBornPercent": "10",
+        "foreignBornNationality": "Slovenians -- Poles"
+      }
+    },
+    "6335": {
+      "areaId": "6335",
+      "label": "D10",
+      "grade": "D",
+      "totalPop": 5723,
+      "pctWhite": 74.8,
+      "pctBlack": 7.8,
+      "pctHispanic": 15,
+      "pctAsian": 3.2,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "Foreign born",
+        "foreignBornPercent": "50",
+        "foreignBornNationality": "Poles, Slavs, etc."
+      }
+    },
+    "6336": {
+      "areaId": "6336",
+      "label": "B14",
+      "grade": "B",
+      "totalPop": 344,
+      "pctWhite": 59.2,
+      "pctBlack": 16,
+      "pctHispanic": 30.2,
+      "pctAsian": 0.1,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above class",
+        "foreignBornPercent": "5",
+        "foreignBornNationality": "Mixed nationalities"
+      }
+    },
+    "6337": {
+      "areaId": "6337",
+      "label": "C25",
+      "grade": "C",
+      "totalPop": 8819,
+      "pctWhite": 73.5,
+      "pctBlack": 4.6,
+      "pctHispanic": 23.5,
+      "pctAsian": 2.7,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above groups",
+        "foreignBornPercent": "25",
+        "foreignBornNationality": "Italians -- Poles -- others southern Europeans"
+      }
+    },
+    "6338": {
+      "areaId": "6338",
+      "label": "B15",
+      "grade": "B",
+      "totalPop": 986,
+      "pctWhite": 81.5,
+      "pctBlack": 4.2,
+      "pctHispanic": 18.5,
+      "pctAsian": 1,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "Business, professional",
+        "foreignBornPercent": "0",
+        "foreignBornNationality": "None"
+      }
+    },
+    "6339": {
+      "areaId": "6339",
+      "label": "C23",
+      "grade": "C",
+      "totalPop": 2158,
+      "pctWhite": 80.6,
+      "pctBlack": 5.8,
+      "pctHispanic": 16.3,
+      "pctAsian": 5,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above groups",
+        "foreignBornPercent": "5",
+        "foreignBornNationality": "Various mixed nationalities"
+      }
+    },
+    "6340": {
+      "areaId": "6340",
+      "label": "C24",
+      "grade": "C",
+      "totalPop": 9203,
+      "pctWhite": 76.4,
+      "pctBlack": 5.7,
+      "pctHispanic": 17.5,
+      "pctAsian": 1.3,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "wage earners",
+        "foreignBornPercent": "10",
+        "foreignBornNationality": "Various mixed nationalities"
+      }
+    },
+    "6341": {
+      "areaId": "6341",
+      "label": "C21",
+      "grade": "C",
+      "totalPop": 736,
+      "pctWhite": 75,
+      "pctBlack": 7.9,
+      "pctHispanic": 13.3,
+      "pctAsian": 2.3,
+      "pctOther": 1.5,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "wage earners",
+        "foreignBornPercent": "3",
+        "foreignBornNationality": "German"
+      }
+    },
+    "6342": {
+      "areaId": "6342",
+      "label": "C22",
+      "grade": "C",
+      "totalPop": 1010,
+      "pctWhite": 75.4,
+      "pctBlack": 7.4,
+      "pctHispanic": 13.8,
+      "pctAsian": 2.1,
+      "pctOther": 1.3,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "younger element",
+        "foreignBornPercent": "5",
+        "foreignBornNationality": "Various mixed nationalities"
+      }
+    },
+    "6343": {
+      "areaId": "6343",
+      "label": "S-B6",
+      "grade": "B",
+      "totalPop": 750,
+      "pctWhite": 75.8,
+      "pctBlack": 6.1,
+      "pctHispanic": 10.9,
+      "pctAsian": 6.6,
+      "pctOther": 0.6,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "6344": {
+      "areaId": "6344",
+      "label": "S-C9",
+      "grade": "C",
+      "totalPop": 1289,
+      "pctWhite": 82.1,
+      "pctBlack": 1.6,
+      "pctHispanic": 6.6,
+      "pctAsian": 2.9,
+      "pctOther": 6.8,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "6345": {
+      "areaId": "6345",
+      "label": "S-D2",
+      "grade": "D",
+      "totalPop": 1431,
+      "pctWhite": 78.5,
+      "pctBlack": 1.5,
+      "pctHispanic": 18,
+      "pctAsian": 0.9,
+      "pctOther": 1.1,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "6346": {
+      "areaId": "6346",
+      "label": "B20",
+      "grade": "B",
+      "totalPop": 535,
+      "pctWhite": 89,
+      "pctBlack": 0.6,
+      "pctHispanic": 6.4,
+      "pctAsian": 4.3,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "",
+        "foreignBornNationality": "Very few"
+      }
+    },
+    "6347": {
+      "areaId": "6347",
+      "label": "D18",
+      "grade": "D",
+      "totalPop": 88,
+      "pctWhite": 86.9,
+      "pctBlack": 0.7,
+      "pctHispanic": 11.3,
+      "pctAsian": 3.2,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "None",
+        "foreignBornPercent": "0",
+        "foreignBornNationality": ""
+      }
+    },
+    "6348": {
+      "areaId": "6348",
+      "label": "D19",
+      "grade": "D",
+      "totalPop": 67,
+      "pctWhite": 93.2,
+      "pctBlack": 1.4,
+      "pctHispanic": 4.6,
+      "pctAsian": 1.3,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "None",
+        "foreignBornPercent": "Few",
+        "foreignBornNationality": ""
+      }
+    },
+    "6349": {
+      "areaId": "6349",
+      "label": "S-B7",
+      "grade": "B",
+      "totalPop": 1135,
+      "pctWhite": 69.4,
+      "pctBlack": 4.1,
+      "pctHispanic": 26.2,
+      "pctAsian": 4.8,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "6350": {
+      "areaId": "6350",
+      "label": "S-C10",
+      "grade": "C",
+      "totalPop": 2326,
+      "pctWhite": 67,
+      "pctBlack": 4.7,
+      "pctHispanic": 31.1,
+      "pctAsian": 2.6,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "6351": {
+      "areaId": "6351",
+      "label": "B16",
+      "grade": "B",
+      "totalPop": 1797,
+      "pctWhite": 52.3,
+      "pctBlack": 8.2,
+      "pctHispanic": 40.7,
+      "pctAsian": 4.4,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "Above",
+        "foreignBornPercent": "10",
+        "foreignBornNationality": "Polish, German"
+      }
+    },
+    "6352": {
+      "areaId": "6352",
+      "label": "C28",
+      "grade": "C",
+      "totalPop": 800,
+      "pctWhite": 37,
+      "pctBlack": 10.1,
+      "pctHispanic": 60.1,
+      "pctAsian": 3.9,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "",
+        "foreignBornNationality": "Few, if any"
+      }
+    },
+    "6353": {
+      "areaId": "6353",
+      "label": "S-B8",
+      "grade": "B",
+      "totalPop": 1398,
+      "pctWhite": 48.8,
+      "pctBlack": 9.3,
+      "pctHispanic": 46.5,
+      "pctAsian": 10,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "6354": {
+      "areaId": "6354",
+      "label": "A8",
+      "grade": "A",
+      "totalPop": 543,
+      "pctWhite": 57.3,
+      "pctBlack": 15.8,
+      "pctHispanic": 35.7,
+      "pctAsian": 1.1,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above groups",
+        "foreignBornPercent": "0",
+        "foreignBornNationality": ""
+      }
+    },
+    "6355": {
+      "areaId": "6355",
+      "label": "C27",
+      "grade": "C",
+      "totalPop": 21768,
+      "pctWhite": 34.8,
+      "pctBlack": 5.4,
+      "pctHispanic": 73,
+      "pctAsian": 4.4,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "15",
+        "foreignBornNationality": "Polish, Germans, Scandinavians"
+      }
+    },
+    "6356": {
+      "areaId": "6356",
+      "label": "D11",
+      "grade": "D",
+      "totalPop": 32088,
+      "pctWhite": 31.4,
+      "pctBlack": 9,
+      "pctHispanic": 73.2,
+      "pctAsian": 4.5,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "Mexicans",
+        "foreignBornPercent": "40",
+        "foreignBornNationality": "Polish"
+      }
+    },
+    "6357": {
+      "areaId": "6357",
+      "label": "D12",
+      "grade": "D",
+      "totalPop": 10187,
+      "pctWhite": 33.7,
+      "pctBlack": 12.8,
+      "pctHispanic": 63.8,
+      "pctAsian": 0.7,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "Few only",
+        "negroPercent": null,
+        "infiltrationOf": "Polish",
+        "foreignBornPercent": "35",
+        "foreignBornNationality": "Polish and mixed in southeast central"
+      }
+    },
+    "6358": {
+      "areaId": "6358",
+      "label": "C29",
+      "grade": "C",
+      "totalPop": 9858,
+      "pctWhite": 35.9,
+      "pctBlack": 4.1,
+      "pctHispanic": 74.8,
+      "pctAsian": 4.8,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "30",
+        "foreignBornNationality": "Polish, German"
+      }
+    },
+    "6359": {
+      "areaId": "6359",
+      "label": "C30",
+      "grade": "C",
+      "totalPop": 5431,
+      "pctWhite": 44.4,
+      "pctBlack": 5.1,
+      "pctHispanic": 62.1,
+      "pctAsian": 5.2,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "wage earners",
+        "foreignBornPercent": "40",
+        "foreignBornNationality": "Poles and Germans"
+      }
+    },
+    "6360": {
+      "areaId": "6360",
+      "label": "S-B9",
+      "grade": "B",
+      "totalPop": 2270,
+      "pctWhite": 55.7,
+      "pctBlack": 3.6,
+      "pctHispanic": 44.7,
+      "pctAsian": 6.4,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "6361": {
+      "areaId": "6361",
+      "label": "C33",
+      "grade": "C",
+      "totalPop": 1993,
+      "pctWhite": 76.9,
+      "pctBlack": 1.8,
+      "pctHispanic": 27.7,
+      "pctAsian": 0.4,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "5",
+        "foreignBornNationality": "German - Poles"
+      }
+    },
+    "6362": {
+      "areaId": "6362",
+      "label": "C34",
+      "grade": "C",
+      "totalPop": 5012,
+      "pctWhite": 83.2,
+      "pctBlack": 3.1,
+      "pctHispanic": 16.4,
+      "pctAsian": 2,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "Few",
+        "foreignBornNationality": "Mixed nationalities"
+      }
+    },
+    "6363": {
+      "areaId": "6363",
+      "label": "C32",
+      "grade": "C",
+      "totalPop": 5146,
+      "pctWhite": 84.5,
+      "pctBlack": 3.4,
+      "pctHispanic": 14.8,
+      "pctAsian": 0.4,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "5",
+        "foreignBornNationality": "Germans - Poles"
+      }
+    },
+    "6364": {
+      "areaId": "6364",
+      "label": "C31",
+      "grade": "C",
+      "totalPop": 5034,
+      "pctWhite": 89.5,
+      "pctBlack": 1.1,
+      "pctHispanic": 9.3,
+      "pctAsian": 2,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "5",
+        "foreignBornNationality": "German - Poles"
+      }
+    },
+    "6365": {
+      "areaId": "6365",
+      "label": "D13",
+      "grade": "D",
+      "totalPop": 4311,
+      "pctWhite": 84.2,
+      "pctBlack": 3.9,
+      "pctHispanic": 12.5,
+      "pctAsian": 0.3,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "German",
+        "foreignBornPercent": "15",
+        "foreignBornNationality": "German & Polish"
+      }
+    },
+    "6366": {
+      "areaId": "6366",
+      "label": "D14",
+      "grade": "D",
+      "totalPop": 2558,
+      "pctWhite": 86.8,
+      "pctBlack": 3.8,
+      "pctHispanic": 10.1,
+      "pctAsian": 2.1,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "25",
+        "foreignBornNationality": "Italians, Germans, Polish"
+      }
+    },
+    "6367": {
+      "areaId": "6367",
+      "label": "B17",
+      "grade": "B",
+      "totalPop": 1891,
+      "pctWhite": 91.3,
+      "pctBlack": 0.1,
+      "pctHispanic": 8.4,
+      "pctAsian": 1.7,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "-",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "-",
+        "foreignBornNationality": "Few, Germans"
+      }
+    },
+    "6368": {
+      "areaId": "6368",
+      "label": "S-D3",
+      "grade": "D",
+      "totalPop": 1234,
+      "pctWhite": 82.8,
+      "pctBlack": 3.6,
+      "pctHispanic": 12.5,
+      "pctAsian": 1.2,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "Yes",
+        "negroPercent": "5",
+        "infiltrationOf": "Polish & Italians",
+        "foreignBornPercent": "70",
+        "foreignBornNationality": "Polish & Italians"
+      }
+    },
+    "6369": {
+      "areaId": "6369",
+      "label": "C35",
+      "grade": "C",
+      "totalPop": 5415,
+      "pctWhite": 82.2,
+      "pctBlack": 1.2,
+      "pctHispanic": 7.3,
+      "pctAsian": 6,
+      "pctOther": 3.3,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "wage earners",
+        "foreignBornPercent": "65",
+        "foreignBornNationality": "Poles, Slavs, Austrians"
+      }
+    },
+    "6370": {
+      "areaId": "6370",
+      "label": "B18",
+      "grade": "B",
+      "totalPop": 285,
+      "pctWhite": 87.1,
+      "pctBlack": 2.6,
+      "pctHispanic": 7.4,
+      "pctAsian": 2,
+      "pctOther": 0.9,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "wage earners",
+        "foreignBornPercent": "10",
+        "foreignBornNationality": "German, Irish"
+      }
+    },
+    "6371": {
+      "areaId": "6371",
+      "label": "S-A2",
+      "grade": "A",
+      "totalPop": 87,
+      "pctWhite": 87.1,
+      "pctBlack": 2.6,
+      "pctHispanic": 7.4,
+      "pctAsian": 2,
+      "pctOther": 0.9,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "6372": {
+      "areaId": "6372",
+      "label": "S-C11",
+      "grade": "C",
+      "totalPop": 754,
+      "pctWhite": 88,
+      "pctBlack": 9.2,
+      "pctHispanic": 10.3,
+      "pctAsian": 0,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "6373": {
+      "areaId": "6373",
+      "label": "B19",
+      "grade": "B",
+      "totalPop": 407,
+      "pctWhite": 92.7,
+      "pctBlack": 0,
+      "pctHispanic": 7.3,
+      "pctAsian": 0,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "",
+        "foreignBornNationality": "None"
+      }
+    },
+    "6374": {
+      "areaId": "6374",
+      "label": "C36",
+      "grade": "C",
+      "totalPop": 392,
+      "pctWhite": 92.7,
+      "pctBlack": 0,
+      "pctHispanic": 7.3,
+      "pctAsian": 0,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "-",
+        "foreignBornNationality": "Few, if any. Mixed"
+      }
+    },
+    "6375": {
+      "areaId": "6375",
+      "label": "D16",
+      "grade": "D",
+      "totalPop": 3772,
+      "pctWhite": 83.8,
+      "pctBlack": 4.4,
+      "pctHispanic": 10.6,
+      "pctAsian": 0.6,
+      "pctOther": 0.6,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "25",
+        "foreignBornNationality": "Armenians"
+      }
+    },
+    "6376": {
+      "areaId": "6376",
+      "label": "C37",
+      "grade": "C",
+      "totalPop": 2202,
+      "pctWhite": 81.8,
+      "pctBlack": 1.6,
+      "pctHispanic": 18,
+      "pctAsian": 0,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "20",
+        "foreignBornNationality": "Armenians"
+      }
+    },
+    "6377": {
+      "areaId": "6377",
+      "label": "C38",
+      "grade": "C",
+      "totalPop": 3031,
+      "pctWhite": 86,
+      "pctBlack": 2.9,
+      "pctHispanic": 10,
+      "pctAsian": 0.6,
+      "pctOther": 0.5,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "25",
+        "foreignBornNationality": "Armenians & Poles"
+      }
+    },
+    "6378": {
+      "areaId": "6378",
+      "label": "S-D4",
+      "grade": "D",
+      "totalPop": 1164,
+      "pctWhite": 91.2,
+      "pctBlack": 1.8,
+      "pctHispanic": 9.8,
+      "pctAsian": 0.5,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "6379": {
+      "areaId": "6379",
+      "label": "D9",
+      "grade": "D",
+      "totalPop": 3358,
+      "pctWhite": 80.3,
+      "pctBlack": 3.1,
+      "pctHispanic": 18.1,
+      "pctAsian": 1,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above groups",
+        "foreignBornPercent": "25",
+        "foreignBornNationality": "Slavs - Poles, etc."
+      }
+    },
+    "6380": {
+      "areaId": "6380",
+      "label": "S-C8",
+      "grade": "C",
+      "totalPop": 2589,
+      "pctWhite": 88.3,
+      "pctBlack": 1.2,
+      "pctHispanic": 14.3,
+      "pctAsian": 0.4,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "6381": {
+      "areaId": "6381",
+      "label": "D17",
+      "grade": "D",
+      "totalPop": 246,
+      "pctWhite": 80.2,
+      "pctBlack": 2.7,
+      "pctHispanic": 9.8,
+      "pctAsian": 7.9,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "No",
+        "negroPercent": null,
+        "infiltrationOf": "above",
+        "foreignBornPercent": "50",
+        "foreignBornNationality": "Mexicans & Armenians"
+      }
+    },
+    "11211": {
+      "areaId": "11211",
+      "label": "11211",
+      "grade": "?",
+      "totalPop": 14828,
+      "pctWhite": 61.6,
+      "pctBlack": 18.8,
+      "pctHispanic": 15.4,
+      "pctAsian": 4.8,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    },
+    "11212": {
+      "areaId": "11212",
+      "label": "11212",
+      "grade": "?",
+      "totalPop": 34017,
+      "pctWhite": 49.6,
+      "pctBlack": 27.5,
+      "pctHispanic": 23,
+      "pctAsian": 2.7,
+      "pctOther": 0,
+      "holc1938": {
+        "negroPresence": "Not recorded",
+        "negroPercent": null,
+        "infiltrationOf": "",
+        "foreignBornPercent": "",
+        "foreignBornNationality": ""
+      }
+    }
+  },
+  "gradeAverages": {
+    "A": {
+      "avgPctWhite": 74.9,
+      "avgPctBlack": 14.8,
+      "avgPctHispanic": 7.4,
+      "avgPctAsian": 2.4,
+      "avgTotalPop": 2588,
+      "zoneCount": 10
+    },
+    "B": {
+      "avgPctWhite": 68,
+      "avgPctBlack": 16.3,
+      "avgPctHispanic": 11.6,
+      "avgPctAsian": 3.8,
+      "avgTotalPop": 2972,
+      "zoneCount": 29
+    },
+    "C": {
+      "avgPctWhite": 54.6,
+      "avgPctBlack": 28.1,
+      "avgPctHispanic": 14.4,
+      "avgPctAsian": 4.1,
+      "avgTotalPop": 4609,
+      "zoneCount": 49
+    },
+    "D": {
+      "avgPctWhite": 61.2,
+      "avgPctBlack": 21.2,
+      "avgPctHispanic": 15,
+      "avgPctAsian": 3.3,
+      "avgTotalPop": 5528,
+      "zoneCount": 24
+    }
+  }
+}

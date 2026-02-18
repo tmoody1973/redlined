@@ -1,28 +1,28 @@
-import type { ViewMode } from './AppShell'
+import type { ViewMode } from "./AppShell";
 
 interface BottomToolbarProps {
-  year?: number
-  onYearChange?: (year: number) => void
-  viewModes?: ViewMode[]
-  onViewModeToggle?: (id: string) => void
+  year?: number;
+  onYearChange?: (year: number) => void;
+  viewModes?: ViewMode[];
+  onViewModeToggle?: (id: string) => void;
 }
 
 const TIME_MARKERS = [
-  { year: 1910, label: '1910' },
-  { year: 1938, label: '1938' },
-  { year: 1960, label: '1960s' },
-  { year: 2025, label: 'Now' },
-]
+  { year: 1910, label: "1910" },
+  { year: 1938, label: "1938" },
+  { year: 1960, label: "1960s" },
+  { year: 2025, label: "Now" },
+];
 
 const HOLC_GRADE_COLORS: Record<string, string> = {
-  'holc-grades': 'bg-green-500',
-  'sanborn': 'bg-amber-600',
-  'buildings': 'bg-sky-400',
-  'ghost': 'bg-red-500',
-  'income': 'bg-emerald-500',
-  'health': 'bg-rose-500',
-  'displacement': 'bg-orange-500',
-}
+  "holc-grades": "bg-green-500",
+  sanborn: "bg-amber-600",
+  buildings: "bg-sky-400",
+  ghost: "bg-red-500",
+  income: "bg-emerald-500",
+  health: "bg-rose-500",
+  displacement: "bg-orange-500",
+};
 
 export function BottomToolbar({
   year = 2025,
@@ -30,9 +30,9 @@ export function BottomToolbar({
   viewModes = [],
   onViewModeToggle,
 }: BottomToolbarProps) {
-  const minYear = 1910
-  const maxYear = 2025
-  const progress = ((year - minYear) / (maxYear - minYear)) * 100
+  const minYear = 1910;
+  const maxYear = 2025;
+  const progress = ((year - minYear) / (maxYear - minYear)) * 100;
 
   return (
     <div className="h-16 shrink-0 border-t border-slate-800 bg-slate-950 flex items-center px-4 gap-6">
@@ -56,7 +56,8 @@ export function BottomToolbar({
 
             {/* Time markers */}
             {TIME_MARKERS.map((marker) => {
-              const position = ((marker.year - minYear) / (maxYear - minYear)) * 100
+              const position =
+                ((marker.year - minYear) / (maxYear - minYear)) * 100;
               return (
                 <button
                   key={marker.year}
@@ -67,15 +68,15 @@ export function BottomToolbar({
                   <div
                     className={`w-2.5 h-2.5 rounded-full border-2 transition-colors ${
                       marker.year <= year
-                        ? 'bg-red-500 border-red-400'
-                        : 'bg-slate-700 border-slate-600'
+                        ? "bg-red-500 border-red-400"
+                        : "bg-slate-700 border-slate-600"
                     }`}
                   />
                   <span className="absolute top-4 left-1/2 -translate-x-1/2 text-[10px] text-slate-500 group-hover:text-slate-300 whitespace-nowrap transition-colors">
                     {marker.label}
                   </span>
                 </button>
-              )
+              );
             })}
           </div>
 
@@ -102,13 +103,13 @@ export function BottomToolbar({
             onClick={() => onViewModeToggle?.(mode.id)}
             className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded text-xs font-medium transition-colors ${
               mode.isActive
-                ? 'bg-slate-800 text-slate-100 border border-slate-700'
-                : 'text-slate-500 hover:text-slate-300 hover:bg-slate-800/50'
+                ? "bg-slate-800 text-slate-100 border border-slate-700"
+                : "text-slate-500 hover:text-slate-300 hover:bg-slate-800/50"
             }`}
           >
             <div
               className={`w-1.5 h-1.5 rounded-full ${
-                HOLC_GRADE_COLORS[mode.id] || 'bg-slate-500'
+                HOLC_GRADE_COLORS[mode.id] || "bg-slate-500"
               }`}
             />
             {mode.label}
@@ -116,5 +117,5 @@ export function BottomToolbar({
         ))}
       </div>
     </div>
-  )
+  );
 }

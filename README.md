@@ -2,11 +2,9 @@
 
 > An interactive 3D visualization of HOLC redlining maps revealing how 1930s policy decisions shaped American cities, building by building.
 
-![Milwaukee HOLC Map](product-plan/sections/3d-map-explorer/map-explorer.png)
-
 ## Overview
 
-Redlined transforms the Home Owners' Loan Corporation's 1938 neighborhood grading data into an immersive 3D experience. Users can explore Milwaukee's 114 HOLC zones as extruded geometry, read the original racist appraiser descriptions, ask an AI guide questions about what they're seeing, and toggle Census income data to see how 1930s policy maps onto present-day inequality.
+Redlined transforms the Home Owners' Loan Corporation's 1938 neighborhood grading data into an immersive 3D experience. Users can explore Milwaukee's 114 HOLC zones as extruded geometry on a Mapbox GL map, read the original racist appraiser descriptions, ask an AI guide questions about what they're seeing, and toggle data overlays to see how 1930s policy maps onto present-day inequality.
 
 The project starts with Milwaukee, Wisconsin — one of the most segregated cities in America — where the connection between 1938 HOLC grades and today's outcomes is stark and well-documented.
 
@@ -14,34 +12,45 @@ The project starts with Milwaukee, Wisconsin — one of the most segregated citi
 
 ## Features
 
-- **3D HOLC Zone Explorer** — 114 Milwaukee zones extruded by grade (D-grade tallest, making redlined damage dominate the scene), color-coded with the original HOLC palette
-- **Click-to-Inspect** — Select any zone to read the original 1938 appraiser language, including the explicitly racist descriptions that determined each neighborhood's fate
-- **AI Narrative Guide** — Ask Claude questions about what you're seeing. The AI guide is grounded in actual HOLC data and appraiser text, providing historically accurate context
-- **Census Income Overlay** — Toggle present-day median household income data onto the 1938 zones, revealing the 85-year throughline from policy to poverty
+- **3D HOLC Zone Explorer** — 114 Milwaukee zones as Mapbox GL fill layers with 45-degree pitch, color-coded with the original HOLC palette (A=green, B=blue, C=yellow, D=red)
+- **148K Building Extrusions** — Individual buildings rendered from PMTiles vector tiles at zoom 11+, with click-to-inspect showing TAXKEY, year built, assessed value, stories, and HOLC zone context
+- **Click-to-Inspect** — Select any zone to read the original 1938 appraiser language, including explicitly racist descriptions, with content warnings
+- **AI Narrative Guide** — Ask Claude questions grounded in actual HOLC data and appraiser text, with zone-aware context
+- **Data Overlays** — Five toggleable overlays reveal 87 years of consequences:
+  - **Median Income** — Census ACS household income by HOLC zone
+  - **Health Outcomes** — CDC PLACES health risk index
+  - **Environmental Burden** — EPA EJScreen environmental justice data
+  - **Assessed Value** — Milwaukee MPROP property assessments with 1938-vs-today comparison
+  - **Race & Demographics** — Census race data alongside 1938 HOLC racial assessments, revealing persistent segregation
+- **Ghost Buildings** — 15,738 demolished structures (2005-2020) visualized as grade-colored circles, sized by demolition count per zone
+- **Time Slider** — GSAP-animated timeline (1870-2025) with zone opacity pulsing by development era
+- **Layer Controls** — Toggle zones, labels, neighborhoods, buildings, base map, and all overlays independently
 - **Responsive Design** — Desktop split-panel layout, tablet adaptation, mobile bottom-sheet pattern
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|------------|
-| Framework | Next.js (App Router) + TypeScript |
-| Backend | Convex (database, server functions, file storage) |
-| 3D Rendering | Three.js via React Three Fiber |
-| Animation | GSAP (GreenSock) |
-| AI | Claude API (Sonnet 4) via Convex actions |
-| Styling | Tailwind CSS v4 |
-| Testing | Vitest |
-| Deployment | Vercel + Convex Cloud |
+| Layer        | Technology                                        |
+| ------------ | ------------------------------------------------- |
+| Framework    | Next.js 16 (App Router, Turbopack) + TypeScript   |
+| Backend      | Convex (database, server functions, file storage)  |
+| Map          | Mapbox GL v3 via react-map-gl                      |
+| Buildings    | PMTiles vector tiles (148K parcels)                |
+| Animation    | GSAP (GreenSock)                                   |
+| AI           | Claude API (Sonnet 4) via Convex actions           |
+| Styling      | Tailwind CSS v4                                    |
+| Testing      | Vitest + Testing Library                           |
+| Deployment   | Vercel + Convex Cloud                              |
 
 ## Quick Start
 
 ### Prerequisites
 
 - Node.js 20+
-- npm or pnpm
+- npm
 - [Convex account](https://convex.dev) (free tier)
+- [Mapbox access token](https://account.mapbox.com/access-tokens/) (for map rendering)
 - [Anthropic API key](https://console.anthropic.com) (for AI guide)
-- [Census API key](https://api.census.gov/data/key_signup.html) (free, for income overlay)
+- [Census API key](https://api.census.gov/data/key_signup.html) (free, optional for data pipelines)
 
 ### Installation
 
@@ -58,14 +67,15 @@ Create `.env.local` in the project root:
 ```env
 CONVEX_DEPLOYMENT=           # From `npx convex dev`
 NEXT_PUBLIC_CONVEX_URL=      # From `npx convex dev`
+NEXT_PUBLIC_MAPBOX_TOKEN=    # Mapbox GL access token
 ```
 
-Set these in your Convex dashboard (Settings > Environment Variables):
+Set API keys in your Convex dashboard (Settings > Environment Variables):
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `ANTHROPIC_API_KEY` | Claude API key for AI narrative guide | Yes |
-| `CENSUS_API_KEY` | US Census API key for income data | Yes |
+| Variable              | Description                           | Required |
+| --------------------- | ------------------------------------- | -------- |
+| `ANTHROPIC_API_KEY`   | Claude API key for AI narrative guide | Yes      |
+| `CENSUS_API_KEY`      | US Census API key for data pipelines  | Optional |
 
 ### Development
 
@@ -82,59 +92,151 @@ npm run dev
 ```bash
 # Load HOLC zones and area descriptions into Convex
 npm run seed
+
+# Load Census income data
+npm run seed:census
+
+# Seed health and environment data
+npx tsx scripts/seed-health.ts
+npx tsx scripts/seed-environment.ts
+```
+
+### Data Pipelines
+
+Pre-computed data files in `public/data/` are generated by scripts:
+
+```bash
+npx tsx scripts/build-zone-timeline.ts      # Zone development timeline
+npx tsx scripts/build-ghost-zone-stats.ts   # Ghost building statistics
+npx tsx scripts/build-value-history.ts      # 1938 vs today property values
+npx tsx scripts/build-race-data.ts          # Racial demographics by zone
 ```
 
 ## Project Structure
 
 ```
 redlined/
-├── CLAUDE.md                    # Project context for AI assistants
-├── Redlined-PRD.docx.md         # Full product requirements document
+├── app/                         # Next.js App Router
+│   ├── page.tsx                 # Main application page
+│   ├── globals.css              # Tailwind + design tokens
+│   └── api/tiles/               # PMTiles tile server endpoint
 │
-├── agent-os/                    # Product planning
-│   ├── product/                 # Mission, roadmap, tech stack
-│   ├── specs/                   # Feature specifications
-│   │   └── 2026-02-10-phase-1-mvp-milwaukee-holc-explorer/
-│   │       ├── spec.md          # Detailed specification
-│   │       └── tasks.md         # Implementation task list
-│   └── standards/               # Coding standards
+├── components/
+│   ├── map/                     # Map rendering
+│   │   ├── MapView.tsx          # Mapbox GL map with overlays
+│   │   └── BuildingLayer.tsx    # Building extrusions + ghost circles
+│   ├── panel/                   # Side panel
+│   │   ├── InfoPanel.tsx        # Panel router (zone/building)
+│   │   ├── ZoneDetail.tsx       # Zone info + overlay stats
+│   │   ├── BuildingDetail.tsx   # Individual building properties
+│   │   ├── ChatPanel.tsx        # AI narrative guide
+│   │   ├── IncomeStatistics.tsx # Income overlay panel
+│   │   ├── HealthStatistics.tsx # Health overlay panel
+│   │   ├── EnvironmentStatistics.tsx
+│   │   ├── ValueStatistics.tsx  # Assessed value + 1938 comparison
+│   │   └── RaceStatistics.tsx   # Race demographics + 1938 HOLC data
+│   ├── ui/                      # Overlay UI elements
+│   │   ├── LayerControls.tsx    # Layer + overlay toggles
+│   │   ├── TimeSlider.tsx       # Animated timeline bar
+│   │   ├── HOLCLegend.tsx       # Grade color legend
+│   │   ├── IncomeLegend.tsx     # Data overlay gradient legend
+│   │   └── GhostLegend.tsx      # Demolished buildings legend
+│   └── layout/                  # App shell + navigation
 │
-├── product-plan/                # Design system and mockups
-│   ├── design-system/           # Tokens, colors, fonts
-│   ├── sections/                # Feature mockups and reference components
-│   └── instructions/            # Build guides
+├── convex/                      # Convex backend
+│   ├── schema.ts                # Database schema
+│   ├── queries.ts               # Data queries
+│   ├── mutations.ts             # Data mutations
+│   ├── ai.ts                    # Claude AI actions
+│   └── seed.ts                  # Seed data functions
 │
-├── src/                         # Application source (Next.js)
-│   ├── app/                     # App Router pages
-│   ├── components/              # React components
-│   ├── convex/                  # Convex schema, queries, actions
-│   └── lib/                     # Utilities, projections
+├── lib/                         # Client utilities
+│   ├── zone-selection.tsx       # Zone/building selection context
+│   ├── data-overlay.tsx         # Overlay state context
+│   ├── time-slider.tsx          # Timeline state context
+│   ├── layer-visibility.tsx     # Layer toggle context
+│   ├── colorScale.ts            # Overlay color mapping functions
+│   ├── census-helpers.ts        # Crosswalk + weighted averages
+│   ├── useZoneIncome.ts         # Income data hook
+│   ├── useZoneHealth.ts         # Health data hook
+│   ├── useZoneEnvironment.ts    # Environment data hook
+│   ├── useZoneValue.ts          # Property value data hook
+│   ├── useZoneValueHistory.ts   # 1938 vs today value hook
+│   └── useZoneRace.ts           # Race demographics hook
 │
-└── data/                        # Processed data files
+├── scripts/                     # Data pipeline scripts
+│   ├── run-seed.ts              # Convex data seeding
+│   ├── seed-census.ts           # Census API → Convex
+│   ├── seed-health.ts           # CDC PLACES → Convex
+│   ├── seed-environment.ts      # EPA EJScreen → Convex
+│   ├── fetch-parcels.ts         # Milwaukee MPROP → PMTiles
+│   ├── detect-ghost-buildings.ts # Demolished building detection
+│   ├── build-zone-timeline.ts   # Development era timeline
+│   ├── build-ghost-zone-stats.ts # Ghost building statistics
+│   ├── build-value-history.ts   # 1938 property value comparison
+│   └── build-race-data.ts       # Racial demographics pipeline
+│
+├── data/                        # Source data files
+│   ├── milwaukee-holc-zones.json      # 114 zone GeoJSON
+│   ├── holc-area-descriptions.json    # 1938 appraiser records
+│   ├── census-holc-crosswalk.json     # Tract-to-zone mapping
+│   ├── milwaukee-parcels-by-zone.json # MPROP aggregates
+│   └── ghost-buildings.json           # Demolished structures
+│
+└── public/data/                 # Pre-computed JSON (served statically)
+    ├── zone-development-timeline.json
+    ├── ghost-buildings-by-zone.json
+    ├── value-history-by-zone.json
+    └── race-by-zone.json
 ```
 
 ## Data Sources
 
 All data is freely available and publicly accessible.
 
-| Dataset | Source | Use |
-|---------|--------|-----|
-| HOLC Zones (Milwaukee) | [Mapping Inequality](https://dsl.richmond.edu/panorama/redlining/) | 114 zone polygons with grades A-D |
-| HOLC Area Descriptions | [americanpanorama/HOLC_Area_Description_Data](https://github.com/americanpanorama/HOLC_Area_Description_Data) | Original appraiser text (112 Milwaukee records) |
-| Census-HOLC Crosswalk | [americanpanorama/mapping-inequality-census-crosswalk](https://github.com/americanpanorama/mapping-inequality-census-crosswalk) | Links HOLC zones to Census tracts |
-| Census ACS 5-Year | [api.census.gov](https://api.census.gov) | Median household income by tract |
-| HOLC Zones (All Cities) | [Mapping Inequality](https://dsl.richmond.edu/panorama/redlining/) | 10,154 zones across 300 cities (Phase 3) |
+| Dataset                 | Source                                                                                                                          | Use                                             |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| HOLC Zones (Milwaukee)  | [Mapping Inequality](https://dsl.richmond.edu/panorama/redlining/)                                                              | 114 zone polygons with grades A-D               |
+| HOLC Area Descriptions  | [americanpanorama/HOLC_Area_Description_Data](https://github.com/americanpanorama/HOLC_Area_Description_Data)                   | Original appraiser text (112 Milwaukee records) |
+| Census-HOLC Crosswalk   | [americanpanorama/mapping-inequality-census-crosswalk](https://github.com/americanpanorama/mapping-inequality-census-crosswalk) | Links HOLC zones to Census tracts (717 records) |
+| Census ACS 5-Year       | [api.census.gov](https://api.census.gov)                                                                                        | Income, race/ethnicity by tract (B19013, B02001, B03002) |
+| CDC PLACES              | [cdc.gov/places](https://www.cdc.gov/places/)                                                                                   | Health risk indicators by tract                 |
+| EPA EJScreen            | [epa.gov/ejscreen](https://www.epa.gov/ejscreen)                                                                                | Environmental burden percentiles by tract       |
+| Milwaukee MPROP         | [data.milwaukee.gov](https://data.milwaukee.gov/dataset/mprop)                                                                   | 148K property parcels, assessed values          |
+| MPROP Historical        | [data.milwaukee.gov](https://data.milwaukee.gov/dataset/historical-master-property-file)                                         | 1975-2024 property snapshots (ghost detection)  |
+| HOLC Zones (All Cities) | [Mapping Inequality](https://dsl.richmond.edu/panorama/redlining/)                                                              | 10,154 zones across 300 cities (Phase 3)        |
+
+## Data Overlay Details
+
+### Race & Demographics
+
+Compares 1938 HOLC racial assessments with modern Census data:
+
+- **1938**: Appraisers recorded "Negro" presence, "infiltration" groups, and foreign-born populations as factors in downgrading neighborhoods
+- **Today**: A-zones average 74.9% White / 14.8% Black; C-zones average 54.6% White / 28.1% Black
+- **Zone D5**: Explicitly flagged for "Negro" presence (65%) in 1938 — today 68.2% Black. Segregation persisted for 87 years.
+
+### 1938 vs Today Property Values
+
+Parses 1930s appraiser-estimated prices from HOLC area descriptions alongside modern MPROP assessed values:
+
+- **Nominal growth**: D-zones grew 51.5x (from $6,618 avg to $340,750)
+- **Inflation-adjusted**: Many zones show real value erosion when adjusted for 22.3x CPI factor
+- **Grade correlation**: A-zone average values remain significantly higher than D-zone values
 
 ## Roadmap
 
 ### Phase 1: MVP — Milwaukee HOLC Explorer (Current)
-3D zone visualization, click-to-inspect with appraiser text, AI narrative guide, Census income overlay, responsive layout, Vercel deployment.
 
-### Phase 2: Building-Level Detail
-Individual building extrusion from MPROP data (160K properties), ghost buildings for demolished structures, time slider, Sanborn historical map overlay, ElevenLabs voice narration.
+3D zone visualization, 148K building extrusions, click-to-inspect zones and buildings, AI narrative guide, five data overlays (income, health, environment, value, race), ghost buildings, time slider, responsive layout.
 
-### Phase 3: Full Narrative Experience
-Guided Bronzeville narrative, health/environment data overlays, historical photographs, "What If" counterfactual mode, multi-city support (Chicago, Detroit, Atlanta), embeddable iframe mode.
+### Phase 2: Enhanced Narrative
+
+ElevenLabs voice narration, historical MPROP time-series (1975-2024 sparklines), Sanborn fire insurance map overlay, guided Bronzeville narrative tour.
+
+### Phase 3: Multi-City
+
+Expand to Chicago, Detroit, Atlanta using the 10,154-zone national dataset. Embeddable iframe mode. "What If" counterfactual visualization.
 
 ## Content Advisory
 
@@ -143,6 +245,7 @@ This application displays the original language used by HOLC appraisers in the 1
 ## License
 
 Data sources are subject to their respective licenses:
+
 - Mapping Inequality / American Panorama data: [CC-BY-NC](https://creativecommons.org/licenses/by-nc/2.0/)
 - Census data: Public domain
 - Application code: [MIT](LICENSE)

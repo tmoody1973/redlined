@@ -76,6 +76,7 @@ npm run test         # Vitest
 ## Current Phase
 
 **Phase 1 MVP — Milwaukee HOLC Explorer**
+
 - Spec: `agent-os/specs/2026-02-10-phase-1-mvp-milwaukee-holc-explorer/spec.md`
 - Tasks: `agent-os/specs/2026-02-10-phase-1-mvp-milwaukee-holc-explorer/tasks.md`
 

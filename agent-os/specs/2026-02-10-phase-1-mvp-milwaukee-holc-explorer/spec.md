@@ -13,6 +13,7 @@ Build a deployable interactive 3D web application that visualizes Milwaukee's 11
 ## Specific Requirements
 
 **React Three Fiber 3D Scene**
+
 - Initialize a Canvas with orbit controls (rotate, zoom, pan), dark background (#1A1A2E), and ambient + directional lighting
 - Camera positioned to frame all 114 Milwaukee HOLC zones on initial load, centered on Milwaukee coordinates (43.0389 N, 87.9065 W)
 - Convert WGS84 GeoJSON polygon coordinates to Three.js scene coordinates using a Mercator-adjusted projection centered on Milwaukee
@@ -21,6 +22,7 @@ Build a deployable interactive 3D web application that visualizes Milwaukee's 11
 - HOLC grade legend overlay in upper-right of canvas: A=Best (green), B=Still Desirable (blue), C=Declining (yellow), D=Hazardous (red) with color swatches and text labels
 
 **HOLC Zone Extrusion and Rendering**
+
 - Extrude each of the 114 zone polygons using ExtrudeGeometry with height inversely mapped to grade: D=tallest, C=next, B=next, A=shortest -- so redlined damage dominates the scene visually
 - Color zones with HOLC palette: A=#4CAF50, B=#2196F3, C=#FFEB3B, D=#F44336; 2 ungraded zones rendered with neutral gray and labeled "Ungraded"
 - MeshStandardMaterial with approximately 75% opacity for visual layering and slight 3D shading (matching the solid block style in mockups, not wireframe)
@@ -28,12 +30,14 @@ Build a deployable interactive 3D web application that visualizes Milwaukee's 11
 - Dark gray ground plane beneath the zones to anchor the scene
 
 **Click-to-Inspect Info Panel**
+
 - Clicking a zone populates the right-side info panel with: zone grade (color-coded badge), neighborhood name, and HOLC area description fields
 - Appraiser fields displayed: clarifying_remarks, detrimental_influences, favorable_influences, infiltration_of, negro_yes_or_no, negro_percent, estimated_annual_family_income, occupation_or_type
 - Display a dismissible content warning banner before showing zones that contain racist language (most D-grade zones); the warning must not trap keyboard focus
 - Use semantic HTML: h2 for zone name, h3 for subsections ("Appraiser Description", "Demographics"), proper heading hierarchy
 
 **Claude AI Narrative Guide**
+
 - Chat panel in the right sidebar below the zone info, integrated with Claude Sonnet 4 via Convex actions (protecting API key server-side)
 - System prompt dynamically constructed per request: currently-selected zone's full HOLC data + appraiser descriptions + summary of last 2-3 discussed zones for cross-zone comparison context
 - Conversation persists as a single thread across zone selections; when user selects a new zone, insert a visible zone-context divider message (e.g., "Now viewing: Bronzeville / 6th & Walnut -- Grade D") and update the system prompt
@@ -43,6 +47,7 @@ Build a deployable interactive 3D web application that visualizes Milwaukee's 11
 - Conversation history stored in Convex
 
 **Census Income Data Overlay**
+
 - Download and process the Census-HOLC crosswalk from americanpanorama/mapping-inequality-census-crosswalk (2020 tract boundaries with area_id, GEOID, pct_tract)
 - Fetch ACS 5-Year median household income by Census tract from the Census API and join to HOLC zones using area-weighted percentages (pct_tract field)
 - Toggleable overlay that recolors zone geometry from a red-to-green income gradient (replacing HOLC grade colors when active)
@@ -52,6 +57,7 @@ Build a deployable interactive 3D web application that visualizes Milwaukee's 11
 - Data overlay toggle UI built as vertical stack of layer buttons in the upper-left of the canvas; only "Median Income" is functional; the other three (Health Outcomes, Environmental Burden, Assessed Value) should render as disabled/coming-soon
 
 **Landing Experience and Header**
+
 - Lightweight intro overlay on first load: application title "REDLINED: The Shape of Inequality", brief description of the project, and a "Click a zone to begin" call-to-action that dismisses on click/tap or any canvas interaction
 - After dismissal, the right panel shows the "Select a neighborhood" empty state with instructional text matching the mockup
 - Top header bar: "REDLINED" in red (Space Grotesk bold), "THE SHAPE OF INEQUALITY" in muted slate text, city selector pill showing "Milwaukee 1938"
@@ -59,6 +65,7 @@ Build a deployable interactive 3D web application that visualizes Milwaukee's 11
 - Static "1938" year label at bottom-left of canvas (the time slider shown in the mockup is a Phase 2 feature; render only the static year for context)
 
 **Responsive Layout**
+
 - Mobile-first progressive enhancement with three breakpoints using Tailwind CSS v4
 - Mobile (default, < 768px): 3D canvas takes full viewport; info/chat panel is a slide-up bottom sheet with draggable handle, starting minimized showing zone name and grade badge; minimum 44x44px touch targets
 - Tablet (768px - 1279px): Side-by-side layout at approximately 60/40 split
@@ -66,6 +73,7 @@ Build a deployable interactive 3D web application that visualizes Milwaukee's 11
 - Orbit controls must work with both mouse and touch gestures
 
 **Convex Backend Architecture**
+
 - Convex schema defining tables for: holcZones (zone polygons, grades, metadata), areaDescriptions (appraiser text fields, joined on areaId), censusData (tract-level income data with HOLC zone crosswalk), conversations (message history with zone context)
 - Convex queries for: fetching all Milwaukee zones, fetching area description by areaId, fetching census data by zone, fetching conversation messages
 - Convex mutations for: creating/appending conversation messages, inserting zone-context divider messages
@@ -74,12 +82,14 @@ Build a deployable interactive 3D web application that visualizes Milwaukee's 11
 - Environment variables for Claude API key and Census API key stored in Convex environment config, never in client code
 
 **Data Pipeline and Seed Process**
+
 - Rename raw files: `geojson (1).json` to `milwaukee-holc-zones.json`, `holc_ad_data.json` stays as-is (already clean)
 - Seed script (Convex action or Node script) that: loads milwaukee-holc-zones.json, filters holc_ad_data.json to city_id=201 (112 Milwaukee records), joins on area_id, and inserts into Convex tables
 - Census pipeline: download crosswalk GeoJSON, fetch ACS 5-Year income data, compute area-weighted median income per HOLC zone, insert into Convex censusData table
 - Client loads zone geometry and descriptions from Convex queries; full JSON client-side filtering at runtime as user specified
 
 **Accessibility**
+
 - Keyboard-navigable zone selection: Tab through zones, Enter to select, in addition to mouse/click/tap
 - HOLC grade colors always accompanied by text labels (A/B/C/D + "Best"/"Still Desirable"/"Declining"/"Hazardous") since color alone does not meet WCAG
 - ARIA attributes on the 3D canvas (role, aria-label) and all interactive elements
@@ -91,6 +101,7 @@ Build a deployable interactive 3D web application that visualizes Milwaukee's 11
 ## Visual Design
 
 **`planning/visuals/map-explorer-mockup.png`**
+
 - 70/30 split-panel layout: dark 3D canvas left, slate info/chat panel right
 - Extruded HOLC zones rendered as solid color-coded blocks (green/blue/yellow/red) at varying heights on a dark gray ground plane -- not wireframe
 - Top-left: "REDLINED" red branding, "THE SHAPE OF INEQUALITY" muted subtitle, "Milwaukee 1938" pill badge, coordinates below
@@ -102,6 +113,7 @@ Build a deployable interactive 3D web application that visualizes Milwaukee's 11
 - Time slider at very bottom spans 1910-Now -- this is a Phase 2 feature; omit or render as static "1938" label only
 
 **`planning/visuals/narrative-guide-mockup.png`**
+
 - Active AI conversation about Bronzeville with multi-paragraph flowing prose response covering neighborhood history (1910s-40s jazz clubs, I-43 highway, present-day $52,000 property values vs $135,000 city median)
 - Chat rendered in threaded format with clear visual hierarchy; AI responses are paragraphs, not bullet lists
 - Follow-up question from user shown inline: "What was here before the highway?"
@@ -110,6 +122,7 @@ Build a deployable interactive 3D web application that visualizes Milwaukee's 11
 - The overall tone and depth of AI responses shown here should be the target for the Claude system prompt design
 
 **`planning/visuals/data-overlays-mockup.png`**
+
 - Census income overlay active: zones recolored with green-to-red income gradient replacing HOLC grade colors
 - Zone labels (A-1, A-5, C-4, C-8, D-7, D-8) visible on blocks
 - Upper-left "DATA OVERLAY" section with four vertically stacked layer buttons: Median Income (active/highlighted), Health Outcomes, Environmental Burden, Assessed Value; only Median Income functional for Phase 1
@@ -121,27 +134,32 @@ Build a deployable interactive 3D web application that visualizes Milwaukee's 11
 ## Existing Code to Leverage
 
 **Design System Tokens (`/Users/tarikmoody/Documents/Projects/redlined/product-plan/design-system/tokens.css`)**
+
 - CSS custom properties for HOLC grade colors (A=#4CAF50, B=#2196F3, C=#FFEB3B, D=#F44336), era colors, font families, and scene/app background colors
 - Use these as the single source of truth for the Tailwind theme configuration and Three.js material colors
 - Integrate into the global CSS layer so all components reference tokens rather than hardcoded hex values
 
 **Tailwind Color Config (`/Users/tarikmoody/Documents/Projects/redlined/product-plan/design-system/tailwind-colors.md`)**
+
 - Maps design tokens to Tailwind utility classes: primary=red, secondary=amber, neutral=slate
 - Provides specific utility patterns for buttons (bg-red-600), panels (bg-slate-900/950), text hierarchy (slate-200/400/600), HOLC grade badges (bg-green-500/10 text-green-400 border-green-500/30)
 - Dark-first design confirmed; no light mode; use these patterns directly in component markup
 
 **Font Configuration (`/Users/tarikmoody/Documents/Projects/redlined/product-plan/design-system/fonts.md`)**
+
 - Google Fonts import for Space Grotesk (headings, zone names, big numbers), Inter (body text, chat), IBM Plex Mono (data values, coordinates, percentiles)
 - Load via next/font for performance optimization rather than the raw Google Fonts link tag
 - Follow the inline style pattern documented for font-family application on components
 
 **TypeScript Data Model Types (`/Users/tarikmoody/Documents/Projects/redlined/product-plan/data-model/types.ts`)**
+
 - Pre-defined interfaces for HOLCZone, CensusTract, Conversation, Message, OverlayLayer, MetricValue, GradeAverages, and related enums (HOLCGrade, MessageRole, OverlayLayerId)
 - Adapt these interfaces as the basis for Convex schema definitions (converting to Convex's v.object/v.string/v.number validators)
 - The Message type includes audioState and isAutoNarrated fields which are Phase 2 (ElevenLabs); omit those fields from the Phase 1 Convex schema
 - The Conversation type has a single zoneId; for Phase 1 the conversation spans multiple zones, so adapt to store an array of discussed zone IDs or omit this field
 
 **Product PRD (`/Users/tarikmoody/Documents/Projects/redlined/Redlined-PRD.docx.md`)**
+
 - Contains the full AI Narrative Guide system prompt design philosophy (Section 8.1): direct about racism, avoid sanitizing history, connect historical data to present-day outcomes, note Milwaukee's segregation status
 - Use the suggested interaction prompts from Section 8.3 as the basis for the four suggested question pills
 - Performance targets from Section 13 (5s load, 60 FPS, 3s LLM streaming) are the benchmarks for this spec

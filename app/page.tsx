@@ -1,80 +1,81 @@
 "use client";
 
+import { useState, useCallback } from "react";
 import dynamic from "next/dynamic";
+import { Header } from "@/components/layout/Header";
+import { SplitPanel } from "@/components/layout/SplitPanel";
+import { CanvasOverlays } from "@/components/ui/CanvasOverlays";
+import { IntroOverlay } from "@/components/ui/IntroOverlay";
+import { AboutModal } from "@/components/ui/AboutModal";
+import { ZoneKeyboardNav } from "@/components/scene/ZoneKeyboardNav";
+import InfoPanel from "@/components/panel/InfoPanel";
 
-// React Three Fiber Canvas must be loaded client-side only (no SSR)
-const SmokeTestCanvas = dynamic(
-  () => import("@/components/scene/SmokeTestCanvas"),
-  { ssr: false }
-);
-
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-8 p-8">
-      {/* Heading font: Space Grotesk */}
-      <h1
-        className="text-4xl font-bold tracking-tight"
-        style={{ fontFamily: "var(--font-heading)" }}
-      >
-        <span className="text-red-500">REDLINED</span>
-        <span className="ml-3 text-slate-400 text-xl font-medium">
-          THE SHAPE OF INEQUALITY
-        </span>
-      </h1>
-
-      {/* Body font: Inter */}
-      <p
-        className="max-w-2xl text-center text-slate-400"
-        style={{ fontFamily: "var(--font-body)" }}
-      >
-        Interactive 3D visualization of Milwaukee&apos;s 1938 HOLC redlining
-        zones. Scaffolding verified successfully.
-      </p>
-
-      {/* Mono font: IBM Plex Mono */}
-      <p
-        className="text-sm text-slate-500"
+// Mapbox GL + deck.gl must be loaded client-side only (no SSR)
+const MapView = dynamic(() => import("@/components/map/MapView"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex h-full w-full items-center justify-center bg-[#1A1A2E]">
+      <span
+        className="text-sm text-slate-400"
         style={{ fontFamily: "var(--font-mono)" }}
       >
-        43.0389 N, 87.9065 W
-      </p>
+        Loading map...
+      </span>
+    </div>
+  ),
+});
 
-      {/* HOLC Grade Color Swatches */}
-      <div className="flex gap-4">
-        <div className="flex items-center gap-2">
-          <div className="h-4 w-4 rounded bg-holc-a" />
-          <span className="text-sm text-green-400">A - Best</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="h-4 w-4 rounded bg-holc-b" />
-          <span className="text-sm text-blue-400">B - Still Desirable</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="h-4 w-4 rounded bg-holc-c" />
-          <span className="text-sm text-yellow-400">C - Declining</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="h-4 w-4 rounded bg-holc-d" />
-          <span className="text-sm text-red-400">D - Hazardous</span>
-        </div>
-      </div>
+const CANVAS_ARIA_LABEL =
+  "3D visualization of 114 Milwaukee HOLC redlining zones from 1938. " +
+  "Zones are extruded as colored blocks: green for A-grade (Best), " +
+  "blue for B-grade (Still Desirable), yellow for C-grade (Declining), " +
+  "red for D-grade (Hazardous). D-grade zones are tallest, representing " +
+  "the lasting damage of redlining.";
 
-      {/* Dark panel background sample */}
-      <div className="rounded-lg bg-panel p-6 border border-slate-800">
-        <p className="text-slate-200 text-sm">
-          Panel background (slate-900 / #0f172a)
-        </p>
-      </div>
+export default function Home() {
+  const [showIntro, setShowIntro] = useState(true);
+  const [showAbout, setShowAbout] = useState(false);
 
-      {/* React Three Fiber Canvas */}
-      <div className="w-full max-w-3xl h-64 rounded-lg overflow-hidden border border-slate-800">
-        <SmokeTestCanvas />
-      </div>
+  const dismissIntro = useCallback(() => {
+    setShowIntro(false);
+  }, []);
 
-      {/* Milwaukee 1938 pill badge */}
-      <div className="rounded-full border border-slate-700 bg-slate-800/50 px-4 py-1.5 text-sm text-slate-300">
-        Milwaukee 1938
-      </div>
-    </main>
+  return (
+    <div className="flex h-screen w-screen flex-col overflow-hidden">
+      <Header onAboutClick={() => setShowAbout(true)} />
+      <AboutModal open={showAbout} onClose={() => setShowAbout(false)} />
+
+      <main className="relative flex-1 overflow-hidden">
+        <SplitPanel
+          canvas={
+            <div
+              className="relative h-full w-full"
+              role="img"
+              aria-label={CANVAS_ARIA_LABEL}
+            >
+              {/* Screen reader summary for the 3D visualization */}
+              <p className="sr-only">
+                This visualization shows 114 HOLC redlining zones in Milwaukee
+                from 1938 as extruded 3D blocks. Each zone is color-coded by
+                its HOLC grade: green for A (Best), blue for B (Still
+                Desirable), yellow for C (Declining), and red for D
+                (Hazardous). D-grade zones are the tallest, representing the
+                lasting damage of discriminatory lending policies. Two zones
+                are ungraded and shown in gray.
+              </p>
+              <MapView />
+              <CanvasOverlays />
+              <ZoneKeyboardNav />
+              {showIntro && <IntroOverlay onDismiss={dismissIntro} />}
+            </div>
+          }
+          panel={
+            <div className="flex h-full flex-col">
+              <InfoPanel />
+            </div>
+          }
+        />
+      </main>
+    </div>
   );
 }

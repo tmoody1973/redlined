@@ -1,8 +1,8 @@
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
-// Placeholder schema for Phase 1 MVP. Full table definitions will be added in
-// Task Group 2 (Convex Schema and Data Seed Pipeline).
+// Convex schema for the Phase 1 MVP: HOLC zones, area descriptions,
+// Census income data, and AI conversation history.
 export default defineSchema({
   holcZones: defineTable({
     areaId: v.string(),
@@ -10,7 +10,7 @@ export default defineSchema({
     grade: v.union(v.string(), v.null()),
     label: v.string(),
     name: v.string(),
-    polygon: v.array(v.array(v.array(v.number()))),
+    polygon: v.array(v.array(v.array(v.array(v.number())))),
     labelCoords: v.array(v.number()),
     bounds: v.object({
       north: v.number(),
@@ -47,6 +47,32 @@ export default defineSchema({
     geoid: v.string(),
     pctTract: v.number(),
     medianIncome: v.union(v.number(), v.null()),
+    createdAt: v.number(),
+  }).index("by_area_id", ["areaId"]),
+
+  healthData: defineTable({
+    areaId: v.string(),
+    geoid: v.string(),
+    pctTract: v.number(),
+    asthma: v.union(v.number(), v.null()),
+    diabetes: v.union(v.number(), v.null()),
+    mentalHealth: v.union(v.number(), v.null()),
+    physicalHealth: v.union(v.number(), v.null()),
+    lifeExpectancy: v.union(v.number(), v.null()),
+    healthRiskIndex: v.union(v.number(), v.null()),
+    createdAt: v.number(),
+  }).index("by_area_id", ["areaId"]),
+
+  environmentData: defineTable({
+    areaId: v.string(),
+    geoid: v.string(),
+    pctTract: v.number(),
+    ejPercentile: v.union(v.number(), v.null()),
+    pm25: v.union(v.number(), v.null()),
+    ozone: v.union(v.number(), v.null()),
+    dieselPM: v.union(v.number(), v.null()),
+    toxicReleases: v.union(v.number(), v.null()),
+    superfundProximity: v.union(v.number(), v.null()),
     createdAt: v.number(),
   }).index("by_area_id", ["areaId"]),
 

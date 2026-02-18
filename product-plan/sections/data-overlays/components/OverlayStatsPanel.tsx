@@ -1,36 +1,85 @@
-import type { ZoneOverlayData, OverlayLayer, GradeAverages, OverlayLayerId } from '../types'
+import type {
+  ZoneOverlayData,
+  OverlayLayer,
+  GradeAverages,
+  OverlayLayerId,
+} from "../types";
 
 interface OverlayStatsPanelProps {
-  zone: ZoneOverlayData | null
-  activeLayer: OverlayLayer | null
-  gradeAverages: GradeAverages
-  onZoneSelect?: (zoneId: string) => void
+  zone: ZoneOverlayData | null;
+  activeLayer: OverlayLayer | null;
+  gradeAverages: GradeAverages;
+  onZoneSelect?: (zoneId: string) => void;
 }
 
-const GRADE_STYLES: Record<string, { bg: string; text: string; label: string; border: string }> = {
-  A: { bg: 'bg-green-500/10', text: 'text-green-400', label: 'Best', border: 'border-green-500/30' },
-  B: { bg: 'bg-blue-500/10', text: 'text-blue-400', label: 'Still Desirable', border: 'border-blue-500/30' },
-  C: { bg: 'bg-yellow-500/10', text: 'text-yellow-400', label: 'Declining', border: 'border-yellow-500/30' },
-  D: { bg: 'bg-red-500/10', text: 'text-red-400', label: 'Hazardous', border: 'border-red-500/30' },
-}
+const GRADE_STYLES: Record<
+  string,
+  { bg: string; text: string; label: string; border: string }
+> = {
+  A: {
+    bg: "bg-green-500/10",
+    text: "text-green-400",
+    label: "Best",
+    border: "border-green-500/30",
+  },
+  B: {
+    bg: "bg-blue-500/10",
+    text: "text-blue-400",
+    label: "Still Desirable",
+    border: "border-blue-500/30",
+  },
+  C: {
+    bg: "bg-yellow-500/10",
+    text: "text-yellow-400",
+    label: "Declining",
+    border: "border-yellow-500/30",
+  },
+  D: {
+    bg: "bg-red-500/10",
+    text: "text-red-400",
+    label: "Hazardous",
+    border: "border-red-500/30",
+  },
+};
 
 function formatMetricValue(value: number, unit: string): string {
-  if (unit === 'currency') {
-    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(value)
+  if (unit === "currency") {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 0,
+    }).format(value);
   }
-  if (unit === 'percentile') {
-    return `${value}th pctile`
+  if (unit === "percentile") {
+    return `${value}th pctile`;
   }
-  return `${value}/100`
+  return `${value}/100`;
 }
 
-export function OverlayStatsPanel({ zone, activeLayer, gradeAverages }: OverlayStatsPanelProps) {
+export function OverlayStatsPanel({
+  zone,
+  activeLayer,
+  gradeAverages,
+}: OverlayStatsPanelProps) {
   if (!activeLayer) {
     return (
-      <div className="p-4 flex flex-col items-center justify-center h-full text-center" style={{ fontFamily: '"Inter", system-ui, sans-serif' }}>
+      <div
+        className="p-4 flex flex-col items-center justify-center h-full text-center"
+        style={{ fontFamily: '"Inter", system-ui, sans-serif' }}
+      >
         <div className="w-10 h-10 rounded-full bg-slate-800/60 flex items-center justify-center mb-3">
-          <svg className="w-5 h-5 text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
-            <path d="M3 3v18h18M7 16l4-4 4 4 4-8" strokeLinecap="round" strokeLinejoin="round" />
+          <svg
+            className="w-5 h-5 text-slate-600"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={1.5}
+          >
+            <path
+              d="M3 3v18h18M7 16l4-4 4 4 4-8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </div>
         <p
@@ -43,12 +92,15 @@ export function OverlayStatsPanel({ zone, activeLayer, gradeAverages }: OverlayS
           Choose Income, Health, Environment, or Value to see data
         </p>
       </div>
-    )
+    );
   }
 
   if (!zone) {
     return (
-      <div className="p-4 space-y-4" style={{ fontFamily: '"Inter", system-ui, sans-serif' }}>
+      <div
+        className="p-4 space-y-4"
+        style={{ fontFamily: '"Inter", system-ui, sans-serif' }}
+      >
         {/* Active layer header */}
         <div>
           <div
@@ -85,17 +137,22 @@ export function OverlayStatsPanel({ zone, activeLayer, gradeAverages }: OverlayS
             Grade Comparison
           </div>
           <div className="space-y-2">
-            {(['A', 'B', 'C', 'D'] as const).map((grade) => {
-              const style = GRADE_STYLES[grade]
-              const avg = gradeAverages[grade][activeLayer.id as OverlayLayerId]
+            {(["A", "B", "C", "D"] as const).map((grade) => {
+              const style = GRADE_STYLES[grade];
+              const avg =
+                gradeAverages[grade][activeLayer.id as OverlayLayerId];
               return (
                 <div key={grade} className="flex items-center gap-2.5">
-                  <div className={`w-6 h-6 rounded flex items-center justify-center text-[10px] font-bold ${style.bg} ${style.text} border ${style.border}`}>
+                  <div
+                    className={`w-6 h-6 rounded flex items-center justify-center text-[10px] font-bold ${style.bg} ${style.text} border ${style.border}`}
+                  >
                     {grade}
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
-                      <span className="text-[11px] text-slate-400">{style.label}</span>
+                      <span className="text-[11px] text-slate-400">
+                        {style.label}
+                      </span>
                       <span
                         className="text-[12px] font-semibold text-slate-200"
                         style={{ fontFamily: '"IBM Plex Mono", monospace' }}
@@ -105,7 +162,7 @@ export function OverlayStatsPanel({ zone, activeLayer, gradeAverages }: OverlayS
                     </div>
                   </div>
                 </div>
-              )
+              );
             })}
           </div>
         </div>
@@ -118,22 +175,25 @@ export function OverlayStatsPanel({ zone, activeLayer, gradeAverages }: OverlayS
           </p>
         </div>
       </div>
-    )
+    );
   }
 
-  const grade = GRADE_STYLES[zone.holcGrade]
-  const metric = zone.metrics[activeLayer.id as OverlayLayerId]
-  const aAvg = gradeAverages.A[activeLayer.id as OverlayLayerId]
-  const dAvg = gradeAverages.D[activeLayer.id as OverlayLayerId]
+  const grade = GRADE_STYLES[zone.holcGrade];
+  const metric = zone.metrics[activeLayer.id as OverlayLayerId];
+  const aAvg = gradeAverages.A[activeLayer.id as OverlayLayerId];
+  const dAvg = gradeAverages.D[activeLayer.id as OverlayLayerId];
 
   // Calculate A-to-D ratio
-  const isHigherBetter = activeLayer.unit === 'currency'
+  const isHigherBetter = activeLayer.unit === "currency";
   const differential = isHigherBetter
     ? `${(aAvg / dAvg).toFixed(1)}x higher in A-zones`
-    : `${(dAvg / aAvg).toFixed(1)}x worse in D-zones`
+    : `${(dAvg / aAvg).toFixed(1)}x worse in D-zones`;
 
   return (
-    <div className="p-4 space-y-4" style={{ fontFamily: '"Inter", system-ui, sans-serif' }}>
+    <div
+      className="p-4 space-y-4"
+      style={{ fontFamily: '"Inter", system-ui, sans-serif' }}
+    >
       {/* Zone header */}
       <div className="flex items-start justify-between">
         <div>
@@ -150,7 +210,9 @@ export function OverlayStatsPanel({ zone, activeLayer, gradeAverages }: OverlayS
             {zone.holcId}
           </span>
         </div>
-        <div className={`px-2.5 py-1 rounded-lg ${grade.bg} border ${grade.border}`}>
+        <div
+          className={`px-2.5 py-1 rounded-lg ${grade.bg} border ${grade.border}`}
+        >
           <div className={`text-base font-bold ${grade.text} leading-none`}>
             {zone.holcGrade}
           </div>
@@ -302,5 +364,5 @@ export function OverlayStatsPanel({ zone, activeLayer, gradeAverages }: OverlayS
         </div>
       </div>
     </div>
-  )
+  );
 }

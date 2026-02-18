@@ -1,0 +1,572 @@
+{
+  "6284": {
+    "holc_name": "Shorewood, Whitefish Bay and Fox Point",
+    "neighborhood": null,
+    "label": "A1"
+  },
+  "6290": {
+    "holc_name": "Shorewood, Whitefish Bay and Fox Point",
+    "neighborhood": null,
+    "label": "A2"
+  },
+  "6296": {
+    "holc_name": "",
+    "neighborhood": "Grasslyn Manor",
+    "label": "A3"
+  },
+  "6325": {
+    "holc_name": "Wauwatosa",
+    "neighborhood": "ENDERIS PARK",
+    "label": "A4"
+  },
+  "6328": {
+    "holc_name": "Wauwatosa",
+    "neighborhood": null,
+    "label": "A5"
+  },
+  "6323": {
+    "holc_name": "",
+    "neighborhood": null,
+    "label": "A6"
+  },
+  "6318": {
+    "holc_name": "",
+    "neighborhood": null,
+    "label": "A7"
+  },
+  "6354": {
+    "holc_name": "",
+    "neighborhood": "Harder'S Oaks",
+    "label": "A8"
+  },
+  "6285": {
+    "holc_name": "Whitefish Bay",
+    "neighborhood": null,
+    "label": "B1"
+  },
+  "6324": {
+    "holc_name": "Wauwatosa",
+    "neighborhood": null,
+    "label": "B10"
+  },
+  "6319": {
+    "holc_name": "Wauwatosa",
+    "neighborhood": null,
+    "label": "B11"
+  },
+  "6315": {
+    "holc_name": "Wauwatosa",
+    "neighborhood": null,
+    "label": "B12"
+  },
+  "6313": {
+    "holc_name": "",
+    "neighborhood": "Story Hill",
+    "label": "B13"
+  },
+  "6336": {
+    "holc_name": "West Milwaukee",
+    "neighborhood": null,
+    "label": "B14"
+  },
+  "6338": {
+    "holc_name": "West Allis",
+    "neighborhood": null,
+    "label": "B15"
+  },
+  "6351": {
+    "holc_name": "",
+    "neighborhood": "Jackson Park",
+    "label": "B16"
+  },
+  "6367": {
+    "holc_name": "",
+    "neighborhood": "Fernwood",
+    "label": "B17"
+  },
+  "6370": {
+    "holc_name": "Cudahy",
+    "neighborhood": null,
+    "label": "B18"
+  },
+  "6373": {
+    "holc_name": "",
+    "neighborhood": null,
+    "label": "B19"
+  },
+  "6286": {
+    "holc_name": "Whitefish Bay and Shorewood",
+    "neighborhood": null,
+    "label": "B2"
+  },
+  "6346": {
+    "holc_name": "Hales Corners",
+    "neighborhood": null,
+    "label": "B20"
+  },
+  "6287": {
+    "holc_name": "Shorewood",
+    "neighborhood": null,
+    "label": "B3"
+  },
+  "6288": {
+    "holc_name": "Shorewood",
+    "neighborhood": null,
+    "label": "B4"
+  },
+  "6289": {
+    "holc_name": "",
+    "neighborhood": "Upper East Side",
+    "label": "B5"
+  },
+  "6303": {
+    "holc_name": "",
+    "neighborhood": "Riverwest",
+    "label": "B6"
+  },
+  "6295": {
+    "holc_name": "",
+    "neighborhood": "Rufus King",
+    "label": "B7"
+  },
+  "6298": {
+    "holc_name": "",
+    "neighborhood": "Roosevelt Grove",
+    "label": "B8"
+  },
+  "6297": {
+    "holc_name": "",
+    "neighborhood": "Uptown",
+    "label": "B9"
+  },
+  "6276": {
+    "holc_name": "Town of Granville",
+    "neighborhood": "THURSTON WOODS",
+    "label": "C1"
+  },
+  "6299": {
+    "holc_name": "",
+    "neighborhood": "Sherman Park",
+    "label": "C10"
+  },
+  "6309": {
+    "holc_name": "",
+    "neighborhood": "Concordia",
+    "label": "C11"
+  },
+  "6327": {
+    "holc_name": "Wauwatosa",
+    "neighborhood": null,
+    "label": "C12"
+  },
+  "6306": {
+    "holc_name": "",
+    "neighborhood": "Washington Park",
+    "label": "C13"
+  },
+  "6307": {
+    "holc_name": "",
+    "neighborhood": "Walnut Hill",
+    "label": "C14"
+  },
+  "6310": {
+    "holc_name": "",
+    "neighborhood": "Avenues West",
+    "label": "C15"
+  },
+  "6308": {
+    "holc_name": "",
+    "neighborhood": "Martin Drive",
+    "label": "C16"
+  },
+  "6322": {
+    "holc_name": "Wauwatosa",
+    "neighborhood": null,
+    "label": "C17"
+  },
+  "6320": {
+    "holc_name": "Wauwatosa",
+    "neighborhood": null,
+    "label": "C18"
+  },
+  "6314": {
+    "holc_name": "Wauwatosa West End",
+    "neighborhood": null,
+    "label": "C19"
+  },
+  "6274": {
+    "holc_name": "",
+    "neighborhood": "Old North Milwaukee",
+    "label": "C2"
+  },
+  "6316": {
+    "holc_name": "",
+    "neighborhood": "Bluemound Heights",
+    "label": "C20"
+  },
+  "6341": {
+    "holc_name": "Town of Green Field",
+    "neighborhood": null,
+    "label": "C21"
+  },
+  "6342": {
+    "holc_name": "West Allis",
+    "neighborhood": null,
+    "label": "C22"
+  },
+  "6339": {
+    "holc_name": "West Allis",
+    "neighborhood": null,
+    "label": "C23"
+  },
+  "6340": {
+    "holc_name": "West Allis",
+    "neighborhood": null,
+    "label": "C24"
+  },
+  "6337": {
+    "holc_name": "West Allis",
+    "neighborhood": null,
+    "label": "C25"
+  },
+  "6334": {
+    "holc_name": "West Allis",
+    "neighborhood": null,
+    "label": "C26"
+  },
+  "6355": {
+    "holc_name": "",
+    "neighborhood": "Burnham Park",
+    "label": "C27"
+  },
+  "6352": {
+    "holc_name": "",
+    "neighborhood": "Layton Park",
+    "label": "C28"
+  },
+  "6358": {
+    "holc_name": "",
+    "neighborhood": "Polonia",
+    "label": "C29"
+  },
+  "6293": {
+    "holc_name": "",
+    "neighborhood": "Lincoln Park",
+    "label": "C3"
+  },
+  "6359": {
+    "holc_name": "",
+    "neighborhood": "Morgandale",
+    "label": "C30"
+  },
+  "6364": {
+    "holc_name": "",
+    "neighborhood": "Fernwood",
+    "label": "C31"
+  },
+  "6363": {
+    "holc_name": "Town of Lake",
+    "neighborhood": "BAY VIEW",
+    "label": "C32"
+  },
+  "6361": {
+    "holc_name": "Town of Lake",
+    "neighborhood": "SAVELAND PARK",
+    "label": "C33"
+  },
+  "6362": {
+    "holc_name": "Town of Lake",
+    "neighborhood": "TOWN OF LAKE",
+    "label": "C34"
+  },
+  "6369": {
+    "holc_name": "",
+    "neighborhood": null,
+    "label": "C35"
+  },
+  "6374": {
+    "holc_name": "",
+    "neighborhood": null,
+    "label": "C36"
+  },
+  "6376": {
+    "holc_name": "",
+    "neighborhood": null,
+    "label": "C37"
+  },
+  "6377": {
+    "holc_name": "",
+    "neighborhood": null,
+    "label": "C38"
+  },
+  "6279": {
+    "holc_name": "",
+    "neighborhood": null,
+    "label": "C4"
+  },
+  "6273": {
+    "holc_name": "Wauwatosa",
+    "neighborhood": "LINCOLN CREEK",
+    "label": "C5"
+  },
+  "6292": {
+    "holc_name": "",
+    "neighborhood": "Riverwest",
+    "label": "C6"
+  },
+  "6294": {
+    "holc_name": "",
+    "neighborhood": "Franklin Heights",
+    "label": "C7"
+  },
+  "6301": {
+    "holc_name": "",
+    "neighborhood": "Harambee",
+    "label": "C8"
+  },
+  "6291": {
+    "holc_name": "",
+    "neighborhood": "Murray Hill",
+    "label": "C9"
+  },
+  "6275": {
+    "holc_name": "",
+    "neighborhood": "Old North Milwaukee",
+    "label": "D1"
+  },
+  "6335": {
+    "holc_name": "West Allis",
+    "neighborhood": null,
+    "label": "D10"
+  },
+  "6356": {
+    "holc_name": "",
+    "neighborhood": "Muskego Way",
+    "label": "D11"
+  },
+  "6357": {
+    "holc_name": "South End",
+    "neighborhood": "CLOCK TOWER ACRES",
+    "label": "D12"
+  },
+  "6365": {
+    "holc_name": "South End",
+    "neighborhood": "BAY VIEW",
+    "label": "D13"
+  },
+  "6366": {
+    "holc_name": "South End",
+    "neighborhood": "BAY VIEW",
+    "label": "D14"
+  },
+  "6321": {
+    "holc_name": "",
+    "neighborhood": null,
+    "label": "D15"
+  },
+  "6375": {
+    "holc_name": "Hales Corners",
+    "neighborhood": null,
+    "label": "D16"
+  },
+  "6381": {
+    "holc_name": "Carrollville",
+    "neighborhood": null,
+    "label": "D17"
+  },
+  "6347": {
+    "holc_name": "",
+    "neighborhood": null,
+    "label": "D18"
+  },
+  "6348": {
+    "holc_name": "St. Martins",
+    "neighborhood": null,
+    "label": "D19"
+  },
+  "6280": {
+    "holc_name": "",
+    "neighborhood": null,
+    "label": "D2"
+  },
+  "6302": {
+    "holc_name": "",
+    "neighborhood": "Riverwest",
+    "label": "D3"
+  },
+  "6304": {
+    "holc_name": "",
+    "neighborhood": "Lower East Side",
+    "label": "D4"
+  },
+  "6305": {
+    "holc_name": "",
+    "neighborhood": "Hillside",
+    "label": "D5"
+  },
+  "6300": {
+    "holc_name": "",
+    "neighborhood": "Triangle",
+    "label": "D6"
+  },
+  "6311": {
+    "holc_name": "",
+    "neighborhood": "Marquette",
+    "label": "D7"
+  },
+  "6312": {
+    "holc_name": "",
+    "neighborhood": "The Valley/Pigsville",
+    "label": "D7A"
+  },
+  "6317": {
+    "holc_name": "",
+    "neighborhood": "Johnson'S Woods",
+    "label": "D8"
+  },
+  "6379": {
+    "holc_name": "",
+    "neighborhood": null,
+    "label": "D9"
+  },
+  "6283": {
+    "holc_name": "Fox Point",
+    "neighborhood": null,
+    "label": "S-A1"
+  },
+  "6371": {
+    "holc_name": "Cudahy",
+    "neighborhood": null,
+    "label": "S-A2"
+  },
+  "6282": {
+    "holc_name": "Fox Point",
+    "neighborhood": null,
+    "label": "S-B1"
+  },
+  "6281": {
+    "holc_name": "Fox Point",
+    "neighborhood": null,
+    "label": "S-B2"
+  },
+  "6270": {
+    "holc_name": "Granville",
+    "neighborhood": "VOGEL PARK",
+    "label": "S-B3"
+  },
+  "6330": {
+    "holc_name": "Town of Wauwatosa",
+    "neighborhood": "GOLDEN VALLEY",
+    "label": "S-B4"
+  },
+  "6326": {
+    "holc_name": "Wauwatosa",
+    "neighborhood": "COOPER PARK",
+    "label": "S-B5"
+  },
+  "6343": {
+    "holc_name": "Town of Greenfield",
+    "neighborhood": null,
+    "label": "S-B6"
+  },
+  "6349": {
+    "holc_name": "Town of Greenfield",
+    "neighborhood": "HONEY CREEK MANOR",
+    "label": "S-B7"
+  },
+  "6353": {
+    "holc_name": "",
+    "neighborhood": "Jackson Park",
+    "label": "S-B8"
+  },
+  "6360": {
+    "holc_name": "",
+    "neighborhood": "Morgandale",
+    "label": "S-B9"
+  },
+  "6277": {
+    "holc_name": "Town of Greenfield",
+    "neighborhood": null,
+    "label": "S-C1"
+  },
+  "6350": {
+    "holc_name": "Town of Greensfield",
+    "neighborhood": null,
+    "label": "S-C10"
+  },
+  "6372": {
+    "holc_name": "Town of Lake",
+    "neighborhood": null,
+    "label": "S-C11"
+  },
+  "6278": {
+    "holc_name": "Town of Greenfield",
+    "neighborhood": null,
+    "label": "S-C2"
+  },
+  "6271": {
+    "holc_name": "Wauwatosa and Town of Greenfield",
+    "neighborhood": "COLUMBUS PARK",
+    "label": "S-C3"
+  },
+  "6329": {
+    "holc_name": "Town of Wauwatosa",
+    "neighborhood": "NASH PARK",
+    "label": "S-C4"
+  },
+  "6332": {
+    "holc_name": "Town of Wauwatosa",
+    "neighborhood": null,
+    "label": "S-C5"
+  },
+  "6331": {
+    "holc_name": "Town of Wauwatosa",
+    "neighborhood": null,
+    "label": "S-C6"
+  },
+  "6333": {
+    "holc_name": "Town of Wauwatosa",
+    "neighborhood": null,
+    "label": "S-C7"
+  },
+  "6380": {
+    "holc_name": "Town of Greenfield",
+    "neighborhood": null,
+    "label": "S-C8"
+  },
+  "6344": {
+    "holc_name": "Town of Greenfield",
+    "neighborhood": null,
+    "label": "S-C9"
+  },
+  "6272": {
+    "holc_name": "Town of Greenfield",
+    "neighborhood": "HAMPTON HEIGHTS",
+    "label": "S-D1"
+  },
+  "6345": {
+    "holc_name": "",
+    "neighborhood": "Morgan Heights",
+    "label": "S-D2"
+  },
+  "6368": {
+    "holc_name": "",
+    "neighborhood": null,
+    "label": "S-D3"
+  },
+  "6378": {
+    "holc_name": "",
+    "neighborhood": null,
+    "label": "S-D4"
+  },
+  "11211": {
+    "holc_name": "",
+    "neighborhood": "Kilbourn Town",
+    "label": "Commercial"
+  },
+  "11212": {
+    "holc_name": "",
+    "neighborhood": "Menomonee River Valley",
+    "label": "Industrial"
+  }
+}

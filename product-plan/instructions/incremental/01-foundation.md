@@ -8,6 +8,7 @@
 ## About These Instructions
 
 **What you're receiving:**
+
 - Finished UI designs (React components with full styling)
 - Data model definitions (TypeScript types and sample data)
 - UI/UX specifications (user flows, requirements, screenshots)
@@ -15,6 +16,7 @@
 - Test-writing instructions for each section (for TDD approach)
 
 **What you need to build:**
+
 - Three.js scene setup and rendering pipeline
 - Data ingestion pipeline (HOLC GeoJSON, MPROP CSV, Census API, CDC, EPA)
 - AI integration (Claude API for narrative guide, ElevenLabs for voice)
@@ -22,6 +24,7 @@
 - Integration of the provided UI components with real data
 
 **Important guidelines:**
+
 - **DO NOT** redesign or restyle the provided components — use them as-is
 - **DO** wire up the callback props to your state management and data layer
 - **DO** replace sample data with real data from your data pipeline

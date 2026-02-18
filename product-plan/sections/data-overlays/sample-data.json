@@ -68,10 +68,26 @@
       "holcGrade": "A",
       "name": "Whitefish Bay / North Shore",
       "metrics": {
-        "income": { "value": 112500, "percentile": 95, "choroplethColor": "#4CAF50" },
-        "health": { "value": 12, "percentile": 8, "choroplethColor": "#4CAF50" },
-        "environment": { "value": 15, "percentile": 15, "choroplethColor": "#4CAF50" },
-        "value": { "value": 385000, "percentile": 92, "choroplethColor": "#4CAF50" }
+        "income": {
+          "value": 112500,
+          "percentile": 95,
+          "choroplethColor": "#4CAF50"
+        },
+        "health": {
+          "value": 12,
+          "percentile": 8,
+          "choroplethColor": "#4CAF50"
+        },
+        "environment": {
+          "value": 15,
+          "percentile": 15,
+          "choroplethColor": "#4CAF50"
+        },
+        "value": {
+          "value": 385000,
+          "percentile": 92,
+          "choroplethColor": "#4CAF50"
+        }
       }
     },
     {
@@ -80,10 +96,26 @@
       "holcGrade": "A",
       "name": "Shorewood Heights",
       "metrics": {
-        "income": { "value": 98700, "percentile": 88, "choroplethColor": "#8BC34A" },
-        "health": { "value": 18, "percentile": 14, "choroplethColor": "#4CAF50" },
-        "environment": { "value": 22, "percentile": 22, "choroplethColor": "#8BC34A" },
-        "value": { "value": 342000, "percentile": 86, "choroplethColor": "#8BC34A" }
+        "income": {
+          "value": 98700,
+          "percentile": 88,
+          "choroplethColor": "#8BC34A"
+        },
+        "health": {
+          "value": 18,
+          "percentile": 14,
+          "choroplethColor": "#4CAF50"
+        },
+        "environment": {
+          "value": 22,
+          "percentile": 22,
+          "choroplethColor": "#8BC34A"
+        },
+        "value": {
+          "value": 342000,
+          "percentile": 86,
+          "choroplethColor": "#8BC34A"
+        }
       }
     },
     {
@@ -92,10 +124,26 @@
       "holcGrade": "B",
       "name": "Washington Heights",
       "metrics": {
-        "income": { "value": 67200, "percentile": 62, "choroplethColor": "#FFEB3B" },
-        "health": { "value": 35, "percentile": 38, "choroplethColor": "#FFEB3B" },
-        "environment": { "value": 42, "percentile": 42, "choroplethColor": "#FFEB3B" },
-        "value": { "value": 198000, "percentile": 58, "choroplethColor": "#FFEB3B" }
+        "income": {
+          "value": 67200,
+          "percentile": 62,
+          "choroplethColor": "#FFEB3B"
+        },
+        "health": {
+          "value": 35,
+          "percentile": 38,
+          "choroplethColor": "#FFEB3B"
+        },
+        "environment": {
+          "value": 42,
+          "percentile": 42,
+          "choroplethColor": "#FFEB3B"
+        },
+        "value": {
+          "value": 198000,
+          "percentile": 58,
+          "choroplethColor": "#FFEB3B"
+        }
       }
     },
     {
@@ -104,10 +152,26 @@
       "holcGrade": "B",
       "name": "Bay View",
       "metrics": {
-        "income": { "value": 58400, "percentile": 52, "choroplethColor": "#FFEB3B" },
-        "health": { "value": 38, "percentile": 42, "choroplethColor": "#FFEB3B" },
-        "environment": { "value": 48, "percentile": 48, "choroplethColor": "#FFEB3B" },
-        "value": { "value": 175000, "percentile": 48, "choroplethColor": "#FFEB3B" }
+        "income": {
+          "value": 58400,
+          "percentile": 52,
+          "choroplethColor": "#FFEB3B"
+        },
+        "health": {
+          "value": 38,
+          "percentile": 42,
+          "choroplethColor": "#FFEB3B"
+        },
+        "environment": {
+          "value": 48,
+          "percentile": 48,
+          "choroplethColor": "#FFEB3B"
+        },
+        "value": {
+          "value": 175000,
+          "percentile": 48,
+          "choroplethColor": "#FFEB3B"
+        }
       }
     },
     {
@@ -116,10 +180,26 @@
       "holcGrade": "C",
       "name": "Near West Side / Merrill Park",
       "metrics": {
-        "income": { "value": 38900, "percentile": 28, "choroplethColor": "#FF9800" },
-        "health": { "value": 62, "percentile": 68, "choroplethColor": "#FF9800" },
-        "environment": { "value": 71, "percentile": 71, "choroplethColor": "#FF9800" },
-        "value": { "value": 112000, "percentile": 24, "choroplethColor": "#FF9800" }
+        "income": {
+          "value": 38900,
+          "percentile": 28,
+          "choroplethColor": "#FF9800"
+        },
+        "health": {
+          "value": 62,
+          "percentile": 68,
+          "choroplethColor": "#FF9800"
+        },
+        "environment": {
+          "value": 71,
+          "percentile": 71,
+          "choroplethColor": "#FF9800"
+        },
+        "value": {
+          "value": 112000,
+          "percentile": 24,
+          "choroplethColor": "#FF9800"
+        }
       }
     },
     {
@@ -128,10 +208,26 @@
       "holcGrade": "C",
       "name": "South Side / Lincoln Village",
       "metrics": {
-        "income": { "value": 41200, "percentile": 32, "choroplethColor": "#FF9800" },
-        "health": { "value": 55, "percentile": 60, "choroplethColor": "#FF9800" },
-        "environment": { "value": 65, "percentile": 65, "choroplethColor": "#FFEB3B" },
-        "value": { "value": 125000, "percentile": 30, "choroplethColor": "#FF9800" }
+        "income": {
+          "value": 41200,
+          "percentile": 32,
+          "choroplethColor": "#FF9800"
+        },
+        "health": {
+          "value": 55,
+          "percentile": 60,
+          "choroplethColor": "#FF9800"
+        },
+        "environment": {
+          "value": 65,
+          "percentile": 65,
+          "choroplethColor": "#FFEB3B"
+        },
+        "value": {
+          "value": 125000,
+          "percentile": 30,
+          "choroplethColor": "#FF9800"
+        }
       }
     },
     {
@@ -140,10 +236,26 @@
       "holcGrade": "D",
       "name": "Bronzeville / 6th & Walnut",
       "metrics": {
-        "income": { "value": 24800, "percentile": 8, "choroplethColor": "#F44336" },
-        "health": { "value": 82, "percentile": 91, "choroplethColor": "#F44336" },
-        "environment": { "value": 88, "percentile": 88, "choroplethColor": "#F44336" },
-        "value": { "value": 68000, "percentile": 6, "choroplethColor": "#F44336" }
+        "income": {
+          "value": 24800,
+          "percentile": 8,
+          "choroplethColor": "#F44336"
+        },
+        "health": {
+          "value": 82,
+          "percentile": 91,
+          "choroplethColor": "#F44336"
+        },
+        "environment": {
+          "value": 88,
+          "percentile": 88,
+          "choroplethColor": "#F44336"
+        },
+        "value": {
+          "value": 68000,
+          "percentile": 6,
+          "choroplethColor": "#F44336"
+        }
       }
     },
     {
@@ -152,10 +264,26 @@
       "holcGrade": "D",
       "name": "Halyard Park / Hillside",
       "metrics": {
-        "income": { "value": 22100, "percentile": 5, "choroplethColor": "#F44336" },
-        "health": { "value": 87, "percentile": 95, "choroplethColor": "#F44336" },
-        "environment": { "value": 92, "percentile": 92, "choroplethColor": "#F44336" },
-        "value": { "value": 52000, "percentile": 3, "choroplethColor": "#F44336" }
+        "income": {
+          "value": 22100,
+          "percentile": 5,
+          "choroplethColor": "#F44336"
+        },
+        "health": {
+          "value": 87,
+          "percentile": 95,
+          "choroplethColor": "#F44336"
+        },
+        "environment": {
+          "value": 92,
+          "percentile": 92,
+          "choroplethColor": "#F44336"
+        },
+        "value": {
+          "value": 52000,
+          "percentile": 3,
+          "choroplethColor": "#F44336"
+        }
       }
     }
   ],

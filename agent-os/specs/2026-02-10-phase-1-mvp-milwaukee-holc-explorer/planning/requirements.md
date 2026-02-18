@@ -54,6 +54,7 @@ Phase 1 MVP -- Milwaukee HOLC Explorer. This covers all 8 items from the roadmap
 No similar existing features identified for reference. This is a greenfield project with no existing codebase, no prior Next.js + Convex projects, and no React Three Fiber setups to model after.
 
 **Pre-existing product planning artifacts to reference:**
+
 - Design system tokens: `/Users/tarikmoody/Documents/Projects/redlined/product-plan/design-system/tokens.css`
 - Tailwind color config: `/Users/tarikmoody/Documents/Projects/redlined/product-plan/design-system/tailwind-colors.md`
 - Font configuration: `/Users/tarikmoody/Documents/Projects/redlined/product-plan/design-system/fonts.md`
@@ -70,11 +71,13 @@ No follow-up questions were needed. Two items required UX recommendations in lie
 Recommended approach: **Persist a single conversation thread across zone selections, with automatic zone-context messages.**
 
 When a user clicks a new zone while an existing conversation is active, the system should:
+
 1. Insert a visible divider/system message in the thread (e.g., "Now viewing: Bronzeville / 6th & Walnut -- Grade D") so the user can see context switched.
 2. Update the Claude system prompt to include the newly-selected zone's data (grade, appraiser text, Census data if available) so subsequent AI responses are grounded in the current zone.
 3. Retain all prior messages in the visible thread so users can scroll back and compare what the AI said about different zones.
 
 This approach is better than resetting conversation because:
+
 - Users exploring redlining data naturally want to compare zones ("You just told me A1 had these conditions -- now why is D7 different?"). Cross-zone context makes the AI guide dramatically more useful.
 - Losing conversation history feels punishing and discourages exploration.
 - The system message divider makes it clear which zone was active at any point in the conversation, preventing confusion.
@@ -92,6 +95,7 @@ Recommended approach: **Mobile-first progressive enhancement with three breakpoi
 - **Desktop (1280px+):** The 70/30 split shown in the mockups. Full info panel with zone details, AI chat, suggested questions, and data overlay controls all visible without scrolling. Orbit controls via mouse.
 
 Key accessibility considerations:
+
 - The 3D canvas must have keyboard-navigable zone selection (Tab through zones, Enter to select) in addition to click/tap, since orbit controls alone are not accessible.
 - The info panel should use semantic HTML with proper heading hierarchy (h2 for zone name, h3 for subsections like "Appraiser Description", "AI Narrative Guide").
 - HOLC grade colors should be accompanied by text labels (A/B/C/D + "Best"/"Still Desirable"/"Declining"/"Hazardous") since color alone does not meet WCAG requirements.
@@ -100,11 +104,13 @@ Key accessibility considerations:
 ## Visual Assets
 
 ### Files Provided:
+
 - `map-explorer-mockup.png`: The primary application view showing the full split-panel layout. Left side: dark background (matches 0x1A1A2E spec) with extruded 3D HOLC zone blocks color-coded green (A), blue (B), yellow (C), red (D). Zones appear as solid rectangular blocks at varying heights on a dark gray ground plane. Top-left shows "REDLINED - THE SHAPE OF INEQUALITY" branding with "Milwaukee 1938" pill badge, coordinates displayed below. Top-right has the HOLC grade legend (A=Best, B=Still Desirable, C=Declining, D=Hazardous). Right panel shows "Select a neighborhood" prompt with instructional text, "AI Narrative Guide" section with four suggested question pills, and a text input with "Ask" button. Bottom has a timeline slider spanning 1910-Now with markers at 1938 and 1960s, plus "Drag to orbit" and "Scroll to zoom" hints. Bottom-left shows "1938" as a large year label.
 - `narrative-guide-mockup.png`: The AI chat panel in an active state. Shows a conversation about Bronzeville with a detailed multi-paragraph AI response covering the neighborhood's history (1910s-40s jazz clubs, the I-43 highway construction, present-day property values of $52,000 vs city median of $135,000). The response is rendered in a threaded chat format with clear visual hierarchy. A follow-up question "What was here before the highway?" is shown, along with a "Select a neighborhood" section in the upper-right. The chat input is at the bottom.
 - `data-overlays-mockup.png`: The Census income data overlay view. Left side shows extruded zones with income-based coloring (green-to-red gradient replacing the HOLC grade colors). Zone labels (A-1, A-5, C-4, C-8, D-7, D-8) are visible on the blocks. Top-left has "DATA OVERLAY" section with four toggleable layer buttons: Median Income (active/selected), Health Outcomes, Environmental Burden, Assessed Value. An opacity slider control is visible. Right panel shows zone detail for "Bronzeville / 6th & Walnut" with Grade D badge, median income of $24,800 (8th percentile), and an A-Zone vs D-Zone comparison bar chart (A-Zone Avg: $105,600, This Zone: $24,800, D-Zone Avg: $23,450) with "4.5x higher in A-zones / 85 years after HOLC grades were assigned" callout. Bottom has a "MEDIAN INCOME" color gradient legend from $2K (red) to $120K (green).
 
 ### Visual Insights:
+
 - **Layout pattern:** Consistent 70/30 split-panel layout across all three mockups. 3D canvas dominates left side, info/chat panel occupies right side. This is the definitive layout for desktop.
 - **Navigation elements:** Top header bar with "REDLINED" branding (red text), "THE SHAPE OF INEQUALITY" subtitle (muted), city selector pill ("Milwaukee 1938"). Coordinates shown below. HOLC grade legend in upper-right of canvas area.
 - **Zone rendering style:** Zones appear as solid extruded rectangular/polygonal blocks on a flat dark ground plane. Not wireframe -- solid geometry with slight 3D shading. Heights clearly vary by grade.
@@ -122,6 +128,7 @@ Key accessibility considerations:
 ### Functional Requirements
 
 **3D Map Explorer:**
+
 - Load and parse Milwaukee HOLC GeoJSON (114 features) with grade metadata (A/B/C/D + 2 ungraded)
 - Join zone polygons with area descriptions from `holc_ad_data.json` on `area_id` (112 Milwaukee records, city_id=201)
 - Initialize React Three Fiber canvas with orbit controls (rotate, zoom, pan), dark background (#1A1A2E), appropriate camera positioning and lighting
@@ -134,11 +141,13 @@ Key accessibility considerations:
 - HOLC grade legend in upper-right of canvas (A=Best, B=Still Desirable, C=Declining, D=Hazardous with color swatches)
 
 **Click-to-Inspect Panel:**
+
 - Clicking a zone opens the right-side info panel with: zone grade (badge with color), neighborhood name, and original HOLC appraiser description
 - Appraiser fields to display: `clarifying_remarks`, `detrimental_influences`, `favorable_influences`, `infiltration_of`, `negro_yes_or_no`, `negro_percent`, `estimated_annual_family_income`, `occupation_or_type`
 - Content warning for zones containing racist language in appraiser descriptions (most D-grade zones)
 
 **AI Narrative Guide:**
+
 - Chat panel integrated with Claude API (Sonnet 4) via Convex actions
 - System prompt dynamically constructed with: currently-selected zone's full HOLC data, appraiser descriptions (original racist language included for historical accuracy), and summary of recently-discussed zones (last 2-3) for cross-zone comparison context
 - Conversation persists across zone selections as a single thread. When user selects a new zone, a visible divider/system message appears (e.g., "Now viewing: [Zone Name] -- Grade [X]") and the system prompt updates to the new zone's context
@@ -148,6 +157,7 @@ Key accessibility considerations:
 - AI responses render as flowing prose paragraphs (matching the narrative-guide-mockup style)
 
 **Census Income Data Overlay:**
+
 - Download and process Census-HOLC crosswalk from `americanpanorama/mapping-inequality-census-crosswalk` (2020 tract boundaries)
 - Fetch ACS 5-Year median household income data by Census tract from Census API
 - Join Census tracts to HOLC zones using area-weighted percentages (`pct_tract` field)
@@ -158,15 +168,18 @@ Key accessibility considerations:
 - Data overlay toggle UI built as a vertical stack of layer buttons (matching mockup) with only "Median Income" functional for Phase 1; the other three (Health Outcomes, Environmental Burden, Assessed Value) should appear as disabled/coming-soon or be omitted
 
 **Landing Experience:**
+
 - Lightweight intro overlay on first load with application title ("REDLINED: The Shape of Inequality"), brief description, and a "click a zone to begin" call-to-action
 - Overlay dismisses on click/tap or when user interacts with the 3D canvas
 - After dismissal, the "Select a neighborhood" prompt appears in the right panel (matching mockup)
 
 **Header and Branding:**
+
 - Top header bar: "REDLINED" in red, "THE SHAPE OF INEQUALITY" in muted text, city selector showing "Milwaukee 1938"
 - Coordinates (43.0389 N, 87.9065 W) displayed below the header on the left
 
 **Data Loading Strategy:**
+
 - Load full `holc_ad_data.json` and `geojson (1).json` client-side and filter Milwaukee data at runtime
 - Raw files renamed to clean names (no spaces/parentheses) and stored in Convex
 - HOLC zone and description data stored in Convex tables
@@ -176,6 +189,7 @@ Key accessibility considerations:
 ### Reusability Opportunities
 
 No existing code to reuse (greenfield project). However, the following product-plan artifacts contain design decisions and type definitions that should be used as the foundation:
+
 - **Design tokens** (`/Users/tarikmoody/Documents/Projects/redlined/product-plan/design-system/tokens.css`): CSS custom properties for colors, HOLC grades, era colors, typography, scene background
 - **Tailwind color config** (`/Users/tarikmoody/Documents/Projects/redlined/product-plan/design-system/tailwind-colors.md`): Tailwind utility class mappings for primary (red), secondary (amber), neutral (slate), and HOLC grade colors
 - **Font config** (`/Users/tarikmoody/Documents/Projects/redlined/product-plan/design-system/fonts.md`): Google Fonts import for Space Grotesk, Inter, IBM Plex Mono with usage guidelines
@@ -184,6 +198,7 @@ No existing code to reuse (greenfield project). However, the following product-p
 ### Scope Boundaries
 
 **In Scope:**
+
 - HOLC GeoJSON loading and parsing (114 Milwaukee features)
 - Three.js / React Three Fiber scene with camera, lighting, orbit controls, dark background
 - HOLC zone extrusion with D=tallest height mapping and HOLC color palette
@@ -200,6 +215,7 @@ No existing code to reuse (greenfield project). However, the following product-p
 - 2 ungraded zones rendered with neutral color
 
 **Out of Scope (Phase 2):**
+
 - ElevenLabs voice narration
 - MPROP building-level data and individual building extrusion
 - Ghost building detection and wireframe rendering
@@ -208,6 +224,7 @@ No existing code to reuse (greenfield project). However, the following product-p
 - Parcel boundary integration
 
 **Out of Scope (Phase 3):**
+
 - Guided Bronzeville narrative with auto-camera
 - Health Outcomes data overlay (CDC PLACES)
 - Environmental Burden data overlay (EPA EJScreen)
@@ -219,6 +236,7 @@ No existing code to reuse (greenfield project). However, the following product-p
 - Embeddable iframe mode
 
 **Out of Scope (Future):**
+
 - Racial covenants layer
 - Community memory / oral histories
 - VR/AR mode (WebXR)
@@ -228,6 +246,7 @@ No existing code to reuse (greenfield project). However, the following product-p
 ### Technical Considerations
 
 **Tech Stack:**
+
 - Next.js (App Router) -- application framework
 - Convex -- backend (document database, server functions, file storage)
 - React Three Fiber -- 3D rendering (Three.js via React)
@@ -241,6 +260,7 @@ No existing code to reuse (greenfield project). However, the following product-p
 - GitHub Actions -- CI/CD
 
 **Architecture:**
+
 - Convex tables for HOLC zones, area descriptions, Census data, and conversation history
 - Convex actions for Claude API proxy (protects API key from client exposure)
 - Convex queries for data retrieval (reactive subscriptions where appropriate)
@@ -249,27 +269,32 @@ No existing code to reuse (greenfield project). However, the following product-p
 - Environment variables for API keys managed via Convex environment variables and Vercel environment variables
 
 **Data Files:**
+
 - `geojson (1).json` (project root) -- 114 Milwaukee HOLC zone polygons. Fields: `area_id`, `city_id`, `grade`, `fill`, `label`, `name`, `category_id`, `sheets`, `area`, `bounds`, `label_coords`, `residential`, `commercial`, `industrial`. Grade distribution: 10 A, 29 B, 49 C, 24 D, 2 null. Rename to `milwaukee-holc-zones.json`.
 - `holc_ad_data.json` (project root) -- 7,930 HOLC area descriptions across all cities. 112 Milwaukee records (city_id=201). Key fields: `area_id` (join key), `grade`, `clarifying_remarks`, `detrimental_influences`, `favorable_influences`, `infiltration_of`, `negro_yes_or_no`, `negro_percent`, `estimated_annual_family_income`, `occupation_or_type`, `description_of_terrain`, `trend_of_desirability`. Rename to `holc-area-descriptions.json`.
 - Census-HOLC crosswalk (needs download from GitHub: `americanpanorama/mapping-inequality-census-crosswalk`) -- GeoJSON with `area_id`, `GEOID`, `pct_tract` for area-weighted joins
 - Census ACS 5-Year data (needs API call with free API key) -- median household income by tract
 
 **External Dependencies:**
+
 - Census API key required (free signup at api.census.gov)
 - Census-HOLC crosswalk dataset (free download from GitHub)
 - Claude API key (Anthropic console, $5 credit on signup)
 - No other paid services required for Phase 1
 
 **Performance Targets (from PRD):**
+
 - Initial load under 5 seconds on broadband
 - 60 FPS rendering for HOLC zone view (~114 extruded polygons -- well within capability)
 - LLM streaming response starts within 3 seconds
 
 **Coordinate System:**
+
 - HOLC GeoJSON is in WGS84 (EPSG:4326)
 - Three.js scene coordinates computed using Mercator-adjusted projection centered on Milwaukee (43.0389 N, 87.9065 W)
 
 **Design System:**
+
 - Fonts: Space Grotesk (headings, zone names, big numbers), Inter (body text, descriptions, chat), IBM Plex Mono (data values, coordinates, percentiles)
 - HOLC palette: A=#4CAF50, B=#2196F3, C=#FFEB3B, D=#F44336
 - Backgrounds: #1A1A2E (3D scene), #0c0a1a (app background / slate-950), #0f172a (panel background / slate-900)
@@ -279,6 +304,7 @@ No existing code to reuse (greenfield project). However, the following product-p
 - Neutral: slate (backgrounds, text, borders)
 
 **Accessibility Requirements (per standards):**
+
 - Semantic HTML with proper heading hierarchy
 - Keyboard-navigable zone selection (Tab/Enter) alongside mouse/touch
 - HOLC grade colors always accompanied by text labels (not color-only)
@@ -289,6 +315,7 @@ No existing code to reuse (greenfield project). However, the following product-p
 - Content warning for racist language is dismissible and does not trap keyboard focus
 
 **Responsive Breakpoints:**
+
 - Mobile (default, < 768px): Full-viewport 3D canvas with slide-up bottom sheet for info/chat panel
 - Tablet (768px - 1279px): Side-by-side 60/40 split
 - Desktop (1280px+): Side-by-side 70/30 split (matching mockups)

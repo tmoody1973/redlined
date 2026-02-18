@@ -7,6 +7,7 @@
 ## About These Instructions
 
 **What you're receiving:**
+
 - Finished UI designs (React components with full styling)
 - Data model definitions (TypeScript types and sample data)
 - UI/UX specifications (user flows, requirements, screenshots)
@@ -14,6 +15,7 @@
 - Test-writing instructions for each section (for TDD approach)
 
 **What you need to build:**
+
 - Three.js scene setup and rendering pipeline
 - Data ingestion pipeline (HOLC GeoJSON, MPROP CSV, Census API, CDC, EPA)
 - AI integration (Claude API for narrative guide, ElevenLabs for voice)
@@ -21,6 +23,7 @@
 - Integration of the provided UI components with real data
 
 **Important guidelines:**
+
 - **DO NOT** redesign or restyle the provided components — use them as-is
 - **DO** wire up the callback props to your state management and data layer
 - **DO** replace sample data with real data from your data pipeline
@@ -134,6 +137,7 @@ Implement the 3D Map Explorer — the core Three.js viewport rendering Milwaukee
 The 3D Map Explorer is the primary interface. Users see Milwaukee's HOLC redlining zones rendered as 3D blocks — A-grade zones (green) tower highest, D-grade zones (red) sit lowest, making inequality visible as topography.
 
 **Key Functionality:**
+
 - Render HOLC GeoJSON polygons as ExtrudeGeometry blocks in Three.js
 - Height-encode by grade: A tallest, D lowest
 - Color-encode by grade: A=green, B=blue, C=yellow, D=red at 75% opacity
@@ -144,11 +148,14 @@ The 3D Map Explorer is the primary interface. Users see Milwaukee's HOLC redlini
 ## What to Implement
 
 ### Components
+
 Copy from `product-plan/sections/3d-map-explorer/components/`:
+
 - `MapExplorer.tsx` — Main viewport with zone rendering and interactions
 - `ZoneBlock.tsx` — Individual zone block with hover/selection states
 
 ### Three.js Implementation
+
 - Parse HOLC GeoJSON polygon coordinates
 - Create ExtrudeGeometry for each zone polygon
 - Apply MeshStandardMaterial with grade colors
@@ -156,15 +163,18 @@ Copy from `product-plan/sections/3d-map-explorer/components/`:
 - Click handler to emit selected zone to info panel
 
 ### Callbacks
+
 - `onZoneHover(zoneId: string | null)` — Hover highlight
 - `onZoneSelect(zoneId: string)` — Click to inspect
 - `onViewModeToggle(modeId: string)` — Layer toggles
 - `onYearChange(year: number)` — Time slider
 
 ## Files to Reference
+
 - `product-plan/sections/3d-map-explorer/` — README, tests, components, types, sample data, screenshot
 
 ## Done When
+
 - [ ] Tests written for key user flows
 - [ ] HOLC zones render as 3D extruded blocks in Three.js
 - [ ] Height encoding works (A tallest, D lowest)
@@ -186,6 +196,7 @@ Implement the AI Narrative Guide — a Claude-powered chat panel with neighborho
 The AI Narrative Guide occupies the bottom portion of the right panel. When a user selects a zone, the guide's system prompt dynamically updates with that zone's HOLC data, Census statistics, and original appraiser description.
 
 **Key Functionality:**
+
 - Claude API integration with zone-aware system prompts
 - Streaming text display for AI responses
 - Suggested prompt buttons for common questions
@@ -195,24 +206,30 @@ The AI Narrative Guide occupies the bottom portion of the right panel. When a us
 ## What to Implement
 
 ### Components
+
 Copy from `product-plan/sections/ai-narrative-guide/components/`:
+
 - `NarrativeGuide.tsx` — Main chat panel with input, messages, and prompts
 - `ChatMessage.tsx` — Individual message bubble with audio controls
 - `AudioWaveform.tsx` — Animated waveform for audio playback indicator
 
 ### AI Integration
+
 - Claude Sonnet 4 API with streaming responses
 - Dynamic system prompt construction per zone
 - Instruction to be direct about racism, not sanitize language
 
 ### Voice Integration
+
 - ElevenLabs TTS API for narration
 - Auto-narrate HOLC descriptions when zone is selected
 
 ## Files to Reference
+
 - `product-plan/sections/ai-narrative-guide/` — README, tests, components, types, sample data, screenshot
 
 ## Done When
+
 - [ ] Tests written for key user flows
 - [ ] Claude API integration with streaming responses
 - [ ] System prompt updates dynamically per zone
@@ -233,6 +250,7 @@ Implement Building-Level Detail — individual MPROP buildings extruded within H
 When the "Buildings" layer is active, individual properties from Milwaukee's MPROP dataset load and render within the selected HOLC zone. Each building is extruded by number of stories and color-coded by construction era — copper for pre-1938, gray for 1938-1970, light blue for modern.
 
 **Key Functionality:**
+
 - Render MPROP buildings as ExtrudeGeometry parcels within zones
 - Height based on NR_STORIES field
 - Color by construction era (copper, gray, light blue)
@@ -243,21 +261,26 @@ When the "Buildings" layer is active, individual properties from Milwaukee's MPR
 ## What to Implement
 
 ### Components
+
 Copy from `product-plan/sections/building-level-detail/components/`:
+
 - `BuildingDetail.tsx` — Main viewport with building rendering
 - `BuildingBlock.tsx` — Individual building with era color and hover states
 - `BuildingInfoPanel.tsx` — Property info panel with MPROP fields
 
 ### Three.js Implementation
+
 - Parse parcel boundary GeoJSON for building footprints
 - Create ExtrudeGeometry with depth = NR_STORIES x 3 meters
 - Apply MeshStandardMaterial with era colors
 - InstancedMesh for distant zones (LOD)
 
 ## Files to Reference
+
 - `product-plan/sections/building-level-detail/` — README, tests, components, types, sample data, screenshot
 
 ## Done When
+
 - [ ] Tests written for key user flows
 - [ ] Buildings render as extruded parcels within zones
 - [ ] Height encoding by stories works
@@ -279,6 +302,7 @@ Implement Ghost Buildings & Time Slider — demolished structures rendered as re
 Ghost buildings reveal what was lost. By comparing historical MPROP snapshots (2005 vs. 2025), the system identifies demolished properties and renders them as red wireframes at 30% opacity. A time slider with GSAP animations transitions the scene across four eras.
 
 **Key Functionality:**
+
 - Red wireframe rendering of demolished structures at 30% opacity
 - Time slider with GSAP crossfade animations between four eras
 - Era markers: 1910, 1938, 1960s, Present
@@ -288,25 +312,31 @@ Ghost buildings reveal what was lost. By comparing historical MPROP snapshots (2
 ## What to Implement
 
 ### Components
+
 Copy from `product-plan/sections/ghost-buildings-time-slider/components/`:
+
 - `GhostBuildingsTimeSlider.tsx` — Main viewport with ghost rendering and time controls
 - `GhostBlock.tsx` — Individual ghost wireframe with pulse animation
 - `GhostInfoPanel.tsx` — Demolished building info with timeline and cause
 
 ### Three.js Implementation
+
 - Wireframe material: red (#F44336) at 30% opacity
 - MeshBasicMaterial with wireframe=true for ghost buildings
 - GSAP timeline for crossfade transitions between eras
 - Visibility driven by time slider: ghost appears after its demolition year
 
 ### Data Layer
+
 - Compare MPROP 2005 vs 2025 snapshots to identify demolished TAXKEYs
 - Categorize demolition cause: highway, urban renewal, disinvestment
 
 ## Files to Reference
+
 - `product-plan/sections/ghost-buildings-time-slider/` — README, tests, components, types, sample data, screenshot
 
 ## Done When
+
 - [ ] Tests written for key user flows
 - [ ] Ghost buildings render as red wireframes at 30% opacity
 - [ ] Time slider drives ghost visibility
@@ -328,6 +358,7 @@ Implement Data Overlays — choropleth color fills for four metrics showing pres
 Data Overlays make the lasting consequences of redlining quantifiable. Four overlay layers — Census median income, CDC health outcomes, EPA environmental burden, and assessed property value — render as choropleth color fills over zones.
 
 **Key Functionality:**
+
 - Four choropleth overlay layers with diverging color scales (red to green)
 - Layer selector to switch between metrics
 - Opacity slider for overlay transparency
@@ -338,16 +369,20 @@ Data Overlays make the lasting consequences of redlining quantifiable. Four over
 ## What to Implement
 
 ### Components
+
 Copy from `product-plan/sections/data-overlays/components/`:
+
 - `DataOverlays.tsx` — Main viewport with choropleth zones and controls
 - `OverlayStatsPanel.tsx` — Stats panel with grade comparison and A-vs-D bars
 
 ### Three.js Implementation
+
 - Apply choropleth colors to zone materials based on active metric
 - Smooth material color transitions when switching layers
 - Opacity control for overlay transparency
 
 ### Data Layer
+
 - Census ACS median household income by tract
 - CDC PLACES health burden composite index
 - EPA EJScreen environmental justice scores
@@ -355,9 +390,11 @@ Copy from `product-plan/sections/data-overlays/components/`:
 - Pre-compute grade averages (A, B, C, D) for each metric
 
 ## Files to Reference
+
 - `product-plan/sections/data-overlays/` — README, tests, components, types, sample data, screenshot
 
 ## Done When
+
 - [ ] Tests written for key user flows
 - [ ] Four overlay layers render as choropleth color fills
 - [ ] Layer selector switches between metrics

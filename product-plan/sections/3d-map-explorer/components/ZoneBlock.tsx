@@ -1,29 +1,29 @@
-import { useState } from 'react'
-import type { HOLCZone } from '../types'
+import { useState } from "react";
+import type { HOLCZone } from "../types";
 
 interface ZoneBlockProps {
-  zone: HOLCZone
-  isSelected: boolean
-  isHovered: boolean
-  onHover?: () => void
-  onHoverEnd?: () => void
-  onSelect?: () => void
-  style?: React.CSSProperties
+  zone: HOLCZone;
+  isSelected: boolean;
+  isHovered: boolean;
+  onHover?: () => void;
+  onHoverEnd?: () => void;
+  onSelect?: () => void;
+  style?: React.CSSProperties;
 }
 
 const GRADE_GLOW: Record<string, string> = {
-  A: '0 0 24px rgba(76, 175, 80, 0.6)',
-  B: '0 0 24px rgba(33, 150, 243, 0.6)',
-  C: '0 0 24px rgba(255, 235, 59, 0.6)',
-  D: '0 0 24px rgba(244, 67, 54, 0.6)',
-}
+  A: "0 0 24px rgba(76, 175, 80, 0.6)",
+  B: "0 0 24px rgba(33, 150, 243, 0.6)",
+  C: "0 0 24px rgba(255, 235, 59, 0.6)",
+  D: "0 0 24px rgba(244, 67, 54, 0.6)",
+};
 
 const GRADE_BORDER_GLOW: Record<string, string> = {
-  A: 'rgba(76, 175, 80, 0.8)',
-  B: 'rgba(33, 150, 243, 0.8)',
-  C: 'rgba(255, 235, 59, 0.8)',
-  D: 'rgba(244, 67, 54, 0.8)',
-}
+  A: "rgba(76, 175, 80, 0.8)",
+  B: "rgba(33, 150, 243, 0.8)",
+  C: "rgba(255, 235, 59, 0.8)",
+  D: "rgba(244, 67, 54, 0.8)",
+};
 
 export function ZoneBlock({
   zone,
@@ -34,15 +34,15 @@ export function ZoneBlock({
   onSelect,
   style,
 }: ZoneBlockProps) {
-  const height = zone.extrusionHeight
-  const isHighlighted = isSelected || isHovered
+  const height = zone.extrusionHeight;
+  const isHighlighted = isSelected || isHovered;
 
   return (
     <div
       className="absolute cursor-pointer transition-all duration-300 ease-out group"
       style={{
         ...style,
-        transform: `${style?.transform || ''} translateZ(0)`,
+        transform: `${style?.transform || ""} translateZ(0)`,
         zIndex: isHighlighted ? 50 : Math.round(height),
       }}
       onMouseEnter={onHover}
@@ -54,7 +54,7 @@ export function ZoneBlock({
         className="relative w-full transition-all duration-300"
         style={{
           height: `${height * 2.5}px`,
-          minHeight: '40px',
+          minHeight: "40px",
         }}
       >
         {/* The extruded block */}
@@ -66,10 +66,12 @@ export function ZoneBlock({
             boxShadow: isHighlighted
               ? `${GRADE_GLOW[zone.holcGrade]}, inset 0 1px 0 rgba(255,255,255,0.15)`
               : `0 ${height / 4}px ${height / 2}px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08)`,
-            borderColor: isHighlighted ? GRADE_BORDER_GLOW[zone.holcGrade] : 'transparent',
-            borderWidth: '1px',
-            borderStyle: 'solid',
-            transform: isHighlighted ? 'translateY(-4px) scale(1.02)' : 'none',
+            borderColor: isHighlighted
+              ? GRADE_BORDER_GLOW[zone.holcGrade]
+              : "transparent",
+            borderWidth: "1px",
+            borderStyle: "solid",
+            transform: isHighlighted ? "translateY(-4px) scale(1.02)" : "none",
           }}
         >
           {/* Depth illusion — bottom edge */}
@@ -78,7 +80,7 @@ export function ZoneBlock({
             style={{
               height: `${Math.max(height / 3, 8)}px`,
               background: `linear-gradient(to top, rgba(0,0,0,0.5), transparent)`,
-              borderRadius: '0 0 2px 2px',
+              borderRadius: "0 0 2px 2px",
             }}
           />
 
@@ -88,7 +90,7 @@ export function ZoneBlock({
             style={{
               width: `${Math.max(height / 4, 4)}px`,
               background: `linear-gradient(to left, rgba(0,0,0,0.35), transparent)`,
-              borderRadius: '0 2px 2px 0',
+              borderRadius: "0 2px 2px 0",
             }}
           />
 
@@ -113,5 +115,5 @@ export function ZoneBlock({
         )}
       </div>
     </div>
-  )
+  );
 }

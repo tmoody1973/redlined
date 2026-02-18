@@ -1,21 +1,21 @@
-import type { GhostBuilding } from '../types'
+import type { GhostBuilding } from "../types";
 
 interface GhostBlockProps {
-  ghost: GhostBuilding
-  isSelected: boolean
-  isHovered: boolean
-  isVisible: boolean
-  onHover?: () => void
-  onHoverEnd?: () => void
-  onSelect?: () => void
-  style?: React.CSSProperties
+  ghost: GhostBuilding;
+  isSelected: boolean;
+  isHovered: boolean;
+  isVisible: boolean;
+  onHover?: () => void;
+  onHoverEnd?: () => void;
+  onSelect?: () => void;
+  style?: React.CSSProperties;
 }
 
 const CAUSE_BORDER: Record<string, string> = {
-  'highway': 'rgba(244, 67, 54, 0.35)',
-  'urban-renewal': 'rgba(244, 67, 54, 0.3)',
-  'disinvestment': 'rgba(244, 67, 54, 0.25)',
-}
+  highway: "rgba(244, 67, 54, 0.35)",
+  "urban-renewal": "rgba(244, 67, 54, 0.3)",
+  disinvestment: "rgba(244, 67, 54, 0.25)",
+};
 
 export function GhostBlock({
   ghost,
@@ -27,8 +27,8 @@ export function GhostBlock({
   onSelect,
   style,
 }: GhostBlockProps) {
-  const height = ghost.stories * 14
-  const isHighlighted = isSelected || isHovered
+  const height = ghost.stories * 14;
+  const isHighlighted = isSelected || isHovered;
 
   return (
     <div
@@ -36,7 +36,7 @@ export function GhostBlock({
       style={{
         ...style,
         opacity: isVisible ? 1 : 0,
-        pointerEvents: isVisible ? 'auto' : 'none',
+        pointerEvents: isVisible ? "auto" : "none",
         zIndex: isHighlighted ? 60 : 5,
       }}
       onMouseEnter={onHover}
@@ -51,13 +51,16 @@ export function GhostBlock({
         <div
           className="absolute inset-0 rounded-[1px] transition-all duration-300"
           style={{
-            backgroundColor: 'transparent',
-            border: `1.5px ${isHighlighted ? 'solid' : 'dashed'} ${CAUSE_BORDER[ghost.demolitionCause]}`,
+            backgroundColor: "transparent",
+            border: `1.5px ${isHighlighted ? "solid" : "dashed"} ${CAUSE_BORDER[ghost.demolitionCause]}`,
             boxShadow: isHighlighted
-              ? '0 0 20px rgba(244, 67, 54, 0.3), inset 0 0 12px rgba(244, 67, 54, 0.08)'
-              : '0 0 8px rgba(244, 67, 54, 0.1)',
-            transform: isHighlighted ? 'translateY(-2px) scale(1.05)' : 'none',
-            animation: isVisible && !isHighlighted ? 'ghost-pulse 3s ease-in-out infinite' : 'none',
+              ? "0 0 20px rgba(244, 67, 54, 0.3), inset 0 0 12px rgba(244, 67, 54, 0.08)"
+              : "0 0 8px rgba(244, 67, 54, 0.1)",
+            transform: isHighlighted ? "translateY(-2px) scale(1.05)" : "none",
+            animation:
+              isVisible && !isHighlighted
+                ? "ghost-pulse 3s ease-in-out infinite"
+                : "none",
           }}
         >
           {/* Ghost interior — barely visible red fill */}
@@ -65,8 +68,8 @@ export function GhostBlock({
             className="absolute inset-0"
             style={{
               background: isHighlighted
-                ? 'rgba(244, 67, 54, 0.08)'
-                : 'rgba(244, 67, 54, 0.03)',
+                ? "rgba(244, 67, 54, 0.08)"
+                : "rgba(244, 67, 54, 0.03)",
             }}
           />
 
@@ -78,7 +81,7 @@ export function GhostBlock({
                 linear-gradient(45deg, rgba(244, 67, 54, 0.5) 1px, transparent 1px),
                 linear-gradient(-45deg, rgba(244, 67, 54, 0.5) 1px, transparent 1px)
               `,
-              backgroundSize: '6px 6px',
+              backgroundSize: "6px 6px",
             }}
           />
         </div>
@@ -88,9 +91,9 @@ export function GhostBlock({
           <div
             className="absolute -inset-1 rounded-[2px]"
             style={{
-              border: '1.5px solid rgba(244, 67, 54, 0.6)',
-              boxShadow: '0 0 24px rgba(244, 67, 54, 0.4)',
-              animation: 'ghost-select-pulse 2s ease-in-out infinite',
+              border: "1.5px solid rgba(244, 67, 54, 0.6)",
+              boxShadow: "0 0 24px rgba(244, 67, 54, 0.4)",
+              animation: "ghost-select-pulse 2s ease-in-out infinite",
             }}
           />
         )}
@@ -107,5 +110,5 @@ export function GhostBlock({
         }
       `}</style>
     </div>
-  )
+  );
 }

@@ -25,6 +25,7 @@ Core entities and their relationships:
 - **Conversation** — AI Guide chat session with zone-aware context
 
 **Relationships:**
+
 - City has many HOLCZones
 - HOLCZone contains many Buildings and GhostBuildings
 - HOLCZone overlaps with many CensusTracts
@@ -34,11 +35,13 @@ Core entities and their relationships:
 ## Design System
 
 **Colors:**
+
 - Primary: `red` — HOLC D-grade zones, ghost buildings, action elements
 - Secondary: `amber` — Callouts, warnings, differential highlights
 - Neutral: `slate` — Backgrounds, borders, body text
 
 **Typography:**
+
 - Heading: Space Grotesk — Bold, geometric, data-visualization feel
 - Body: Inter — Clean, highly legible body text
 - Mono: IBM Plex Mono — Data readouts, coordinates, property records

@@ -5,9 +5,12 @@
 Add to your HTML `<head>` or CSS:
 
 ```html
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+  rel="stylesheet"
+/>
 ```
 
 ## Font Usage
@@ -19,9 +22,9 @@ Add to your HTML `<head>` or CSS:
 ## CSS Custom Properties
 
 ```css
---font-heading: 'Space Grotesk', system-ui, sans-serif;
---font-body: 'Inter', system-ui, sans-serif;
---font-mono: 'IBM Plex Mono', monospace;
+--font-heading: "Space Grotesk", system-ui, sans-serif;
+--font-body: "Inter", system-ui, sans-serif;
+--font-mono: "IBM Plex Mono", monospace;
 ```
 
 ## Inline Style Pattern

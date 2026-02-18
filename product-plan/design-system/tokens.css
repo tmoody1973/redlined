@@ -2,27 +2,27 @@
 
 :root {
   /* Colors — Tailwind palette names */
-  --color-primary: red;       /* HOLC D-grade, ghost buildings, action elements */
-  --color-secondary: amber;   /* Callouts, warnings, differential highlights */
-  --color-neutral: slate;     /* Backgrounds, borders, body text */
+  --color-primary: red; /* HOLC D-grade, ghost buildings, action elements */
+  --color-secondary: amber; /* Callouts, warnings, differential highlights */
+  --color-neutral: slate; /* Backgrounds, borders, body text */
 
   /* HOLC Grade Colors */
-  --holc-grade-a: #4CAF50;    /* Green — "Best" */
-  --holc-grade-b: #2196F3;    /* Blue — "Still Desirable" */
-  --holc-grade-c: #FFEB3B;    /* Yellow — "Declining" */
-  --holc-grade-d: #F44336;    /* Red — "Hazardous" */
+  --holc-grade-a: #4caf50; /* Green — "Best" */
+  --holc-grade-b: #2196f3; /* Blue — "Still Desirable" */
+  --holc-grade-c: #ffeb3b; /* Yellow — "Declining" */
+  --holc-grade-d: #f44336; /* Red — "Hazardous" */
 
   /* Era Colors (Building-Level Detail) */
-  --era-pre-1938: #B87333;    /* Copper — Pre-redlining */
-  --era-1938-1970: #808080;   /* Gray — Urban renewal */
-  --era-post-1970: #4FC3F7;   /* Light blue — Modern */
+  --era-pre-1938: #b87333; /* Copper — Pre-redlining */
+  --era-1938-1970: #808080; /* Gray — Urban renewal */
+  --era-post-1970: #4fc3f7; /* Light blue — Modern */
 
   /* Typography */
-  --font-heading: 'Space Grotesk', system-ui, sans-serif;
-  --font-body: 'Inter', system-ui, sans-serif;
-  --font-mono: 'IBM Plex Mono', monospace;
+  --font-heading: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
 
   /* Scene */
-  --bg-scene: #1A1A2E;        /* Dark background for 3D viewport */
-  --bg-app: #0c0a1a;          /* App background (slate-950) */
+  --bg-scene: #1a1a2e; /* Dark background for 3D viewport */
+  --bg-app: #0c0a1a; /* App background (slate-950) */
 }

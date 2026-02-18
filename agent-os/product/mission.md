@@ -28,18 +28,21 @@ Existing resources like the University of Richmond's Mapping Inequality project 
 ### User Personas
 
 **Maria** (35-45)
+
 - **Role:** High school history teacher in Milwaukee
 - **Context:** Teaching a unit on the civil rights movement and housing policy
 - **Pain Points:** Students disengage from census tables and policy documents; hard to make structural racism tangible
 - **Goals:** An interactive tool students can explore that makes the connection between historical policy and present-day neighborhood conditions visceral and undeniable
 
 **James** (28-40)
+
 - **Role:** Investigative journalist at a regional news outlet
 - **Context:** Writing a series on Milwaukee's persistent segregation and the racial wealth gap
 - **Pain Points:** Needs compelling visual evidence to accompany reporting; existing maps are static and do not show magnitude
 - **Goals:** Embeddable, shareable visualizations that let readers explore the data themselves and see the story in the shape of the city
 
 **Denise** (50-65)
+
 - **Role:** Lifelong resident of Milwaukee's Bronzeville neighborhood
 - **Context:** Grew up hearing stories about what the neighborhood used to be; watches it continue to change
 - **Pain Points:** The history of her community is not well documented in accessible formats; official narratives ignore the policy decisions that caused decline
@@ -48,33 +51,41 @@ Existing resources like the University of Richmond's Mapping Inequality project 
 ## Differentiators
 
 ### 3D Physicality, Not Flat Maps
+
 Unlike Mapping Inequality and other 2D map overlays, Redlined extrudes HOLC zones and individual buildings into a 3D landscape. Users do not just see that a neighborhood was graded "D" -- they see the physical depression in property values, the gap in building density, and the missing structures. The dimensionality makes magnitude legible at a glance.
 
 ### AI-Narrated Primary Sources
+
 Unlike static archives, Redlined uses Claude as a contextual AI guide and ElevenLabs for voice synthesis to read the original HOLC appraiser descriptions aloud. Users hear the racist language of the original documents spoken in a calm, NPR-style voice -- making the bureaucratic tone of institutional racism impossible to ignore.
 
 ### Building-Level Granularity
+
 Unlike city-wide or tract-level visualizations, Redlined renders individual buildings using Milwaukee's MPROP dataset (160,000+ properties). Users can see specific parcels, their assessed values, their construction dates, and whether structures that once stood have been demolished. The ghost building wireframes make absence visible.
 
 ### Layered Modern Data
+
 Unlike purely historical projects, Redlined overlays present-day Census income, CDC health outcomes, EPA environmental burden, and assessed value data on top of the historical HOLC grades -- making the causal throughline from 1930s policy to 2020s outcomes undeniable.
 
 ### Embeddable for Journalism
+
 Unlike academic tools, Redlined is designed to be embedded in news articles via iframe. The application is built for the storytelling needs of journalists and educators, not just researchers.
 
 ## Key Features
 
 ### Core Features
+
 - **3D Map Explorer:** Interactive Three.js scene with HOLC zones extruded by grade, orbit controls, and click-to-inspect panels showing grade, appraiser description, and neighborhood data
 - **AI Narrative Guide:** Chat panel powered by Claude with zone-aware context, providing historically grounded explanations and answering user questions about what they are seeing
 - **Data Overlays:** Toggle layers showing Census income, CDC health outcomes, EPA environmental burden, and assessed property values mapped against HOLC boundaries
 
 ### Building-Level Features
+
 - **Individual Building Rendering:** MPROP property data and parcel boundaries extruded as individual 3D structures within HOLC zones, colored and scaled by assessed value and construction era
 - **Ghost Buildings:** Historical comparison revealing demolished structures as red wireframes, making absence and loss visible in the landscape
 - **Time Slider:** Animated era transitions (GSAP) letting users scrub through decades and watch neighborhoods change
 
 ### Narrative Features
+
 - **Voice Narration:** ElevenLabs-powered NPR-style audio narration reading original HOLC appraiser descriptions and contextual commentary
 - **Guided Bronzeville Tour:** Auto-camera narrative walking users through the story of Milwaukee's historic Black neighborhood
 - **"What If" Counterfactual Mode:** LLM-powered exploration of what neighborhoods might look like today without redlining

@@ -1,5 +1,5 @@
 interface AudioWaveformProps {
-  isPlaying: boolean
+  isPlaying: boolean;
 }
 
 export function AudioWaveform({ isPlaying }: AudioWaveformProps) {
@@ -10,10 +10,10 @@ export function AudioWaveform({ isPlaying }: AudioWaveformProps) {
           key={i}
           className="w-[2px] rounded-full bg-red-500 transition-all duration-150"
           style={{
-            height: isPlaying ? `${6 + Math.sin(i * 1.2) * 6}px` : '3px',
+            height: isPlaying ? `${6 + Math.sin(i * 1.2) * 6}px` : "3px",
             animation: isPlaying
               ? `waveform-bar 0.8s ease-in-out ${i * 0.1}s infinite alternate`
-              : 'none',
+              : "none",
           }}
         />
       ))}
@@ -24,5 +24,5 @@ export function AudioWaveform({ isPlaying }: AudioWaveformProps) {
         }
       `}</style>
     </div>
-  )
+  );
 }

@@ -1,38 +1,38 @@
-import { MainNav } from './MainNav'
-import { BottomToolbar } from './BottomToolbar'
-import { InfoPanel } from './InfoPanel'
+import { MainNav } from "./MainNav";
+import { BottomToolbar } from "./BottomToolbar";
+import { InfoPanel } from "./InfoPanel";
 
 export interface ViewMode {
-  id: string
-  label: string
-  isActive: boolean
+  id: string;
+  label: string;
+  isActive: boolean;
 }
 
 export interface AppShellProps {
-  children: React.ReactNode
-  cityName?: string
-  cities?: string[]
-  onCityChange?: (city: string) => void
-  year?: number
-  onYearChange?: (year: number) => void
-  viewModes?: ViewMode[]
-  onViewModeToggle?: (id: string) => void
+  children: React.ReactNode;
+  cityName?: string;
+  cities?: string[];
+  onCityChange?: (city: string) => void;
+  year?: number;
+  onYearChange?: (year: number) => void;
+  viewModes?: ViewMode[];
+  onViewModeToggle?: (id: string) => void;
   selectedZone?: {
-    holcGrade: string
-    holcId: string
-    name: string
-    description: string
-  } | null
-  infoPanelContent?: React.ReactNode
-  chatPanelContent?: React.ReactNode
-  showContentWarning?: boolean
-  onContentWarningToggle?: () => void
+    holcGrade: string;
+    holcId: string;
+    name: string;
+    description: string;
+  } | null;
+  infoPanelContent?: React.ReactNode;
+  chatPanelContent?: React.ReactNode;
+  showContentWarning?: boolean;
+  onContentWarningToggle?: () => void;
 }
 
 export default function AppShell({
   children,
-  cityName = 'Milwaukee',
-  cities = ['Milwaukee'],
+  cityName = "Milwaukee",
+  cities = ["Milwaukee"],
   onCityChange,
   year = 2025,
   onYearChange,
@@ -61,9 +61,7 @@ export default function AppShell({
       {/* Main Content Area: Viewport + Right Panel */}
       <div className="flex-1 flex overflow-hidden">
         {/* 3D Viewport (left ~70%) */}
-        <div className="flex-1 relative min-w-0">
-          {children}
-        </div>
+        <div className="flex-1 relative min-w-0">{children}</div>
 
         {/* Right Panel (info + chat, ~30%) */}
         <div className="w-[380px] shrink-0 border-l border-slate-800 flex flex-col bg-slate-900/80 backdrop-blur-sm">
@@ -84,7 +82,9 @@ export default function AppShell({
                     <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
                     <span
                       className="text-sm font-semibold text-slate-200 tracking-tight"
-                      style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}
+                      style={{
+                        fontFamily: '"Space Grotesk", system-ui, sans-serif',
+                      }}
                     >
                       AI Narrative Guide
                     </span>
@@ -98,10 +98,10 @@ export default function AppShell({
                 <div className="flex-1 overflow-y-auto px-4 py-3">
                   <div className="space-y-2">
                     {[
-                      'What happened to Bronzeville?',
-                      'Why was this area graded D?',
-                      'What\u2019s the income gap between A and D zones?',
-                      'What was here before the highway?',
+                      "What happened to Bronzeville?",
+                      "Why was this area graded D?",
+                      "What\u2019s the income gap between A and D zones?",
+                      "What was here before the highway?",
                     ].map((prompt) => (
                       <button
                         key={prompt}
@@ -140,5 +140,5 @@ export default function AppShell({
         onViewModeToggle={onViewModeToggle}
       />
     </div>
-  )
+  );
 }

@@ -1,6 +1,10 @@
-import { useState, useMemo } from 'react'
-import type { DataOverlaysProps, OverlayLayerId, ZoneOverlayData } from '../types'
-import { OverlayStatsPanel } from './OverlayStatsPanel'
+import { useState, useMemo } from "react";
+import type {
+  DataOverlaysProps,
+  OverlayLayerId,
+  ZoneOverlayData,
+} from "../types";
+import { OverlayStatsPanel } from "./OverlayStatsPanel";
 
 /**
  * DataOverlays — CSS perspective representation of HOLC zones with choropleth
@@ -26,76 +30,89 @@ export function DataOverlays({
   onZoneSelect,
   onZoneHover,
 }: DataOverlaysProps) {
-  const [internalActiveLayer, setInternalActiveLayer] = useState<OverlayLayerId | null>(controlledActiveLayer)
-  const [internalOpacity, setInternalOpacity] = useState(controlledOpacity)
-  const [internalSelectedZoneId, setInternalSelectedZoneId] = useState<string | null>(controlledSelectedZoneId)
-  const [hoveredZoneId, setHoveredZoneId] = useState<string | null>(null)
+  const [internalActiveLayer, setInternalActiveLayer] =
+    useState<OverlayLayerId | null>(controlledActiveLayer);
+  const [internalOpacity, setInternalOpacity] = useState(controlledOpacity);
+  const [internalSelectedZoneId, setInternalSelectedZoneId] = useState<
+    string | null
+  >(controlledSelectedZoneId);
+  const [hoveredZoneId, setHoveredZoneId] = useState<string | null>(null);
 
-  const activeLayerId = controlledActiveLayer ?? internalActiveLayer
-  const opacity = controlledOpacity ?? internalOpacity
-  const selectedZoneId = controlledSelectedZoneId ?? internalSelectedZoneId
+  const activeLayerId = controlledActiveLayer ?? internalActiveLayer;
+  const opacity = controlledOpacity ?? internalOpacity;
+  const selectedZoneId = controlledSelectedZoneId ?? internalSelectedZoneId;
 
   const activeLayerData = useMemo(
     () => overlayLayers.find((l) => l.id === activeLayerId) || null,
     [overlayLayers, activeLayerId]
-  )
+  );
 
   const selectedZone = useMemo(
     () => zoneOverlayData.find((z) => z.zoneId === selectedZoneId) || null,
     [zoneOverlayData, selectedZoneId]
-  )
+  );
 
   const hoveredZone = useMemo(
     () => zoneOverlayData.find((z) => z.zoneId === hoveredZoneId) || null,
     [zoneOverlayData, hoveredZoneId]
-  )
+  );
 
   // Position zones
   const zonePositions = useMemo(() => {
     // Use a grid layout for the design preview
-    const cols = 4
+    const cols = 4;
     return zoneOverlayData.map((zone, i) => ({
       zone,
       left: (i % cols) * 22 + 8,
       top: Math.floor(i / cols) * 35 + 12,
       width: 18,
-    }))
-  }, [zoneOverlayData])
+    }));
+  }, [zoneOverlayData]);
 
   const handleLayerChange = (layerId: OverlayLayerId | null) => {
-    setInternalActiveLayer(layerId)
-    onLayerChange?.(layerId)
-  }
+    setInternalActiveLayer(layerId);
+    onLayerChange?.(layerId);
+  };
 
   const handleOpacityChange = (newOpacity: number) => {
-    setInternalOpacity(newOpacity)
-    onOpacityChange?.(newOpacity)
-  }
+    setInternalOpacity(newOpacity);
+    onOpacityChange?.(newOpacity);
+  };
 
   const handleZoneSelect = (zoneId: string) => {
-    setInternalSelectedZoneId(zoneId)
-    onZoneSelect?.(zoneId)
-  }
+    setInternalSelectedZoneId(zoneId);
+    onZoneSelect?.(zoneId);
+  };
 
   const handleZoneHover = (zoneId: string | null) => {
-    setHoveredZoneId(zoneId)
-    onZoneHover?.(zoneId)
-  }
+    setHoveredZoneId(zoneId);
+    onZoneHover?.(zoneId);
+  };
 
   function formatTooltipValue(value: number, unit: string): string {
-    if (unit === 'currency') {
-      return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(value)
+    if (unit === "currency") {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 0,
+      }).format(value);
     }
-    if (unit === 'percentile') return `${value}th pctile`
-    return `${value}/100`
+    if (unit === "percentile") return `${value}th pctile`;
+    return `${value}/100`;
   }
 
   const HOLC_GRADE_COLORS: Record<string, string> = {
-    A: '#4CAF50', B: '#2196F3', C: '#FFEB3B', D: '#F44336',
-  }
+    A: "#4CAF50",
+    B: "#2196F3",
+    C: "#FFEB3B",
+    D: "#F44336",
+  };
 
   return (
-    <div className="flex h-full" style={{ fontFamily: '"Inter", system-ui, sans-serif' }}>
+    <div
+      className="flex h-full"
+      style={{ fontFamily: '"Inter", system-ui, sans-serif' }}
+    >
       {/* Viewport */}
       <div className="flex-1 relative bg-[#141428] overflow-hidden select-none">
         {/* Grid */}
@@ -106,50 +123,62 @@ export function DataOverlays({
               linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px),
               linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px)
             `,
-            backgroundSize: '48px 48px',
+            backgroundSize: "48px 48px",
           }}
         />
 
         {/* Vignette */}
         <div
           className="absolute inset-0"
-          style={{ background: 'radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.5) 100%)' }}
+          style={{
+            background:
+              "radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.5) 100%)",
+          }}
         />
 
         {/* Perspective container */}
         <div
           className="absolute inset-0"
-          style={{ perspective: '1000px', perspectiveOrigin: '50% 32%' }}
+          style={{ perspective: "1000px", perspectiveOrigin: "50% 32%" }}
         >
           <div
             className="absolute inset-[6%]"
             style={{
-              transform: 'rotateX(38deg) rotateZ(-4deg)',
-              transformStyle: 'preserve-3d',
+              transform: "rotateX(38deg) rotateZ(-4deg)",
+              transformStyle: "preserve-3d",
             }}
           >
             {/* Ground plane */}
             <div
               className="absolute inset-0 rounded-lg"
               style={{
-                background: 'linear-gradient(135deg, rgba(25,25,50,0.9), rgba(12,12,30,0.95))',
-                boxShadow: '0 0 80px rgba(0,0,0,0.4)',
-                border: '1px solid rgba(255,255,255,0.03)',
+                background:
+                  "linear-gradient(135deg, rgba(25,25,50,0.9), rgba(12,12,30,0.95))",
+                boxShadow: "0 0 80px rgba(0,0,0,0.4)",
+                border: "1px solid rgba(255,255,255,0.03)",
               }}
             />
 
             {/* Choropleth zones */}
             {zonePositions.map(({ zone, left, top, width }) => {
-              const isSelected = selectedZoneId === zone.zoneId
-              const isHovered = hoveredZoneId === zone.zoneId
-              const isHighlighted = isSelected || isHovered
+              const isSelected = selectedZoneId === zone.zoneId;
+              const isHovered = hoveredZoneId === zone.zoneId;
+              const isHighlighted = isSelected || isHovered;
 
               // Get color: choropleth if overlay active, grade color otherwise
               const fillColor = activeLayerId
-                ? zone.metrics[activeLayerId]?.choroplethColor || HOLC_GRADE_COLORS[zone.holcGrade]
-                : HOLC_GRADE_COLORS[zone.holcGrade]
+                ? zone.metrics[activeLayerId]?.choroplethColor ||
+                  HOLC_GRADE_COLORS[zone.holcGrade]
+                : HOLC_GRADE_COLORS[zone.holcGrade];
 
-              const height = zone.holcGrade === 'A' ? 40 : zone.holcGrade === 'B' ? 30 : zone.holcGrade === 'C' ? 20 : 10
+              const height =
+                zone.holcGrade === "A"
+                  ? 40
+                  : zone.holcGrade === "B"
+                    ? 30
+                    : zone.holcGrade === "C"
+                      ? 20
+                      : 10;
 
               return (
                 <div
@@ -167,20 +196,28 @@ export function DataOverlays({
                 >
                   <div
                     className="relative w-full transition-all duration-500"
-                    style={{ height: `${height * 2.5}px`, minHeight: '30px' }}
+                    style={{ height: `${height * 2.5}px`, minHeight: "30px" }}
                   >
                     <div
                       className="absolute inset-0 rounded-sm transition-all duration-500"
                       style={{
                         backgroundColor: fillColor,
-                        opacity: activeLayerId ? opacity * (isHighlighted ? 1 : 0.85) : (isHighlighted ? 0.9 : 0.6),
+                        opacity: activeLayerId
+                          ? opacity * (isHighlighted ? 1 : 0.85)
+                          : isHighlighted
+                            ? 0.9
+                            : 0.6,
                         boxShadow: isHighlighted
                           ? `0 0 24px ${fillColor}80, inset 0 1px 0 rgba(255,255,255,0.15)`
                           : `0 ${height / 4}px ${height / 2}px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08)`,
-                        borderColor: isHighlighted ? `${fillColor}CC` : 'transparent',
-                        borderWidth: '1px',
-                        borderStyle: 'solid',
-                        transform: isHighlighted ? 'translateY(-4px) scale(1.03)' : 'none',
+                        borderColor: isHighlighted
+                          ? `${fillColor}CC`
+                          : "transparent",
+                        borderWidth: "1px",
+                        borderStyle: "solid",
+                        transform: isHighlighted
+                          ? "translateY(-4px) scale(1.03)"
+                          : "none",
                       }}
                     >
                       {/* Bottom edge depth */}
@@ -188,8 +225,9 @@ export function DataOverlays({
                         className="absolute bottom-0 left-0 right-0"
                         style={{
                           height: `${Math.max(height / 3, 6)}px`,
-                          background: 'linear-gradient(to top, rgba(0,0,0,0.5), transparent)',
-                          borderRadius: '0 0 2px 2px',
+                          background:
+                            "linear-gradient(to top, rgba(0,0,0,0.5), transparent)",
+                          borderRadius: "0 0 2px 2px",
                         }}
                       />
 
@@ -198,8 +236,9 @@ export function DataOverlays({
                         <span
                           className="text-[10px] font-bold drop-shadow-md"
                           style={{
-                            fontFamily: '"Space Grotesk", system-ui, sans-serif',
-                            color: zone.holcGrade === 'C' ? '#1A1A2E' : '#fff',
+                            fontFamily:
+                              '"Space Grotesk", system-ui, sans-serif',
+                            color: zone.holcGrade === "C" ? "#1A1A2E" : "#fff",
                             opacity: 0.9,
                           }}
                         >
@@ -220,7 +259,7 @@ export function DataOverlays({
                     )}
                   </div>
                 </div>
-              )
+              );
             })}
           </div>
         </div>
@@ -235,15 +274,15 @@ export function DataOverlays({
           </div>
           <div className="flex flex-col gap-1">
             {overlayLayers.map((layer) => {
-              const isActive = activeLayerId === layer.id
+              const isActive = activeLayerId === layer.id;
               return (
                 <button
                   key={layer.id}
                   onClick={() => handleLayerChange(isActive ? null : layer.id)}
                   className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg border text-[11px] transition-all duration-200 ${
                     isActive
-                      ? 'bg-slate-800/90 border-slate-600/50 text-slate-200'
-                      : 'bg-slate-900/60 border-slate-800/40 text-slate-500 hover:text-slate-300 hover:border-slate-700/40'
+                      ? "bg-slate-800/90 border-slate-600/50 text-slate-200"
+                      : "bg-slate-900/60 border-slate-800/40 text-slate-500 hover:text-slate-300 hover:border-slate-700/40"
                   }`}
                 >
                   <div
@@ -251,12 +290,12 @@ export function DataOverlays({
                     style={{
                       background: isActive
                         ? `linear-gradient(135deg, ${layer.colorScale[0]}, ${layer.colorScale[4]})`
-                        : 'rgba(100,116,139,0.3)',
+                        : "rgba(100,116,139,0.3)",
                     }}
                   />
                   {layer.label}
                 </button>
-              )
+              );
             })}
           </div>
         </div>
@@ -277,7 +316,9 @@ export function DataOverlays({
                   min="0"
                   max="100"
                   value={Math.round(opacity * 100)}
-                  onChange={(e) => handleOpacityChange(Number(e.target.value) / 100)}
+                  onChange={(e) =>
+                    handleOpacityChange(Number(e.target.value) / 100)
+                  }
                   className="w-20 h-1 accent-red-500 cursor-pointer"
                 />
                 <span
@@ -334,8 +375,10 @@ export function DataOverlays({
                 <div
                   className="w-8 h-8 rounded flex items-center justify-center text-sm font-bold"
                   style={{
-                    backgroundColor: hoveredZone.metrics[activeLayerId!]?.choroplethColor || '#666',
-                    color: hoveredZone.holcGrade === 'C' ? '#1A1A2E' : '#fff',
+                    backgroundColor:
+                      hoveredZone.metrics[activeLayerId!]?.choroplethColor ||
+                      "#666",
+                    color: hoveredZone.holcGrade === "C" ? "#1A1A2E" : "#fff",
                   }}
                 >
                   {hoveredZone.holcGrade}
@@ -343,7 +386,9 @@ export function DataOverlays({
                 <div>
                   <div
                     className="text-[12px] font-semibold text-slate-200"
-                    style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}
+                    style={{
+                      fontFamily: '"Space Grotesk", system-ui, sans-serif',
+                    }}
                   >
                     {hoveredZone.name}
                   </div>
@@ -351,7 +396,11 @@ export function DataOverlays({
                     className="text-[10px] text-slate-500"
                     style={{ fontFamily: '"IBM Plex Mono", monospace' }}
                   >
-                    {activeLayerData.label}: {formatTooltipValue(hoveredZone.metrics[activeLayerId!].value, activeLayerData.unit)}
+                    {activeLayerData.label}:{" "}
+                    {formatTooltipValue(
+                      hoveredZone.metrics[activeLayerId!].value,
+                      activeLayerData.unit
+                    )}
                   </div>
                 </div>
               </div>
@@ -379,5 +428,5 @@ export function DataOverlays({
         />
       </div>
     </div>
-  )
+  );
 }

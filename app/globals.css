@@ -86,7 +86,7 @@ body {
   border-color: rgb(158 158 158 / 0.3);
 }
 
-/* Focus ring utility for dark backgrounds */
+/* Focus ring utility for dark backgrounds: ring-2 ring-red-500 ring-offset-2 ring-offset-slate-900 */
 .focus-ring {
   outline: none;
 }
@@ -94,4 +94,92 @@ body {
   box-shadow:
     0 0 0 2px var(--bg-app),
     0 0 0 4px #f44336;
+}
+
+/* Screen reader only utility (Tailwind v4 includes sr-only but we define
+   it here for environments where Tailwind may not process the class) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Time slider range input styling */
+.time-slider-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  background: linear-gradient(
+    to right,
+    #b87333 0%,
+    #b87333 19.4%,
+    #cd7f32 19.4%,
+    #cd7f32 43.9%,
+    #f44336 43.9%,
+    #f44336 44.5%,
+    #808080 44.5%,
+    #808080 63.2%,
+    #4fc3f7 63.2%,
+    #4fc3f7 100%
+  );
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
+
+.time-slider-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #f44336;
+  box-shadow: 0 0 8px rgba(244, 67, 54, 0.6);
+  cursor: grab;
+  transition: transform 0.1s ease;
+}
+
+.time-slider-range::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  transform: scale(1.2);
+}
+
+.time-slider-range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #f44336;
+  box-shadow: 0 0 8px rgba(244, 67, 54, 0.6);
+  cursor: grab;
+}
+
+/* Collapsed timeline mini track */
+.time-slider-track {
+  background: linear-gradient(
+    to right,
+    #b87333 0%,
+    #cd7f32 44%,
+    #808080 63%,
+    #4fc3f7 100%
+  );
+  border-radius: 2px;
+  opacity: 0.5;
+}
+
+/* Minimum touch target sizing for mobile interactive elements */
+@media (pointer: coarse) {
+  button,
+  [role="button"],
+  input[type="range"],
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
 }
