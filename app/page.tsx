@@ -13,6 +13,15 @@ import { ResearchProvider } from "@/lib/research-context";
 import { ZoneKeyboardNav } from "@/components/scene/ZoneKeyboardNav";
 import InfoPanel from "@/components/panel/InfoPanel";
 
+// Code-split: Archive modal + Motion.dev only load when opened
+const ArchiveModal = dynamic(
+  () =>
+    import("@/components/archive/ArchiveModal").then((m) => ({
+      default: m.ArchiveModal,
+    })),
+  { ssr: false, loading: () => null },
+);
+
 // Mapbox GL + deck.gl must be loaded client-side only (no SSR)
 const MapView = dynamic(() => import("@/components/map/MapView"), {
   ssr: false,
@@ -39,6 +48,7 @@ export default function Home() {
   const [showIntro, setShowIntro] = useState(true);
   const [showAbout, setShowAbout] = useState(false);
   const [showGuide, setShowGuide] = useState(false);
+  const [showArchive, setShowArchive] = useState(false);
 
   // Show the guide on first visit
   useEffect(() => {
@@ -60,10 +70,17 @@ export default function Home() {
       <Header
         onAboutClick={() => setShowAbout(true)}
         onGuideClick={() => setShowGuide(true)}
+        onArchiveClick={() => setShowArchive(true)}
       />
       <AboutModal open={showAbout} onClose={() => setShowAbout(false)} />
       <HowToUseModal open={showGuide} onClose={() => setShowGuide(false)} />
       <ResearchModal />
+      {showArchive && (
+        <ArchiveModal
+          open={showArchive}
+          onClose={() => setShowArchive(false)}
+        />
+      )}
 
       <main className="relative flex-1 overflow-hidden">
         <SplitPanel

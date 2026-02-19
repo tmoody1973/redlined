@@ -3,13 +3,14 @@
 interface HeaderProps {
   onAboutClick?: () => void;
   onGuideClick?: () => void;
+  onArchiveClick?: () => void;
 }
 
 /**
  * Application header bar with REDLINED branding, subtitle, Milwaukee 1938 pill
  * badge, geographic coordinates, and an "About" button.
  */
-export function Header({ onAboutClick, onGuideClick }: HeaderProps) {
+export function Header({ onAboutClick, onGuideClick, onArchiveClick }: HeaderProps) {
   return (
     <header className="flex flex-col gap-1 px-4 py-3 md:px-6">
       <nav aria-label="Application navigation">
@@ -39,6 +40,16 @@ export function Header({ onAboutClick, onGuideClick }: HeaderProps) {
               Milwaukee 1938
             </span>
 
+            {onArchiveClick && (
+              <button
+                onClick={onArchiveClick}
+                className="rounded-full border border-slate-700 bg-slate-800 px-3 py-1 text-xs font-medium text-slate-400 transition-colors hover:border-slate-600 hover:text-white"
+                style={{ fontFamily: "var(--font-heading)" }}
+                aria-label="Open the Archive"
+              >
+                Archive
+              </button>
+            )}
             {onGuideClick && (
               <button
                 onClick={onGuideClick}

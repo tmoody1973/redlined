@@ -1,0 +1,137 @@
+{
+  "eras": [
+    {
+      "id": "survey",
+      "label": "The Survey",
+      "yearRange": "1936",
+      "color": "#b87333",
+      "description": "FSA photographers document America's cities"
+    },
+    {
+      "id": "redlining",
+      "label": "The Lines Are Drawn",
+      "yearRange": "1938",
+      "color": "#F44336",
+      "description": "HOLC appraisers grade every Milwaukee neighborhood"
+    },
+    {
+      "id": "fair-housing",
+      "label": "The Promise",
+      "yearRange": "1968",
+      "color": "#FFEB3B",
+      "description": "Civil rights legislation passes — but enforcement is weak"
+    },
+    {
+      "id": "decline",
+      "label": "The Fallout",
+      "yearRange": "1960s–70s",
+      "color": "#9e9e9e",
+      "description": "Freeways, urban renewal, and white flight reshape Milwaukee"
+    },
+    {
+      "id": "today",
+      "label": "The Legacy",
+      "yearRange": "Today",
+      "color": "#4fc3f7",
+      "description": "Milwaukee remains one of America's most segregated cities"
+    }
+  ],
+  "events": [
+    {
+      "id": "mydans-survey",
+      "year": 1936,
+      "era": "survey",
+      "title": "Carl Mydans Photographs Milwaukee",
+      "description": "As part of the Farm Security Administration's documentation of American life, photographer Carl Mydans spent April 1936 capturing 353 images of Milwaukee — housing conditions, factory workers, neighborhoods, and daily life. These photographs, now in the Library of Congress, provide an accidental census of the city just two years before federal appraisers would grade every block.",
+      "colorTreatment": "sepia"
+    },
+    {
+      "id": "holc-created",
+      "year": 1933,
+      "era": "survey",
+      "title": "HOLC Created by Congress",
+      "description": "The Home Owners' Loan Corporation was established as part of the New Deal to refinance mortgages in default and prevent foreclosures during the Great Depression. What began as economic relief would become the infrastructure for systematic racial discrimination in housing.",
+      "colorTreatment": "sepia"
+    },
+    {
+      "id": "holc-maps-drawn",
+      "year": 1938,
+      "era": "redlining",
+      "title": "Milwaukee's Security Map Is Drawn",
+      "description": "HOLC appraisers walk Milwaukee's neighborhoods and assign grades from A (Best) to D (Hazardous). The criteria explicitly include the race and ethnicity of residents. Neighborhoods with Black residents are automatically graded D. The 114 zones they draw will determine who gets a mortgage — and who doesn't — for decades to come.",
+      "colorTreatment": "sepia"
+    },
+    {
+      "id": "fha-adoption",
+      "year": 1938,
+      "era": "redlining",
+      "title": "FHA Adopts HOLC Maps",
+      "description": "The Federal Housing Administration incorporates HOLC's security maps into its own underwriting guidelines. Private banks follow suit. Residents in D-graded neighborhoods cannot get federally insured mortgages, making home ownership — the primary wealth-building tool for American families — effectively impossible in redlined areas.",
+      "colorTreatment": "sepia"
+    },
+    {
+      "id": "gi-bill",
+      "year": 1944,
+      "era": "redlining",
+      "title": "The GI Bill's Unequal Promise",
+      "description": "The Servicemen's Readjustment Act promises home loans to returning veterans, but the VA defers to FHA underwriting standards that incorporate HOLC maps. Black veterans in Milwaukee are denied the same suburban home loans available to white veterans. The wealth gap between A-graded and D-graded neighborhoods begins to compound.",
+      "colorTreatment": "sepia"
+    },
+    {
+      "id": "bronzeville-peak",
+      "year": 1950,
+      "era": "redlining",
+      "title": "Bronzeville at Its Peak",
+      "description": "Milwaukee's Bronzeville — the cultural heart of the Black community along Walnut Street — thrives despite redlining. Jazz clubs, Black-owned businesses, churches, and community organizations flourish. But the neighborhood sits in zones graded C and D, starved of mortgage capital and maintenance investment.",
+      "colorTreatment": "sepia"
+    },
+    {
+      "id": "freeway-construction",
+      "year": 1961,
+      "era": "decline",
+      "title": "Freeway Construction Begins",
+      "description": "The Park East Freeway and Interstate 43 construction demolishes thousands of homes in Milwaukee's Near North Side — predominantly Black neighborhoods that were already redlined. Over 17,000 housing units are destroyed across the city during the freeway era. Bronzeville is bisected and largely demolished, its residents scattered.",
+      "colorTreatment": "muted"
+    },
+    {
+      "id": "fair-housing-marches",
+      "year": 1967,
+      "era": "fair-housing",
+      "title": "200 Nights of Marches",
+      "description": "Father James Groppi and the NAACP Youth Council lead 200 consecutive nights of open housing marches across Milwaukee's 16th Street viaduct — the de facto racial boundary line. Marchers face violent resistance from white residents in the South Side. The marches become a national symbol of Northern segregation and help build momentum for federal legislation.",
+      "colorTreatment": "muted"
+    },
+    {
+      "id": "fair-housing-act",
+      "year": 1968,
+      "era": "fair-housing",
+      "title": "Fair Housing Act Signed",
+      "description": "President Johnson signs the Fair Housing Act one week after Martin Luther King Jr.'s assassination. The law prohibits discrimination in housing sales, rentals, and financing. But enforcement mechanisms are weak, and Milwaukee's entrenched segregation patterns — built on three decades of redlining — prove resistant to legal change.",
+      "colorTreatment": "muted"
+    },
+    {
+      "id": "white-flight",
+      "year": 1970,
+      "era": "decline",
+      "title": "White Flight Accelerates",
+      "description": "Throughout the 1960s and 70s, white families leave Milwaukee's central city for suburbs like Wauwatosa, Brookfield, and Menomonee Falls — communities that had been graded A and B by HOLC. Property values in formerly redlined neighborhoods decline further as tax base erodes, schools lose funding, and services deteriorate.",
+      "colorTreatment": "muted"
+    },
+    {
+      "id": "subprime-crisis",
+      "year": 2008,
+      "era": "today",
+      "title": "Subprime Crisis Hits Hardest in Redlined Areas",
+      "description": "The 2008 financial crisis devastates Milwaukee's formerly redlined neighborhoods. Predatory lenders had specifically targeted these communities with high-interest subprime mortgages — the only financing available in areas where traditional banks still refused to lend. Foreclosure rates in D-graded zones are three to five times higher than in A-graded areas.",
+      "colorTreatment": "full"
+    },
+    {
+      "id": "most-segregated",
+      "year": 2020,
+      "era": "today",
+      "title": "Milwaukee: Most Segregated Metro Area",
+      "description": "Census data confirms that the Milwaukee metropolitan area remains the most racially segregated in the United States. The boundaries drawn by HOLC appraisers in 1938 are still visible in today's demographic maps. Median household income in formerly A-graded neighborhoods is 2.7 times higher than in formerly D-graded areas. The lines on the map became the shape of inequality.",
+      "colorTreatment": "full"
+    }
+  ]
+}
