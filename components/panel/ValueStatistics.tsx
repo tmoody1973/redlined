@@ -34,11 +34,13 @@ function ComparisonBar({
   value,
   maxValue,
   color,
+  historicalValue,
 }: {
   label: string;
   value: number | null;
   maxValue: number;
   color: string;
+  historicalValue?: number | null;
 }) {
   const width =
     value !== null && maxValue > 0
@@ -46,33 +48,53 @@ function ComparisonBar({
       : 5;
 
   return (
-    <div className="flex items-center gap-3">
-      <div className="flex w-28 shrink-0 items-center gap-1.5">
-        <span
-          className="inline-block h-2.5 w-2.5 shrink-0 rounded-sm"
-          style={{ backgroundColor: color }}
-          aria-hidden="true"
-        />
-        <span
-          className="text-[11px] text-slate-400"
-          style={{ fontFamily: "var(--font-body)" }}
-        >
-          {label}
-        </span>
+    <div className="space-y-0.5">
+      <div className="flex items-center gap-3">
+        <div className="flex w-28 shrink-0 items-center gap-1.5">
+          <span
+            className="inline-block h-2.5 w-2.5 shrink-0 rounded-sm"
+            style={{ backgroundColor: color }}
+            aria-hidden="true"
+          />
+          <span
+            className="text-[11px] text-slate-400"
+            style={{ fontFamily: "var(--font-body)" }}
+          >
+            {label}
+          </span>
+        </div>
+        <div className="flex flex-1 items-center gap-2">
+          <div
+            className="h-3 rounded-sm transition-all duration-300"
+            style={{ width: `${width}%`, backgroundColor: color }}
+            role="presentation"
+          />
+          <span
+            className="shrink-0 text-xs text-slate-300"
+            style={{ fontFamily: "var(--font-mono)" }}
+          >
+            {formatDollars(value)}
+          </span>
+        </div>
       </div>
-      <div className="flex flex-1 items-center gap-2">
-        <div
-          className="h-3 rounded-sm transition-all duration-300"
-          style={{ width: `${width}%`, backgroundColor: color }}
-          role="presentation"
-        />
-        <span
-          className="shrink-0 text-xs text-slate-300"
-          style={{ fontFamily: "var(--font-mono)" }}
-        >
-          {formatDollars(value)}
-        </span>
-      </div>
+      {historicalValue != null && (
+        <div className="flex items-center gap-3">
+          <div className="w-28 shrink-0 pl-4">
+            <span
+              className="text-[10px] text-slate-500"
+              style={{ fontFamily: "var(--font-mono)" }}
+            >
+              1938 avg
+            </span>
+          </div>
+          <span
+            className="text-[10px] text-amber-400/70"
+            style={{ fontFamily: "var(--font-mono)" }}
+          >
+            {formatDollars(historicalValue)}
+          </span>
+        </div>
+      )}
     </div>
   );
 }
@@ -84,6 +106,7 @@ function ComparisonBar({
  */
 export default function ValueStatistics({ areaId }: ValueStatisticsProps) {
   const valueData = useZoneValue(areaId);
+  const historyData = useZoneValueHistory(areaId);
 
   if (!valueData) {
     return (
@@ -192,22 +215,25 @@ export default function ValueStatistics({ areaId }: ValueStatisticsProps) {
         </h3>
         <div className="space-y-2">
           <ComparisonBar
-            label="Best-rated 1938"
+            label="A zones today"
             value={gradeAverages.A}
             maxValue={maxGrade}
             color="#4CAF50"
+            historicalValue={historyData?.gradeAverages.A?.avg1930s}
           />
           <ComparisonBar
             label="This neighborhood"
             value={avgAssessedValue}
             maxValue={maxGrade}
             color="#F44336"
+            historicalValue={historyData?.zone.price1930sMid}
           />
           <ComparisonBar
-            label="Worst-rated 1938"
+            label="D zones today"
             value={gradeAverages.D}
             maxValue={maxGrade}
             color="#F44336"
+            historicalValue={historyData?.gradeAverages.D?.avg1930s}
           />
         </div>
       </div>
