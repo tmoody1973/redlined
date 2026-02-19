@@ -1,0 +1,57 @@
+{
+  "source": "Chang & Smith, 2016 — 'Neighborhood Isolation and Mortgage Redlining in Milwaukee County'",
+  "note": "All monetary values standardized to 2010 dollars. Home ownership rates are means of tract medians by grade. Source: Table 1, Figures 5-10.",
+  "anovaSignificance": {
+    "homeOwnership": { "p": 0.000, "significant": true },
+    "medianIncome": { "p": 0.038, "significant": true },
+    "medianHomeValue": { "p": 0.529, "significant": false }
+  },
+  "decades": [
+    {
+      "year": 1950,
+      "metrics": {
+        "A": { "medianIncome": 35798, "homeOwnership": 0.659, "medianHomeValue": 1046135 },
+        "B": { "medianIncome": 31930, "homeOwnership": 0.631, "medianHomeValue": 1048737 },
+        "C": { "medianIncome": 31768, "homeOwnership": 0.572, "medianHomeValue": 905320 },
+        "D": { "medianIncome": 27066, "homeOwnership": 0.385, "medianHomeValue": 721431 }
+      }
+    },
+    {
+      "year": 1970,
+      "metrics": {
+        "A": { "medianIncome": 119931, "homeOwnership": 0.760, "medianHomeValue": 1088037 },
+        "B": { "medianIncome": 77354, "homeOwnership": 0.622, "medianHomeValue": 793678 },
+        "C": { "medianIncome": 62028, "homeOwnership": 0.551, "medianHomeValue": 553012 },
+        "D": { "medianIncome": 63751, "homeOwnership": 0.390, "medianHomeValue": 405760 }
+      }
+    },
+    {
+      "year": 1990,
+      "metrics": {
+        "A": { "medianIncome": 93167, "homeOwnership": 0.745, "medianHomeValue": 400328 },
+        "B": { "medianIncome": 67279, "homeOwnership": 0.582, "medianHomeValue": 202629 },
+        "C": { "medianIncome": 48424, "homeOwnership": 0.496, "medianHomeValue": 155115 },
+        "D": { "medianIncome": 51422, "homeOwnership": 0.337, "medianHomeValue": 319280 }
+      }
+    },
+    {
+      "year": 2010,
+      "metrics": {
+        "A": { "medianIncome": 93615, "homeOwnership": 0.788, "medianHomeValue": 387378 },
+        "B": { "medianIncome": 53412, "homeOwnership": 0.581, "medianHomeValue": 154309 },
+        "C": { "medianIncome": 33796, "homeOwnership": 0.512, "medianHomeValue": 113175 },
+        "D": { "medianIncome": 34110, "homeOwnership": 0.389, "medianHomeValue": 150043 }
+      }
+    }
+  ],
+  "keyInsights": {
+    "ownershipGap1950": { "A": 0.659, "D": 0.385, "gap": 0.274 },
+    "ownershipGap2010": { "A": 0.788, "D": 0.389, "gap": 0.399 },
+    "ownershipGapChange": "Gap widened from 27.4% to 39.9% (1950–2010)",
+    "incomeGap1950": { "A": 35798, "D": 27066, "ratio": 1.32 },
+    "incomeGap2010": { "A": 93615, "D": 34110, "ratio": 2.74 },
+    "incomeGapChange": "A-to-D income ratio grew from 1.3x to 2.7x (1950–2010)",
+    "gradeAOwnershipGrowth": "A-grade ownership increased from 65.9% to 78.8% (+12.9pp)",
+    "gradeDOwnershipStagnation": "D-grade ownership stagnated at ~38% across all four decades"
+  }
+}

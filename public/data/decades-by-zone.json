@@ -1,0 +1,2250 @@
+{
+  "source": "Census Bureau API (2000 SF3, 2010 ACS5, 2022 ACS5) + Chang & Smith 2016",
+  "decades": [
+    1950,
+    1970,
+    1990,
+    2010,
+    2020
+  ],
+  "gradeTimeSeries": {
+    "A": {
+      "income": [
+        35798,
+        119931,
+        93167,
+        74994,
+        102769
+      ],
+      "homeOwnership": [
+        0.659,
+        0.76,
+        0.745,
+        0.695,
+        0.716
+      ]
+    },
+    "B": {
+      "income": [
+        31930,
+        77354,
+        67279,
+        57104,
+        81541
+      ],
+      "homeOwnership": [
+        0.631,
+        0.622,
+        0.582,
+        0.618,
+        0.591
+      ]
+    },
+    "C": {
+      "income": [
+        31768,
+        62028,
+        48424,
+        43975,
+        58832
+      ],
+      "homeOwnership": [
+        0.572,
+        0.551,
+        0.496,
+        0.55,
+        0.494
+      ]
+    },
+    "D": {
+      "income": [
+        27066,
+        63751,
+        51422,
+        42362,
+        59574
+      ],
+      "homeOwnership": [
+        0.385,
+        0.39,
+        0.337,
+        0.49,
+        0.442
+      ]
+    }
+  },
+  "zones": {
+    "6270": {
+      "areaId": "6270",
+      "label": "6270",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        38953,
+        50009
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.462,
+        0.413
+      ]
+    },
+    "6271": {
+      "areaId": "6271",
+      "label": "6271",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        40801,
+        51661
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.721,
+        0.583
+      ]
+    },
+    "6272": {
+      "areaId": "6272",
+      "label": "6272",
+      "grade": "D",
+      "income": [
+        null,
+        null,
+        null,
+        30904,
+        36707
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.542,
+        0.368
+      ]
+    },
+    "6273": {
+      "areaId": "6273",
+      "label": "6273",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        37607,
+        48741
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.722,
+        0.541
+      ]
+    },
+    "6274": {
+      "areaId": "6274",
+      "label": "6274",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        26933,
+        31357
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.466,
+        0.323
+      ]
+    },
+    "6275": {
+      "areaId": "6275",
+      "label": "6275",
+      "grade": "D",
+      "income": [
+        null,
+        null,
+        null,
+        23073,
+        33810
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.548,
+        0.225
+      ]
+    },
+    "6276": {
+      "areaId": "6276",
+      "label": "6276",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        36905,
+        45188
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.486,
+        0.409
+      ]
+    },
+    "6277": {
+      "areaId": "6277",
+      "label": "6277",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        41648,
+        54967
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.553,
+        0.48
+      ]
+    },
+    "6278": {
+      "areaId": "6278",
+      "label": "6278",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        44419,
+        60812
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.677,
+        0.524
+      ]
+    },
+    "6279": {
+      "areaId": "6279",
+      "label": "6279",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        39520,
+        49661
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.402,
+        0.381
+      ]
+    },
+    "6280": {
+      "areaId": "6280",
+      "label": "6280",
+      "grade": "D",
+      "income": [
+        null,
+        null,
+        null,
+        49593,
+        65639
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.598,
+        0.589
+      ]
+    },
+    "6281": {
+      "areaId": "6281",
+      "label": "6281",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        84997,
+        106823
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.792,
+        0.722
+      ]
+    },
+    "6282": {
+      "areaId": "6282",
+      "label": "6282",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        94512,
+        128766
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.844,
+        0.79
+      ]
+    },
+    "6283": {
+      "areaId": "6283",
+      "label": "6283",
+      "grade": "A",
+      "income": [
+        null,
+        null,
+        null,
+        82715,
+        129293
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.83,
+        0.789
+      ]
+    },
+    "6284": {
+      "areaId": "6284",
+      "label": "6284",
+      "grade": "A",
+      "income": [
+        null,
+        null,
+        null,
+        128645,
+        167736
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.883,
+        0.856
+      ]
+    },
+    "6285": {
+      "areaId": "6285",
+      "label": "6285",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        103323,
+        138382
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.847,
+        0.786
+      ]
+    },
+    "6286": {
+      "areaId": "6286",
+      "label": "6286",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        85305,
+        117461
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.735,
+        0.711
+      ]
+    },
+    "6287": {
+      "areaId": "6287",
+      "label": "6287",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        65422,
+        93451
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.486,
+        0.466
+      ]
+    },
+    "6288": {
+      "areaId": "6288",
+      "label": "6288",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        38110,
+        63929
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.363,
+        0.376
+      ]
+    },
+    "6289": {
+      "areaId": "6289",
+      "label": "6289",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        76286,
+        136824
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.605,
+        0.68
+      ]
+    },
+    "6290": {
+      "areaId": "6290",
+      "label": "6290",
+      "grade": "A",
+      "income": [
+        null,
+        null,
+        null,
+        91547,
+        130690
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.711,
+        0.745
+      ]
+    },
+    "6291": {
+      "areaId": "6291",
+      "label": "6291",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        35358,
+        57918
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.249,
+        0.212
+      ]
+    },
+    "6292": {
+      "areaId": "6292",
+      "label": "6292",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        29360,
+        34112
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.216,
+        0.178
+      ]
+    },
+    "6293": {
+      "areaId": "6293",
+      "label": "6293",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        26433,
+        36405
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.522,
+        0.294
+      ]
+    },
+    "6294": {
+      "areaId": "6294",
+      "label": "6294",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        25149,
+        33777
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.475,
+        0.317
+      ]
+    },
+    "6295": {
+      "areaId": "6295",
+      "label": "6295",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        23599,
+        43424
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.504,
+        0.343
+      ]
+    },
+    "6296": {
+      "areaId": "6296",
+      "label": "6296",
+      "grade": "A",
+      "income": [
+        null,
+        null,
+        null,
+        42083,
+        49301
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.598,
+        0.586
+      ]
+    },
+    "6297": {
+      "areaId": "6297",
+      "label": "6297",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        41266,
+        56256
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.48,
+        0.472
+      ]
+    },
+    "6298": {
+      "areaId": "6298",
+      "label": "6298",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        35806,
+        39742
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.526,
+        0.452
+      ]
+    },
+    "6299": {
+      "areaId": "6299",
+      "label": "6299",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        25914,
+        34331
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.38,
+        0.306
+      ]
+    },
+    "6300": {
+      "areaId": "6300",
+      "label": "6300",
+      "grade": "D",
+      "income": [
+        null,
+        null,
+        null,
+        23935,
+        32494
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.366,
+        0.345
+      ]
+    },
+    "6301": {
+      "areaId": "6301",
+      "label": "6301",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        21983,
+        28915
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.338,
+        0.311
+      ]
+    },
+    "6302": {
+      "areaId": "6302",
+      "label": "6302",
+      "grade": "D",
+      "income": [
+        null,
+        null,
+        null,
+        33855,
+        52385
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.355,
+        0.349
+      ]
+    },
+    "6303": {
+      "areaId": "6303",
+      "label": "6303",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        40296,
+        58334
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.572,
+        0.462
+      ]
+    },
+    "6304": {
+      "areaId": "6304",
+      "label": "6304",
+      "grade": "D",
+      "income": [
+        null,
+        null,
+        null,
+        36510,
+        56318
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.179,
+        0.188
+      ]
+    },
+    "6305": {
+      "areaId": "6305",
+      "label": "6305",
+      "grade": "D",
+      "income": [
+        null,
+        null,
+        null,
+        25527,
+        33901
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.212,
+        0.147
+      ]
+    },
+    "6306": {
+      "areaId": "6306",
+      "label": "6306",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        29095,
+        36158
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.314,
+        0.319
+      ]
+    },
+    "6307": {
+      "areaId": "6307",
+      "label": "6307",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        22197,
+        33918
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.345,
+        0.328
+      ]
+    },
+    "6308": {
+      "areaId": "6308",
+      "label": "6308",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        54021,
+        72268
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.514,
+        0.591
+      ]
+    },
+    "6309": {
+      "areaId": "6309",
+      "label": "6309",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        18502,
+        23890
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.177,
+        0.148
+      ]
+    },
+    "6310": {
+      "areaId": "6310",
+      "label": "6310",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        19244,
+        20311
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.093,
+        0.07
+      ]
+    },
+    "6311": {
+      "areaId": "6311",
+      "label": "6311",
+      "grade": "D",
+      "income": [
+        null,
+        null,
+        null,
+        16414,
+        20365
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.114,
+        0.102
+      ]
+    },
+    "6312": {
+      "areaId": "6312",
+      "label": "6312",
+      "grade": "D",
+      "income": [
+        null,
+        null,
+        null,
+        36296,
+        32900
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.403,
+        0.342
+      ]
+    },
+    "6313": {
+      "areaId": "6313",
+      "label": "6313",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        57264,
+        80644
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.618,
+        0.527
+      ]
+    },
+    "6314": {
+      "areaId": "6314",
+      "label": "6314",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        60086,
+        89476
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.652,
+        0.557
+      ]
+    },
+    "6315": {
+      "areaId": "6315",
+      "label": "6315",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        70000,
+        108079
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.711,
+        0.642
+      ]
+    },
+    "6316": {
+      "areaId": "6316",
+      "label": "6316",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        50679,
+        63604
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.673,
+        0.613
+      ]
+    },
+    "6317": {
+      "areaId": "6317",
+      "label": "6317",
+      "grade": "D",
+      "income": [
+        null,
+        null,
+        null,
+        44759,
+        59133
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.524,
+        0.588
+      ]
+    },
+    "6318": {
+      "areaId": "6318",
+      "label": "6318",
+      "grade": "A",
+      "income": [
+        null,
+        null,
+        null,
+        83769,
+        105480
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.722,
+        0.803
+      ]
+    },
+    "6319": {
+      "areaId": "6319",
+      "label": "6319",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        69060,
+        88210
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.592,
+        0.619
+      ]
+    },
+    "6320": {
+      "areaId": "6320",
+      "label": "6320",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        61753,
+        92539
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.588,
+        0.507
+      ]
+    },
+    "6321": {
+      "areaId": "6321",
+      "label": "6321",
+      "grade": "D",
+      "income": [
+        null,
+        null,
+        null,
+        49297,
+        71155
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.426,
+        0.318
+      ]
+    },
+    "6322": {
+      "areaId": "6322",
+      "label": "6322",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        51491,
+        75590
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.447,
+        0.348
+      ]
+    },
+    "6323": {
+      "areaId": "6323",
+      "label": "6323",
+      "grade": "A",
+      "income": [
+        null,
+        null,
+        null,
+        92529,
+        111253
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.76,
+        0.745
+      ]
+    },
+    "6324": {
+      "areaId": "6324",
+      "label": "6324",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        72325,
+        105439
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.687,
+        0.665
+      ]
+    },
+    "6325": {
+      "areaId": "6325",
+      "label": "6325",
+      "grade": "A",
+      "income": [
+        null,
+        null,
+        null,
+        54135,
+        69825
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.629,
+        0.597
+      ]
+    },
+    "6326": {
+      "areaId": "6326",
+      "label": "6326",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        58434,
+        92061
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.71,
+        0.71
+      ]
+    },
+    "6327": {
+      "areaId": "6327",
+      "label": "6327",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        61281,
+        102574
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.679,
+        0.648
+      ]
+    },
+    "6328": {
+      "areaId": "6328",
+      "label": "6328",
+      "grade": "A",
+      "income": [
+        null,
+        null,
+        null,
+        82291,
+        140724
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.804,
+        0.822
+      ]
+    },
+    "6329": {
+      "areaId": "6329",
+      "label": "6329",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        40314,
+        53146
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.646,
+        0.534
+      ]
+    },
+    "6330": {
+      "areaId": "6330",
+      "label": "6330",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        64895,
+        92716
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.9,
+        0.814
+      ]
+    },
+    "6331": {
+      "areaId": "6331",
+      "label": "6331",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        66960,
+        68851
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.636,
+        0.457
+      ]
+    },
+    "6332": {
+      "areaId": "6332",
+      "label": "6332",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        56849,
+        71227
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.556,
+        0.47
+      ]
+    },
+    "6333": {
+      "areaId": "6333",
+      "label": "6333",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        57488,
+        76757
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.638,
+        0.619
+      ]
+    },
+    "6334": {
+      "areaId": "6334",
+      "label": "6334",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        37143,
+        56543
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.437,
+        0.486
+      ]
+    },
+    "6335": {
+      "areaId": "6335",
+      "label": "6335",
+      "grade": "D",
+      "income": [
+        null,
+        null,
+        null,
+        37551,
+        51226
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.397,
+        0.415
+      ]
+    },
+    "6336": {
+      "areaId": "6336",
+      "label": "6336",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        37338,
+        46635
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.296,
+        0.289
+      ]
+    },
+    "6337": {
+      "areaId": "6337",
+      "label": "6337",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        50290,
+        70330
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.661,
+        0.631
+      ]
+    },
+    "6338": {
+      "areaId": "6338",
+      "label": "6338",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        47499,
+        75211
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.607,
+        0.641
+      ]
+    },
+    "6339": {
+      "areaId": "6339",
+      "label": "6339",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        41194,
+        49599
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.451,
+        0.419
+      ]
+    },
+    "6340": {
+      "areaId": "6340",
+      "label": "6340",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        44470,
+        66558
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.613,
+        0.536
+      ]
+    },
+    "6341": {
+      "areaId": "6341",
+      "label": "6341",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        52687,
+        63891
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.527,
+        0.439
+      ]
+    },
+    "6342": {
+      "areaId": "6342",
+      "label": "6342",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        51621,
+        64500
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.555,
+        0.476
+      ]
+    },
+    "6343": {
+      "areaId": "6343",
+      "label": "6343",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        38925,
+        61158
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.465,
+        0.399
+      ]
+    },
+    "6344": {
+      "areaId": "6344",
+      "label": "6344",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        51522,
+        66423
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.633,
+        0.572
+      ]
+    },
+    "6345": {
+      "areaId": "6345",
+      "label": "6345",
+      "grade": "D",
+      "income": [
+        null,
+        null,
+        null,
+        62941,
+        74997
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.734,
+        0.581
+      ]
+    },
+    "6346": {
+      "areaId": "6346",
+      "label": "6346",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        54381,
+        83906
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.642,
+        0.592
+      ]
+    },
+    "6347": {
+      "areaId": "6347",
+      "label": "6347",
+      "grade": "D",
+      "income": [
+        null,
+        null,
+        null,
+        60845,
+        85251
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.664,
+        0.548
+      ]
+    },
+    "6348": {
+      "areaId": "6348",
+      "label": "6348",
+      "grade": "D",
+      "income": [
+        null,
+        null,
+        null,
+        72679,
+        117650
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.847,
+        0.892
+      ]
+    },
+    "6349": {
+      "areaId": "6349",
+      "label": "6349",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        53833,
+        77599
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.792,
+        0.731
+      ]
+    },
+    "6350": {
+      "areaId": "6350",
+      "label": "6350",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        52341,
+        74137
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.71,
+        0.725
+      ]
+    },
+    "6351": {
+      "areaId": "6351",
+      "label": "6351",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        44001,
+        69801
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.592,
+        0.57
+      ]
+    },
+    "6352": {
+      "areaId": "6352",
+      "label": "6352",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        38653,
+        55026
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.454,
+        0.469
+      ]
+    },
+    "6353": {
+      "areaId": "6353",
+      "label": "6353",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        33674,
+        49435
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.371,
+        0.406
+      ]
+    },
+    "6354": {
+      "areaId": "6354",
+      "label": "6354",
+      "grade": "A",
+      "income": [
+        null,
+        null,
+        null,
+        40979,
+        53689
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.41,
+        0.481
+      ]
+    },
+    "6355": {
+      "areaId": "6355",
+      "label": "6355",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        36127,
+        51416
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.519,
+        0.47
+      ]
+    },
+    "6356": {
+      "areaId": "6356",
+      "label": "6356",
+      "grade": "D",
+      "income": [
+        null,
+        null,
+        null,
+        26918,
+        38207
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.333,
+        0.294
+      ]
+    },
+    "6357": {
+      "areaId": "6357",
+      "label": "6357",
+      "grade": "D",
+      "income": [
+        null,
+        null,
+        null,
+        27649,
+        40444
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.324,
+        0.277
+      ]
+    },
+    "6358": {
+      "areaId": "6358",
+      "label": "6358",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        34264,
+        47943
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.494,
+        0.466
+      ]
+    },
+    "6359": {
+      "areaId": "6359",
+      "label": "6359",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        42592,
+        57849
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.662,
+        0.615
+      ]
+    },
+    "6360": {
+      "areaId": "6360",
+      "label": "6360",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        50026,
+        62600
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.749,
+        0.766
+      ]
+    },
+    "6361": {
+      "areaId": "6361",
+      "label": "6361",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        52579,
+        69727
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.78,
+        0.708
+      ]
+    },
+    "6362": {
+      "areaId": "6362",
+      "label": "6362",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        55894,
+        71340
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.774,
+        0.74
+      ]
+    },
+    "6363": {
+      "areaId": "6363",
+      "label": "6363",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        52651,
+        65265
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.672,
+        0.643
+      ]
+    },
+    "6364": {
+      "areaId": "6364",
+      "label": "6364",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        58690,
+        91108
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.633,
+        0.658
+      ]
+    },
+    "6365": {
+      "areaId": "6365",
+      "label": "6365",
+      "grade": "D",
+      "income": [
+        null,
+        null,
+        null,
+        47400,
+        80595
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.507,
+        0.439
+      ]
+    },
+    "6366": {
+      "areaId": "6366",
+      "label": "6366",
+      "grade": "D",
+      "income": [
+        null,
+        null,
+        null,
+        56396,
+        90717
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.606,
+        0.644
+      ]
+    },
+    "6367": {
+      "areaId": "6367",
+      "label": "6367",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        62902,
+        95714
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.671,
+        0.708
+      ]
+    },
+    "6368": {
+      "areaId": "6368",
+      "label": "6368",
+      "grade": "D",
+      "income": [
+        null,
+        null,
+        null,
+        43723,
+        57305
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.55,
+        0.497
+      ]
+    },
+    "6369": {
+      "areaId": "6369",
+      "label": "6369",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        47065,
+        62451
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.527,
+        0.534
+      ]
+    },
+    "6370": {
+      "areaId": "6370",
+      "label": "6370",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        51250,
+        69701
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.605,
+        0.736
+      ]
+    },
+    "6371": {
+      "areaId": "6371",
+      "label": "6371",
+      "grade": "A",
+      "income": [
+        null,
+        null,
+        null,
+        51250,
+        69701
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.605,
+        0.736
+      ]
+    },
+    "6372": {
+      "areaId": "6372",
+      "label": "6372",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        47074,
+        55921
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.748,
+        0.732
+      ]
+    },
+    "6373": {
+      "areaId": "6373",
+      "label": "6373",
+      "grade": "B",
+      "income": [
+        null,
+        null,
+        null,
+        62339,
+        72366
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.702,
+        0.638
+      ]
+    },
+    "6374": {
+      "areaId": "6374",
+      "label": "6374",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        62339,
+        72366
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.702,
+        0.638
+      ]
+    },
+    "6375": {
+      "areaId": "6375",
+      "label": "6375",
+      "grade": "D",
+      "income": [
+        null,
+        null,
+        null,
+        50714,
+        70315
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.581,
+        0.607
+      ]
+    },
+    "6376": {
+      "areaId": "6376",
+      "label": "6376",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        47630,
+        72045
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.638,
+        0.708
+      ]
+    },
+    "6377": {
+      "areaId": "6377",
+      "label": "6377",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        56390,
+        77754
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.693,
+        0.708
+      ]
+    },
+    "6378": {
+      "areaId": "6378",
+      "label": "6378",
+      "grade": "D",
+      "income": [
+        null,
+        null,
+        null,
+        42974,
+        61242
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.583,
+        0.574
+      ]
+    },
+    "6379": {
+      "areaId": "6379",
+      "label": "6379",
+      "grade": "D",
+      "income": [
+        null,
+        null,
+        null,
+        50530,
+        71143
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.808,
+        0.752
+      ]
+    },
+    "6380": {
+      "areaId": "6380",
+      "label": "6380",
+      "grade": "C",
+      "income": [
+        null,
+        null,
+        null,
+        59588,
+        72417
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.885,
+        0.786
+      ]
+    },
+    "6381": {
+      "areaId": "6381",
+      "label": "6381",
+      "grade": "D",
+      "income": [
+        null,
+        null,
+        null,
+        66206,
+        95888
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.554,
+        0.526
+      ]
+    },
+    "11211": {
+      "areaId": "11211",
+      "label": "11211",
+      "grade": "U",
+      "income": [
+        null,
+        null,
+        null,
+        47401,
+        61404
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.223,
+        0.164
+      ]
+    },
+    "11212": {
+      "areaId": "11212",
+      "label": "11212",
+      "grade": "U",
+      "income": [
+        null,
+        null,
+        null,
+        38005,
+        50714
+      ],
+      "homeOwnership": [
+        null,
+        null,
+        null,
+        0.432,
+        0.371
+      ]
+    }
+  },
+  "censusInsights": {
+    "incomeRatio2010": 1.8,
+    "incomeRatio2020": 1.7,
+    "ownershipGap2010": 0.205,
+    "ownershipGap2020": 0.274
+  }
+}

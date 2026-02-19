@@ -2,8 +2,9 @@
 
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import { useZoneSelection } from "@/lib/zone-selection";
 import { useDataOverlay } from "@/lib/data-overlay";
+import { useDecadesData } from "@/lib/useDecadesData";
+import { generateDecadesHeadline } from "@/lib/narrative-text";
 import {
   HOLC_DESCRIPTORS,
   type HOLCGrade,
@@ -14,6 +15,10 @@ import { useLayerVisibility } from "@/lib/layer-visibility";
 import AppraiserDescription from "./AppraiserDescription";
 import SanbornContext from "./SanbornContext";
 import ContentWarning from "./ContentWarning";
+import CollapsibleSection from "./CollapsibleSection";
+import NarrativeHeader from "./NarrativeHeader";
+import OverlayNarrative from "./OverlayNarrative";
+import DecadesPanel from "./DecadesPanel";
 import DemolitionStatistics from "./DemolitionStatistics";
 import IncomeStatistics from "./IncomeStatistics";
 import HealthStatistics from "./HealthStatistics";
@@ -57,6 +62,14 @@ function shouldShowContentWarning(
   });
 }
 
+/** HOLC grade to accent color for collapsible section borders. */
+const GRADE_ACCENT: Record<string, string> = {
+  A: "#4CAF50",
+  B: "#2196F3",
+  C: "#FFEB3B",
+  D: "#F44336",
+};
+
 interface ZoneData {
   areaId: string;
   grade: HOLCGrade | null;
@@ -68,9 +81,11 @@ interface ZoneDetailProps {
 }
 
 /**
- * Displays the full detail panel for a selected HOLC zone, including the
- * zone name, grade badge, content warning (when applicable), appraiser
- * description fields, and data overlay statistics based on the active overlay.
+ * Three-act narrative panel for a selected HOLC zone:
+ *
+ * Act 1 — "The 1938 Decision": What the appraisers wrote and why
+ * Act 2 — "What Happened Next": Decades of divergence (collapsible)
+ * Act 3 — "What It Means Today": Active data overlay with narrative headline
  */
 export default function ZoneDetail({ zone }: ZoneDetailProps) {
   const description = useQuery(api.queries.getAreaDescription, {
@@ -80,10 +95,18 @@ export default function ZoneDetail({ zone }: ZoneDetailProps) {
   const { activeOverlay, overlayActive } = useDataOverlay();
   const { ghostsVisible } = useTimeSlider();
   const { sanbornVisible } = useLayerVisibility();
+  const decadesData = useDecadesData(zone.grade, zone.areaId);
 
   const badgeClass = getGradeBadgeClass(zone.grade);
   const badgeLabel = getGradeBadgeLabel(zone.grade);
   const showWarning = shouldShowContentWarning(zone.grade, description);
+
+  // Generate the decades headline for Act 2
+  const decadesHeadline = generateDecadesHeadline(
+    decadesData?.keyInsights ?? null,
+  );
+
+  const accentColor = zone.grade ? GRADE_ACCENT[zone.grade] ?? "rgb(51 65 85)" : "rgb(51 65 85)";
 
   return (
     <div className="space-y-6 p-4">
@@ -102,24 +125,78 @@ export default function ZoneDetail({ zone }: ZoneDetailProps) {
         </span>
       </div>
 
-      {/* Data overlay statistics — show the panel matching the active overlay */}
-      {overlayActive && activeOverlay === "income" && (
-        <IncomeStatistics areaId={zone.areaId} />
-      )}
-      {overlayActive && activeOverlay === "health" && (
-        <HealthStatistics areaId={zone.areaId} />
-      )}
-      {overlayActive && activeOverlay === "environment" && (
-        <EnvironmentStatistics areaId={zone.areaId} />
-      )}
-      {overlayActive && activeOverlay === "value" && (
-        <ValueStatistics areaId={zone.areaId} />
-      )}
-      {overlayActive && activeOverlay === "race" && (
-        <RaceStatistics areaId={zone.areaId} />
+      {/* ── Act 1: The 1938 Decision ── */}
+      <NarrativeHeader
+        zoneName={zone.name}
+        grade={zone.grade}
+        description={description}
+        areaId={zone.areaId}
+      />
+
+      {/* Appraiser description with contextual content warning */}
+      {description === undefined ? (
+        <p className="text-sm text-slate-400" style={{ fontFamily: "var(--font-body)" }}>
+          Loading description...
+        </p>
+      ) : description === null ? null : showWarning ? (
+        <ContentWarning grade={zone.grade}>
+          <AppraiserDescription description={description} />
+        </ContentWarning>
+      ) : (
+        <AppraiserDescription description={description} />
       )}
 
-      {/* Sanborn map context — show when Sanborn overlay is active */}
+      {/* ── Act 2: What Happened Next (collapsible) ── */}
+      <CollapsibleSection
+        heading={
+          <span
+            className="text-sm font-semibold text-slate-200"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
+            {decadesHeadline.headline}
+          </span>
+        }
+        subtext={
+          <span
+            className="text-[11px] text-slate-400"
+            style={{ fontFamily: "var(--font-body)" }}
+          >
+            {decadesHeadline.subtext}
+          </span>
+        }
+        defaultOpen={false}
+        accentColor={accentColor}
+        ariaLabel="What Happened Next"
+      >
+        <DecadesPanel grade={zone.grade} areaId={zone.areaId} />
+      </CollapsibleSection>
+
+      {/* ── Act 3: What It Means Today ── */}
+      <OverlayNarrative
+        activeOverlay={activeOverlay}
+        overlayActive={overlayActive}
+        areaId={zone.areaId}
+        grade={zone.grade}
+        zoneName={zone.name}
+      >
+        {overlayActive && activeOverlay === "income" && (
+          <IncomeStatistics areaId={zone.areaId} />
+        )}
+        {overlayActive && activeOverlay === "health" && (
+          <HealthStatistics areaId={zone.areaId} />
+        )}
+        {overlayActive && activeOverlay === "environment" && (
+          <EnvironmentStatistics areaId={zone.areaId} />
+        )}
+        {overlayActive && activeOverlay === "value" && (
+          <ValueStatistics areaId={zone.areaId} />
+        )}
+        {overlayActive && activeOverlay === "race" && (
+          <RaceStatistics areaId={zone.areaId} />
+        )}
+      </OverlayNarrative>
+
+      {/* ── Conditional layers ── */}
       {sanbornVisible && (
         <SanbornContext
           areaId={zone.areaId}
@@ -127,23 +204,8 @@ export default function ZoneDetail({ zone }: ZoneDetailProps) {
           zoneName={zone.name}
         />
       )}
-
-      {/* Demolition statistics — show when ghost mode is active */}
       {ghostsVisible && (
         <DemolitionStatistics areaId={zone.areaId} grade={zone.grade} />
-      )}
-
-      {/* Appraiser description with optional content warning */}
-      {description === undefined ? (
-        <p className="text-sm text-slate-400" style={{ fontFamily: "var(--font-body)" }}>
-          Loading description...
-        </p>
-      ) : description === null ? null : showWarning ? (
-        <ContentWarning>
-          <AppraiserDescription description={description} />
-        </ContentWarning>
-      ) : (
-        <AppraiserDescription description={description} />
       )}
     </div>
   );

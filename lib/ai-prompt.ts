@@ -75,7 +75,16 @@ Paulson, Wierschke & Kim (2016) — "Milwaukee's History of Segregation and Deve
 - Suburban communities deliberately resisted African American employment and residence, including refusing to build bus or rail connections.
 - One vacant house reduces every other property on the block by $7,000.
 - The Realtor Code of Ethics (1928-1955) explicitly directed realtors not to introduce "members of any race or nationality" into neighborhoods.
-- Modern insurance redlining continues: "high-crime area" designations map onto the same areas as HOLC D-grades.`;
+- Modern insurance redlining continues: "high-crime area" designations map onto the same areas as HOLC D-grades.
+
+DECADE-BY-DECADE DATA (from Chang & Smith Table 1, all monetary values in 2010 dollars):
+Home Ownership Rate by Grade: A went from 65.9% (1950) → 76.0% (1970) → 74.5% (1990) → 78.8% (2010). D stayed flat: 38.5% (1950) → 39.0% (1970) → 33.7% (1990) → 38.9% (2010). The gap widened from 27.4pp to 39.9pp.
+Median Household Income by Grade (2010$): A=$36K (1950) → $120K (1970) → $93K (1990) → $94K (2010). D=$27K (1950) → $64K (1970) → $51K (1990) → $34K (2010). The A-to-D ratio grew from 1.3x to 2.7x.
+Census API Data (2010-2020): A-zone avg income $75K (2010) → $103K (2020). D-zone avg income $42K (2010) → $60K (2020). A-D ownership gap widened from 20.5pp to 27.4pp between 2010 and 2020.
+The ANOVA tests confirm statistical significance for home ownership (p=0.000) and income (p=0.038) differences among grades.
+
+HISTORIC REDLINING SCORES (openICPSR project 141121 V3):
+Each Census tract gets a continuous redlining severity score (1.0–4.0), computed as the area-weighted average of HOLC grades (A=1, B=2, C=3, D=4) within that tract. Milwaukee grade averages: A-zones avg 1.74, B-zones avg 2.25, C-zones avg 2.99, D-zones avg 3.70. The near-perfect correlation between categorical HOLC grades and the continuous HRS confirms that redlining was not random — it was systematic. Lynch et al. (2021) found 73% higher odds of current lending discrimination for every one-unit increase in historic redlining score.`;
 
   if (zoneContext) {
     const gradeLabel = zoneContext.grade

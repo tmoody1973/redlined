@@ -47,7 +47,7 @@ function ComparisonBar({
 
   return (
     <div className="flex items-center gap-3">
-      <div className="flex w-24 shrink-0 items-center gap-1.5">
+      <div className="flex w-28 shrink-0 items-center gap-1.5">
         <span
           className="inline-block h-2.5 w-2.5 shrink-0 rounded-sm"
           style={{ backgroundColor: color }}
@@ -188,23 +188,23 @@ export default function ValueStatistics({ areaId }: ValueStatisticsProps) {
           className="mb-3 text-[10px] font-semibold uppercase tracking-widest text-slate-400"
           style={{ fontFamily: "var(--font-mono)" }}
         >
-          A-Zone vs D-Zone
+          By 1938 Grade
         </h3>
         <div className="space-y-2">
           <ComparisonBar
-            label="A-Zone Avg"
+            label="Best-rated 1938"
             value={gradeAverages.A}
             maxValue={maxGrade}
             color="#4CAF50"
           />
           <ComparisonBar
-            label="This Zone"
+            label="This neighborhood"
             value={avgAssessedValue}
             maxValue={maxGrade}
             color="#F44336"
           />
           <ComparisonBar
-            label="D-Zone Avg"
+            label="Worst-rated 1938"
             value={gradeAverages.D}
             maxValue={maxGrade}
             color="#F44336"
