@@ -79,7 +79,7 @@ export default function BuildingDetail({ building, zone }: BuildingDetailProps) 
           className="text-xl font-bold text-slate-100"
           style={{ fontFamily: "var(--font-heading)" }}
         >
-          Building Details
+          {building.address || "Building Details"}
         </h2>
         <code
           className="mt-1 inline-block text-[11px] text-slate-400"

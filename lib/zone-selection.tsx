@@ -10,6 +10,7 @@ import {
 
 export interface BuildingProperties {
   TAXKEY: string;
+  address: string;
   YR_BUILT: number;
   NR_STORIES: number;
   C_A_TOTAL: number;

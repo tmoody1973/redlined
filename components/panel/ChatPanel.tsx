@@ -5,6 +5,7 @@ import {
   useEffect,
   useRef,
   useCallback,
+  useMemo,
   type FormEvent,
 } from "react";
 import { useQuery, useMutation, useAction } from "convex/react";
@@ -61,9 +62,13 @@ export default function ChatPanel({ zoneContext }: ChatPanelProps) {
   const [recentZones, setRecentZones] = useState<
     { name: string; grade: string | null }[]
   >([]);
+  const [honeypot, setHoneypot] = useState("");
 
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  /** Timestamp when the component mounted — used to reject instant bot submissions. */
+  const mountTime = useMemo(() => Date.now(), []);
 
   const createConversation = useMutation(api.mutations.createConversation);
   const addMessage = useMutation(api.mutations.addMessage);
@@ -138,6 +143,12 @@ export default function ChatPanel({ zoneContext }: ChatPanelProps) {
     async (question: string) => {
       if (!conversationId || !question.trim() || isLoading) return;
 
+      // Bot protection: silently discard if honeypot is filled
+      if (honeypot) return;
+
+      // Bot protection: reject submissions within 3 seconds of mount
+      if (Date.now() - mountTime < 3000) return;
+
       setShowSuggestions(false);
       setIsLoading(true);
       setStreamingText("");
@@ -185,6 +196,7 @@ export default function ChatPanel({ zoneContext }: ChatPanelProps) {
           messages: claudeMessages,
           zoneContext: claudeZoneContext,
           recentZones,
+          sessionId: getSessionId(),
         });
 
         // Simulate streaming with a typing effect for perceived responsiveness
@@ -230,6 +242,8 @@ export default function ChatPanel({ zoneContext }: ChatPanelProps) {
       recentZones,
       addMessage,
       askNarrativeGuide,
+      honeypot,
+      mountTime,
     ],
   );
 
@@ -263,14 +277,14 @@ export default function ChatPanel({ zoneContext }: ChatPanelProps) {
             className="text-lg font-semibold text-slate-100"
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            AI Narrative Guide
+            Ask the Guide
           </h3>
         </div>
         <p
           className="mt-1 text-sm text-slate-400"
           style={{ fontFamily: "var(--font-body)" }}
         >
-          Ask about any neighborhood, building, or zone
+          I can explain what the data means, tell you the history of any neighborhood, or answer questions about redlining in Milwaukee.
         </p>
       </div>
 
@@ -287,7 +301,9 @@ export default function ChatPanel({ zoneContext }: ChatPanelProps) {
             className="text-center text-sm text-slate-400"
             style={{ fontFamily: "var(--font-body)" }}
           >
-            Ask a question to start exploring.
+            {zoneContext
+              ? `You're looking at ${zoneContext.name}. Ask me anything \u2014 like "Why was this neighborhood redlined?" or "What's different here today?"`
+              : 'Select a zone on the map, then ask me anything \u2014 like "What is redlining?" or "What happened to Bronzeville?"'}
           </p>
         )}
 
@@ -387,19 +403,35 @@ export default function ChatPanel({ zoneContext }: ChatPanelProps) {
       {/* Suggested questions: shown when chat is empty or after a new zone selection */}
       {shouldShowSuggestions && (
         <div className="mb-3">
-          <SuggestedQuestions onSelectQuestion={handleSuggestedQuestion} />
+          <SuggestedQuestions
+            onSelectQuestion={handleSuggestedQuestion}
+            zoneName={zoneContext?.name}
+            grade={zoneContext?.grade}
+          />
         </div>
       )}
 
       {/* Chat input */}
       <form onSubmit={handleSubmit} className="flex gap-2">
+        {/* Honeypot: hidden field to catch bots that auto-fill all inputs */}
+        <input
+          type="text"
+          name="website"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+          tabIndex={-1}
+          aria-hidden="true"
+          autoComplete="off"
+          className="absolute h-0 w-0 overflow-hidden opacity-0"
+        />
         <input
           ref={inputRef}
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Ask about this neighborhood..."
+          placeholder={zoneContext ? `Ask about ${zoneContext.name}...` : "Ask about Milwaukee's redlining history..."}
           disabled={isLoading}
+          maxLength={500}
           className="focus-ring flex-1 rounded-md border border-slate-700 bg-slate-800/80 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 transition-colors disabled:opacity-50"
           style={{ fontFamily: "var(--font-body)" }}
           aria-label="Chat message input"

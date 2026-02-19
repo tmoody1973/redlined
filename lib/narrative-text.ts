@@ -89,25 +89,148 @@ export function generateContentWarningContext(grade: HOLCGrade | null): string {
 interface DecadesKeyInsights {
   ownershipGapChange: string;
   incomeGapChange: string;
+  ownershipGap1950: { A: number; D: number; gap: number };
+  ownershipGap2010: { A: number; D: number; gap: number };
+  incomeGap1950: { A: number; D: number; ratio: number };
+  incomeGap2010: { A: number; D: number; ratio: number };
 }
 
 /**
- * Generates the Act 2 headline and subtext from decades key insights.
+ * Generates the Act 2 headline and subtext in plain English for
+ * museum visitors — families, students, community members.
  */
 export function generateDecadesHeadline(
   keyInsights: DecadesKeyInsights | null,
 ): { headline: string; subtext: string } {
   if (!keyInsights) {
     return {
-      headline: "The gap widened, not narrowed",
-      subtext: "Home ownership and income diverged between grades over 70 years.",
+      headline: "The gap kept growing for 70 years",
+      subtext: "Home ownership and income between the best-rated and worst-rated neighborhoods pulled further apart over decades — and the Fair Housing Act didn't close it.",
     };
   }
 
+  const aPct = Math.round(keyInsights.ownershipGap2010.A * 100);
+  const dPct = Math.round(keyInsights.ownershipGap2010.D * 100);
+
   return {
-    headline: "The gap widened, not narrowed",
-    subtext: `${keyInsights.ownershipGapChange}. ${keyInsights.incomeGapChange}. The Fair Housing Act (1968) did not reverse the damage.`,
+    headline: "The gap kept growing for 70 years",
+    subtext: `By 2010, ${aPct}% of families in the best-rated neighborhoods owned their home — but only ${dPct}% in redlined ones. The Fair Housing Act of 1968 didn't close the gap.`,
   };
+}
+
+/**
+ * Plain-English narrative about home ownership divergence for museum visitors.
+ */
+export function generateOwnershipNarrative(
+  ownershipA: number[],
+  ownershipD: number[],
+  years: number[],
+): string {
+  if (ownershipA.length === 0 || ownershipD.length === 0) {
+    return "";
+  }
+
+  const firstA = Math.round(ownershipA[0] * 100);
+  const firstD = Math.round(ownershipD[0] * 100);
+  const lastA = Math.round(ownershipA[ownershipA.length - 1] * 100);
+  const lastD = Math.round(ownershipD[ownershipD.length - 1] * 100);
+  const firstYear = years[0];
+  const lastYear = years[years.length - 1];
+
+  const dChange = lastD - firstD;
+  const dDesc =
+    Math.abs(dChange) <= 3
+      ? `stayed stuck at about ${lastD}%`
+      : dChange > 0
+        ? `only reached ${lastD}%`
+        : `actually fell to ${lastD}%`;
+
+  return `In ${firstYear}, about ${firstA}% of families in the best-rated neighborhoods owned their home, compared to ${firstD}% in redlined areas. By ${lastYear}, the best-rated areas climbed to ${lastA}% — but redlined neighborhoods ${dDesc}.`;
+}
+
+/**
+ * Plain-English narrative about income divergence for museum visitors.
+ */
+export function generateIncomeNarrative(
+  incomeA: number[],
+  incomeD: number[],
+  years: number[],
+): string {
+  if (incomeA.length === 0 || incomeD.length === 0) {
+    return "";
+  }
+
+  const firstA = Math.round(incomeA[0] / 1000);
+  const firstD = Math.round(incomeD[0] / 1000);
+  const lastA = Math.round(incomeA[incomeA.length - 1] / 1000);
+  const lastD = Math.round(incomeD[incomeD.length - 1] / 1000);
+  const firstYear = years[0];
+  const lastYear = years[years.length - 1];
+
+  const ratio = lastD > 0 ? (lastA / lastD).toFixed(1) : "much";
+
+  return `In ${firstYear}, families in the best-rated neighborhoods earned about $${firstA}K a year (in today's dollars), while families in redlined areas earned about $${firstD}K. By ${lastYear}, the best-rated families earned $${lastA}K while redlined families earned $${lastD}K — a gap of ${ratio}x.`;
+}
+
+const GRADE_LABELS: Record<string, string> = {
+  A: "Best",
+  B: "Still Desirable",
+  C: "Declining",
+  D: "Hazardous",
+};
+
+/**
+ * Plain-English narrative about this specific zone's 2010–2020 changes.
+ */
+export function generateZoneNarrative(
+  zoneName: string,
+  grade: string | null,
+  income2010: number | null,
+  income2020: number | null,
+  ownership2010: number | null,
+  ownership2020: number | null,
+  gradeAvgIncome: number | null,
+): string {
+  const name = zoneName || "This neighborhood";
+  const parts: string[] = [];
+
+  if (income2010 !== null && income2020 !== null && income2010 > 0) {
+    const pctChange = Math.round(((income2020 - income2010) / income2010) * 100);
+    const incFmt2010 = `$${Math.round(income2010).toLocaleString("en-US")}`;
+    const incFmt2020 = `$${Math.round(income2020).toLocaleString("en-US")}`;
+    if (pctChange > 0) {
+      parts.push(`In ${name}, median household income rose from ${incFmt2010} to ${incFmt2020} between 2010 and 2020 — up ${pctChange}%.`);
+    } else if (pctChange < 0) {
+      parts.push(`In ${name}, median household income fell from ${incFmt2010} to ${incFmt2020} between 2010 and 2020 — down ${Math.abs(pctChange)}%.`);
+    } else {
+      parts.push(`In ${name}, median household income stayed roughly flat at ${incFmt2020} between 2010 and 2020.`);
+    }
+  }
+
+  if (ownership2010 !== null && ownership2020 !== null) {
+    const own2010 = Math.round(ownership2010 * 100);
+    const own2020 = Math.round(ownership2020 * 100);
+    const diff = own2020 - own2010;
+    if (Math.abs(diff) <= 2) {
+      parts.push(`Home ownership held steady at about ${own2020}%.`);
+    } else if (diff > 0) {
+      parts.push(`Home ownership grew from ${own2010}% to ${own2020}%.`);
+    } else {
+      parts.push(`Home ownership fell from ${own2010}% to ${own2020}%.`);
+    }
+  }
+
+  if (gradeAvgIncome !== null && income2020 !== null && grade) {
+    const gradeLabel = GRADE_LABELS[grade] ?? grade;
+    const avgFmt = `$${Math.round(gradeAvgIncome).toLocaleString("en-US")}`;
+    if (income2020 < gradeAvgIncome * 0.9) {
+      parts.push(`That's below the average for all "${gradeLabel}" neighborhoods (${avgFmt}).`);
+    } else if (income2020 > gradeAvgIncome * 1.1) {
+      parts.push(`That's above the average for "${gradeLabel}" neighborhoods (${avgFmt}).`);
+    }
+  }
+
+  return parts.join(" ");
 }
 
 // --- Act 3: What It Means Today ---

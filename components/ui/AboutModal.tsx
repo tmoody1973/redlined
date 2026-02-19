@@ -96,10 +96,13 @@ export function AboutModal({ open, onClose }: AboutModalProps) {
             className="mt-3 text-sm leading-relaxed text-slate-300"
             style={{ fontFamily: "var(--font-body)" }}
           >
-            This map visualizes those grades as 3D extrusions &mdash; D-grade zones
-            are the tallest, representing the weight of disinvestment. Modern data
-            overlays reveal how those 1938 decisions still shape health outcomes,
-            income levels, environmental burden, and property values today.
+            This map visualizes all 114 HOLC zones color-coded by their original
+            grades, with 148,000 individual building footprints rendered from
+            Milwaukee&rsquo;s property records. A three-act narrative panel
+            connects each zone&rsquo;s 1938 appraisal to decades of divergence
+            and present-day outcomes. Five data overlays reveal how those
+            decisions still shape income, health, environmental burden, property
+            values, and racial demographics today.
           </p>
         </section>
 
@@ -115,27 +118,27 @@ export function AboutModal({ open, onClose }: AboutModalProps) {
             {[
               {
                 action: "Click a zone",
-                desc: "to see its HOLC grade, appraiser description, and modern data.",
+                desc: "to see its three-act narrative: what appraisers wrote in 1938, decades of divergence, and what the data shows today.",
+              },
+              {
+                action: "Click a building",
+                desc: "at zoom 11+ to see its TAXKEY, year built, assessed value, stories, and which HOLC zone it belongs to.",
               },
               {
                 action: "Drag",
                 desc: "to pan the map. Right-drag or Ctrl+drag to rotate. Scroll to zoom.",
               },
               {
-                action: "Data Overlays",
-                desc: "toggle Median Income, Health Outcomes, Environmental Burden, or Assessed Value to recolor zones by modern metrics.",
+                action: "Layers (top-left)",
+                desc: "toggle zones, labels, buildings, street map, Sanborn fire insurance maps, data overlays (income, health, environment, value, race), and demolished buildings.",
               },
               {
                 action: "Timeline Bar",
                 desc: "at the bottom \u2014 press play or drag the slider to watch Milwaukee\u2019s buildings appear decade by decade from 1870 to present.",
               },
               {
-                action: "Demolished",
-                desc: "toggle in the timeline bar shows red circles sized by how many buildings each zone lost \u2014 redlined neighborhoods lost the most.",
-              },
-              {
                 action: "AI Guide",
-                desc: "in the right panel \u2014 ask questions about any zone and get historically grounded answers.",
+                desc: "in the right panel \u2014 ask questions about any zone and get historically grounded answers citing peer-reviewed Milwaukee research.",
               },
             ].map((item) => (
               <div key={item.action} className="flex gap-2 text-sm">
@@ -193,13 +196,13 @@ export function AboutModal({ open, onClose }: AboutModalProps) {
               University of Richmond, Mapping Inequality (1935&ndash;1940)
             </li>
             <li>
+              <strong className="text-slate-300">Income &amp; Race:</strong> U.S. Census Bureau
+              ACS 5-Year Estimates (2022) &mdash; median household income, race/ethnicity
+            </li>
+            <li>
               <strong className="text-slate-300">Health Outcomes:</strong> CDC PLACES
               (2023) &mdash; asthma, diabetes, mental/physical distress, life
               expectancy
-            </li>
-            <li>
-              <strong className="text-slate-300">Income:</strong> U.S. Census Bureau
-              ACS 5-Year Estimates (2022)
             </li>
             <li>
               <strong className="text-slate-300">Environmental Burden:</strong> CDC
@@ -207,12 +210,24 @@ export function AboutModal({ open, onClose }: AboutModalProps) {
               housing burden
             </li>
             <li>
+              <strong className="text-slate-300">Historic Redlining Scores:</strong>{" "}
+              openICPSR #141121 &mdash; continuous 1.0&ndash;4.0 severity per Census tract
+            </li>
+            <li>
               <strong className="text-slate-300">Property Data:</strong> City of
-              Milwaukee MPROP (Master Property File, 2005&ndash;2024)
+              Milwaukee MPROP (148K parcels, 2005&ndash;2024)
             </li>
             <li>
               <strong className="text-slate-300">Demolitions:</strong> Detected from
-              historical MPROP snapshots (18,664 buildings, 2005&ndash;2020)
+              historical MPROP snapshots (15,738 buildings, 2005&ndash;2020)
+            </li>
+            <li>
+              <strong className="text-slate-300">Sanborn Maps:</strong> Fire insurance
+              atlases (1894, 1910) documenting building conditions appraisers evaluated
+            </li>
+            <li>
+              <strong className="text-slate-300">Research:</strong> Chang &amp; Smith (2016),
+              Lynch et al. (2021), Paulson, Wierschke &amp; Kim (2016)
             </li>
           </ul>
         </section>

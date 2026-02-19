@@ -13,12 +13,12 @@ The project starts with Milwaukee, Wisconsin — one of the most segregated citi
 ## Features
 
 - **3D HOLC Zone Explorer** — 114 Milwaukee zones as Mapbox GL fill layers with 45-degree pitch, color-coded with the original HOLC palette (A=green, B=blue, C=yellow, D=red)
-- **148K Building Extrusions** — Individual buildings rendered from PMTiles vector tiles at zoom 11+, with click-to-inspect showing TAXKEY, year built, assessed value, stories, and HOLC zone context
+- **148K Building Extrusions** — Individual buildings rendered from PMTiles vector tiles at zoom 11+, with click-to-inspect showing street address, TAXKEY, year built, assessed value, stories, and HOLC zone context
 - **Click-to-Inspect** — Select any zone to read the original 1938 appraiser language, including explicitly racist descriptions, with content warnings
-- **AI Narrative Guide** — Ask Claude questions grounded in actual HOLC data and appraiser text, with zone-aware context
+- **AI Narrative Guide ("Ask the Guide")** — Ask Claude questions grounded in actual HOLC data and appraiser text, with zone-aware suggested questions, contextual placeholder text, rate limiting (5/min, 30/hour, 100/day per session), topic guardrails, and bot protection
 - **Narrative Zone Detail Panel** — Three-act story structure connecting 1938 decisions to present-day outcomes:
   - **Act 1 — "The 1938 Decision"**: Dynamic sentence citing the appraiser's specific reasoning (racial composition, "infiltration," detrimental influences), inline Historic Redlining Score badge, and the original appraisal behind a contextual content warning
-  - **Act 2 — "What Happened Next"**: Collapsible decades-of-change section with headline ("The gap widened, not narrowed"), ownership and income trends 1950–2020, combining published research with Census API data
+  - **Act 2 — "What Happened Next"**: Collapsible decades-of-change section written for museum visitors — plain-English narratives ("Who Owned Their Home?", "How Much Did Families Earn?"), amber insight callouts, progressive-disclosure income table, full year labels, and zone-specific neighborhood narrative
   - **Act 3 — "What It Means Today"**: Plain-language headline above the active data overlay (e.g., "Families here earn 2.7x less than in best-rated neighborhoods") with a prompt to toggle overlays when none is active
 - **Historic Redlining Scores (HRS)** — Continuous 1.0–4.0 severity score per zone from Lynch et al.'s openICPSR dataset, showing how redlining intensity correlates with present-day outcomes (D-zone avg: 3.70, A-zone avg: 1.74)
 - **Data Overlays** — Five toggleable overlays reveal 87 years of consequences:
@@ -27,9 +27,9 @@ The project starts with Milwaukee, Wisconsin — one of the most segregated citi
   - **Environmental Burden** — EPA EJScreen environmental justice data
   - **Assessed Value** — Milwaukee MPROP property assessments with 1938-vs-today comparison
   - **Race & Demographics** — Census race data alongside 1938 HOLC racial assessments, revealing persistent segregation
-- **Ghost Buildings** — 15,738 demolished structures (2005-2020) visualized as grade-colored circles, sized by demolition count per zone
+- **Ghost Buildings** — 15,738 demolished structures (2005-2020) visualized as grade-colored circles, sized by demolition count per zone, with close button on the floating legend
 - **Sanborn Map Context** — Fire insurance atlas overlay connecting 1938 building conditions to modern-day demolition patterns
-- **Decades of Change** — Grade-level income and home ownership trends across 5 decades (1950-2020), combining published research statistics with Census API data. The A-to-D ownership gap widened from 27.4% to 39.9% between 1950 and 2010.
+- **Decades of Change** — Grade-level income and home ownership trends across 5 decades (1950-2020), combining published research statistics with Census API data, presented as plain-English narratives for general audiences
 - **Research-Sourced Citations** — Every data panel cites peer-reviewed Milwaukee research with in-app PDF viewer modal
 - **Time Slider** — GSAP-animated timeline (1870-2025) with zone opacity pulsing by development era
 - **Layer Controls** — Toggle zones, labels, neighborhoods, buildings, base map, and all overlays independently
@@ -126,10 +126,11 @@ npx tsx scripts/download-2020-crosswalk.ts  # Download 2020 Census tract crosswa
 
 ### Building Parcels
 
-The 148K building extrusions use a PMTiles vector tileset (`public/data/milwaukee-parcels.pmtiles`, 47 MB, included in the repo). The source GeoJSON (`data/milwaukee-parcels.geojson`, 109 MB) is excluded from git due to GitHub's file size limit. To regenerate it locally:
+The 148K building extrusions use a PMTiles vector tileset (`public/data/milwaukee-parcels.pmtiles`, 23 MB, included in the repo). Each parcel includes street address (HOUSE_NR_LO, SDIR, STREET, STTYPE), TAXKEY, year built, assessed value, building type, and HOLC zone assignment. The source GeoJSON (`data/milwaukee-parcels.geojson`, 119 MB) is excluded from git due to GitHub's file size limit. To regenerate it locally:
 
 ```bash
 npx tsx scripts/fetch-parcels.ts            # Downloads MPROP parcels → data/milwaukee-parcels.geojson
+tippecanoe -o public/data/milwaukee-parcels.pmtiles -Z11 -z16 -l parcels --drop-densest-as-needed data/milwaukee-parcels.geojson
 ```
 
 ## Project Structure
@@ -155,7 +156,8 @@ redlined/
 │   │   ├── DecadesPanel.tsx     # Decades of change charts and tables
 │   │   ├── AppraiserDescription.tsx # Original 1938 appraiser text
 │   │   ├── BuildingDetail.tsx   # Individual building properties
-│   │   ├── ChatPanel.tsx        # AI narrative guide
+│   │   ├── ChatPanel.tsx        # AI narrative guide ("Ask the Guide")
+│   │   ├── SuggestedQuestions.tsx # Zone-aware question pills
 │   │   ├── IncomeStatistics.tsx # Income overlay panel
 │   │   ├── HealthStatistics.tsx # Health overlay panel
 │   │   ├── EnvironmentStatistics.tsx
@@ -169,15 +171,17 @@ redlined/
 │   │   ├── TimeSlider.tsx       # Animated timeline bar
 │   │   ├── HOLCLegend.tsx       # Grade color legend
 │   │   ├── IncomeLegend.tsx     # Data overlay gradient legend
-│   │   ├── GhostLegend.tsx      # Demolished buildings legend
+│   │   ├── GhostLegend.tsx      # Demolished buildings legend (with close button)
+│   │   ├── AboutModal.tsx       # "About the Map" modal with data sources
 │   │   └── ResearchModal.tsx    # PDF viewer modal for research papers
 │   └── layout/                  # App shell + navigation
 │
 ├── convex/                      # Convex backend
-│   ├── schema.ts                # Database schema
+│   ├── schema.ts                # Database schema (zones, messages, rateLimits)
 │   ├── queries.ts               # Data queries
-│   ├── mutations.ts             # Data mutations
-│   ├── ai.ts                    # Claude AI actions
+│   ├── mutations.ts             # Data mutations (with input validation)
+│   ├── ai.ts                    # Claude AI actions (rate limited, topic guarded)
+│   ├── rateLimit.ts             # Per-session rate limiting (internalMutation)
 │   └── seed.ts                  # Seed data functions
 │
 ├── lib/                         # Client utilities
@@ -259,7 +263,7 @@ All data is freely available and publicly accessible.
 | CDC PLACES              | [cdc.gov/places](https://www.cdc.gov/places/)                                                                                   | Health risk indicators by tract                 |
 | EPA EJScreen            | [epa.gov/ejscreen](https://www.epa.gov/ejscreen)                                                                                | Environmental burden percentiles by tract       |
 | Historic Redlining Scores | [openICPSR #141121](https://www.openicpsr.org/openicpsr/project/141121)                                                       | Continuous 1.0–4.0 redlining severity per tract (2000, 2010, 2020) |
-| Milwaukee MPROP         | [data.milwaukee.gov](https://data.milwaukee.gov/dataset/mprop)                                                                   | 148K property parcels, assessed values          |
+| Milwaukee MPROP         | [data.milwaukee.gov](https://data.milwaukee.gov/dataset/mprop)                                                                   | 148K property parcels with addresses, assessed values |
 | MPROP Historical        | [data.milwaukee.gov](https://data.milwaukee.gov/dataset/historical-master-property-file)                                         | 1975-2024 property snapshots (ghost detection)  |
 | HOLC Zones (All Cities) | [Mapping Inequality](https://dsl.richmond.edu/panorama/redlining/)                                                              | 10,154 zones across 300 cities (Phase 3)        |
 
@@ -303,11 +307,22 @@ Three peer-reviewed papers on Milwaukee's redlining history are integrated into 
 
 PDFs are served from `public/research/` and metadata is structured in `data/research-context.json`.
 
+## AI Chat Protection
+
+The AI Narrative Guide is a public-facing tool with no authentication (intentional for a public educational app). Four layers of protection prevent abuse without requiring login:
+
+| Layer | Where | What |
+|-------|-------|------|
+| **Rate Limiting** | `convex/rateLimit.ts` | Fixed-window limits per session: 5/min, 30/hour, 100/day. Checked atomically via `internalMutation` before every Claude API call. |
+| **Input Validation** | `convex/mutations.ts` + `convex/ai.ts` | User messages capped at 1,000 chars. Conversation history truncated to last 20 messages (bounds token cost). Role validated as enum. |
+| **Topic Guardrails** | `convex/ai.ts` + system prompt | Server-side keyword pre-check blocks prompt injection ("ignore previous instructions") and off-topic requests ("write me a", "code a") before hitting Claude. System prompt includes BOUNDARIES section instructing Claude to refuse non-redlining topics. |
+| **Bot Protection** | `ChatPanel.tsx` | Honeypot hidden input (bots auto-fill, humans don't see). 3-second minimum interaction time rejects instant submissions. Client-side `maxLength=500` for UX feedback. |
+
 ## Roadmap
 
 ### Phase 1: MVP — Milwaukee HOLC Explorer (Complete)
 
-3D zone visualization, 148K building extrusions, click-to-inspect zones and buildings, AI narrative guide, five data overlays (income, health, environment, value, race), ghost buildings, time slider, Sanborn map context, research-sourced citations with PDF viewer, narrative-driven zone detail panel with Historic Redlining Scores, responsive layout.
+3D zone visualization, 148K building extrusions with street addresses, click-to-inspect zones and buildings, AI narrative guide with zone-aware questions, five data overlays (income, health, environment, value, race), ghost buildings with dismiss button, time slider, Sanborn map context, research-sourced citations with PDF viewer, plain-English narrative panel for museum audiences with Historic Redlining Scores, About modal, responsive layout.
 
 ### Phase 2: Enhanced Narrative
 

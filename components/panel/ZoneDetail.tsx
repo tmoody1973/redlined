@@ -168,7 +168,7 @@ export default function ZoneDetail({ zone }: ZoneDetailProps) {
         accentColor={accentColor}
         ariaLabel="What Happened Next"
       >
-        <DecadesPanel grade={zone.grade} areaId={zone.areaId} />
+        <DecadesPanel grade={zone.grade} areaId={zone.areaId} zoneName={zone.name} />
       </CollapsibleSection>
 
       {/* ── Act 3: What It Means Today ── */}

@@ -1,10 +1,15 @@
 "use client";
 
+import { useTimeSlider } from "@/lib/time-slider";
+
 /**
  * Floating legend card shown when ghost/demolished mode is active.
  * Positioned in the lower-left above the timeline bar.
+ * Includes a close button to toggle the layer off directly.
  */
 export function GhostLegend() {
+  const { toggleGhosts } = useTimeSlider();
+
   const grades = [
     { grade: "A", count: 39, color: "#4CAF50" },
     { grade: "B", count: 636, color: "#2196F3" },
@@ -18,12 +23,24 @@ export function GhostLegend() {
       aria-label="Demolished buildings legend"
       role="region"
     >
-      <span
-        className="text-[10px] font-semibold uppercase tracking-widest text-red-400"
-        style={{ fontFamily: "var(--font-mono)" }}
-      >
-        Demolished 2005&ndash;2020
-      </span>
+      <div className="flex items-start justify-between gap-3">
+        <span
+          className="text-[10px] font-semibold uppercase tracking-widest text-red-400"
+          style={{ fontFamily: "var(--font-mono)" }}
+        >
+          Demolished 2005&ndash;2020
+        </span>
+        <button
+          onClick={toggleGhosts}
+          className="flex h-4 w-4 shrink-0 items-center justify-center rounded text-slate-500 transition-colors hover:bg-slate-800 hover:text-slate-300"
+          aria-label="Hide demolished buildings layer"
+        >
+          <svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <line x1="2" y1="2" x2="8" y2="8" />
+            <line x1="8" y1="2" x2="2" y2="8" />
+          </svg>
+        </button>
+      </div>
 
       <div className="mt-2 flex flex-col gap-1">
         {grades.map((g) => (

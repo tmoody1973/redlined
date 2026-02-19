@@ -22,6 +22,10 @@ const ARCGIS_BASE =
 
 const OUT_FIELDS = [
   "TAXKEY",
+  "HOUSE_NR_LO",
+  "SDIR",
+  "STREET",
+  "STTYPE",
   "YR_BUILT",
   "NR_STORIES",
   "C_A_TOTAL",
@@ -37,6 +41,10 @@ interface ArcGISFeature {
   geometry: { type: string; coordinates: number[][][] | number[][][][] };
   properties: {
     TAXKEY: string;
+    HOUSE_NR_LO: string;
+    SDIR: string;
+    STREET: string;
+    STTYPE: string;
     YR_BUILT: number;
     NR_STORIES: number;
     C_A_TOTAL: number;

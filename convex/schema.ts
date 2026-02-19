@@ -83,9 +83,20 @@ export default defineSchema({
 
   messages: defineTable({
     conversationId: v.id("conversations"),
-    role: v.string(),
+    role: v.union(
+      v.literal("user"),
+      v.literal("assistant"),
+      v.literal("zone-context"),
+    ),
     content: v.string(),
     zoneId: v.optional(v.string()),
     createdAt: v.number(),
   }).index("by_conversation_id", ["conversationId"]),
+
+  rateLimits: defineTable({
+    key: v.string(),
+    window: v.string(),
+    count: v.number(),
+    windowStart: v.number(),
+  }).index("by_key_window", ["key", "window"]),
 });

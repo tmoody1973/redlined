@@ -11,6 +11,7 @@
 import type * as ai from "../ai.js";
 import type * as mutations from "../mutations.js";
 import type * as queries from "../queries.js";
+import type * as rateLimit from "../rateLimit.js";
 import type * as seed from "../seed.js";
 
 import type {
@@ -23,6 +24,7 @@ declare const fullApi: ApiFromModules<{
   ai: typeof ai;
   mutations: typeof mutations;
   queries: typeof queries;
+  rateLimit: typeof rateLimit;
   seed: typeof seed;
 }>;
 

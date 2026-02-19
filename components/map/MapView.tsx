@@ -502,22 +502,29 @@ export default function MapView() {
 
       // Building click (from PMTiles vector source)
       if (feature.layer?.id === "buildings" && feature.properties?.TAXKEY) {
+        const p = feature.properties;
+        // Build address from MPROP fields: "1234 N MAIN ST"
+        const parts = [
+          p.HOUSE_NR_LO ? String(p.HOUSE_NR_LO) : "",
+          p.SDIR ? String(p.SDIR) : "",
+          p.STREET ? String(p.STREET) : "",
+          p.STTYPE ? String(p.STTYPE) : "",
+        ].filter(Boolean);
+        const address = parts.length > 0 ? parts.join(" ") : "";
+
         selectBuilding({
-          TAXKEY: String(feature.properties.TAXKEY),
-          YR_BUILT: Number(feature.properties.YR_BUILT) || 0,
-          NR_STORIES: Number(feature.properties.NR_STORIES) || 0,
-          C_A_TOTAL: Number(feature.properties.C_A_TOTAL) || 0,
-          LAND_USE_GP: Number(feature.properties.LAND_USE_GP) || 0,
-          BLDG_TYPE: String(feature.properties.BLDG_TYPE || ""),
-          NR_UNITS: Number(feature.properties.NR_UNITS) || 0,
-          holcZoneId: feature.properties.holcZoneId
-            ? String(feature.properties.holcZoneId)
-            : null,
-          holcGrade: feature.properties.holcGrade
-            ? String(feature.properties.holcGrade)
-            : null,
-          height: Number(feature.properties.height) || 0,
-          era: String(feature.properties.era || ""),
+          TAXKEY: String(p.TAXKEY),
+          address,
+          YR_BUILT: Number(p.YR_BUILT) || 0,
+          NR_STORIES: Number(p.NR_STORIES) || 0,
+          C_A_TOTAL: Number(p.C_A_TOTAL) || 0,
+          LAND_USE_GP: Number(p.LAND_USE_GP) || 0,
+          BLDG_TYPE: String(p.BLDG_TYPE || ""),
+          NR_UNITS: Number(p.NR_UNITS) || 0,
+          holcZoneId: p.holcZoneId ? String(p.holcZoneId) : null,
+          holcGrade: p.holcGrade ? String(p.holcGrade) : null,
+          height: Number(p.height) || 0,
+          era: String(p.era || ""),
         });
         return;
       }

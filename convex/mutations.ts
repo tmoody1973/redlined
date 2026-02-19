@@ -13,15 +13,29 @@ export const createConversation = mutation({
   },
 });
 
+/** Maximum allowed message length (characters). */
+const MAX_MESSAGE_LENGTH = 1000;
+
 /** Adds a message to an existing conversation. */
 export const addMessage = mutation({
   args: {
     conversationId: v.id("conversations"),
-    role: v.string(),
+    role: v.union(
+      v.literal("user"),
+      v.literal("assistant"),
+      v.literal("zone-context"),
+    ),
     content: v.string(),
     zoneId: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
+    // Enforce content length limit for user messages
+    if (args.role === "user" && args.content.length > MAX_MESSAGE_LENGTH) {
+      throw new Error(
+        `Message too long (${args.content.length} chars). Maximum is ${MAX_MESSAGE_LENGTH}.`,
+      );
+    }
+
     const messageId = await ctx.db.insert("messages", {
       conversationId: args.conversationId,
       role: args.role,
