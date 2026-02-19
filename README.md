@@ -12,6 +12,10 @@ The project starts with Milwaukee, Wisconsin — one of the most segregated citi
 
 ## Features
 
+- **The Archive** — Museum-quality interactive gallery (Motion.dev spring animations) with three sections:
+  - **The Original Map** — Pinch/zoom/drag viewer for the 1938 HOLC security map scan (43MB → optimized 2K/4K progressive JPEGs)
+  - **Through the Lens** — 20 curated 1936 Library of Congress FSA photographs by Carl Mydans, with category filters, staggered spring entrance, lightbox with keyboard navigation
+  - **The Timeline** — 12 events across 5 eras (1933–2020) tracing the arc from HOLC's creation to Milwaukee's present-day segregation
 - **3D HOLC Zone Explorer** — 114 Milwaukee zones as Mapbox GL fill layers with 45-degree pitch, color-coded with the original HOLC palette (A=green, B=blue, C=yellow, D=red)
 - **148K Building Extrusions** — Individual buildings rendered from PMTiles vector tiles at zoom 11+, with click-to-inspect showing street address, TAXKEY, year built, assessed value, stories, and HOLC zone context
 - **Click-to-Inspect** — Select any zone to read the original 1938 appraiser language, including explicitly racist descriptions, with content warnings
@@ -43,7 +47,7 @@ The project starts with Milwaukee, Wisconsin — one of the most segregated citi
 | Backend      | Convex (database, server functions, file storage)  |
 | Map          | Mapbox GL v3 via react-map-gl                      |
 | Buildings    | PMTiles vector tiles (148K parcels)                |
-| Animation    | GSAP (GreenSock)                                   |
+| Animation    | GSAP (GreenSock) + Motion.dev (spring physics, gestures) |
 | AI           | Claude API (Sonnet 4) via Convex actions           |
 | Styling      | Tailwind CSS v4                                    |
 | Testing      | Vitest + Testing Library                           |
@@ -174,6 +178,16 @@ redlined/
 │   │   ├── GhostLegend.tsx      # Demolished buildings legend (with close button)
 │   │   ├── AboutModal.tsx       # "About the Map" modal with data sources
 │   │   └── ResearchModal.tsx    # PDF viewer modal for research papers
+│   ├── archive/                  # "The Archive" gallery modal
+│   │   ├── ArchiveModal.tsx      # Root shell: overlay, tabs, AnimatePresence
+│   │   ├── ArchiveTabBar.tsx     # Tab nav with animated underline (layoutId)
+│   │   ├── OriginalMapSection.tsx # Pinch/zoom/drag HOLC scan viewer
+│   │   ├── PhotoGallerySection.tsx # FSA photo grid with filters
+│   │   ├── PhotoCard.tsx         # Spring-animated "print" card
+│   │   ├── PhotoLightbox.tsx     # Full-screen photo viewer with nav
+│   │   ├── TimelineSection.tsx   # Era-based timeline browser
+│   │   ├── TimelineCard.tsx      # Expandable event card
+│   │   └── TimelineProgressBar.tsx # Era navigation pills
 │   └── layout/                  # App shell + navigation
 │
 ├── convex/                      # Convex backend
@@ -204,7 +218,9 @@ redlined/
 │   ├── research-context.tsx     # Research PDF modal context provider
 │   └── ai-prompt.ts             # AI system prompt with research findings
 │
-├── scripts/                     # Data pipeline scripts
+├── scripts/                     # Data pipeline + asset scripts
+│   ├── optimize-holc-scan.ts    # sharp: 43MB scan → 2K + 4K JPEGs
+│   ├── curate-archive-photos.ts # Download LOC photos, generate manifest
 │   ├── run-seed.ts              # Convex data seeding
 │   ├── seed-census.ts           # Census API → Convex
 │   ├── seed-health.ts           # CDC PLACES → Convex
@@ -232,6 +248,11 @@ redlined/
 │       ├── Historic Redlining Indicator 2010.xlsx
 │       └── Historic Redlining Indicator 2020.xlsx
 │
+├── public/archive/              # Optimized archive assets
+│   ├── holc-scan-2k.jpg         # 2048px HOLC scan (1.0 MB)
+│   ├── holc-scan-4k.jpg         # 4096px HOLC scan (4.1 MB)
+│   └── photos/                  # 20 LOC FSA photos (thumb + full)
+│
 ├── public/data/                 # Pre-computed JSON (served statically)
 │   ├── zone-development-timeline.json
 │   ├── ghost-buildings-by-zone.json
@@ -242,7 +263,10 @@ redlined/
 │   ├── decades-by-zone.json
 │   ├── hrs-by-zone.json
 │   ├── milwaukee-parcels-by-zone.json
-│   └── research-context.json
+│   ├── research-context.json
+│   └── archive/                  # Archive gallery data
+│       ├── fsa-photos.json       # 20 curated LOC photo manifest
+│       └── timeline-events.json  # 12 events across 5 eras
 │
 └── public/research/             # Academic research PDFs (in-app viewer)
     ├── chang-smith-2016.pdf
@@ -265,6 +289,8 @@ All data is freely available and publicly accessible.
 | Historic Redlining Scores | [openICPSR #141121](https://www.openicpsr.org/openicpsr/project/141121)                                                       | Continuous 1.0–4.0 redlining severity per tract (2000, 2010, 2020) |
 | Milwaukee MPROP         | [data.milwaukee.gov](https://data.milwaukee.gov/dataset/mprop)                                                                   | 148K property parcels with addresses, assessed values |
 | MPROP Historical        | [data.milwaukee.gov](https://data.milwaukee.gov/dataset/historical-master-property-file)                                         | 1975-2024 property snapshots (ghost detection)  |
+| LOC FSA/OWI Photos      | [Library of Congress](https://www.loc.gov/pictures/collection/fsa/)                                                               | 20 curated Carl Mydans Milwaukee photos (1936)  |
+| HOLC Security Map Scan  | [Mapping Inequality](https://dsl.richmond.edu/panorama/redlining/)                                                              | Original 1938 HOLC scan (optimized 2K + 4K)     |
 | HOLC Zones (All Cities) | [Mapping Inequality](https://dsl.richmond.edu/panorama/redlining/)                                                              | 10,154 zones across 300 cities (Phase 3)        |
 
 ## Data Overlay Details
@@ -322,7 +348,7 @@ The AI Narrative Guide is a public-facing tool with no authentication (intention
 
 ### Phase 1: MVP — Milwaukee HOLC Explorer (Complete)
 
-3D zone visualization, 148K building extrusions with street addresses, click-to-inspect zones and buildings, AI narrative guide with zone-aware questions, five data overlays (income, health, environment, value, race), ghost buildings with dismiss button, time slider, Sanborn map context, research-sourced citations with PDF viewer, plain-English narrative panel for museum audiences with Historic Redlining Scores, About modal, responsive layout.
+3D zone visualization, 148K building extrusions with street addresses, click-to-inspect zones and buildings, AI narrative guide with zone-aware questions, five data overlays (income, health, environment, value, race), ghost buildings with dismiss button, time slider, Sanborn map context, research-sourced citations with PDF viewer, plain-English narrative panel for museum audiences with Historic Redlining Scores, interactive Archive gallery (original HOLC map viewer, 20 LOC photographs, historical timeline), About modal, responsive layout.
 
 ### Phase 2: Enhanced Narrative
 
@@ -349,4 +375,5 @@ Data sources are subject to their respective licenses:
 
 - [Mapping Inequality](https://dsl.richmond.edu/panorama/redlining/) — University of Richmond Digital Scholarship Lab
 - [American Panorama](https://github.com/americanpanorama) — Open-source historical data
+- [Library of Congress](https://www.loc.gov/pictures/collection/fsa/) — FSA/OWI photograph collection (Carl Mydans, Milwaukee 1936)
 - [Radio Milwaukee](https://radiomilwaukee.org) / [The Intersection](https://theintersection.substack.com)
