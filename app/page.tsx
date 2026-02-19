@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { Header } from "@/components/layout/Header";
 import { SplitPanel } from "@/components/layout/SplitPanel";
 import { CanvasOverlays } from "@/components/ui/CanvasOverlays";
 import { IntroOverlay } from "@/components/ui/IntroOverlay";
 import { AboutModal } from "@/components/ui/AboutModal";
+import { HowToUseModal } from "@/components/ui/HowToUseModal";
 import { ResearchModal } from "@/components/ui/ResearchModal";
 import { ResearchProvider } from "@/lib/research-context";
 import { ZoneKeyboardNav } from "@/components/scene/ZoneKeyboardNav";
@@ -37,6 +38,17 @@ const CANVAS_ARIA_LABEL =
 export default function Home() {
   const [showIntro, setShowIntro] = useState(true);
   const [showAbout, setShowAbout] = useState(false);
+  const [showGuide, setShowGuide] = useState(false);
+
+  // Show the guide on first visit
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const seen = localStorage.getItem("redlined-guide-seen");
+    if (!seen) {
+      setShowGuide(true);
+      localStorage.setItem("redlined-guide-seen", "1");
+    }
+  }, []);
 
   const dismissIntro = useCallback(() => {
     setShowIntro(false);
@@ -45,8 +57,12 @@ export default function Home() {
   return (
     <ResearchProvider>
     <div className="flex h-screen w-screen flex-col overflow-hidden">
-      <Header onAboutClick={() => setShowAbout(true)} />
+      <Header
+        onAboutClick={() => setShowAbout(true)}
+        onGuideClick={() => setShowGuide(true)}
+      />
       <AboutModal open={showAbout} onClose={() => setShowAbout(false)} />
+      <HowToUseModal open={showGuide} onClose={() => setShowGuide(false)} />
       <ResearchModal />
 
       <main className="relative flex-1 overflow-hidden">

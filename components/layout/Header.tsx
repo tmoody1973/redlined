@@ -2,13 +2,14 @@
 
 interface HeaderProps {
   onAboutClick?: () => void;
+  onGuideClick?: () => void;
 }
 
 /**
  * Application header bar with REDLINED branding, subtitle, Milwaukee 1938 pill
  * badge, geographic coordinates, and an "About" button.
  */
-export function Header({ onAboutClick }: HeaderProps) {
+export function Header({ onAboutClick, onGuideClick }: HeaderProps) {
   return (
     <header className="flex flex-col gap-1 px-4 py-3 md:px-6">
       <nav aria-label="Application navigation">
@@ -38,6 +39,16 @@ export function Header({ onAboutClick }: HeaderProps) {
               Milwaukee 1938
             </span>
 
+            {onGuideClick && (
+              <button
+                onClick={onGuideClick}
+                className="rounded-full border border-slate-700 bg-slate-800 px-3 py-1 text-xs font-medium text-slate-400 transition-colors hover:border-slate-600 hover:text-white"
+                style={{ fontFamily: "var(--font-heading)" }}
+                aria-label="How to use the map"
+              >
+                Guide
+              </button>
+            )}
             {onAboutClick && (
               <button
                 onClick={onAboutClick}
@@ -52,11 +63,27 @@ export function Header({ onAboutClick }: HeaderProps) {
         </div>
       </nav>
 
-      <div
-        className="text-xs text-slate-400"
-        style={{ fontFamily: "var(--font-mono)" }}
-      >
-        43.0389&deg; N, 87.9065&deg; W
+      <div className="flex items-center justify-between">
+        <span
+          className="text-xs text-slate-400"
+          style={{ fontFamily: "var(--font-mono)" }}
+        >
+          43.0389&deg; N, 87.9065&deg; W
+        </span>
+        <span
+          className="text-xs text-slate-500"
+          style={{ fontFamily: "var(--font-body)" }}
+        >
+          Made with <span style={{ color: "#F44336" }}>&hearts;</span> by{" "}
+          <a
+            href="https://tarikmoody.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-slate-400 underline decoration-slate-600 underline-offset-2 transition-colors hover:text-white"
+          >
+            Tarik Moody
+          </a>
+        </span>
       </div>
     </header>
   );
