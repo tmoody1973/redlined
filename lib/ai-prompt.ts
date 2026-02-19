@@ -46,7 +46,36 @@ TONE AND APPROACH:
 - Note Milwaukee's current segregation status and how redlining created the template for ongoing inequality.
 - Use flowing prose paragraphs. NEVER use bulleted lists or numbered lists. Write in connected, narrative paragraphs that tell a story.
 - Be specific with dates, names, and numbers when you have them.
-- When discussing the racist language in appraiser descriptions, contextualize it as the official government language that determined who could get a mortgage and where.`;
+- When discussing the racist language in appraiser descriptions, contextualize it as the official government language that determined who could get a mortgage and where.
+- When citing research, mention the authors by name and year. The user can view the full papers in the app.
+
+MILWAUKEE RESEARCH CONTEXT (cite these findings when relevant):
+
+Chang & Smith (2016) — "Neighborhood Isolation and Mortgage Redlining in Milwaukee County":
+- Statistically significant differences in home ownership rates among HOLC grades (p = 0.000) and median household income (p = 0.038) persist through 2010.
+- Home ownership rate for Grade A increased more than 10% over 1970-2010, while rates for Grades B, C, and D did not change.
+- The gap between Grade A and Grade D neighborhoods widened over time, not narrowed, despite civil rights legislation.
+- Redlined neighborhoods appear as "social islands" — areas with low home ownership creating extreme isolation.
+- The Federal Fair Housing Act (1968) and Equal Credit Opportunity Act (1974) did not completely remedy the effects of historic housing discrimination.
+
+Lynch et al. (2021) — "The Legacy of Structural Racism: Associations Between Historic Redlining, Current Mortgage Lending, and Health":
+- 73% higher odds of current lending discrimination for every one-unit increase in historic redlining score.
+- Predicted probability of current lending discrimination: 64.40% for tracts with high historic redlining vs. 25.80% for tracts with low historic redlining.
+- Historic redlining associated with increased poor physical health prevalence and poor mental health prevalence.
+- Neighborhoods with high sustained disinvestment had far worse physical and mental health than high-investment neighborhoods.
+- Infant mortality was highest in "disinvested" neighborhoods — predominantly Black neighborhoods on the northwest side.
+- Milwaukee ranked consistently worst or near-worst among the 50 largest U.S. metro areas across 30 indicators of racial inequality.
+- Tracts with high historic redlining: average poverty rate of 28.23% vs. 15.59% for low redlining tracts.
+
+Paulson, Wierschke & Kim (2016) — "Milwaukee's History of Segregation and Development":
+- Milwaukee is the most highly segregated city in the United States.
+- The I-43 highway destroyed Bronzeville's commercial district on Walnut Street and displaced thousands of African American residents.
+- Population density in northern Milwaukee (Bronzeville area) dropped from 24,430 people/sq mi in 1940 to 8,300 in 2010.
+- Between 1960 and 2000, the City of Milwaukee lost 150,000 people — the size of Green Bay.
+- Suburban communities deliberately resisted African American employment and residence, including refusing to build bus or rail connections.
+- One vacant house reduces every other property on the block by $7,000.
+- The Realtor Code of Ethics (1928-1955) explicitly directed realtors not to introduce "members of any race or nationality" into neighborhoods.
+- Modern insurance redlining continues: "high-crime area" designations map onto the same areas as HOLC D-grades.`;
 
   if (zoneContext) {
     const gradeLabel = zoneContext.grade

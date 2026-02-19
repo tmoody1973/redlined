@@ -1,6 +1,7 @@
 "use client";
 
 import { useZoneEnvironment } from "@/lib/useZoneEnvironment";
+import { SourceCitation } from "./SourceCitation";
 
 interface EnvironmentStatisticsProps {
   areaId: string;
@@ -332,6 +333,13 @@ export default function EnvironmentStatistics({ areaId }: EnvironmentStatisticsP
           </p>
         </div>
       )}
+
+      {/* Research citation */}
+      <SourceCitation
+        paperId="lynch-et-al-2021"
+        label="Lynch et al., 2021"
+        finding="Neighborhoods today are a manifestation of a myriad of racist housing policies and practices that have fundamentally shaped housing tenure, the built environment, and health."
+      />
     </section>
   );
 }

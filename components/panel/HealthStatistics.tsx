@@ -1,6 +1,7 @@
 "use client";
 
 import { useZoneHealth } from "@/lib/useZoneHealth";
+import { SourceCitation } from "./SourceCitation";
 
 interface HealthStatisticsProps {
   areaId: string;
@@ -332,6 +333,13 @@ export default function HealthStatistics({ areaId }: HealthStatisticsProps) {
           </p>
         </div>
       )}
+
+      {/* Research citation */}
+      <SourceCitation
+        paperId="lynch-et-al-2021"
+        label="Lynch et al., 2021"
+        finding="Structural racism, as manifested in historic and current forms of lending disinvestment, predicts poor health in Milwaukee's hypersegregated neighborhoods."
+      />
     </section>
   );
 }

@@ -23,6 +23,8 @@ The project starts with Milwaukee, Wisconsin — one of the most segregated citi
   - **Assessed Value** — Milwaukee MPROP property assessments with 1938-vs-today comparison
   - **Race & Demographics** — Census race data alongside 1938 HOLC racial assessments, revealing persistent segregation
 - **Ghost Buildings** — 15,738 demolished structures (2005-2020) visualized as grade-colored circles, sized by demolition count per zone
+- **Sanborn Map Context** — Fire insurance atlas overlay connecting 1938 building conditions to modern-day demolition patterns
+- **Research-Sourced Citations** — Every data panel cites peer-reviewed Milwaukee research with in-app PDF viewer modal
 - **Time Slider** — GSAP-animated timeline (1870-2025) with zone opacity pulsing by development era
 - **Layer Controls** — Toggle zones, labels, neighborhoods, buildings, base map, and all overlays independently
 - **Responsive Design** — Desktop split-panel layout, tablet adaptation, mobile bottom-sheet pattern
@@ -143,13 +145,17 @@ redlined/
 │   │   ├── HealthStatistics.tsx # Health overlay panel
 │   │   ├── EnvironmentStatistics.tsx
 │   │   ├── ValueStatistics.tsx  # Assessed value + 1938 comparison
-│   │   └── RaceStatistics.tsx   # Race demographics + 1938 HOLC data
+│   │   ├── RaceStatistics.tsx   # Race demographics + 1938 HOLC data
+│   │   ├── DemolitionStatistics.tsx # Ghost building stats
+│   │   ├── SanbornContext.tsx   # Sanborn map narrative context
+│   │   └── SourceCitation.tsx   # Research PDF citation links
 │   ├── ui/                      # Overlay UI elements
 │   │   ├── LayerControls.tsx    # Layer + overlay toggles
 │   │   ├── TimeSlider.tsx       # Animated timeline bar
 │   │   ├── HOLCLegend.tsx       # Grade color legend
 │   │   ├── IncomeLegend.tsx     # Data overlay gradient legend
-│   │   └── GhostLegend.tsx      # Demolished buildings legend
+│   │   ├── GhostLegend.tsx      # Demolished buildings legend
+│   │   └── ResearchModal.tsx    # PDF viewer modal for research papers
 │   └── layout/                  # App shell + navigation
 │
 ├── convex/                      # Convex backend
@@ -171,7 +177,10 @@ redlined/
 │   ├── useZoneEnvironment.ts    # Environment data hook
 │   ├── useZoneValue.ts          # Property value data hook
 │   ├── useZoneValueHistory.ts   # 1938 vs today value hook
-│   └── useZoneRace.ts           # Race demographics hook
+│   ├── useZoneRace.ts           # Race demographics hook
+│   ├── useSanbornContext.ts     # Sanborn map context hook
+│   ├── research-context.tsx     # Research PDF modal context provider
+│   └── ai-prompt.ts             # AI system prompt with research findings
 │
 ├── scripts/                     # Data pipeline scripts
 │   ├── run-seed.ts              # Convex data seeding
@@ -183,20 +192,29 @@ redlined/
 │   ├── build-zone-timeline.ts   # Development era timeline
 │   ├── build-ghost-zone-stats.ts # Ghost building statistics
 │   ├── build-value-history.ts   # 1938 property value comparison
-│   └── build-race-data.ts       # Racial demographics pipeline
+│   ├── build-race-data.ts       # Racial demographics pipeline
+│   └── build-sanborn-context.ts # Sanborn map context pipeline
 │
 ├── data/                        # Source data files
 │   ├── milwaukee-holc-zones.json      # 114 zone GeoJSON
 │   ├── holc-area-descriptions.json    # 1938 appraiser records
 │   ├── census-holc-crosswalk.json     # Tract-to-zone mapping
 │   ├── milwaukee-parcels-by-zone.json # MPROP aggregates
-│   └── ghost-buildings.json           # Demolished structures
+│   ├── ghost-buildings.json           # Demolished structures
+│   └── research-context.json          # Structured research findings
 │
-└── public/data/                 # Pre-computed JSON (served statically)
-    ├── zone-development-timeline.json
-    ├── ghost-buildings-by-zone.json
-    ├── value-history-by-zone.json
-    └── race-by-zone.json
+├── public/data/                 # Pre-computed JSON (served statically)
+│   ├── zone-development-timeline.json
+│   ├── ghost-buildings-by-zone.json
+│   ├── value-history-by-zone.json
+│   ├── race-by-zone.json
+│   ├── sanborn-context-by-zone.json
+│   └── research-context.json
+│
+└── public/research/             # Academic research PDFs (in-app viewer)
+    ├── chang-smith-2016.pdf
+    ├── lynch-et-al-2021.pdf
+    └── paulson-wierschke-kim-2016.pdf
 ```
 
 ## Data Sources
@@ -233,11 +251,23 @@ Parses 1930s appraiser-estimated prices from HOLC area descriptions alongside mo
 - **Inflation-adjusted**: Many zones show real value erosion when adjusted for 22.3x CPI factor
 - **Grade correlation**: A-zone average values remain significantly higher than D-zone values
 
+## Research Sources
+
+Three peer-reviewed papers on Milwaukee's redlining history are integrated into the application. Each data overlay panel includes inline citations with key findings, and clicking "View PDF" opens the full paper in a modal viewer. The AI narrative guide also references these findings when answering questions.
+
+| Paper | Authors | Year | Topics |
+|-------|---------|------|--------|
+| Neighborhood Isolation and Mortgage Redlining in Milwaukee County | Woojin Chang & Michael Smith | 2016 | Income gaps, home ownership, persistent isolation |
+| The Legacy of Structural Racism: Redlining, Lending, and Health | Emily Lynch et al. | 2021 | Health outcomes, lending discrimination, infant mortality |
+| Milwaukee's History of Segregation: A Biography of Four Neighborhoods | Jessie Paulson, Meghan Wierschke & Gabe Kim | 2016 | Bronzeville, I-43 highway, suburban exclusion |
+
+PDFs are served from `public/research/` and metadata is structured in `data/research-context.json`.
+
 ## Roadmap
 
-### Phase 1: MVP — Milwaukee HOLC Explorer (Current)
+### Phase 1: MVP — Milwaukee HOLC Explorer (Complete)
 
-3D zone visualization, 148K building extrusions, click-to-inspect zones and buildings, AI narrative guide, five data overlays (income, health, environment, value, race), ghost buildings, time slider, responsive layout.
+3D zone visualization, 148K building extrusions, click-to-inspect zones and buildings, AI narrative guide, five data overlays (income, health, environment, value, race), ghost buildings, time slider, Sanborn map context, research-sourced citations with PDF viewer, responsive layout.
 
 ### Phase 2: Enhanced Narrative
 

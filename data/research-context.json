@@ -1,0 +1,162 @@
+{
+  "papers": [
+    {
+      "id": "chang-smith-2016",
+      "title": "Neighborhood Isolation and Mortgage Redlining in Milwaukee County",
+      "authors": "Woojin Chang & Michael Smith",
+      "year": 2016,
+      "institution": "University of Wisconsin, Geography 578",
+      "pdfPath": "/research/chang-smith-2016.pdf",
+      "topics": ["segregation", "property-values", "income", "home-ownership"],
+      "keyFindings": [
+        "Statistically significant differences in home ownership rates among HOLC grades (p = 0.000) and median household income (p = 0.038) persist through 2010.",
+        "Home ownership rate for Grade A increased more than 10% over 1970-2010, while rates for Grades B, C, and D did not change.",
+        "Home values, ownership rates, and incomes in non-redlined areas (A/B/C) were continuously higher than redlined areas (D) across all four time points: 1950, 1970, 1990, and 2010.",
+        "The gap between Grade A and Grade D neighborhoods widened over time, not narrowed, despite civil rights legislation.",
+        "Redlined neighborhoods appear as 'social islands' — areas with low home ownership creating extreme isolation.",
+        "The Federal Fair Housing Act (1968) and Equal Credit Opportunity Act (1974) did not completely remedy the effects of historic housing discrimination. Socioeconomic conditions in redlined neighborhoods became more isolated in recent years."
+      ],
+      "quotes": [
+        {
+          "text": "The fourth grade or D areas are characterized by detrimental influences in a pronounced degree, undesirable population or an infiltration of it. Low percentage of home ownership, very poor maintenance and often vandalism prevail.",
+          "source": "FHLBB, 1938 (quoted in paper)",
+          "topic": "holc-grading"
+        },
+        {
+          "text": "Our results suggest that the Federal Fair Housing Act (1968) and the Equal Credit Opportunity Act (1974) did not completely remedy the effects of historic housing discrimination. In fact, the socioeconomic conditions of the redlined neighborhoods in Milwaukee County became more isolated from the rest of the city in recent years.",
+          "source": "Chang & Smith, 2016",
+          "topic": "persistence"
+        }
+      ]
+    },
+    {
+      "id": "lynch-et-al-2021",
+      "title": "The Legacy of Structural Racism: Associations Between Historic Redlining, Current Mortgage Lending, and Health",
+      "authors": "Emily E. Lynch, Lorraine Halinka Malcoe, Sarah E. Laurent, Jason Richardson, Bruce C. Mitchell, Helen C.S. Meier",
+      "year": 2021,
+      "journal": "SSM - Population Health",
+      "institution": "UW-Milwaukee / University of Michigan",
+      "pdfPath": "/research/lynch-et-al-2021.pdf",
+      "topics": ["health", "lending", "structural-racism", "segregation"],
+      "keyFindings": [
+        "73% higher odds of current lending discrimination for every one-unit increase in historic redlining score (OR = 1.73, 95% CI: 1.16, 2.58).",
+        "Predicted probability of current lending discrimination: 64.40% for tracts with high historic redlining vs. 25.80% for tracts with low historic redlining.",
+        "Historic redlining associated with increased poor physical health prevalence (β = 1.34) and poor mental health prevalence (β = 1.26).",
+        "Neighborhoods with high sustained disinvestment had far worse physical health (β = 5.33) and mental health (β = 4.32) than high-investment neighborhoods.",
+        "Infant mortality was highest in 'disinvested' neighborhoods (β = 5.87) — predominantly Black neighborhoods on the northwest side.",
+        "Milwaukee ranked consistently worst or near-worst among the 50 largest U.S. metro areas across 30 indicators of racial inequality.",
+        "Tracts with high historic redlining: average poverty rate of 28.23% vs. 15.59% for low redlining tracts.",
+        "Tracts with current lending discrimination: only 11.78 originated loans per 1000 family homes vs. 31.93 for tracts without.",
+        "Infant mortality rate among non-Hispanic Blacks was three times higher than non-Hispanic whites in Milwaukee."
+      ],
+      "quotes": [
+        {
+          "text": "Milwaukee, in many ways, has emerged as the epitome of a 21st century racial regime: a metropolis of entrenched segregation and racial inequality.",
+          "source": "Levine, 2020 (quoted in Lynch et al.)",
+          "topic": "segregation"
+        },
+        {
+          "text": "Structural racism, as manifested in historic and current forms of lending disinvestment, predicts poor health in Milwaukee's hypersegregated neighborhoods.",
+          "source": "Lynch et al., 2021",
+          "topic": "health"
+        },
+        {
+          "text": "Neighborhoods today are a manifestation of a myriad of racist housing policies and practices that have fundamentally shaped housing tenure, the built environment, and health.",
+          "source": "Lynch et al., 2021",
+          "topic": "built-environment"
+        },
+        {
+          "text": "In a mortgage system with fixed costs and dynamic profits, lenders are deterred from lending in communities of color that have lower incomes, smaller houses, and are located in areas with less demand. If mortgages are not being made, the value of homes and businesses are negatively impacted, depressing the wealth of the entire community.",
+          "source": "Lynch et al., 2021",
+          "topic": "lending"
+        }
+      ]
+    },
+    {
+      "id": "paulson-wierschke-kim-2016",
+      "title": "Milwaukee's History of Segregation and Development: A Biography of Four Neighborhoods",
+      "authors": "Jessie Paulson, Meghan Wierschke & Gabe Jun Ha Kim",
+      "year": 2016,
+      "institution": "University of Wisconsin-Madison",
+      "pdfPath": "/research/paulson-wierschke-kim-2016.pdf",
+      "topics": ["neighborhoods", "bronzeville", "highways", "gentrification", "segregation"],
+      "keyFindings": [
+        "Milwaukee is the most highly segregated city in the United States.",
+        "The I-43 highway destroyed Bronzeville's commercial district on Walnut Street and displaced thousands of African American residents.",
+        "Displaced minority families moved shorter distances than white families: 0.95 miles vs. 1.25 miles during I-43 displacement.",
+        "Population density in northern Milwaukee (Bronzeville area) dropped from 24,430 people per square mile in 1940 to 8,300 in 2010.",
+        "Between 1960 and 2000, the City of Milwaukee lost 150,000 people — the size of Green Bay.",
+        "Peak of Black employment in Milwaukee was in 1976, then tapered off following deindustrialization.",
+        "Suburban communities (Wauwatosa, Waukesha) deliberately resisted African American employment and residence, including refusing to build bus or rail connections.",
+        "One vacant house reduces every other property on the block by $7,000.",
+        "The Realtor Code of Ethics (1928-1955) explicitly directed realtors not to introduce 'members of any race or nationality' into neighborhoods.",
+        "Modern insurance redlining continues: 'high-crime area' designations map onto the same areas as HOLC D-grades."
+      ],
+      "quotes": [
+        {
+          "text": "Restrictive covenants and redlining set the city on a segregated track that is incredibly difficult to break.",
+          "source": "Rep. Evan Goyke (quoted in Paulson et al.)",
+          "topic": "persistence"
+        },
+        {
+          "text": "Housing discrimination is not as blatantly obvious as it was in the days of redlining, they use hidden codes to screen tenants as means of discrimination.",
+          "source": "Rep. Evan Goyke (quoted in Paulson et al.)",
+          "topic": "modern-discrimination"
+        },
+        {
+          "text": "There is not a single bullet... It's a product of generation and it'll take just as long, if not longer, to get rid of.",
+          "source": "Rep. Evan Goyke (quoted in Paulson et al.)",
+          "topic": "solutions"
+        },
+        {
+          "text": "Interstates were routed right down to the African American communities. Tore at the fabric of the community.",
+          "source": "Paul Geenen (quoted in Paulson et al.)",
+          "topic": "highways"
+        },
+        {
+          "text": "Light rail was opposed each time. Kept saying 'they'll be coming out here' which created the subtle pressure that keeps the African American community in the city.",
+          "source": "Paul Geenen (quoted in Paulson et al.)",
+          "topic": "suburban-exclusion"
+        },
+        {
+          "text": "Persistent impacts of redlining lead to continued educational segregation, overexposure to the police (high incarceration rates), and unequal education systems.",
+          "source": "Professor Moore (quoted in Paulson et al.)",
+          "topic": "persistence"
+        },
+        {
+          "text": "A Realtor should never be instrumental in introducing into a neighborhood a character of property or occupancy, members of any race or nationality, or any individuals whose presence will clearly be detrimental to property values in that neighborhood.",
+          "source": "National Association of Real Estate Boards, Article 34, 1928",
+          "topic": "realtor-code"
+        }
+      ],
+      "neighborhoods": {
+        "southSide": "Settled by Polish immigrants in the late 1800s; transitioned to Latino population. Little evidence of redlining between Latinos and Polish due to shared Catholic Church ties. Self-segregation through ethnic enclaving rather than forced segregation.",
+        "bronzeville": "Historically Black 12-block area where nearly 21,000 African Americans settled between 1900-1950. Destroyed by I-43 highway construction in the 1950s-60s. Walnut Street was Milwaukee's Black business district. The community expanded by the 'Three-Block Rule' — new churches could not be within three blocks of another, so the community grew in increments.",
+        "riverwest": "Formed as a community by the East Side Housing Action Coalition in the 1970s. Successfully fought the city's 'faltering' designation. Changed from 95-100% white in 1940 to about 75% white in 2010.",
+        "thirdWard": "Went through four identities: Irish settlers, Italian industrialists, deindustrialization/decay, and gentrification. The 1892 fire destroyed over 400 buildings. I-794 destroyed remaining houses. Now a gentrified shopping/dining destination."
+      }
+    }
+  ],
+  "crossPaperThemes": [
+    {
+      "theme": "The 1938 map still predicts outcomes today",
+      "summary": "All three papers confirm that HOLC grades from 1938 remain predictive of economic outcomes, health outcomes, and neighborhood character over 80+ years later.",
+      "papers": ["chang-smith-2016", "lynch-et-al-2021", "paulson-wierschke-kim-2016"]
+    },
+    {
+      "theme": "The gap is widening, not closing",
+      "summary": "Chang & Smith show isolation increasing over time. Lynch et al. show Milwaukee's Black communities are worse off than 40-50 years ago. Fair housing legislation did not remedy the structural damage.",
+      "papers": ["chang-smith-2016", "lynch-et-al-2021"]
+    },
+    {
+      "theme": "Compounding mechanisms",
+      "summary": "Redlining was compounded by highway destruction (I-43 through Bronzeville), blockbusting, suburban exclusion of transit, and modern insurance redlining. These are not independent forces but reinforcing systems.",
+      "papers": ["lynch-et-al-2021", "paulson-wierschke-kim-2016"]
+    },
+    {
+      "theme": "Health is shaped by housing policy",
+      "summary": "Neighborhoods with sustained disinvestment have dramatically worse physical health, mental health, and infant mortality. The association between redlining and health is mediated 85-87% by current socioeconomic conditions created by decades of disinvestment.",
+      "papers": ["lynch-et-al-2021"]
+    }
+  ]
+}

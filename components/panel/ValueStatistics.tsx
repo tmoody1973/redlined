@@ -2,6 +2,7 @@
 
 import { useZoneValue } from "@/lib/useZoneValue";
 import { useZoneValueHistory } from "@/lib/useZoneValueHistory";
+import { SourceCitation } from "./SourceCitation";
 
 interface ValueStatisticsProps {
   areaId: string;
@@ -231,6 +232,13 @@ export default function ValueStatistics({ areaId }: ValueStatisticsProps) {
 
       {/* 1938 vs Today comparison */}
       <HistoricalComparison areaId={areaId} />
+
+      {/* Research citation */}
+      <SourceCitation
+        paperId="lynch-et-al-2021"
+        label="Lynch et al., 2021"
+        finding="In a mortgage system with fixed costs and dynamic profits, lenders are deterred from lending in communities of color that have lower incomes, smaller houses, and are located in areas with less demand."
+      />
     </section>
   );
 }

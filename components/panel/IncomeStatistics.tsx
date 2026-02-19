@@ -1,6 +1,7 @@
 "use client";
 
 import { useZoneIncome } from "@/lib/useZoneIncome";
+import { SourceCitation } from "./SourceCitation";
 
 interface IncomeStatisticsProps {
   areaId: string;
@@ -199,6 +200,13 @@ export default function IncomeStatistics({ areaId }: IncomeStatisticsProps) {
           </p>
         </div>
       )}
+
+      {/* Research citation */}
+      <SourceCitation
+        paperId="chang-smith-2016"
+        label="Chang & Smith, 2016"
+        finding="Home values, ownership rates, and incomes in non-redlined areas were continuously higher than redlined areas across all four time points: 1950, 1970, 1990, and 2010."
+      />
     </section>
   );
 }

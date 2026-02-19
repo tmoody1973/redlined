@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import type { HOLCGrade } from "@/types/holc";
+import { SourceCitation } from "./SourceCitation";
 
 interface DemolitionStatisticsProps {
   areaId: string;
@@ -205,6 +206,13 @@ export default function DemolitionStatistics({
           </p>
         </div>
       )}
+
+      {/* Research citation */}
+      <SourceCitation
+        paperId="paulson-wierschke-kim-2016"
+        label="Paulson, Wierschke & Kim, 2016"
+        finding="The I-43 highway destroyed Bronzeville's commercial district on Walnut Street and displaced thousands of African American residents. One vacant house reduces every other property on the block by $7,000."
+      />
     </section>
   );
 }

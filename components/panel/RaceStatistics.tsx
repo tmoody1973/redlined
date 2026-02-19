@@ -1,6 +1,7 @@
 "use client";
 
 import { useZoneRace } from "@/lib/useZoneRace";
+import { SourceCitation } from "./SourceCitation";
 
 interface RaceStatisticsProps {
   areaId: string;
@@ -154,6 +155,13 @@ export default function RaceStatistics({ areaId }: RaceStatisticsProps) {
 
       {/* Segregation insight */}
       <SegregationInsight gradeAverages={gradeAverages} />
+
+      {/* Research citation */}
+      <SourceCitation
+        paperId="paulson-wierschke-kim-2016"
+        label="Paulson, Wierschke & Kim, 2016"
+        finding="Restrictive covenants and redlining set the city on a segregated track that is incredibly difficult to break."
+      />
     </section>
   );
 }

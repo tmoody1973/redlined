@@ -7,6 +7,8 @@ import { SplitPanel } from "@/components/layout/SplitPanel";
 import { CanvasOverlays } from "@/components/ui/CanvasOverlays";
 import { IntroOverlay } from "@/components/ui/IntroOverlay";
 import { AboutModal } from "@/components/ui/AboutModal";
+import { ResearchModal } from "@/components/ui/ResearchModal";
+import { ResearchProvider } from "@/lib/research-context";
 import { ZoneKeyboardNav } from "@/components/scene/ZoneKeyboardNav";
 import InfoPanel from "@/components/panel/InfoPanel";
 
@@ -41,9 +43,11 @@ export default function Home() {
   }, []);
 
   return (
+    <ResearchProvider>
     <div className="flex h-screen w-screen flex-col overflow-hidden">
       <Header onAboutClick={() => setShowAbout(true)} />
       <AboutModal open={showAbout} onClose={() => setShowAbout(false)} />
+      <ResearchModal />
 
       <main className="relative flex-1 overflow-hidden">
         <SplitPanel
@@ -77,5 +81,6 @@ export default function Home() {
         />
       </main>
     </div>
+    </ResearchProvider>
   );
 }
