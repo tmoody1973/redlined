@@ -83,7 +83,7 @@ export function LayerControls() {
       {isOpen && (
         <div
           id="layer-panel"
-          className="mt-1.5 w-48 rounded-lg border border-slate-700 bg-slate-950/95 px-2.5 py-2.5 backdrop-blur-sm"
+          className="mt-1.5 w-48 max-h-[calc(100vh-5rem)] overflow-y-auto rounded-lg border border-slate-700 bg-slate-950/95 px-2.5 py-2.5 backdrop-blur-sm"
         >
           {/* Map Layers */}
           <span
