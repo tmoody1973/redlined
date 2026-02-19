@@ -3,48 +3,40 @@
     {
       "id": "survey",
       "label": "The Survey",
-      "yearRange": "1936",
+      "yearRange": "1933–1936",
       "color": "#b87333",
-      "description": "FSA photographers document America's cities"
+      "description": "The New Deal creates HOLC; FSA photographers document America's cities"
     },
     {
       "id": "redlining",
       "label": "The Lines Are Drawn",
-      "yearRange": "1938",
+      "yearRange": "1938–1950",
       "color": "#F44336",
-      "description": "HOLC appraisers grade every Milwaukee neighborhood"
+      "description": "HOLC appraisers grade every Milwaukee neighborhood — and the damage compounds"
     },
     {
       "id": "fair-housing",
       "label": "The Promise",
-      "yearRange": "1968",
+      "yearRange": "1967–1968",
       "color": "#FFEB3B",
       "description": "Civil rights legislation passes — but enforcement is weak"
     },
     {
       "id": "decline",
       "label": "The Fallout",
-      "yearRange": "1960s–70s",
+      "yearRange": "1960s–1970s",
       "color": "#9e9e9e",
       "description": "Freeways, urban renewal, and white flight reshape Milwaukee"
     },
     {
       "id": "today",
       "label": "The Legacy",
-      "yearRange": "Today",
+      "yearRange": "2008–Today",
       "color": "#4fc3f7",
       "description": "Milwaukee remains one of America's most segregated cities"
     }
   ],
   "events": [
-    {
-      "id": "mydans-survey",
-      "year": 1936,
-      "era": "survey",
-      "title": "Carl Mydans Photographs Milwaukee",
-      "description": "As part of the Farm Security Administration's documentation of American life, photographer Carl Mydans spent April 1936 capturing 353 images of Milwaukee — housing conditions, factory workers, neighborhoods, and daily life. These photographs, now in the Library of Congress, provide an accidental census of the city just two years before federal appraisers would grade every block.",
-      "colorTreatment": "sepia"
-    },
     {
       "id": "holc-created",
       "year": 1933,
@@ -54,11 +46,23 @@
       "colorTreatment": "sepia"
     },
     {
+      "id": "mydans-survey",
+      "year": 1936,
+      "era": "survey",
+      "title": "Carl Mydans Photographs Milwaukee",
+      "description": "As part of the Farm Security Administration's documentation of American life, photographer Carl Mydans spent April 1936 capturing 353 images of Milwaukee — housing conditions, factory workers, neighborhoods, and daily life. These photographs, now in the Library of Congress, provide an accidental census of the city just two years before federal appraisers would grade every block.",
+      "imageSrc": "/archive/photos/fsa-8b26530.jpg",
+      "imageAlt": "Housing conditions in Milwaukee documented by Carl Mydans for the Farm Security Administration, April 1936",
+      "colorTreatment": "sepia"
+    },
+    {
       "id": "holc-maps-drawn",
       "year": 1938,
       "era": "redlining",
       "title": "Milwaukee's Security Map Is Drawn",
       "description": "HOLC appraisers walk Milwaukee's neighborhoods and assign grades from A (Best) to D (Hazardous). The criteria explicitly include the race and ethnicity of residents. Neighborhoods with Black residents are automatically graded D. The 114 zones they draw will determine who gets a mortgage — and who doesn't — for decades to come.",
+      "imageSrc": "/archive/holc-scan-2k.jpg",
+      "imageAlt": "Original 1938 HOLC Residential Security Map of Milwaukee County showing color-coded neighborhood grades",
       "colorTreatment": "sepia"
     },
     {
@@ -67,6 +71,8 @@
       "era": "redlining",
       "title": "FHA Adopts HOLC Maps",
       "description": "The Federal Housing Administration incorporates HOLC's security maps into its own underwriting guidelines. Private banks follow suit. Residents in D-graded neighborhoods cannot get federally insured mortgages, making home ownership — the primary wealth-building tool for American families — effectively impossible in redlined areas.",
+      "imageSrc": "/archive/photos/fsa-8b28628.jpg",
+      "imageAlt": "Housing under the Wisconsin Avenue viaduct in Milwaukee, 1936 — areas like this were denied mortgage access",
       "colorTreatment": "sepia"
     },
     {
@@ -83,6 +89,8 @@
       "era": "redlining",
       "title": "Bronzeville at Its Peak",
       "description": "Milwaukee's Bronzeville — the cultural heart of the Black community along Walnut Street — thrives despite redlining. Jazz clubs, Black-owned businesses, churches, and community organizations flourish. But the neighborhood sits in zones graded C and D, starved of mortgage capital and maintenance investment.",
+      "imageSrc": "/archive/photos/fsa-8b28648.jpg",
+      "imageAlt": "Residential houses crowded in Milwaukee's industrial district, 1936 — the kind of neighborhoods that would become Bronzeville",
       "colorTreatment": "sepia"
     },
     {
