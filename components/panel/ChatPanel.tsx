@@ -62,7 +62,7 @@ export default function ChatPanel({ zoneContext }: ChatPanelProps) {
     { name: string; grade: string | null }[]
   >([]);
 
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const createConversation = useMutation(api.mutations.createConversation);
@@ -125,9 +125,12 @@ export default function ChatPanel({ zoneContext }: ChatPanelProps) {
     });
   }, [zoneContext, conversationId, lastZoneId, addZoneContextDivider]);
 
-  // Auto-scroll to the latest message
+  // Auto-scroll chat container only (not the parent panel)
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    const el = chatContainerRef.current;
+    if (el) {
+      el.scrollTop = el.scrollHeight;
+    }
   }, [messages, streamingText]);
 
   /** Submits a user question to the AI narrative guide. */
@@ -273,6 +276,7 @@ export default function ChatPanel({ zoneContext }: ChatPanelProps) {
 
       {/* Messages container */}
       <div
+        ref={chatContainerRef}
         className="mb-3 max-h-80 min-h-[120px] overflow-y-auto rounded-md border border-slate-700/50 bg-slate-900/50 p-3"
         role="log"
         aria-label="Chat messages"
@@ -378,7 +382,6 @@ export default function ChatPanel({ zoneContext }: ChatPanelProps) {
           </div>
         )}
 
-        <div ref={messagesEndRef} />
       </div>
 
       {/* Suggested questions: shown when chat is empty or after a new zone selection */}
