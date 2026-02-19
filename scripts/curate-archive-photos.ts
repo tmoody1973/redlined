@@ -5,8 +5,11 @@
  * Usage: npx tsx scripts/curate-archive-photos.ts
  *
  * Photos are from Carl Mydans' April 1936 documentation of Milwaukee
- * housing conditions — the FSA/OWI Black-and-White Negatives collection.
+ * housing conditions — LOT 1102, FSA/OWI Black-and-White Negatives.
  * All photos are PUBLIC DOMAIN.
+ *
+ * Image URLs verified via LOC JSON API (loc.gov/item/{id}/?fo=json).
+ * Each digital ID (LC-DIG-fsa-XXXXXXX) maps to the tile server path.
  */
 import sharp from "sharp";
 import { existsSync, mkdirSync, writeFileSync } from "fs";
@@ -17,7 +20,7 @@ const DATA_DIR = resolve("data/archive");
 
 interface PhotoSource {
   id: string;
-  /** LOC image URL (largest available JPEG) */
+  /** LOC high-res JPEG (v.jpg = ~1024px view copy) */
   imageUrl: string;
   /** LOC item page for attribution */
   locUrl: string;
@@ -30,16 +33,16 @@ interface PhotoSource {
 }
 
 /**
- * Hand-curated selection of Carl Mydans' Milwaukee photographs.
- * Image URLs point to the LOC's tile server for the reproduction JPEGs.
+ * Hand-curated selection of Carl Mydans' Milwaukee photographs (LOT 1102).
+ * Digital IDs verified against LOC JSON API — each URL tested.
  */
 const CURATED_PHOTOS: PhotoSource[] = [
   {
-    id: "fsa-006024",
+    id: "fsa-8b28631",
     imageUrl:
-      "https://tile.loc.gov/storage-services/service/pnp/fsa/8a02000/8a02000/8a02069r.jpg",
-    locUrl: "https://www.loc.gov/pictures/item/2017762826/",
-    title: "Rear of apartment house with Milwaukee courthouse",
+      "https://tile.loc.gov/storage-services/service/pnp/fsa/8b28000/8b28600/8b28631v.jpg",
+    locUrl: "https://www.loc.gov/pictures/item/2017767052/",
+    title: "Rear of apartment house showing Milwaukee courthouse",
     photographer: "Carl Mydans",
     date: "April 1936",
     category: "housing",
@@ -48,10 +51,10 @@ const CURATED_PHOTOS: PhotoSource[] = [
     rotation: -1.2,
   },
   {
-    id: "fsa-006025",
+    id: "fsa-8b28628",
     imageUrl:
-      "https://tile.loc.gov/storage-services/service/pnp/fsa/8a02000/8a02000/8a02070r.jpg",
-    locUrl: "https://www.loc.gov/pictures/item/2017762827/",
+      "https://tile.loc.gov/storage-services/service/pnp/fsa/8b28000/8b28600/8b28628v.jpg",
+    locUrl: "https://www.loc.gov/pictures/item/2017761449/",
     title: "Housing under Wisconsin Avenue viaduct",
     photographer: "Carl Mydans",
     date: "April 1936",
@@ -61,37 +64,37 @@ const CURATED_PHOTOS: PhotoSource[] = [
     rotation: 2.1,
   },
   {
-    id: "fsa-006026",
+    id: "fsa-8b26530",
     imageUrl:
-      "https://tile.loc.gov/storage-services/service/pnp/fsa/8a02000/8a02000/8a02071r.jpg",
-    locUrl: "https://www.loc.gov/pictures/item/2017762828/",
-    title: "Slum area housing, Milwaukee",
+      "https://tile.loc.gov/storage-services/service/pnp/fsa/8b26000/8b26500/8b26530v.jpg",
+    locUrl: "https://www.loc.gov/pictures/item/2017761462/",
+    title: "Slums. Milwaukee, Wisconsin",
     photographer: "Carl Mydans",
     date: "April 1936",
     category: "housing",
     caption:
-      "Housing in what the government called a 'slum area' — neighborhoods that would be graded D (Hazardous) by HOLC.",
+      "Housing in what the government called 'slums' — neighborhoods that would be graded D (Hazardous) by HOLC.",
     rotation: -0.8,
   },
   {
-    id: "fsa-006027",
+    id: "fsa-8b28642",
     imageUrl:
-      "https://tile.loc.gov/storage-services/service/pnp/fsa/8a02000/8a02000/8a02072r.jpg",
-    locUrl: "https://www.loc.gov/pictures/item/2017762829/",
-    title: "Rear of houses, Milwaukee",
+      "https://tile.loc.gov/storage-services/service/pnp/fsa/8b28000/8b28600/8b28642v.jpg",
+    locUrl: "https://www.loc.gov/pictures/item/2017761463/",
+    title: "Closeup of rear of houses, 900 block West Clyburn Street",
     photographer: "Carl Mydans",
     date: "April 1936",
     category: "housing",
     caption:
-      "Back alleys revealed what front facades hid. HOLC appraisers noted building conditions as part of their grading.",
+      "Rear view of houses on West Clyburn Street's 900 block. Back-of-house conditions factored heavily into HOLC grading.",
     rotation: 1.5,
   },
   {
-    id: "fsa-006028",
+    id: "fsa-8b28648",
     imageUrl:
-      "https://tile.loc.gov/storage-services/service/pnp/fsa/8a02000/8a02000/8a02073r.jpg",
-    locUrl: "https://www.loc.gov/pictures/item/2017762830/",
-    title: "Houses near industrial area, Milwaukee",
+      "https://tile.loc.gov/storage-services/service/pnp/fsa/8b28000/8b28600/8b28648v.jpg",
+    locUrl: "https://www.loc.gov/pictures/item/2017761471/",
+    title: "Residential houses crowded in industrial district",
     photographer: "Carl Mydans",
     date: "April 1936",
     category: "neighborhoods",
@@ -100,50 +103,50 @@ const CURATED_PHOTOS: PhotoSource[] = [
     rotation: -2.3,
   },
   {
-    id: "fsa-006029",
+    id: "fsa-8b28618",
     imageUrl:
-      "https://tile.loc.gov/storage-services/service/pnp/fsa/8a02000/8a02000/8a02074r.jpg",
-    locUrl: "https://www.loc.gov/pictures/item/2017762831/",
+      "https://tile.loc.gov/storage-services/service/pnp/fsa/8b28000/8b28600/8b28618v.jpg",
+    locUrl: "https://www.loc.gov/pictures/item/2017761440/",
     title: "Milwaukee freight yards and industrial plants",
     photographer: "Carl Mydans",
     date: "April 1936",
     category: "industry",
     caption:
-      "Milwaukee's freight yards and factories. Industrial employment drew workers, but living nearby meant lower property values.",
+      "Milwaukee's freight yards overshadowed by a residential district. Industrial employment drew workers, but living nearby meant lower property values.",
     rotation: 0.7,
   },
   {
-    id: "fsa-006030",
+    id: "fsa-8b28629",
     imageUrl:
-      "https://tile.loc.gov/storage-services/service/pnp/fsa/8a02000/8a02000/8a02075r.jpg",
-    locUrl: "https://www.loc.gov/pictures/item/2017762832/",
-    title: "Street scene, Milwaukee",
+      "https://tile.loc.gov/storage-services/service/pnp/fsa/8b28000/8b28600/8b28629v.jpg",
+    locUrl: "https://www.loc.gov/pictures/item/2017761450/",
+    title: "House on alley between 7th and 8th Streets",
     photographer: "Carl Mydans",
     date: "April 1936",
-    category: "streets",
+    category: "neighborhoods",
     caption:
-      "A Milwaukee street two years before HOLC appraisers would walk these blocks and decide their future.",
+      "A house on the alley between 7th and 8th and Milbourn and State Streets. HOLC appraisers would walk these blocks and decide their future.",
     rotation: -1.8,
   },
   {
-    id: "fsa-006031",
+    id: "fsa-8b28654",
     imageUrl:
-      "https://tile.loc.gov/storage-services/service/pnp/fsa/8a02000/8a02000/8a02076r.jpg",
-    locUrl: "https://www.loc.gov/pictures/item/2017762833/",
-    title: "Apartments near 8th and Wisconsin, Milwaukee",
+      "https://tile.loc.gov/storage-services/service/pnp/fsa/8b28000/8b28600/8b28654v.jpg",
+    locUrl: "https://www.loc.gov/pictures/item/2017761476/",
+    title: "Rear of apartments at 8th and Wisconsin",
     photographer: "Carl Mydans",
     date: "April 1936",
     category: "housing",
     caption:
-      "Apartment buildings near 8th and Wisconsin Avenue, in the heart of what would become a C-graded zone.",
+      "Apartment buildings at 8th and Wisconsin Avenue, with the Milwaukee Public Library in background. The heart of what would become a C-graded zone.",
     rotation: 2.5,
   },
   {
-    id: "fsa-006032",
+    id: "fsa-8b26532",
     imageUrl:
-      "https://tile.loc.gov/storage-services/service/pnp/fsa/8a02000/8a02000/8a02077r.jpg",
-    locUrl: "https://www.loc.gov/pictures/item/2017762834/",
-    title: "House at 437 North Jackson Street, Milwaukee",
+      "https://tile.loc.gov/storage-services/service/pnp/fsa/8b26000/8b26500/8b26532v.jpg",
+    locUrl: "https://www.loc.gov/pictures/item/2017761469/",
+    title: "House at 437 North Jackson Street",
     photographer: "Carl Mydans",
     date: "April 1936",
     category: "housing",
@@ -152,10 +155,10 @@ const CURATED_PHOTOS: PhotoSource[] = [
     rotation: -0.5,
   },
   {
-    id: "fsa-006033",
+    id: "fsa-8b28649",
     imageUrl:
-      "https://tile.loc.gov/storage-services/service/pnp/fsa/8a02000/8a02000/8a02078r.jpg",
-    locUrl: "https://www.loc.gov/pictures/item/2017762835/",
+      "https://tile.loc.gov/storage-services/service/pnp/fsa/8b28000/8b28600/8b28649v.jpg",
+    locUrl: "https://www.loc.gov/pictures/item/2017761472/",
     title: "Alley and houses at 1012 West Somers Street",
     photographer: "Carl Mydans",
     date: "April 1936",
@@ -165,133 +168,133 @@ const CURATED_PHOTOS: PhotoSource[] = [
     rotation: 1.9,
   },
   {
-    id: "fsa-006034",
+    id: "fsa-8b28650",
     imageUrl:
-      "https://tile.loc.gov/storage-services/service/pnp/fsa/8a02000/8a02000/8a02079r.jpg",
-    locUrl: "https://www.loc.gov/pictures/item/2017762836/",
-    title: "View from living quarters at 730 West Winnebago",
+      "https://tile.loc.gov/storage-services/service/pnp/fsa/8b28000/8b28600/8b28650v.jpg",
+    locUrl: "https://www.loc.gov/pictures/item/2017761473/",
+    title: "View from living quarters at 730 West Winnebago Street",
     photographer: "Carl Mydans",
     date: "April 1936",
     category: "housing",
     caption:
-      "The view from inside a home at 730 West Winnebago Street. What daily life looked like in a neighborhood the government would soon label 'Hazardous.'",
+      "The view from inside a home at 730 West Winnebago Street, looking toward the alley. Daily life in a neighborhood the government would soon label 'Hazardous.'",
     rotation: -2.8,
   },
   {
-    id: "fsa-006035",
+    id: "fsa-8b28643",
     imageUrl:
-      "https://tile.loc.gov/storage-services/service/pnp/fsa/8a02000/8a02000/8a02080r.jpg",
-    locUrl: "https://www.loc.gov/pictures/item/2017762837/",
-    title: "Rear of houses in 900 block West Clybourn Street",
+      "https://tile.loc.gov/storage-services/service/pnp/fsa/8b28000/8b28600/8b28643v.jpg",
+    locUrl: "https://www.loc.gov/pictures/item/2017761464/",
+    title: "Rear of houses, 900 block West Clybourn Street",
     photographer: "Carl Mydans",
     date: "April 1936",
     category: "housing",
     caption:
-      "Rear view of houses on West Clybourn Street's 900 block. Back-of-house conditions factored heavily into HOLC grading.",
+      "Rear of a group of houses on West Clybourn Street. What front facades hid, back alleys revealed.",
     rotation: 0.3,
   },
   {
-    id: "fsa-006036",
+    id: "fsa-8b28620",
     imageUrl:
-      "https://tile.loc.gov/storage-services/service/pnp/fsa/8a02000/8a02000/8a02081r.jpg",
-    locUrl: "https://www.loc.gov/pictures/item/2017762838/",
-    title: "Milwaukee industrial waterfront",
+      "https://tile.loc.gov/storage-services/service/pnp/fsa/8b28000/8b28600/8b28620v.jpg",
+    locUrl: "https://www.loc.gov/pictures/item/2017761441/",
+    title: "1316 West Walnut Street blight",
     photographer: "Carl Mydans",
     date: "April 1936",
-    category: "industry",
+    category: "housing",
     caption:
-      "Milwaukee's industrial waterfront. The Menomonee Valley's factories employed thousands but their pollution lowered nearby property grades.",
+      "1316 West Walnut Street. The word 'blight' in the caption — the same language HOLC appraisers would use to justify redlining.",
     rotation: -1.1,
   },
   {
-    id: "fsa-006037",
+    id: "fsa-8b28634",
     imageUrl:
-      "https://tile.loc.gov/storage-services/service/pnp/fsa/8a02000/8a02000/8a02082r.jpg",
-    locUrl: "https://www.loc.gov/pictures/item/2017762839/",
-    title: "Milwaukee neighborhood street",
-    photographer: "Carl Mydans",
-    date: "April 1936",
-    category: "streets",
-    caption:
-      "A quiet residential street in Milwaukee. Whether this block was graded A or D would determine mortgage access for decades.",
-    rotation: 2.7,
-  },
-  {
-    id: "fsa-006038",
-    imageUrl:
-      "https://tile.loc.gov/storage-services/service/pnp/fsa/8a02000/8a02000/8a02083r.jpg",
-    locUrl: "https://www.loc.gov/pictures/item/2017762840/",
-    title: "Workers near Milwaukee factory",
-    photographer: "Carl Mydans",
-    date: "April 1936",
-    category: "people",
-    caption:
-      "Workers near a Milwaukee factory. HOLC appraisers noted the 'class' of residents as part of their neighborhood assessments.",
-    rotation: -0.9,
-  },
-  {
-    id: "fsa-006039",
-    imageUrl:
-      "https://tile.loc.gov/storage-services/service/pnp/fsa/8a02000/8a02000/8a02084r.jpg",
-    locUrl: "https://www.loc.gov/pictures/item/2017762841/",
-    title: "Milwaukee residential block",
+      "https://tile.loc.gov/storage-services/service/pnp/fsa/8b28000/8b28600/8b28634v.jpg",
+    locUrl: "https://www.loc.gov/pictures/item/2017761453/",
+    title: "Group of houses at 9th and Galena Street",
     photographer: "Carl Mydans",
     date: "April 1936",
     category: "neighborhoods",
     caption:
-      "A full block of Milwaukee homes in 1936. Two years later, an appraiser would assign a single letter grade to determine its financial future.",
-    rotation: 1.3,
+      "Houses at 9th and Galena Street. Whether this block was graded A or D would determine mortgage access for decades.",
+    rotation: 2.7,
   },
   {
-    id: "fsa-006040",
+    id: "fsa-8b28647",
     imageUrl:
-      "https://tile.loc.gov/storage-services/service/pnp/fsa/8a02000/8a02000/8a02085r.jpg",
-    locUrl: "https://www.loc.gov/pictures/item/2017762842/",
-    title: "Children in Milwaukee neighborhood",
+      "https://tile.loc.gov/storage-services/service/pnp/fsa/8b28000/8b28600/8b28647v.jpg",
+    locUrl: "https://www.loc.gov/pictures/item/2017761470/",
+    title: "Unemployed men salvaging coke from industrial cinder pile",
     photographer: "Carl Mydans",
     date: "April 1936",
     category: "people",
     caption:
-      "Children in a Milwaukee neighborhood. The lines drawn on maps in 1938 would shape their opportunities for generations.",
-    rotation: -2.0,
+      "Unemployed men salvaging coke from an industrial cinder pile at the Milwaukee Railroad shops. HOLC appraisers noted the 'class' of residents as part of their assessments.",
+    rotation: -0.9,
   },
   {
-    id: "fsa-006041",
+    id: "fsa-8b26531",
     imageUrl:
-      "https://tile.loc.gov/storage-services/service/pnp/fsa/8a02000/8a02000/8a02086r.jpg",
-    locUrl: "https://www.loc.gov/pictures/item/2017762843/",
-    title: "Commercial street, Milwaukee",
+      "https://tile.loc.gov/storage-services/service/pnp/fsa/8b26000/8b26500/8b26531v.jpg",
+    locUrl: "https://www.loc.gov/pictures/item/2017761465/",
+    title: "Group of houses, 600 block East Detroit Street",
     photographer: "Carl Mydans",
     date: "April 1936",
-    category: "streets",
+    category: "neighborhoods",
     caption:
-      "A commercial stretch in Milwaukee. Businesses in redlined zones would struggle for decades to get loans and investment.",
-    rotation: 0.6,
+      "A group of houses on East Detroit Street. Two years later, an appraiser would assign a single letter grade to determine this block's financial future.",
+    rotation: 1.3,
   },
   {
-    id: "fsa-006042",
+    id: "fsa-8b26527",
     imageUrl:
-      "https://tile.loc.gov/storage-services/service/pnp/fsa/8a02000/8a02000/8a02087r.jpg",
-    locUrl: "https://www.loc.gov/pictures/item/2017762844/",
-    title: "Wooden houses, Milwaukee residential area",
+      "https://tile.loc.gov/storage-services/service/pnp/fsa/8b26000/8b26500/8b26527v.jpg",
+    locUrl: "https://www.loc.gov/pictures/item/2017761444/",
+    title: "Close housing adjoining junk",
     photographer: "Carl Mydans",
     date: "April 1936",
     category: "housing",
     caption:
-      "Frame houses in a Milwaukee residential area. Wood-frame construction was noted as a negative factor in HOLC evaluations.",
+      "Houses pressed up against a junk yard. Proximity to 'detrimental influences' was one of the factors HOLC used to downgrade neighborhoods.",
+    rotation: -2.0,
+  },
+  {
+    id: "fsa-8b28625",
+    imageUrl:
+      "https://tile.loc.gov/storage-services/service/pnp/fsa/8b28000/8b28600/8b28625v.jpg",
+    locUrl: "https://www.loc.gov/pictures/item/2017761445/",
+    title: "Housing alongside Chicago and Milwaukee Railroad",
+    photographer: "Carl Mydans",
+    date: "April 1936",
+    category: "neighborhoods",
+    caption:
+      "Houses alongside the Chicago and Milwaukee Railroad. Railroads and industry drove HOLC grades down in adjacent neighborhoods.",
+    rotation: 0.6,
+  },
+  {
+    id: "fsa-8b28639",
+    imageUrl:
+      "https://tile.loc.gov/storage-services/service/pnp/fsa/8b28000/8b28600/8b28639v.jpg",
+    locUrl: "https://www.loc.gov/pictures/item/2017761459/",
+    title: "1535 North 10th Street, house next to junk yard",
+    photographer: "Carl Mydans",
+    date: "April 1936",
+    category: "housing",
+    caption:
+      "1535 North 10th Street, a house next to a junk yard. Addresses documented by the FSA — many of these buildings are now gone.",
     rotation: -1.6,
   },
   {
-    id: "fsa-006043",
+    id: "fsa-8b26528",
     imageUrl:
-      "https://tile.loc.gov/storage-services/service/pnp/fsa/8a02000/8a02000/8a02088r.jpg",
-    locUrl: "https://www.loc.gov/pictures/item/2017762845/",
-    title: "Milwaukee residential street with cars",
+      "https://tile.loc.gov/storage-services/service/pnp/fsa/8b26000/8b26500/8b26528v.jpg",
+    locUrl: "https://www.loc.gov/pictures/item/2017761447/",
+    title: "Exterior of house at 912 North 8th Street",
     photographer: "Carl Mydans",
     date: "April 1936",
-    category: "streets",
+    category: "housing",
     caption:
-      "Cars line a Milwaukee residential street in 1936. The automobile age was reshaping cities — and so was federal mortgage policy.",
+      "912 North 8th Street. The lines drawn on maps in 1938 would shape opportunities on this block for generations.",
     rotation: 2.2,
   },
 ];
@@ -316,15 +319,14 @@ async function downloadAndResize(photo: PhotoSource): Promise<boolean> {
     const buffer = Buffer.from(await response.arrayBuffer());
     console.log(`    ${Math.round(buffer.length / 1024)}KB downloaded`);
 
-    // Generate thumbnail (800px)
+    // Generate thumbnail (400px wide — source is ~1024px)
     await sharp(buffer)
-      .resize(800)
+      .resize(400)
       .jpeg({ quality: 80, progressive: true })
       .toFile(thumbPath);
 
-    // Generate full-size (2048px)
+    // Full-size: keep at source resolution (don't upscale)
     await sharp(buffer)
-      .resize(2048)
       .jpeg({ quality: 85, progressive: true })
       .toFile(fullPath);
 
@@ -374,7 +376,9 @@ async function main() {
   const manifestPath = resolve(DATA_DIR, "fsa-photos.json");
   writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
   console.log(`\n✓ Manifest written: ${manifestPath}`);
-  console.log(`  ${results.length} of ${CURATED_PHOTOS.length} photos downloaded`);
+  console.log(
+    `  ${results.length} of ${CURATED_PHOTOS.length} photos downloaded`,
+  );
 }
 
 main().catch((err) => {
