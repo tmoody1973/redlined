@@ -75,7 +75,7 @@ Grade: ${gradeLabel}`;
       { key: "trendOfDesirability", label: "Trend of Desirability" },
     ] as const;
 
-    const zoneRecord = zoneContext as Record<string, unknown>;
+    const zoneRecord = zoneContext as unknown as Record<string, unknown>;
     const fields = appraiserFields
       .filter((f) => {
         const val = zoneRecord[f.key];
