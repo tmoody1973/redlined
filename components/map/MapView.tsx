@@ -280,11 +280,12 @@ export default function MapView() {
       .catch(() => {});
   }, [covenantsVisible, covenantData]);
 
-  // Time-linked filter for covenant dots
+  // Time-linked filter for covenant dots — filter whenever year < 1960
+  // (covenants span 1910-1959, so no filtering needed past that range)
   const covenantFilter = useMemo((): ["has", string] | ["<=", ["get", string], number] => {
-    if (!isExpanded || currentYear >= 2025) return ["has", "deed_year"];
+    if (currentYear >= 1960) return ["has", "deed_year"];
     return ["<=", ["get", "deed_year"], currentYear];
-  }, [isExpanded, currentYear]);
+  }, [currentYear]);
 
   // Build GeoJSON sources
   const zoneGeoJSON = useMemo(() => {
