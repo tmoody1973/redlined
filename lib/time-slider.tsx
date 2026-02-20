@@ -85,6 +85,7 @@ interface TimeSliderState {
   setCurrentYear: (year: number) => void;
   setIsExpanded: (expanded: boolean) => void;
   toggleGhosts: () => void;
+  setGhostsVisible: (visible: boolean) => void;
   play: () => void;
   pause: () => void;
   togglePlayback: () => void;
@@ -136,6 +137,10 @@ export function TimeSliderProvider({ children }: { children: ReactNode }) {
 
   const toggleGhosts = useCallback(() => {
     setGhostsVisible((prev) => !prev);
+  }, []);
+
+  const setGhostsVisibleExplicit = useCallback((visible: boolean) => {
+    setGhostsVisible(visible);
   }, []);
 
   const play = useCallback(() => {
@@ -193,6 +198,7 @@ export function TimeSliderProvider({ children }: { children: ReactNode }) {
         setCurrentYear,
         setIsExpanded,
         toggleGhosts,
+        setGhostsVisible: setGhostsVisibleExplicit,
         play,
         pause,
         togglePlayback,

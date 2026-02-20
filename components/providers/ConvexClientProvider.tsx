@@ -2,11 +2,13 @@
 
 import { ConvexProvider, ConvexReactClient } from "convex/react";
 import { type ReactNode } from "react";
+import { MapCameraProvider } from "@/lib/map-camera";
 import { ZoneSelectionProvider } from "@/lib/zone-selection";
 import { DataOverlayProvider } from "@/lib/data-overlay";
 import { BaseMapProvider } from "@/lib/base-map";
 import { LayerVisibilityProvider } from "@/lib/layer-visibility";
 import { TimeSliderProvider } from "@/lib/time-slider";
+import { StoryModeProvider } from "@/lib/story-mode";
 
 const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL;
 
@@ -64,15 +66,19 @@ export function ConvexClientProvider({ children }: { children: ReactNode }) {
 
   return (
     <ConvexProvider client={convex}>
-      <ZoneSelectionProvider>
-        <DataOverlayProvider>
-          <BaseMapProvider>
-            <LayerVisibilityProvider>
-              <TimeSliderProvider>{children}</TimeSliderProvider>
-            </LayerVisibilityProvider>
-          </BaseMapProvider>
-        </DataOverlayProvider>
-      </ZoneSelectionProvider>
+      <MapCameraProvider>
+        <ZoneSelectionProvider>
+          <DataOverlayProvider>
+            <BaseMapProvider>
+              <LayerVisibilityProvider>
+                <TimeSliderProvider>
+                  <StoryModeProvider>{children}</StoryModeProvider>
+                </TimeSliderProvider>
+              </LayerVisibilityProvider>
+            </BaseMapProvider>
+          </DataOverlayProvider>
+        </ZoneSelectionProvider>
+      </MapCameraProvider>
     </ConvexProvider>
   );
 }

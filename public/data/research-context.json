@@ -135,6 +135,123 @@
         "riverwest": "Formed as a community by the East Side Housing Action Coalition in the 1970s. Successfully fought the city's 'faltering' designation. Changed from 95-100% white in 1940 to about 75% white in 2010.",
         "thirdWard": "Went through four identities: Irish settlers, Italian industrialists, deindustrialization/decay, and gentrification. The 1892 fire destroyed over 400 buildings. I-794 destroyed remaining houses. Now a gentrified shopping/dining destination."
       }
+    },
+    {
+      "id": "barbera-2012",
+      "title": "An Improvised World: Jazz and Community in Milwaukee, 1950-1970",
+      "authors": "Benjamin A. Barbera",
+      "year": 2012,
+      "institution": "University of Wisconsin-Milwaukee",
+      "pdfPath": "/research/bronzeville/barbera-2012.pdf",
+      "topics": ["jazz", "bronzeville", "migration", "urban-renewal", "deindustrialization"],
+      "keyFindings": [
+        "Jazz clubs were direct casualties of I-43 highway construction — Jimmy Mack's Main Event relocated twice before closing in 2002.",
+        "African American migration, urban renewal, and deindustrialization combined to push jazz out of the Black community.",
+        "The jazz community survived but became smaller, middle class, and predominantly white.",
+        "Jazz served as a cultural bridge between Black and white communities, but urban renewal disrupted this potential."
+      ],
+      "quotes": [
+        {
+          "text": "That was where the Black Jazz, the Black musicians, and the Black audience hung out.",
+          "source": "Adekola Adedapo, quoted in Barbera 2012",
+          "topic": "bronzeville-culture"
+        },
+        {
+          "text": "The African American community in Milwaukee was in a constant state of reappraisal, adjustment, and ultimately improvisational living.",
+          "source": "Barbera, 2012",
+          "topic": "community-resilience"
+        }
+      ]
+    },
+    {
+      "id": "niemuth-2014",
+      "title": "Urban Renewal and the Development of Milwaukee's African American Community: 1960-1980",
+      "authors": "Niles Niemuth",
+      "year": 2014,
+      "institution": "University of Wisconsin-Milwaukee",
+      "pdfPath": "/research/bronzeville/niemuth-2014.pdf",
+      "topics": ["urban-renewal", "highway-43", "harambee", "displacement", "black-agency"],
+      "keyFindings": [
+        "I-43 highway destroyed Bronzeville, pushing displaced residents into Garfield Park (renamed Harambee).",
+        "Black male employment in Milwaukee dropped from 73.4% (1970) to 44.7% (2010).",
+        "Model Cities area lost 3,371 net housing units between 1966 and 1971.",
+        "12.8% of working-age Black men in Wisconsin were incarcerated in 2010 — twice the national average.",
+        "African Americans organized community-driven renewal in Harambee — 'the quintessential example' of Black agency in urban renewal.",
+        "Infant mortality rate for African Americans: 15.6 per 1,000 births vs. 6.4 for whites."
+      ],
+      "quotes": [
+        {
+          "text": "Urban renewal resulted in the wholesale destruction of black neighborhoods, wiping away important areas of residential, economic and cultural development.",
+          "source": "Niemuth, 2014",
+          "topic": "urban-renewal"
+        }
+      ]
+    },
+    {
+      "id": "honer-2015",
+      "title": "The Unworkable Program: Urban Renewal in Kilbourntown-3 and Midtown, Milwaukee",
+      "authors": "Matthew J. Honer",
+      "year": 2015,
+      "institution": "University of Wisconsin-Eau Claire",
+      "pdfPath": "/research/bronzeville/honer-2015.pdf",
+      "topics": ["urban-renewal", "kilbourntown", "segregation", "federal-policy", "containment"],
+      "keyFindings": [
+        "Milwaukee used federal urban renewal funds to continue racist policies of neighborhood segregation and containment.",
+        "K-3 (predominantly African American) was cleared as a 'slum'; adjacent Midtown (white) was 'conserved' — same federal program, opposite outcomes by race.",
+        "Class IV Areas (D-grade HOLC zones) were designated for 'substantial clearance and redevelopment' in the 1960s — the grades became a demolition blueprint.",
+        "More homes were destroyed than rebuilt. The city subverted federal requirements for adequate relocation and citizen participation."
+      ],
+      "quotes": [
+        {
+          "text": "The continuation of white neighborhood resistance, racist real estate practices, and federal redlining of minority neighborhoods assured that slums would continue to be created.",
+          "source": "Honer, 2015",
+          "topic": "containment"
+        }
+      ]
+    },
+    {
+      "id": "ethnic-african-american",
+      "title": "Milwaukee African Americans: A Community Portrait",
+      "authors": "City of Milwaukee / Historical Society",
+      "year": 2000,
+      "institution": "City of Milwaukee",
+      "pdfPath": "/research/bronzeville/ethnic-african-american.pdf",
+      "topics": ["bronzeville", "walnut-street", "great-migration", "community-history"],
+      "keyFindings": [
+        "Walnut Street was Milwaukee's Black business district with dozens of Black-owned establishments.",
+        "Nearly 21,000 African Americans settled in Milwaukee's Bronzeville between 1900-1950.",
+        "The Malcolm M. King family exemplified the professional class that built Bronzeville's institutions.",
+        "Jazz clubs, billiard halls, dry goods stores, and law offices lined Walnut Street."
+      ],
+      "quotes": []
+    },
+    {
+      "id": "hood-design-2024",
+      "title": "Milwaukee History Maps: Research Synthesis for Bronzeville Center for the Arts",
+      "authors": "Hester Tittmann / Hood Design Studio",
+      "year": 2024,
+      "institution": "Bronzeville Center for the Arts",
+      "pdfPath": "/research/bronzeville/hood-design-2024.pdf",
+      "topics": ["bronzeville", "mapping", "cultural-development", "spatial-analysis"],
+      "keyFindings": [
+        "Mapped timelines of Milwaukee's Black commercial and cultural development from 1900 to present.",
+        "Spatial overview organized into political, cultural, infrastructural, and industrial categories.",
+        "Documents the geographic concentration and dispersal of Black community institutions over time."
+      ],
+      "quotes": []
+    },
+    {
+      "id": "black-heritage",
+      "title": "Black Heritage in Milwaukee",
+      "authors": "Milwaukee Heritage Collection",
+      "year": 1990,
+      "pdfPath": "/research/bronzeville/black-heritage.pdf",
+      "topics": ["heritage", "bronzeville", "community-history", "visual-documentation"],
+      "keyFindings": [
+        "Visual documentation of Black community infrastructure, institutions, and neighborhoods in Milwaukee.",
+        "Historical photographs and records of buildings and community spaces that were later demolished."
+      ],
+      "quotes": []
     }
   ],
   "crossPaperThemes": [
@@ -157,6 +274,11 @@
       "theme": "Health is shaped by housing policy",
       "summary": "Neighborhoods with sustained disinvestment have dramatically worse physical health, mental health, and infant mortality. The association between redlining and health is mediated 85-87% by current socioeconomic conditions created by decades of disinvestment.",
       "papers": ["lynch-et-al-2021"]
+    },
+    {
+      "theme": "Bronzeville: From thriving community to demolished landscape",
+      "summary": "Six studies document the arc of Bronzeville — from a vibrant 12-block community with jazz clubs and Black-owned businesses, through I-43 highway destruction and urban renewal clearance, to the emergence of Harambee as a community-driven alternative.",
+      "papers": ["barbera-2012", "niemuth-2014", "honer-2015", "ethnic-african-american", "hood-design-2024", "black-heritage"]
     }
   ]
 }

@@ -19,6 +19,7 @@ interface LayerVisibilityState {
   sanbornYear: SanbornYear;
   sanbornOpacity: number;
   covenantsVisible: boolean;
+  setCovenantsVisible: (visible: boolean) => void;
   toggleZones: () => void;
   toggleLabels: () => void;
   toggleNeighborhoodNames: () => void;
@@ -39,7 +40,7 @@ export function LayerVisibilityProvider({ children }: { children: ReactNode }) {
   const [sanbornVisible, setSanbornVisible] = useState(false);
   const [sanbornYear, setSanbornYearState] = useState<SanbornYear>(1910);
   const [sanbornOpacity, setSanbornOpacityState] = useState(0.7);
-  const [covenantsVisible, setCovenantsVisible] = useState(false);
+  const [covenantsVisible, setCovenantsVisibleState] = useState(false);
 
   const toggleZones = useCallback(() => setZonesVisible((v) => !v), []);
   const toggleLabels = useCallback(() => setLabelsVisible((v) => !v), []);
@@ -48,7 +49,8 @@ export function LayerVisibilityProvider({ children }: { children: ReactNode }) {
   const toggleSanborn = useCallback(() => setSanbornVisible((v) => !v), []);
   const setSanbornYear = useCallback((year: SanbornYear) => setSanbornYearState(year), []);
   const setSanbornOpacity = useCallback((opacity: number) => setSanbornOpacityState(Math.max(0, Math.min(1, opacity))), []);
-  const toggleCovenants = useCallback(() => setCovenantsVisible((v) => !v), []);
+  const toggleCovenants = useCallback(() => setCovenantsVisibleState((v) => !v), []);
+  const setCovenantsVisibleExplicit = useCallback((visible: boolean) => setCovenantsVisibleState(visible), []);
 
   return (
     <LayerVisibilityContext.Provider
@@ -61,6 +63,7 @@ export function LayerVisibilityProvider({ children }: { children: ReactNode }) {
         sanbornYear,
         sanbornOpacity,
         covenantsVisible,
+        setCovenantsVisible: setCovenantsVisibleExplicit,
         toggleZones,
         toggleLabels,
         toggleNeighborhoodNames,

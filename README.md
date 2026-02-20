@@ -35,7 +35,14 @@ The project starts with Milwaukee, Wisconsin — one of the most segregated citi
 - **Ghost Buildings** — 15,738 demolished structures (2005-2020) visualized as grade-colored circles, sized by demolition count per zone, with close button on the floating legend
 - **Sanborn Map Context** — Fire insurance atlas overlay connecting 1938 building conditions to modern-day demolition patterns
 - **Decades of Change** — Grade-level income and home ownership trends across 5 decades (1950-2020), combining published research statistics with Census API data, presented as plain-English narratives for general audiences
-- **Research-Sourced Citations** — Every data panel cites peer-reviewed Milwaukee research with in-app PDF viewer modal
+- **Guided Story Mode ("The Lines They Drew")** — 6-beat cinematic narrative that auto-launches on first visit, flying the camera across Milwaukee while activating zones, overlays, covenants, and ghost buildings at each beat. Available via red "Guided Tour" header button for return visitors. Each beat includes expandable "Learn more" sections with academic citations that open full PDFs in the built-in viewer. Keyboard (Left/Right/Escape/Enter), swipe, and dot navigation. Code-split with Motion.dev transitions.
+  - Beat 1: "The Grading" — City overview, 1938, 114 zones explained
+  - Beat 2: "Best in Class" — Zone A1 (Shorewood/Whitefish Bay), the wealth engine
+  - Beat 3: "Hazardous" — Zone D5 (Bronzeville Core), Walnut Street's vibrant history
+  - Beat 4: "What Was Lost" — Zone D6 (Triangle), 2,116 demolished buildings, I-43 destruction
+  - Beat 5: "The Invisible Lines" — 32,219 racial covenants, year 1926
+  - Beat 6: "Still Here" — Income overlay, 2.7x gap, Harambee resilience
+- **Research-Sourced Citations** — Every data panel and story beat cites peer-reviewed Milwaukee research with in-app PDF viewer modal (9 papers total, including 6 on Bronzeville history)
 - **Time Slider** — GSAP-animated timeline (1870-2025) with zone opacity pulsing by development era, covenant accumulation count, and era annotations
 - **Layer Controls** — Toggle zones, labels, neighborhoods, buildings, covenants, base map, and all overlays independently
 - **Responsive Design** — Desktop split-panel layout, tablet adaptation, mobile bottom-sheet pattern
@@ -180,6 +187,10 @@ redlined/
 │   │   ├── GhostLegend.tsx      # Demolished buildings legend (with close button)
 │   │   ├── AboutModal.tsx       # "About the Map" modal with data sources
 │   │   └── ResearchModal.tsx    # PDF viewer modal for research papers
+│   ├── story/                    # Guided story mode overlay
+│   │   ├── StoryOverlay.tsx      # Main overlay (keyboard, swipe, skip)
+│   │   ├── StoryCard.tsx         # Beat content card (Motion.dev transitions)
+│   │   └── StoryStepIndicator.tsx # Progress dots (layoutId animation)
 │   ├── archive/                  # "The Archive" gallery modal
 │   │   ├── ArchiveModal.tsx      # Root shell: overlay, tabs, AnimatePresence
 │   │   ├── ArchiveTabBar.tsx     # Tab nav with animated underline (layoutId)
@@ -206,6 +217,9 @@ redlined/
 │   ├── data-overlay.tsx         # Overlay state context
 │   ├── time-slider.tsx          # Timeline state context
 │   ├── layer-visibility.tsx     # Layer toggle context
+│   ├── map-camera.tsx           # Camera flyTo context (used by story mode)
+│   ├── story-beats.ts           # 6-beat narrative script with camera targets
+│   ├── story-mode.tsx           # Story state + orchestration context
 │   ├── colorScale.ts            # Overlay color mapping functions
 │   ├── census-helpers.ts        # Crosswalk + weighted averages
 │   ├── useZoneIncome.ts         # Income data hook
@@ -279,7 +293,14 @@ redlined/
 └── public/research/             # Academic research PDFs (in-app viewer)
     ├── chang-smith-2016.pdf
     ├── lynch-et-al-2021.pdf
-    └── paulson-wierschke-kim-2016.pdf
+    ├── paulson-wierschke-kim-2016.pdf
+    └── bronzeville/             # Bronzeville-specific research
+        ├── barbera-2012.pdf     # Jazz and Community, 1950-1970
+        ├── niemuth-2014.pdf     # Urban Renewal, 1960-1980
+        ├── honer-2015.pdf       # Kilbourntown-3 and Midtown
+        ├── ethnic-african-american.pdf  # Community portrait
+        ├── hood-design-2024.pdf # Bronzeville Center research
+        └── black-heritage.pdf   # Visual heritage documentation
 ```
 
 ## Data Sources
@@ -341,15 +362,21 @@ Area-weighted continuous score (1.0–4.0) per Census tract measuring redlining 
 
 ## Research Sources
 
-Three peer-reviewed papers on Milwaukee's redlining history are integrated into the application. Each data overlay panel includes inline citations with key findings, and clicking "View PDF" opens the full paper in a modal viewer. The AI narrative guide also references these findings when answering questions.
+Nine academic papers on Milwaukee's redlining and Bronzeville history are integrated into the application. Each data overlay panel and guided story beat includes inline citations with key findings, and clicking "View PDF" opens the full paper in a modal viewer. The AI narrative guide also references these findings when answering questions.
 
 | Paper | Authors | Year | Topics |
 |-------|---------|------|--------|
 | Neighborhood Isolation and Mortgage Redlining in Milwaukee County | Woojin Chang & Michael Smith | 2016 | Income gaps, home ownership, persistent isolation |
 | The Legacy of Structural Racism: Redlining, Lending, and Health | Emily Lynch et al. | 2021 | Health outcomes, lending discrimination, infant mortality |
 | Milwaukee's History of Segregation: A Biography of Four Neighborhoods | Jessie Paulson, Meghan Wierschke & Gabe Kim | 2016 | Bronzeville, I-43 highway, suburban exclusion |
+| An Improvised World: Jazz and Community in Milwaukee, 1950-1970 | Benjamin Barbera | 2012 | Jazz clubs, Bronzeville culture, I-43 displacement |
+| Urban Renewal and Milwaukee's African American Community: 1960-1980 | Niles Niemuth | 2014 | I-43 highway, Harambee, employment collapse, Black agency |
+| The Unworkable Program: Urban Renewal in Kilbourntown-3 and Midtown | Matthew Honer | 2015 | Federal policy, segregation, containment, K-3 clearance |
+| Milwaukee African Americans: A Community Portrait | City of Milwaukee / Historical Society | 2000 | Walnut Street, Great Migration, community institutions |
+| Milwaukee History Maps: Research Synthesis | Hester Tittmann / Hood Design Studio | 2024 | Bronzeville mapping, cultural development timelines |
+| Black Heritage in Milwaukee | Milwaukee Heritage Collection | 1990 | Visual heritage documentation, demolished community spaces |
 
-PDFs are served from `public/research/` and metadata is structured in `data/research-context.json`.
+PDFs are served from `public/research/` (3 general + 6 Bronzeville) and metadata is structured in `public/data/research-context.json`.
 
 ## AI Chat Protection
 
@@ -370,7 +397,7 @@ The AI Narrative Guide is a public-facing tool with no authentication (intention
 
 ### Phase 2: Enhanced Narrative
 
-ElevenLabs voice narration, historical MPROP time-series (1975-2024 sparklines), Sanborn fire insurance map overlay, guided Bronzeville narrative tour.
+ElevenLabs voice narration, historical MPROP time-series (1975-2024 sparklines), Sanborn fire insurance map overlay. ~~Guided Bronzeville narrative tour~~ (complete — see Guided Story Mode above).
 
 ### Phase 3: Multi-City
 
@@ -396,4 +423,6 @@ Data sources are subject to their respective licenses:
 - [American Panorama](https://github.com/americanpanorama) — Open-source historical data
 - [Library of Congress](https://www.loc.gov/pictures/collection/fsa/) — FSA/OWI photograph collection (Carl Mydans, Milwaukee 1936)
 - [UWM Mapping Racism & Resistance](https://sites.uwm.edu/mappingracismresistance/) — 32,219 racial covenant records crowdsourced by ~5,000 volunteers
+- [Bronzeville Center for the Arts](https://www.bronzevillearts.org/) — Research synthesis by Hood Design Studio
+- [UWM Libraries](https://uwm.edu/libraries/) — Bronzeville thesis collection (Barbera, Niemuth, Honer)
 - [Radio Milwaukee](https://radiomilwaukee.org) / [The Intersection](https://theintersection.substack.com)

@@ -55,6 +55,7 @@ import {
 import { BuildingLayer } from "./BuildingLayer";
 import { useTimeSlider } from "@/lib/time-slider";
 import { useLayerVisibility } from "@/lib/layer-visibility";
+import { useMapCamera } from "@/lib/map-camera";
 
 import "mapbox-gl/dist/mapbox-gl.css";
 
@@ -227,6 +228,12 @@ export default function MapView() {
     zonesVisible, labelsVisible, neighborhoodNamesVisible, buildingsVisible,
     sanbornVisible, sanbornYear, sanbornOpacity, covenantsVisible,
   } = useLayerVisibility();
+  const { registerMap } = useMapCamera();
+
+  // Register map instance for story mode camera control
+  useEffect(() => {
+    registerMap(() => mapRef.current?.getMap() ?? null);
+  }, [registerMap]);
 
   // Load parcel value stats for value overlay
   const [valueStats, setValueStats] = useState<Record<string, ZoneParcelStats> | null>(null);

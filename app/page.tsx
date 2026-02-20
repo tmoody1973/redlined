@@ -12,6 +12,16 @@ import { ResearchModal } from "@/components/ui/ResearchModal";
 import { ResearchProvider } from "@/lib/research-context";
 import { ZoneKeyboardNav } from "@/components/scene/ZoneKeyboardNav";
 import InfoPanel from "@/components/panel/InfoPanel";
+import { useStoryMode } from "@/lib/story-mode";
+
+// Code-split: Story overlay + Motion.dev only load when active
+const StoryOverlay = dynamic(
+  () =>
+    import("@/components/story/StoryOverlay").then((m) => ({
+      default: m.StoryOverlay,
+    })),
+  { ssr: false, loading: () => null },
+);
 
 // Code-split: Archive modal + Motion.dev only load when opened
 const ArchiveModal = dynamic(
@@ -49,12 +59,20 @@ export default function Home() {
   const [showAbout, setShowAbout] = useState(false);
   const [showGuide, setShowGuide] = useState(false);
   const [showArchive, setShowArchive] = useState(false);
+  const [showStory, setShowStory] = useState(false);
+  const { startStory } = useStoryMode();
 
-  // Show the guide on first visit
+  // Show the guide on first visit (only if story hasn't been seen)
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const seen = localStorage.getItem("redlined-guide-seen");
-    if (!seen) {
+    const storySeen = localStorage.getItem("redlined-story-seen");
+    const guideSeen = localStorage.getItem("redlined-guide-seen");
+    // Only show guide if both story AND guide haven't been seen
+    if (!storySeen && !guideSeen) {
+      // Story will auto-launch after intro dismiss, so skip guide
+      return;
+    }
+    if (!guideSeen) {
       setShowGuide(true);
       localStorage.setItem("redlined-guide-seen", "1");
     }
@@ -62,6 +80,26 @@ export default function Home() {
 
   const dismissIntro = useCallback(() => {
     setShowIntro(false);
+
+    // Auto-launch story for first-time visitors
+    if (typeof window !== "undefined") {
+      const storySeen = localStorage.getItem("redlined-story-seen");
+      if (!storySeen) {
+        localStorage.setItem("redlined-story-seen", "1");
+        localStorage.setItem("redlined-guide-seen", "1");
+        setShowStory(true);
+        startStory();
+      }
+    }
+  }, [startStory]);
+
+  const handleStoryClick = useCallback(() => {
+    setShowStory(true);
+    startStory();
+  }, [startStory]);
+
+  const handleStoryClose = useCallback(() => {
+    setShowStory(false);
   }, []);
 
   return (
@@ -71,6 +109,7 @@ export default function Home() {
         onAboutClick={() => setShowAbout(true)}
         onGuideClick={() => setShowGuide(true)}
         onArchiveClick={() => setShowArchive(true)}
+        onStoryClick={handleStoryClick}
       />
       <AboutModal open={showAbout} onClose={() => setShowAbout(false)} />
       <HowToUseModal open={showGuide} onClose={() => setShowGuide(false)} />
@@ -103,6 +142,7 @@ export default function Home() {
               <MapView />
               <CanvasOverlays />
               <ZoneKeyboardNav />
+              {showStory && <StoryOverlay onClose={handleStoryClose} />}
               {showIntro && <IntroOverlay onDismiss={dismissIntro} />}
             </div>
           }
