@@ -29,6 +29,13 @@ interface MapCameraState {
 
 const MapCameraContext = createContext<MapCameraState | null>(null);
 
+/** Tolerance for comparing floating-point camera values. */
+const EPS = 0.001;
+
+function nearEq(a: number, b: number) {
+  return Math.abs(a - b) < EPS;
+}
+
 export function MapCameraProvider({ children }: { children: ReactNode }) {
   const [isReady, setIsReady] = useState(false);
   const getMapRef = useRef<(() => MapboxMap | null) | null>(null);
@@ -46,14 +53,40 @@ export function MapCameraProvider({ children }: { children: ReactNode }) {
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
-    map.flyTo({
+    // Build clean options — omit undefined values so mapbox-gl doesn't
+    // try to animate properties we didn't set
+    const flyOpts: mapboxgl.FlyToOptions = {
       center: options.center,
-      zoom: options.zoom,
-      pitch: options.pitch,
-      bearing: options.bearing,
       duration: reducedMotion ? 0 : (options.duration ?? 2000),
       essential: true,
-    });
+    };
+    if (options.zoom !== undefined) flyOpts.zoom = options.zoom;
+    if (options.pitch !== undefined) flyOpts.pitch = options.pitch;
+    if (options.bearing !== undefined) flyOpts.bearing = options.bearing;
+
+    const doFly = () => {
+      // Skip no-op flyTo — avoids a mapbox-gl/react-map-gl race condition
+      // where the bearing setter fires before the projection matrix is ready
+      const c = map.getCenter();
+      const isAlready =
+        nearEq(c.lng, options.center[0]) &&
+        nearEq(c.lat, options.center[1]) &&
+        (options.zoom === undefined || nearEq(map.getZoom(), options.zoom)) &&
+        (options.pitch === undefined || nearEq(map.getPitch(), options.pitch)) &&
+        (options.bearing === undefined ||
+          nearEq(map.getBearing(), options.bearing));
+
+      if (isAlready) return;
+
+      map.flyTo(flyOpts);
+    };
+
+    // Wait for map to be fully loaded before flying
+    if (map.loaded()) {
+      requestAnimationFrame(doFly);
+    } else {
+      map.once("load", () => requestAnimationFrame(doFly));
+    }
   }, []);
 
   return (
