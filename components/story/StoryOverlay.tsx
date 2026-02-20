@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { useStoryMode } from "@/lib/story-mode";
+import { useNarratorAudio } from "@/lib/useNarratorAudio";
+import { useNarration } from "@/lib/narration";
 import { StoryCard } from "./StoryCard";
 import { StoryStepIndicator } from "./StoryStepIndicator";
 
@@ -28,6 +30,11 @@ export function StoryOverlay({ onClose }: StoryOverlayProps) {
     endStory,
   } = useStoryMode();
 
+  const narration = useNarration();
+  const cacheKey = currentBeat ? `narrator:${currentBeat.id}` : "";
+  const { isReady: isAudioReady, isPlaying: isNarratorPlaying, playNarrator, stopNarrator } =
+    useNarratorAudio(cacheKey);
+
   const [direction, setDirection] = useState(1);
   const prevBeatRef = useRef(currentBeatIndex);
 
@@ -36,6 +43,16 @@ export function StoryOverlay({ onClose }: StoryOverlayProps) {
     setDirection(currentBeatIndex > prevBeatRef.current ? 1 : -1);
     prevBeatRef.current = currentBeatIndex;
   }, [currentBeatIndex]);
+
+  // Auto-play narrator audio 500ms after beat change
+  useEffect(() => {
+    if (!isAudioReady || narration.isMuted) return;
+    const timer = setTimeout(() => {
+      playNarrator();
+    }, 500);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentBeatIndex, isAudioReady]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -89,9 +106,10 @@ export function StoryOverlay({ onClose }: StoryOverlayProps) {
   );
 
   const handleEnd = useCallback(() => {
+    stopNarrator();
     endStory();
     onClose();
-  }, [endStory, onClose]);
+  }, [stopNarrator, endStory, onClose]);
 
   const handleNext = useCallback(() => {
     if (currentBeatIndex >= totalBeats - 1) {
@@ -147,6 +165,8 @@ export function StoryOverlay({ onClose }: StoryOverlayProps) {
             onNext={handleNext}
             onEnd={handleEnd}
             direction={direction}
+            isNarratorPlaying={isNarratorPlaying}
+            onToggleNarrator={isNarratorPlaying ? stopNarrator : playNarrator}
           />
         </div>
       </motion.div>

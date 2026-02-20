@@ -13,6 +13,7 @@ import type * as mutations from "../mutations.js";
 import type * as queries from "../queries.js";
 import type * as rateLimit from "../rateLimit.js";
 import type * as seed from "../seed.js";
+import type * as tts from "../tts.js";
 
 import type {
   ApiFromModules,
@@ -26,6 +27,7 @@ declare const fullApi: ApiFromModules<{
   queries: typeof queries;
   rateLimit: typeof rateLimit;
   seed: typeof seed;
+  tts: typeof tts;
 }>;
 
 /**

@@ -9,6 +9,7 @@ import { BaseMapProvider } from "@/lib/base-map";
 import { LayerVisibilityProvider } from "@/lib/layer-visibility";
 import { TimeSliderProvider } from "@/lib/time-slider";
 import { StoryModeProvider } from "@/lib/story-mode";
+import { NarrationProvider } from "@/lib/narration";
 
 const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL;
 
@@ -66,6 +67,7 @@ export function ConvexClientProvider({ children }: { children: ReactNode }) {
 
   return (
     <ConvexProvider client={convex}>
+      <NarrationProvider>
       <MapCameraProvider>
         <ZoneSelectionProvider>
           <DataOverlayProvider>
@@ -79,6 +81,7 @@ export function ConvexClientProvider({ children }: { children: ReactNode }) {
           </DataOverlayProvider>
         </ZoneSelectionProvider>
       </MapCameraProvider>
+      </NarrationProvider>
     </ConvexProvider>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { NarrationToggle } from "@/components/ui/NarrationToggle";
 
 interface HeaderProps {
   onAboutClick?: () => void;
@@ -80,6 +81,7 @@ export function Header({ onAboutClick, onGuideClick, onArchiveClick, onStoryClic
                 Guide
               </button>
             )}
+            <NarrationToggle />
             {onAboutClick && (
               <button
                 onClick={onAboutClick}

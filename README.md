@@ -53,6 +53,11 @@ The project starts with Milwaukee, Wisconsin — one of the most segregated citi
   8. "Still Here" — Harambee community rebuilding, 2.7x income gap persists
 
   Desktop: sticky map (60%) + scrolling narrative (40%). Mobile: fixed map behind with backdrop-blur cards. Motion.dev `useInView` triggers camera flyTo, zone selection, timeline year, and layer changes per chapter. Entry from Header, story beat 3, or direct URL.
+- **Voice Narration (ElevenLabs)** — Three-tier TTS system with global mute toggle and per-surface playback controls:
+  - **Tier 1 — Narrator**: Pre-generated audio for all 6 story beats and 8 Bronzeville chapters. Auto-plays on beat change (story mode) or scroll-into-view (scrollytelling). 14 clips cached in Convex file storage via `npm run seed:narration`.
+  - **Tier 2 — Appraiser**: On-demand TTS for 112 HOLC area descriptions. "Listen to appraisal" button generates audio on first click, permanently cached thereafter. Rate-limited per session.
+  - **Tier 3 — Chat**: On-demand streaming TTS for AI guide responses. Listen/read mode toggle, per-message replay buttons, auto-interrupt on zone change. Rate-limited (10/min, 50/hr per session).
+  - iOS autoplay unlock via silent MP3 on first user gesture. Single shared `<audio>` element managed by `NarrationProvider` context.
 - **Research-Sourced Citations** — Every data panel and story beat cites peer-reviewed Milwaukee research with in-app PDF viewer modal (9 papers total, including 6 on Bronzeville history)
 - **Time Slider** — GSAP-animated timeline (1870-2025) with zone opacity pulsing by development era, covenant accumulation count, and era annotations
 - **Layer Controls** — Toggle zones, labels, neighborhoods, buildings, covenants, base map, and all overlays independently
@@ -68,6 +73,7 @@ The project starts with Milwaukee, Wisconsin — one of the most segregated citi
 | Buildings    | PMTiles vector tiles (148K parcels)                |
 | Animation    | GSAP (GreenSock) + Motion.dev (spring physics, gestures) |
 | AI           | Claude API (Sonnet 4) via Convex actions           |
+| Voice        | ElevenLabs TTS (Multilingual v2) via Convex actions |
 | Styling      | Tailwind CSS v4                                    |
 | Testing      | Vitest + Testing Library                           |
 | Deployment   | Vercel + Convex Cloud                              |
@@ -106,6 +112,7 @@ Set API keys in your Convex dashboard (Settings > Environment Variables):
 | Variable              | Description                           | Required |
 | --------------------- | ------------------------------------- | -------- |
 | `ANTHROPIC_API_KEY`   | Claude API key for AI narrative guide | Yes      |
+| `ELEVENLABS_API_KEY`  | ElevenLabs API key for voice narration | Yes     |
 | `CENSUS_API_KEY`      | US Census API key for data pipelines  | Optional |
 
 ### Development
@@ -130,6 +137,9 @@ npm run seed:census
 # Seed health and environment data
 npx tsx scripts/seed-health.ts
 npx tsx scripts/seed-environment.ts
+
+# Pre-generate narrator voice clips (requires ELEVENLABS_API_KEY in Convex)
+npm run seed:narration
 ```
 
 ### Data Pipelines
@@ -198,7 +208,10 @@ redlined/
 │   │   ├── IncomeLegend.tsx     # Data overlay gradient legend
 │   │   ├── GhostLegend.tsx      # Demolished buildings legend (with close button)
 │   │   ├── AboutModal.tsx       # "About the Map" modal with data sources
-│   │   └── ResearchModal.tsx    # PDF viewer modal for research papers
+│   │   ├── ResearchModal.tsx    # PDF viewer modal for research papers
+│   │   ├── NarrationToggle.tsx  # Global mute/unmute pill button (3 states)
+│   │   ├── AudioWaveform.tsx    # 5-bar animated waveform indicator
+│   │   └── PlayPauseButton.tsx  # Reusable play/pause with loading spinner
 │   ├── story/                    # Guided story mode overlay
 │   │   ├── StoryOverlay.tsx      # Main overlay (keyboard, swipe, skip)
 │   │   ├── StoryCard.tsx         # Beat content card (Motion.dev transitions)
@@ -221,10 +234,11 @@ redlined/
 │   └── layout/                  # App shell + navigation
 │
 ├── convex/                      # Convex backend
-│   ├── schema.ts                # Database schema (zones, messages, rateLimits)
+│   ├── schema.ts                # Database schema (zones, messages, rateLimits, audioCache)
 │   ├── queries.ts               # Data queries
 │   ├── mutations.ts             # Data mutations (with input validation)
 │   ├── ai.ts                    # Claude AI actions (rate limited, topic guarded)
+│   ├── tts.ts                   # ElevenLabs TTS actions (3 tiers, cached, rate limited)
 │   ├── rateLimit.ts             # Per-session rate limiting (internalMutation)
 │   └── seed.ts                  # Seed data functions
 │
@@ -250,6 +264,10 @@ redlined/
 │   ├── useDecadesData.ts        # Decade trends data hook
 │   ├── useSanbornContext.ts     # Sanborn map context hook
 │   ├── research-context.tsx     # Research PDF modal context provider
+│   ├── narration.tsx            # NarrationProvider context (shared audio, mute, iOS unlock)
+│   ├── useNarratorAudio.ts     # Tier 1 hook (pre-generated narrator clips)
+│   ├── useAppraiserAudio.ts    # Tier 2 hook (on-demand appraiser TTS)
+│   ├── useChatAudio.ts         # Tier 3 hook (chat TTS with listen mode)
 │   └── ai-prompt.ts             # AI system prompt with research findings
 │
 ├── scripts/                     # Data pipeline + asset scripts
@@ -259,6 +277,7 @@ redlined/
 │   ├── seed-census.ts           # Census API → Convex
 │   ├── seed-health.ts           # CDC PLACES → Convex
 │   ├── seed-environment.ts      # EPA EJScreen → Convex
+│   ├── seed-narration.ts         # Pre-generate 14 narrator TTS clips
 │   ├── fetch-parcels.ts         # Milwaukee MPROP → PMTiles
 │   ├── detect-ghost-buildings.ts # Demolished building detection
 │   ├── build-zone-timeline.ts   # Development era timeline
@@ -415,7 +434,7 @@ The AI Narrative Guide is a public-facing tool with no authentication (intention
 
 ### Phase 2: Enhanced Narrative
 
-ElevenLabs voice narration, historical MPROP time-series (1975-2024 sparklines), Sanborn fire insurance map overlay. ~~Guided Bronzeville narrative tour~~ (complete — see Guided Story Mode). ~~Bronzeville scrollytelling deep dive~~ (complete — 8-chapter `/bronzeville` route).
+~~ElevenLabs voice narration~~ (complete — 3-tier TTS with 14 pre-generated narrator clips, on-demand appraiser and chat audio), historical MPROP time-series (1975-2024 sparklines), Sanborn fire insurance map overlay. ~~Guided Bronzeville narrative tour~~ (complete — see Guided Story Mode). ~~Bronzeville scrollytelling deep dive~~ (complete — 8-chapter `/bronzeville` route).
 
 ### Phase 3: Multi-City
 

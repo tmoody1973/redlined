@@ -5,6 +5,7 @@ import { useRef } from "react";
 import Link from "next/link";
 import type { StoryBeat } from "@/lib/story-beats";
 import { SourceCitation } from "@/components/panel/SourceCitation";
+import { AudioWaveform } from "@/components/ui/AudioWaveform";
 
 interface StoryCardProps {
   beat: StoryBeat;
@@ -17,6 +18,10 @@ interface StoryCardProps {
   onEnd: () => void;
   /** Direction of navigation for slide animation. */
   direction: number;
+  /** Whether the narrator audio is currently playing. */
+  isNarratorPlaying?: boolean;
+  /** Toggle narrator audio playback. */
+  onToggleNarrator?: () => void;
 }
 
 /**
@@ -33,6 +38,8 @@ export function StoryCard({
   onNext,
   onEnd,
   direction,
+  isNarratorPlaying,
+  onToggleNarrator,
 }: StoryCardProps) {
   const learnMoreRef = useRef<HTMLDivElement>(null);
   const isLastBeat = beatIndex === totalBeats - 1;
@@ -65,12 +72,29 @@ export function StoryCard({
         </h2>
 
         {/* Narrative text */}
-        <p
-          className="mb-4 text-sm leading-relaxed text-slate-300"
-          style={{ fontFamily: "var(--font-body)" }}
-        >
-          {beat.narrative}
-        </p>
+        <div className="mb-4 flex items-start gap-2">
+          <p
+            className="flex-1 text-sm leading-relaxed text-slate-300"
+            style={{ fontFamily: "var(--font-body)" }}
+          >
+            {beat.narrative}
+          </p>
+          {onToggleNarrator && (
+            <button
+              onClick={onToggleNarrator}
+              className="mt-0.5 shrink-0 rounded p-1 text-slate-400 transition-colors hover:text-white"
+              aria-label={isNarratorPlaying ? "Pause narrator" : "Play narrator"}
+            >
+              {isNarratorPlaying ? (
+                <AudioWaveform isPlaying />
+              ) : (
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              )}
+            </button>
+          )}
+        </div>
 
         {/* Stat highlight */}
         <div className="mb-4 flex items-baseline gap-2">

@@ -90,10 +90,34 @@ export default defineSchema({
     ),
     content: v.string(),
     zoneId: v.optional(v.string()),
+    audioStorageId: v.optional(v.id("_storage")),
+    isAutoNarrated: v.optional(v.boolean()),
     createdAt: v.number(),
   }).index("by_conversation_id", ["conversationId"]),
 
   rateLimits: defineTable({
+    key: v.string(),
+    window: v.string(),
+    count: v.number(),
+    windowStart: v.number(),
+  }).index("by_key_window", ["key", "window"]),
+
+  audioCache: defineTable({
+    cacheKey: v.string(),
+    storageId: v.id("_storage"),
+    voiceId: v.string(),
+    modelId: v.string(),
+    durationSeconds: v.optional(v.number()),
+    sizeBytes: v.number(),
+    tier: v.union(
+      v.literal("narrator"),
+      v.literal("appraiser"),
+      v.literal("chat"),
+    ),
+    createdAt: v.number(),
+  }).index("by_cache_key", ["cacheKey"]),
+
+  ttsRateLimits: defineTable({
     key: v.string(),
     window: v.string(),
     count: v.number(),

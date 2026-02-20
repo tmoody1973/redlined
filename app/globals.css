@@ -173,6 +173,16 @@ body {
   opacity: 0.5;
 }
 
+/* Audio waveform animation for narration indicators */
+@keyframes waveform-bar {
+  0% {
+    height: 4px;
+  }
+  100% {
+    height: 14px;
+  }
+}
+
 /* Minimum touch target sizing for mobile interactive elements */
 @media (pointer: coarse) {
   button,

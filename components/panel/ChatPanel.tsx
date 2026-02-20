@@ -12,6 +12,10 @@ import { useQuery, useMutation, useAction } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import type { Id } from "@/convex/_generated/dataModel";
 import SuggestedQuestions from "./SuggestedQuestions";
+import { useChatAudio } from "@/lib/useChatAudio";
+import { useNarration } from "@/lib/narration";
+import PlayPauseButton from "@/components/ui/PlayPauseButton";
+import { AudioWaveform } from "@/components/ui/AudioWaveform";
 
 interface ZoneContext {
   areaId: string;
@@ -67,6 +71,17 @@ export default function ChatPanel({ zoneContext }: ChatPanelProps) {
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const {
+    isListenMode,
+    toggleListenMode,
+    speakResponse,
+    interrupt: interruptChat,
+    playMessage,
+    isPlayingMessage,
+    isLoadingMessage,
+  } = useChatAudio();
+  const narration = useNarration();
+
   /** Timestamp when the component mounted — used to reject instant bot submissions. */
   const mountTime = useMemo(() => Date.now(), []);
 
@@ -107,6 +122,9 @@ export default function ChatPanel({ zoneContext }: ChatPanelProps) {
     if (!zoneContext || !conversationId) return;
     if (zoneContext.areaId === lastZoneId) return;
 
+    // Interrupt any playing chat audio on zone change
+    interruptChat();
+
     const prevZoneId = lastZoneId;
     setLastZoneId(zoneContext.areaId);
     setShowSuggestions(true);
@@ -128,7 +146,7 @@ export default function ChatPanel({ zoneContext }: ChatPanelProps) {
       ];
       return updated.slice(-3);
     });
-  }, [zoneContext, conversationId, lastZoneId, addZoneContextDivider]);
+  }, [zoneContext, conversationId, lastZoneId, addZoneContextDivider, interruptChat]);
 
   // Auto-scroll chat container only (not the parent panel)
   useEffect(() => {
@@ -148,6 +166,9 @@ export default function ChatPanel({ zoneContext }: ChatPanelProps) {
 
       // Bot protection: reject submissions within 3 seconds of mount
       if (Date.now() - mountTime < 3000) return;
+
+      // Interrupt any playing chat audio on new submit
+      interruptChat();
 
       setShowSuggestions(false);
       setIsLoading(true);
@@ -219,6 +240,11 @@ export default function ChatPanel({ zoneContext }: ChatPanelProps) {
           zoneId: zoneContext?.areaId,
         });
 
+        // Auto-speak if listen mode is enabled
+        if (isListenMode) {
+          speakResponse(fullText);
+        }
+
         setStreamingText("");
       } catch {
         // Save error response as assistant message
@@ -244,6 +270,9 @@ export default function ChatPanel({ zoneContext }: ChatPanelProps) {
       askNarrativeGuide,
       honeypot,
       mountTime,
+      isListenMode,
+      speakResponse,
+      interruptChat,
     ],
   );
 
@@ -267,18 +296,34 @@ export default function ChatPanel({ zoneContext }: ChatPanelProps) {
     <section aria-label="AI Narrative Guide" className="flex flex-col">
       {/* Section heading */}
       <div className="mb-3">
-        <div className="flex items-center gap-2">
-          <span
-            className="inline-block h-3 w-3 rounded-sm"
-            style={{ backgroundColor: "#F44336" }}
-            aria-hidden="true"
-          />
-          <h3
-            className="text-lg font-semibold text-slate-100"
-            style={{ fontFamily: "var(--font-heading)" }}
-          >
-            Ask the Guide
-          </h3>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span
+              className="inline-block h-3 w-3 rounded-sm"
+              style={{ backgroundColor: "#F44336" }}
+              aria-hidden="true"
+            />
+            <h3
+              className="text-lg font-semibold text-slate-100"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              Ask the Guide
+            </h3>
+          </div>
+          {!narration.isMuted && (
+            <button
+              type="button"
+              onClick={toggleListenMode}
+              className="focus-ring flex items-center gap-1.5 rounded-md border border-slate-700 px-2 py-1 text-xs transition-colors hover:border-slate-500"
+              style={{ fontFamily: "var(--font-body)" }}
+              aria-label={isListenMode ? "Switch to reading mode" : "Switch to listening mode"}
+            >
+              <span aria-hidden="true">{isListenMode ? "\u{1F50A}" : "\u{1F4D6}"}</span>
+              <span className={isListenMode ? "text-slate-100" : "text-slate-400"}>
+                {isListenMode ? "Listening" : "Reading"}
+              </span>
+            </button>
+          )}
         </div>
         <p
           className="mt-1 text-sm text-slate-400"
@@ -355,6 +400,18 @@ export default function ChatPanel({ zoneContext }: ChatPanelProps) {
                     </p>
                   ))}
                 </div>
+                {!narration.isMuted && (
+                  <div className="mt-1.5 flex items-center gap-2">
+                    {isPlayingMessage(message._id) && <AudioWaveform isPlaying />}
+                    <PlayPauseButton
+                      isPlaying={isPlayingMessage(message._id)}
+                      isLoading={isLoadingMessage(message._id)}
+                      onToggle={() => playMessage(message.content, message._id)}
+                      size="sm"
+                      label={isPlayingMessage(message._id) ? "Stop reading" : "Listen"}
+                    />
+                  </div>
+                )}
               </div>
             );
           }

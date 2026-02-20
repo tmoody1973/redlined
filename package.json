@@ -12,7 +12,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "seed": "npx tsx scripts/run-seed.ts",
-    "seed:census": "npx tsx scripts/seed-census.ts"
+    "seed:census": "npx tsx scripts/seed-census.ts",
+    "seed:narration": "npx tsx scripts/seed-narration.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",

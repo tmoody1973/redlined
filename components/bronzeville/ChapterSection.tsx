@@ -8,7 +8,10 @@ import { useZoneSelection } from "@/lib/zone-selection";
 import { useTimeSlider } from "@/lib/time-slider";
 import { useDataOverlay } from "@/lib/data-overlay";
 import { useLayerVisibility } from "@/lib/layer-visibility";
+import { useNarratorAudio } from "@/lib/useNarratorAudio";
+import { useNarration } from "@/lib/narration";
 import { SourceCitation } from "@/components/panel/SourceCitation";
+import { AudioWaveform } from "@/components/ui/AudioWaveform";
 
 interface ChapterSectionProps {
   chapter: BronzevilleChapter;
@@ -29,6 +32,28 @@ export function ChapterSection({ chapter }: ChapterSectionProps) {
   const { setCurrentYear, setGhostsVisible, pause } = useTimeSlider();
   const { setActiveOverlay } = useDataOverlay();
   const { setCovenantsVisible } = useLayerVisibility();
+
+  const narration = useNarration();
+  const cacheKey = `narrator:ch-${chapter.id}`;
+  const { isReady: isAudioReady, isPlaying: isNarratorPlaying, playNarrator, stopNarrator } =
+    useNarratorAudio(cacheKey);
+
+  // Auto-play narrator audio 500ms after chapter comes into view
+  useEffect(() => {
+    if (!isInView || !isAudioReady || narration.isMuted) return;
+    const timer = setTimeout(() => {
+      playNarrator();
+    }, 500);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isInView, isAudioReady]);
+
+  // Stop narrator when scrolling away
+  useEffect(() => {
+    if (!isInView && isNarratorPlaying) {
+      stopNarrator();
+    }
+  }, [isInView, isNarratorPlaying, stopNarrator]);
 
   // Apply chapter state when scrolled into view
   useEffect(() => {
@@ -105,12 +130,27 @@ export function ChapterSection({ chapter }: ChapterSectionProps) {
         </h2>
 
         {/* Narrative */}
-        <p
-          className="mb-6 text-base leading-relaxed text-slate-300 md:text-lg md:leading-relaxed"
-          style={{ fontFamily: "var(--font-body)" }}
-        >
-          {chapter.narrative}
-        </p>
+        <div className="mb-6 flex items-start gap-3">
+          <p
+            className="flex-1 text-base leading-relaxed text-slate-300 md:text-lg md:leading-relaxed"
+            style={{ fontFamily: "var(--font-body)" }}
+          >
+            {chapter.narrative}
+          </p>
+          <button
+            onClick={isNarratorPlaying ? stopNarrator : playNarrator}
+            className="mt-1 shrink-0 rounded p-1 text-slate-400 transition-colors hover:text-white"
+            aria-label={isNarratorPlaying ? "Pause narrator" : "Play narrator"}
+          >
+            {isNarratorPlaying ? (
+              <AudioWaveform isPlaying />
+            ) : (
+              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            )}
+          </button>
+        </div>
 
         {/* Stat highlight */}
         <div className="mb-6 flex items-baseline gap-3">

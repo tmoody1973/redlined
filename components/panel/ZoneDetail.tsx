@@ -140,10 +140,10 @@ export default function ZoneDetail({ zone }: ZoneDetailProps) {
         </p>
       ) : description === null ? null : showWarning ? (
         <ContentWarning grade={zone.grade}>
-          <AppraiserDescription description={description} />
+          <AppraiserDescription description={description} areaId={zone.areaId} />
         </ContentWarning>
       ) : (
-        <AppraiserDescription description={description} />
+        <AppraiserDescription description={description} areaId={zone.areaId} />
       )}
 
       {/* ── Act 2: What Happened Next (collapsible) ── */}
