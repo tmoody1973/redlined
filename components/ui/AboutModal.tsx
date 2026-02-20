@@ -130,11 +130,11 @@ export function AboutModal({ open, onClose }: AboutModalProps) {
               },
               {
                 action: "Layers (top-left)",
-                desc: "toggle zones, labels, buildings, street map, Sanborn fire insurance maps, data overlays (income, health, environment, value, race), and demolished buildings.",
+                desc: "toggle zones, labels, buildings, street map, Sanborn fire insurance maps, racial covenants, data overlays (income, health, environment, value, race), and demolished buildings.",
               },
               {
                 action: "Timeline Bar",
-                desc: "at the bottom \u2014 press play or drag the slider to watch Milwaukee\u2019s buildings appear decade by decade from 1870 to present.",
+                desc: "at the bottom \u2014 press play or drag the slider to watch Milwaukee\u2019s buildings appear decade by decade from 1870 to present. With covenants enabled, watch 32,000+ racial deed restrictions accumulate year by year.",
               },
               {
                 action: "AI Guide",
@@ -171,11 +171,12 @@ export function AboutModal({ open, onClose }: AboutModalProps) {
             className="text-sm leading-relaxed text-amber-400/80"
             style={{ fontFamily: "var(--font-body)" }}
           >
-            The original HOLC appraiser descriptions contain racist language
-            reflecting 1930s attitudes &mdash; including characterizations of
-            neighborhoods by the racial and ethnic identity of their residents. This
-            language is preserved for historical accuracy and is presented with
-            content warnings.
+            The original HOLC appraiser descriptions and racial covenant deed
+            texts contain racist language reflecting early 20th-century attitudes
+            &mdash; including characterizations of neighborhoods by the racial and
+            ethnic identity of their residents, and deed clauses explicitly
+            prohibiting sale to non-white buyers. This language is preserved for
+            historical accuracy and is presented with content warnings.
           </p>
         </section>
 
@@ -220,6 +221,11 @@ export function AboutModal({ open, onClose }: AboutModalProps) {
             <li>
               <strong className="text-slate-300">Demolitions:</strong> Detected from
               historical MPROP snapshots (15,738 buildings, 2005&ndash;2020)
+            </li>
+            <li>
+              <strong className="text-slate-300">Racial Covenants:</strong> UWM Mapping
+              Racism &amp; Resistance &mdash; 32,219 geocoded covenant deeds
+              (1910&ndash;1959) crowdsourced by ~5,000 volunteers
             </li>
             <li>
               <strong className="text-slate-300">Sanborn Maps:</strong> Fire insurance
