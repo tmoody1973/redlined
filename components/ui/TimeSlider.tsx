@@ -1,11 +1,39 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useTimeSlider, MIN_YEAR, MAX_YEAR } from "@/lib/time-slider";
+import { useLayerVisibility } from "@/lib/layer-visibility";
+
+/** Pre-computed cumulative covenant counts by year (from covenant-stats.json byDecade). */
+const COVENANT_CUMULATIVE: [number, number][] = [
+  [1909, 0],
+  [1919, 238],
+  [1929, 23273],
+  [1939, 28563],
+  [1949, 32095],
+  [1959, 32219],
+];
+
+function getCovenantCount(year: number): number {
+  if (year < 1910) return 0;
+  if (year >= 1960) return 32219;
+  for (let i = COVENANT_CUMULATIVE.length - 1; i >= 0; i--) {
+    if (year >= COVENANT_CUMULATIVE[i][0] + 1) {
+      const [startYear, startCount] = COVENANT_CUMULATIVE[i];
+      const nextEntry = COVENANT_CUMULATIVE[i + 1];
+      if (!nextEntry) return startCount;
+      const [endYear, endCount] = nextEntry;
+      const frac = (year - startYear) / (endYear - startYear);
+      return Math.round(startCount + frac * (endCount - startCount));
+    }
+  }
+  return 0;
+}
 
 /** Notable eras for tick marks on the slider. */
 const ERA_MARKS = [
   { year: 1870, label: "1870" },
+  { year: 1926, label: "Covenants" },
   { year: 1938, label: "HOLC" },
   { year: 1968, label: "Fair Housing" },
   { year: 2025, label: "Now" },
@@ -27,6 +55,7 @@ export function TimeSlider() {
     togglePlayback,
   } = useTimeSlider();
 
+  const { covenantsVisible } = useLayerVisibility();
   const [isHovered, setIsHovered] = useState(false);
   const showExpanded = isExpanded || isHovered;
 
@@ -162,13 +191,23 @@ export function TimeSlider() {
               )}
             </button>
 
-            {/* Year display */}
-            <span
-              className="w-14 shrink-0 text-2xl font-bold tabular-nums text-white"
-              style={{ fontFamily: "var(--font-heading)" }}
-            >
-              {currentYear}
-            </span>
+            {/* Year display + covenant count */}
+            <div className="shrink-0">
+              <span
+                className="block w-14 text-2xl font-bold tabular-nums text-white"
+                style={{ fontFamily: "var(--font-heading)" }}
+              >
+                {currentYear}
+              </span>
+              {covenantsVisible && currentYear >= 1910 && currentYear <= 1960 && (
+                <span
+                  className="block text-[9px] tabular-nums text-amber-400/80"
+                  style={{ fontFamily: "var(--font-mono)" }}
+                >
+                  {getCovenantCount(currentYear).toLocaleString()} covenants
+                </span>
+              )}
+            </div>
 
             {/* Range slider */}
             <div className="relative flex-1">

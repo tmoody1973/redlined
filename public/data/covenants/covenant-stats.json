@@ -1,0 +1,35 @@
+{
+  "totalRecords": 32506,
+  "recordsWithAddresses": 32423,
+  "geocodedCount": 32219,
+  "geocodeRate": "99.4%",
+  "noMatchCount": 204,
+  "byDecade": {
+    "1910s": 238,
+    "1920s": 23035,
+    "1930s": 5290,
+    "1940s": 3532,
+    "1950s": 124
+  },
+  "byCity": {
+    "Milwaukee": 21192,
+    "Wauwatosa": 4235,
+    "West Allis": 2774,
+    "Greenfield": 943,
+    "Glendale": 598,
+    "Fox Point": 436,
+    "Whitefish Bay": 326,
+    "West Milwaukee": 307,
+    "St. Francis": 277,
+    "Bayside": 270,
+    "Cudahy": 256,
+    "South Milwaukee": 181,
+    "Hales Corners": 180,
+    "Shorewood": 115,
+    "Brown Deer": 81,
+    "Franklin": 28,
+    "Greendale": 20
+  },
+  "byHolcZone": {},
+  "generatedAt": "2026-02-20T12:27:59.059Z"
+}

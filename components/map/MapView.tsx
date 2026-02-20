@@ -39,7 +39,7 @@ import ReactMap, {
   type MapRef,
   type MapMouseEvent,
 } from "react-map-gl/mapbox";
-import type { FillLayerSpecification, LineLayerSpecification, SymbolLayerSpecification } from "mapbox-gl";
+import type { FillLayerSpecification, LineLayerSpecification, SymbolLayerSpecification, HeatmapLayerSpecification, CircleLayerSpecification } from "mapbox-gl";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useZoneSelection } from "@/lib/zone-selection";
@@ -225,7 +225,7 @@ export default function MapView() {
   const { currentYear, isExpanded, ghostsVisible } = useTimeSlider();
   const {
     zonesVisible, labelsVisible, neighborhoodNamesVisible, buildingsVisible,
-    sanbornVisible, sanbornYear, sanbornOpacity,
+    sanbornVisible, sanbornYear, sanbornOpacity, covenantsVisible,
   } = useLayerVisibility();
 
   // Load parcel value stats for value overlay
@@ -267,6 +267,24 @@ export default function MapView() {
       .then((data) => { if (data) setGhostZoneData(data); })
       .catch(() => {});
   }, []);
+
+  // Load covenant data for covenants layer
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [covenantData, setCovenantData] = useState<any>(null);
+  useEffect(() => {
+    if (!covenantsVisible) return;
+    if (covenantData) return;
+    fetch("/data/covenants/milwaukee-covenants.geojson")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => { if (data) setCovenantData(data); })
+      .catch(() => {});
+  }, [covenantsVisible, covenantData]);
+
+  // Time-linked filter for covenant dots
+  const covenantFilter = useMemo((): ["has", string] | ["<=", ["get", string], number] => {
+    if (!isExpanded || currentYear >= 2025) return ["has", "deed_year"];
+    return ["<=", ["get", "deed_year"], currentYear];
+  }, [isExpanded, currentYear]);
 
   // Build GeoJSON sources
   const zoneGeoJSON = useMemo(() => {
@@ -494,11 +512,50 @@ export default function MapView() {
     }
   }, [baseMapVisible, baseMapOpacity]);
 
-  // Click handler — buildings take priority (rendered on top), fall back to zones
+  // Click handler — buildings take priority, then covenants, then zones
   const handleClick = useCallback(
     (e: MapMouseEvent) => {
       const feature = e.features?.[0];
       if (!feature) return;
+
+      // Covenant dot click — show popup via Mapbox popup
+      if (feature.layer?.id === "covenant-dots" && feature.properties) {
+        const map = mapRef.current?.getMap();
+        if (!map) return;
+        const p = feature.properties;
+        const coords = (feature.geometry as { type: "Point"; coordinates: [number, number] }).coordinates;
+
+        // Remove any existing covenant popup
+        const existing = document.getElementById("covenant-popup");
+        if (existing) existing.remove();
+
+        const covText = p.cov_text || "";
+        const deedYear = p.deed_year || "Unknown";
+        const address = p.street_add || p.matched_address || "";
+        const subdivision = p.subdivision || "";
+
+        const popupEl = document.createElement("div");
+        popupEl.id = "covenant-popup";
+        popupEl.className = "covenant-popup";
+        popupEl.innerHTML = `
+          <div style="position:fixed;z-index:100;left:50%;top:50%;transform:translate(-50%,-50%);max-width:400px;width:90vw;background:#0f172a;border:1px solid #f59e0b40;border-radius:8px;padding:16px;box-shadow:0 25px 50px rgba(0,0,0,0.5);font-family:var(--font-body)">
+            <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:8px">
+              <span style="font-family:var(--font-mono);font-size:11px;color:#f59e0b;background:#f59e0b20;padding:2px 8px;border-radius:4px;font-weight:700">${deedYear}</span>
+              <button onclick="this.closest('#covenant-popup').remove()" style="color:#64748b;background:none;border:none;cursor:pointer;font-size:16px;line-height:1">&times;</button>
+            </div>
+            <p style="font-family:var(--font-heading);font-size:13px;color:#e2e8f0;margin:0 0 4px">${address}</p>
+            ${subdivision ? `<p style="font-family:var(--font-mono);font-size:10px;color:#64748b;margin:0 0 8px">${subdivision}</p>` : ""}
+            <div style="background:#dc262610;border:1px solid #dc262630;border-radius:6px;padding:8px;margin-top:8px">
+              <p style="font-family:var(--font-mono);font-size:9px;color:#dc2626;margin:0 0 4px;text-transform:uppercase;letter-spacing:0.05em">Content Warning: Racist Language</p>
+              <p style="font-family:var(--font-body);font-size:12px;color:#94a3b8;margin:0;line-height:1.5;font-style:italic">&ldquo;${covText}&rdquo;</p>
+            </div>
+          </div>
+          <div onclick="this.parentElement.remove()" style="position:fixed;inset:0;z-index:99;background:rgba(0,0,0,0.3)"></div>
+        `;
+        document.body.appendChild(popupEl);
+        void coords; // coords available for future use
+        return;
+      }
 
       // Building click (from PMTiles vector source)
       if (feature.layer?.id === "buildings" && feature.properties?.TAXKEY) {
@@ -564,7 +621,7 @@ export default function MapView() {
       cursor={cursor}
       antialias
       maxPitch={65}
-      interactiveLayerIds={["holc-zones", "buildings"]}
+      interactiveLayerIds={["holc-zones", "buildings", "covenant-dots"]}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -621,6 +678,54 @@ export default function MapView() {
               "raster-fade-duration": 200,
             }}
             beforeId="holc-zones"
+          />
+        </Source>
+      )}
+      {/* Racial covenants layer — heatmap at low zoom, dots at high zoom */}
+      {covenantsVisible && covenantData && (
+        <Source id="covenants" type="geojson" data={covenantData}>
+          <Layer
+            id="covenant-heatmap"
+            type="heatmap"
+            maxzoom={13}
+            filter={covenantFilter}
+            paint={{
+              "heatmap-weight": 1,
+              "heatmap-intensity": [
+                "interpolate", ["linear"], ["zoom"],
+                9, 0.3, 13, 2,
+              ] as unknown as number,
+              "heatmap-color": [
+                "interpolate", ["linear"], ["heatmap-density"],
+                0, "rgba(0,0,0,0)",
+                0.1, "rgba(245,158,11,0.15)",
+                0.3, "rgba(245,158,11,0.35)",
+                0.5, "rgba(234,88,12,0.55)",
+                0.7, "rgba(220,38,38,0.7)",
+                1, "rgba(185,28,28,0.85)",
+              ] as unknown as string,
+              "heatmap-radius": [
+                "interpolate", ["linear"], ["zoom"],
+                9, 4, 13, 20,
+              ] as unknown as number,
+              "heatmap-opacity": 0.8,
+            } as HeatmapLayerSpecification["paint"]}
+          />
+          <Layer
+            id="covenant-dots"
+            type="circle"
+            minzoom={13}
+            filter={covenantFilter}
+            paint={{
+              "circle-radius": [
+                "interpolate", ["linear"], ["zoom"],
+                13, 2, 16, 6,
+              ] as unknown as number,
+              "circle-color": "#f59e0b",
+              "circle-opacity": 0.75,
+              "circle-stroke-width": 0.5,
+              "circle-stroke-color": "#92400e",
+            } as CircleLayerSpecification["paint"]}
           />
         </Source>
       )}

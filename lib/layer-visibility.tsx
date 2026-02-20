@@ -18,6 +18,7 @@ interface LayerVisibilityState {
   sanbornVisible: boolean;
   sanbornYear: SanbornYear;
   sanbornOpacity: number;
+  covenantsVisible: boolean;
   toggleZones: () => void;
   toggleLabels: () => void;
   toggleNeighborhoodNames: () => void;
@@ -25,6 +26,7 @@ interface LayerVisibilityState {
   toggleSanborn: () => void;
   setSanbornYear: (year: SanbornYear) => void;
   setSanbornOpacity: (opacity: number) => void;
+  toggleCovenants: () => void;
 }
 
 const LayerVisibilityContext = createContext<LayerVisibilityState | null>(null);
@@ -37,6 +39,7 @@ export function LayerVisibilityProvider({ children }: { children: ReactNode }) {
   const [sanbornVisible, setSanbornVisible] = useState(false);
   const [sanbornYear, setSanbornYearState] = useState<SanbornYear>(1910);
   const [sanbornOpacity, setSanbornOpacityState] = useState(0.7);
+  const [covenantsVisible, setCovenantsVisible] = useState(false);
 
   const toggleZones = useCallback(() => setZonesVisible((v) => !v), []);
   const toggleLabels = useCallback(() => setLabelsVisible((v) => !v), []);
@@ -45,6 +48,7 @@ export function LayerVisibilityProvider({ children }: { children: ReactNode }) {
   const toggleSanborn = useCallback(() => setSanbornVisible((v) => !v), []);
   const setSanbornYear = useCallback((year: SanbornYear) => setSanbornYearState(year), []);
   const setSanbornOpacity = useCallback((opacity: number) => setSanbornOpacityState(Math.max(0, Math.min(1, opacity))), []);
+  const toggleCovenants = useCallback(() => setCovenantsVisible((v) => !v), []);
 
   return (
     <LayerVisibilityContext.Provider
@@ -56,6 +60,7 @@ export function LayerVisibilityProvider({ children }: { children: ReactNode }) {
         sanbornVisible,
         sanbornYear,
         sanbornOpacity,
+        covenantsVisible,
         toggleZones,
         toggleLabels,
         toggleNeighborhoodNames,
@@ -63,6 +68,7 @@ export function LayerVisibilityProvider({ children }: { children: ReactNode }) {
         toggleSanborn,
         setSanbornYear,
         setSanbornOpacity,
+        toggleCovenants,
       }}
     >
       {children}

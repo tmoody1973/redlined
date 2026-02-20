@@ -31,9 +31,9 @@ export function LayerControls() {
   const [isOpen, setIsOpen] = useState(false);
   const {
     zonesVisible, labelsVisible, neighborhoodNamesVisible, buildingsVisible,
-    sanbornVisible, sanbornYear, sanbornOpacity,
+    sanbornVisible, sanbornYear, sanbornOpacity, covenantsVisible,
     toggleZones, toggleLabels, toggleNeighborhoodNames, toggleBuildings,
-    toggleSanborn, setSanbornYear, setSanbornOpacity,
+    toggleSanborn, setSanbornYear, setSanbornOpacity, toggleCovenants,
   } = useLayerVisibility();
   const { activeOverlay, overlayOpacity, toggleOverlay, setOverlayOpacity } =
     useDataOverlay();
@@ -48,6 +48,7 @@ export function LayerControls() {
     { id: "buildings", label: "Buildings", active: buildingsVisible, onToggle: toggleBuildings },
     { id: "basemap", label: "Street Map", active: baseMapVisible, onToggle: toggleBaseMap },
     { id: "sanborn", label: "Sanborn Maps", active: sanbornVisible, onToggle: toggleSanborn, color: "#d97706" },
+    { id: "covenants", label: "Covenants", active: covenantsVisible, onToggle: toggleCovenants, color: "#f59e0b" },
   ];
 
   const overlayOpacityPct = Math.round(overlayOpacity * 100);
@@ -189,6 +190,16 @@ export function LayerControls() {
               These maps show what HOLC appraisers evaluated when grading
               neighborhoods in 1938. Click a zone to see how the buildings
               they recorded connect to today.
+            </p>
+          )}
+          {covenantsVisible && (
+            <p
+              className="mt-1.5 px-1.5 text-[10px] leading-relaxed text-amber-400/70"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              32,219 racial covenants in property deeds (1910&ndash;1959) that
+              prohibited sale to non-white buyers. Expand the timeline to watch
+              them accumulate year by year. Click a dot to read the deed.
             </p>
           )}
 
