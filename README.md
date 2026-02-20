@@ -31,12 +31,13 @@ The project starts with Milwaukee, Wisconsin — one of the most segregated citi
   - **Environmental Burden** — EPA EJScreen environmental justice data
   - **Assessed Value** — Milwaukee MPROP property assessments with 1938-vs-today comparison
   - **Race & Demographics** — Census race data alongside 1938 HOLC racial assessments, revealing persistent segregation
+- **Racial Covenants Layer** — 32,219 geocoded racial covenants from Milwaukee County property deeds (1910-1959), sourced from UWM's Mapping Racism & Resistance project. Heatmap at low zoom, individual amber dots at high zoom. Timeline-linked: scrub the time slider to watch covenants accumulate year by year (71% filed in the 1920s alone). Click any dot to read the original deed language with content warning.
 - **Ghost Buildings** — 15,738 demolished structures (2005-2020) visualized as grade-colored circles, sized by demolition count per zone, with close button on the floating legend
 - **Sanborn Map Context** — Fire insurance atlas overlay connecting 1938 building conditions to modern-day demolition patterns
 - **Decades of Change** — Grade-level income and home ownership trends across 5 decades (1950-2020), combining published research statistics with Census API data, presented as plain-English narratives for general audiences
 - **Research-Sourced Citations** — Every data panel cites peer-reviewed Milwaukee research with in-app PDF viewer modal
-- **Time Slider** — GSAP-animated timeline (1870-2025) with zone opacity pulsing by development era
-- **Layer Controls** — Toggle zones, labels, neighborhoods, buildings, base map, and all overlays independently
+- **Time Slider** — GSAP-animated timeline (1870-2025) with zone opacity pulsing by development era, covenant accumulation count, and era annotations
+- **Layer Controls** — Toggle zones, labels, neighborhoods, buildings, covenants, base map, and all overlays independently
 - **Responsive Design** — Desktop split-panel layout, tablet adaptation, mobile bottom-sheet pattern
 
 ## Tech Stack
@@ -126,6 +127,7 @@ npx tsx scripts/build-sanborn-context.ts    # Sanborn map context by zone
 npx tsx scripts/build-decades-census.ts     # Decade-by-decade income/ownership (Census API)
 npx tsx scripts/build-hrs-overlay.ts        # Historic Redlining Scores (openICPSR)
 npx tsx scripts/download-2020-crosswalk.ts  # Download 2020 Census tract crosswalk
+npx tsx scripts/process-covenants.ts       # Geocode racial covenants → GeoJSON (Census Bureau API)
 ```
 
 ### Building Parcels
@@ -234,7 +236,8 @@ redlined/
 │   ├── build-sanborn-context.ts # Sanborn map context pipeline
 │   ├── build-decades-census.ts  # Decade-by-decade Census pipeline
 │   ├── build-hrs-overlay.ts     # Historic Redlining Scores pipeline
-│   └── download-2020-crosswalk.ts # 2020 Census tract crosswalk
+│   ├── download-2020-crosswalk.ts # 2020 Census tract crosswalk
+│   └── process-covenants.ts     # Geocode racial covenants (Census Bureau batch API)
 │
 ├── data/                        # Source data files
 │   ├── milwaukee-holc-zones.json      # 114 zone GeoJSON
@@ -243,6 +246,8 @@ redlined/
 │   ├── milwaukee-parcels-by-zone.json # MPROP aggregates
 │   ├── ghost-buildings.json           # Demolished structures
 │   ├── research-context.json          # Structured research findings
+│   ├── covenants/                     # UWM racial covenant records
+│   │   └── covenants-wi-milwaukee-county.csv  # 32,506 raw records (42 MB)
 │   └── hrs/                           # openICPSR HRS Excel files
 │       ├── Historic Redlining Indicator 2000.xlsx
 │       ├── Historic Redlining Indicator 2010.xlsx
@@ -264,6 +269,9 @@ redlined/
 │   ├── hrs-by-zone.json
 │   ├── milwaukee-parcels-by-zone.json
 │   ├── research-context.json
+│   ├── covenants/                # Racial covenant map data
+│   │   ├── milwaukee-covenants.geojson  # 32,219 geocoded Points (15 MB)
+│   │   └── covenant-stats.json          # Summary statistics
 │   └── archive/                  # Archive gallery data
 │       ├── fsa-photos.json       # 20 curated LOC photo manifest
 │       └── timeline-events.json  # 12 events across 5 eras
@@ -291,6 +299,7 @@ All data is freely available and publicly accessible.
 | MPROP Historical        | [data.milwaukee.gov](https://data.milwaukee.gov/dataset/historical-master-property-file)                                         | 1975-2024 property snapshots (ghost detection)  |
 | LOC FSA/OWI Photos      | [Library of Congress](https://www.loc.gov/pictures/collection/fsa/)                                                               | 20 curated Carl Mydans Milwaukee photos (1936)  |
 | HOLC Security Map Scan  | [Mapping Inequality](https://dsl.richmond.edu/panorama/redlining/)                                                              | Original 1938 HOLC scan (optimized 2K + 4K)     |
+| Racial Covenants        | [UWM Mapping Racism & Resistance](https://github.com/UMNLibraries/mp-us-racial-covenants)                                      | 32,219 geocoded covenant deeds (1910-1959)      |
 | HOLC Zones (All Cities) | [Mapping Inequality](https://dsl.richmond.edu/panorama/redlining/)                                                              | 10,154 zones across 300 cities (Phase 3)        |
 
 ## Data Overlay Details
@@ -310,6 +319,15 @@ Parses 1930s appraiser-estimated prices from HOLC area descriptions alongside mo
 - **Nominal growth**: D-zones grew 51.5x (from $6,618 avg to $340,750)
 - **Inflation-adjusted**: Many zones show real value erosion when adjusted for 22.3x CPI factor
 - **Grade correlation**: A-zone average values remain significantly higher than D-zone values
+
+### Racial Covenants
+
+32,219 racial covenants in Milwaukee County property deeds, crowdsourced by ~5,000 volunteers through UWM's [Mapping Racism & Resistance](https://sites.uwm.edu/mappingracismresistance/) project and geocoded at 99.4% match rate via the US Census Bureau batch geocoder:
+
+- **By decade**: 1910s: 238, 1920s: 23,035, 1930s: 5,290, 1940s: 3,532, 1950s: 124
+- **By city**: Milwaukee: 21,192, Wauwatosa: 4,235, West Allis: 2,774, plus 14 other municipalities
+- **Timeline integration**: Scrub the time slider through 1910-1959 to watch covenants accumulate — 71% were filed in the 1920s alone, showing how legal segregation preceded and informed HOLC redlining
+- **Visualization**: Amber heatmap at low zoom (density), individual dots at high zoom (click for deed text with content warning)
 
 ### Historic Redlining Scores
 
@@ -348,7 +366,7 @@ The AI Narrative Guide is a public-facing tool with no authentication (intention
 
 ### Phase 1: MVP — Milwaukee HOLC Explorer (Complete)
 
-3D zone visualization, 148K building extrusions with street addresses, click-to-inspect zones and buildings, AI narrative guide with zone-aware questions, five data overlays (income, health, environment, value, race), ghost buildings with dismiss button, time slider, Sanborn map context, research-sourced citations with PDF viewer, plain-English narrative panel for museum audiences with Historic Redlining Scores, interactive Archive gallery (original HOLC map viewer, 20 LOC photographs, historical timeline), About modal, responsive layout.
+3D zone visualization, 148K building extrusions with street addresses, click-to-inspect zones and buildings, AI narrative guide with zone-aware questions, five data overlays (income, health, environment, value, race), 32,219 racial covenants with timeline scrubbing, ghost buildings with dismiss button, time slider, Sanborn map context, research-sourced citations with PDF viewer, plain-English narrative panel for museum audiences with Historic Redlining Scores, interactive Archive gallery (original HOLC map viewer, 20 LOC photographs, historical timeline), About modal, responsive layout.
 
 ### Phase 2: Enhanced Narrative
 
@@ -369,6 +387,7 @@ Data sources are subject to their respective licenses:
 - Mapping Inequality / American Panorama data: [CC-BY-NC](https://creativecommons.org/licenses/by-nc/2.0/)
 - Census data: Public domain
 - openICPSR Historic Redlining Scores: [Terms of Use](https://www.openicpsr.org/openicpsr/terms)
+- UWM/UMN Racial Covenants: [ODC-By](https://opendatacommons.org/licenses/by/1-0/)
 - Application code: [MIT](LICENSE)
 
 ## Acknowledgments
@@ -376,4 +395,5 @@ Data sources are subject to their respective licenses:
 - [Mapping Inequality](https://dsl.richmond.edu/panorama/redlining/) — University of Richmond Digital Scholarship Lab
 - [American Panorama](https://github.com/americanpanorama) — Open-source historical data
 - [Library of Congress](https://www.loc.gov/pictures/collection/fsa/) — FSA/OWI photograph collection (Carl Mydans, Milwaukee 1936)
+- [UWM Mapping Racism & Resistance](https://sites.uwm.edu/mappingracismresistance/) — 32,219 racial covenant records crowdsourced by ~5,000 volunteers
 - [Radio Milwaukee](https://radiomilwaukee.org) / [The Intersection](https://theintersection.substack.com)

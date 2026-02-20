@@ -477,6 +477,37 @@ export default function MapView() {
     }
   }, [currentYear, isExpanded, timelineData, overlayActive]);
 
+  // Imperatively update covenant layer filters when timeline changes
+  useEffect(() => {
+    const map = mapRef.current?.getMap();
+    if (!map || !map.isStyleLoaded()) return;
+    if (!covenantsVisible) return;
+
+    const applyFilter = () => {
+      try {
+        if (map.getLayer("covenant-heatmap")) {
+          map.setFilter("covenant-heatmap", covenantFilter);
+        }
+        if (map.getLayer("covenant-dots")) {
+          map.setFilter("covenant-dots", covenantFilter);
+        }
+      } catch {
+        // Layers may not be ready during transitions
+      }
+    };
+
+    // Apply immediately if layers exist
+    applyFilter();
+
+    // Also apply when source data finishes loading (handles initial mount)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const onSourceData = (e: any) => {
+      if (e.sourceId === "covenants") applyFilter();
+    };
+    map.on("sourcedata", onSourceData);
+    return () => { map.off("sourcedata", onSourceData); };
+  }, [covenantFilter, covenantsVisible]);
+
   // Control base map layer opacity
   useEffect(() => {
     const map = mapRef.current?.getMap();
@@ -688,7 +719,6 @@ export default function MapView() {
             id="covenant-heatmap"
             type="heatmap"
             maxzoom={13}
-            filter={covenantFilter}
             paint={{
               "heatmap-weight": 1,
               "heatmap-intensity": [
@@ -715,7 +745,6 @@ export default function MapView() {
             id="covenant-dots"
             type="circle"
             minzoom={13}
-            filter={covenantFilter}
             paint={{
               "circle-radius": [
                 "interpolate", ["linear"], ["zoom"],
