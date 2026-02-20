@@ -42,6 +42,17 @@ The project starts with Milwaukee, Wisconsin — one of the most segregated citi
   - Beat 4: "What Was Lost" — Zone D6 (Triangle), 2,116 demolished buildings, I-43 destruction
   - Beat 5: "The Invisible Lines" — 32,219 racial covenants, year 1926
   - Beat 6: "Still Here" — Income overlay, 2.7x gap, Harambee resilience
+- **Bronzeville Scrollytelling Deep Dive** — Dedicated `/bronzeville` route with scroll-driven map storytelling (NYT "Snow Fall" style). 8 chapters trace the arc of Milwaukee's Bronzeville neighborhood:
+  1. "The Arrival" — Great Migration, 21,000 African Americans settle by 1940
+  2. "Walnut Street" — The vibrant Black Main Street with jazz clubs and businesses
+  3. "Stamped Hazardous" — HOLC arrives, D-grade cuts off mortgage lending
+  4. "The Invisible Wall" — 32,219 racial covenants walling in the community
+  5. "The Bulldozers" — I-43 highway destroys Walnut Street, 3,371 units lost
+  6. "The Sound of Absence" — Jazz clubs silenced, employment collapses
+  7. "What Remains" — 7,349 D-zone demolitions vs 39 in A-zones, ghost buildings
+  8. "Still Here" — Harambee community rebuilding, 2.7x income gap persists
+
+  Desktop: sticky map (60%) + scrolling narrative (40%). Mobile: fixed map behind with backdrop-blur cards. Motion.dev `useInView` triggers camera flyTo, zone selection, timeline year, and layer changes per chapter. Entry from Header, story beat 3, or direct URL.
 - **Research-Sourced Citations** — Every data panel and story beat cites peer-reviewed Milwaukee research with in-app PDF viewer modal (9 papers total, including 6 on Bronzeville history)
 - **Time Slider** — GSAP-animated timeline (1870-2025) with zone opacity pulsing by development era, covenant accumulation count, and era annotations
 - **Layer Controls** — Toggle zones, labels, neighborhoods, buildings, covenants, base map, and all overlays independently
@@ -152,6 +163,7 @@ tippecanoe -o public/data/milwaukee-parcels.pmtiles -Z11 -z16 -l parcels --drop-
 redlined/
 ├── app/                         # Next.js App Router
 │   ├── page.tsx                 # Main application page
+│   ├── bronzeville/page.tsx     # Bronzeville scrollytelling deep dive
 │   ├── globals.css              # Tailwind + design tokens
 │   └── api/tiles/               # PMTiles tile server endpoint
 │
@@ -201,6 +213,11 @@ redlined/
 │   │   ├── TimelineSection.tsx   # Era-based timeline browser
 │   │   ├── TimelineCard.tsx      # Expandable event card
 │   │   └── TimelineProgressBar.tsx # Era navigation pills
+│   ├── bronzeville/             # Bronzeville scrollytelling components
+│   │   ├── ChapterSection.tsx   # Scroll-driven chapter with useInView
+│   │   ├── ScrollProgress.tsx   # Reading progress bar
+│   │   ├── BronzevilleHero.tsx  # Opening hero section
+│   │   └── BronzevilleOutro.tsx # Closing stat grid + CTAs
 │   └── layout/                  # App shell + navigation
 │
 ├── convex/                      # Convex backend
@@ -217,9 +234,10 @@ redlined/
 │   ├── data-overlay.tsx         # Overlay state context
 │   ├── time-slider.tsx          # Timeline state context
 │   ├── layer-visibility.tsx     # Layer toggle context
-│   ├── map-camera.tsx           # Camera flyTo context (used by story mode)
+│   ├── map-camera.tsx           # Camera flyTo context (used by story mode + scrollytelling)
 │   ├── story-beats.ts           # 6-beat narrative script with camera targets
 │   ├── story-mode.tsx           # Story state + orchestration context
+│   ├── bronzeville-chapters.ts  # 8-chapter Bronzeville scrollytelling data
 │   ├── colorScale.ts            # Overlay color mapping functions
 │   ├── census-helpers.ts        # Crosswalk + weighted averages
 │   ├── useZoneIncome.ts         # Income data hook
@@ -397,7 +415,7 @@ The AI Narrative Guide is a public-facing tool with no authentication (intention
 
 ### Phase 2: Enhanced Narrative
 
-ElevenLabs voice narration, historical MPROP time-series (1975-2024 sparklines), Sanborn fire insurance map overlay. ~~Guided Bronzeville narrative tour~~ (complete — see Guided Story Mode above).
+ElevenLabs voice narration, historical MPROP time-series (1975-2024 sparklines), Sanborn fire insurance map overlay. ~~Guided Bronzeville narrative tour~~ (complete — see Guided Story Mode). ~~Bronzeville scrollytelling deep dive~~ (complete — 8-chapter `/bronzeville` route).
 
 ### Phase 3: Multi-City
 
