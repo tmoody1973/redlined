@@ -67,7 +67,13 @@ export function NarrationProvider({ children }: { children: ReactNode }) {
     };
 
     const onError = () => {
-      console.error("Audio playback error");
+      // Setting audio.src = "" triggers an error event in all browsers.
+      // Ignore errors when src is empty (happens in stop/mute/unlock).
+      if (!audio.src || audio.src === window.location.href) return;
+
+      const code = audio.error?.code;
+      const msg = audio.error?.message ?? "unknown";
+      console.error(`Audio playback error (code=${code}): ${msg}`, audio.src);
       setPlaybackState("idle");
       setActiveAudioKey(null);
       setActiveTier(null);
@@ -92,7 +98,8 @@ export function NarrationProvider({ children }: { children: ReactNode }) {
     audio.play().then(() => {
       audio.pause();
       audio.volume = 1;
-      audio.src = "";
+      audio.removeAttribute("src");
+      audio.load();
       setIsUnlocked(true);
     }).catch(() => {
       // iOS may still block — try again on next gesture
@@ -143,7 +150,8 @@ export function NarrationProvider({ children }: { children: ReactNode }) {
     if (audio) {
       audio.pause();
       audio.currentTime = 0;
-      audio.src = "";
+      audio.removeAttribute("src");
+      audio.load();
     }
     setPlaybackState("idle");
     setActiveAudioKey(null);
@@ -161,7 +169,8 @@ export function NarrationProvider({ children }: { children: ReactNode }) {
         if (audio) {
           audio.pause();
           audio.currentTime = 0;
-          audio.src = "";
+          audio.removeAttribute("src");
+          audio.load();
         }
         setPlaybackState("idle");
         setActiveAudioKey(null);
