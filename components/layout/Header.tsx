@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 interface HeaderProps {
   onAboutClick?: () => void;
   onGuideClick?: () => void;
@@ -51,6 +53,13 @@ export function Header({ onAboutClick, onGuideClick, onArchiveClick, onStoryClic
                 Guided Tour
               </button>
             )}
+            <Link
+              href="/bronzeville"
+              className="rounded-full border border-red-500/20 bg-red-500/5 px-3 py-1 text-xs font-medium text-red-400/80 transition-colors hover:border-red-500/40 hover:bg-red-500/10 hover:text-red-300"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              Bronzeville
+            </Link>
             {onArchiveClick && (
               <button
                 onClick={onArchiveClick}

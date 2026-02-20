@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "motion/react";
 import { useRef } from "react";
+import Link from "next/link";
 import type { StoryBeat } from "@/lib/story-beats";
 import { SourceCitation } from "@/components/panel/SourceCitation";
 
@@ -135,6 +136,30 @@ export function StoryCard({
                       />
                     ))}
                   </div>
+                )}
+
+                {/* Bronzeville deep-dive link on beat 3 */}
+                {beat.id === "hazardous" && (
+                  <Link
+                    href="/bronzeville"
+                    className="mt-3 flex items-center gap-1.5 rounded-md border border-red-500/30 bg-red-500/10 px-3 py-2 text-[11px] font-medium text-red-400 transition-colors hover:border-red-500/50 hover:bg-red-500/15 hover:text-red-300"
+                    style={{ fontFamily: "var(--font-body)" }}
+                  >
+                    <svg
+                      className="h-3.5 w-3.5 shrink-0"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M13 7l5 5m0 0l-5 5m5-5H6"
+                      />
+                    </svg>
+                    Explore Bronzeville&apos;s full story
+                  </Link>
                 )}
               </div>
             </motion.div>
