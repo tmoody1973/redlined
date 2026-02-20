@@ -55,14 +55,14 @@ export function MapCameraProvider({ children }: { children: ReactNode }) {
 
     // Build clean options — omit undefined values so mapbox-gl doesn't
     // try to animate properties we didn't set
-    const flyOpts: mapboxgl.FlyToOptions = {
-      center: options.center,
+    const flyOpts = {
+      center: options.center as [number, number],
       duration: reducedMotion ? 0 : (options.duration ?? 2000),
-      essential: true,
+      essential: true as const,
+      ...(options.zoom !== undefined && { zoom: options.zoom }),
+      ...(options.pitch !== undefined && { pitch: options.pitch }),
+      ...(options.bearing !== undefined && { bearing: options.bearing }),
     };
-    if (options.zoom !== undefined) flyOpts.zoom = options.zoom;
-    if (options.pitch !== undefined) flyOpts.pitch = options.pitch;
-    if (options.bearing !== undefined) flyOpts.bearing = options.bearing;
 
     const doFly = () => {
       // Skip no-op flyTo — avoids a mapbox-gl/react-map-gl race condition
